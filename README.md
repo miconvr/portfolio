@@ -68,7 +68,6 @@ This is the source code for my personal portfolio. It shows the projects I've bu
 ├── script.js, sub.js     # scripts for the inner pages
 ├── styles.css
 ├── vercel.json
-└── ADDING-A-CASE.md      # how to add a new project
 ```
 
 ---
@@ -85,7 +84,6 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-To add a new project, follow [ADDING-A-CASE.md](ADDING-A-CASE.md).
 
 ---
 
