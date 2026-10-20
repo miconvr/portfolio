@@ -64,3 +64,10 @@ footer.site a{color:var(--ink)}
 .contact{list-style:none;padding:0;margin:1.5rem 0 0;border-top:1.5px solid var(--ink)}
 .contact li{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;padding:1rem 0;border-bottom:1.5px solid var(--line)}
 .contact span{font-family:var(--head);color:var(--muted);min-width:6rem}
+.simple h1{font-size:2rem;font-weight:800;margin:1.5rem 0 .5rem}
+.simple .lead{color:var(--muted);max-width:34rem;margin:0}
+.simple h2{font-size:1.4rem;font-weight:700;margin:2.5rem 0 .75rem}
+.simple ol{padding-left:1.3rem;max-width:38rem}
+.simple ol li{margin:.4rem 0}
+.simple .next{padding:1rem 1.25rem;background:var(--surface);border:1.5px solid var(--line);border-radius:.5rem;max-width:38rem}
+.simple .next p{margin:.3rem 0}
