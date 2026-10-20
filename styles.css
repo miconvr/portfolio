@@ -87,3 +87,4 @@ footer.site a{color:var(--ink)}
 .badge{margin:.75rem 0 0;font-size:.95rem}
 .badge a{display:inline-block;padding:.3rem .8rem;border:1.5px solid var(--line);border-radius:99px;color:var(--ink);text-decoration:none;font-weight:500}
 .badge a:hover{border-color:var(--ink)}
+header.site{justify-content:flex-start}
