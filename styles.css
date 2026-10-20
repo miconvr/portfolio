@@ -101,3 +101,5 @@ article h1{font-size:2.6rem}
 @media (max-width:56rem){.home .shell{display:block}.side{position:static;height:auto;padding:3rem 0 0}.side nav ul{flex-direction:row;margin-top:2rem}.side .badge{margin-top:2rem}.home main{padding-top:3rem}.item{padding-bottom:4rem}}
 .frame.ronda{aspect-ratio:auto;background:#0C0C0F}
 .frame.ronda img{height:auto;object-fit:contain}
+.frame.ronda{aspect-ratio:auto;background:#0C0C0F}
+.frame.ronda img{height:auto;object-fit:contain}
