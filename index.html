@@ -19,10 +19,41 @@
     <p class="lead">From San Fernando City, Pampanga, Philippines</p>
 
     <h2>Projects</h2>
-    <ul class="work">
-      <li><a href="/ronda"><h3>Ronda</h3><p>An accessible daily round checklist.</p></a></li>
-      <li><a href="/civicguard"><h3>CivicGuard</h3><p>Incident and curfew reporting for Barangay Maimpis.</p></a></li>
-    </ul>
+
+    <article class="proj">
+      <svg viewBox="0 0 72 72" role="img" aria-label="Ronda mark">
+        <rect width="72" height="72" fill="#14213D"/>
+        <circle cx="36" cy="36" r="19" fill="none" stroke="#E9A400" stroke-width="4"/>
+        <path d="M27 36.5l6.5 6.5L46 29" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h3>Ronda <span class="status">Live</span></h3>
+        <p>A daily round checklist built to test what AI-generated UI gets wrong about keyboard and screen reader behavior. I built the app with Claude, then wrote a Modal, Tabs and Disclosure from scratch in React and TypeScript against the WAI-ARIA patterns, tested them using only the keyboard, and compared them with shadcn/ui (Radix) by reading the source.</p>
+        <p>The result is a live, keyboard-operable app and a NOTES.md file listing six concrete gaps between my components and shadcn/Radix.</p>
+        <ul class="meta">
+          <li><a href="/ronda">Case study</a></li>
+          <li><a href="https://ronda-playground.vercel.app/">Live site</a></li>
+          <li><a href="https://github.com/miconvr/ronda">Repository</a></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="proj">
+      <svg viewBox="0 0 72 72" role="img" aria-label="CivicGuard mark">
+        <rect width="72" height="72" fill="#14213D"/>
+        <path d="M36 15l17 6v13c0 11-7 19-17 23-10-4-17-12-17-23V21z" fill="#E9A400"/>
+        <path d="M28 36l6 6 11-12" fill="none" stroke="#14213D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h3>CivicGuard <span class="status">In development</span></h3>
+        <p>A full-stack web system for Barangay Maimpis in San Fernando, Pampanga. Residents report an incident with a category, description, location and an optional photo and GPS pin, then follow it from Received to Resolved and can confirm a fix or reopen it within 7 days. Staff work from an urgency-sorted queue.</p>
+        <p>A chatbot helps residents write reports and gives emergency guidance in English and Tagalog, and AI suggests a category and urgency that staff can always change. Access is role-based for residents, tanods, officials and admins, with audit logs, analytics and PDF exports.</p>
+        <ul class="meta">
+          <li><a href="/civicguard">Case study</a></li>
+          <li><a href="https://github.com/miconvr/civicguard">Repository</a></li>
+        </ul>
+      </div>
+    </article>
 
     <h2>Contact</h2>
     <ul class="contact">
