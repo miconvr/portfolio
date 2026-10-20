@@ -6,7 +6,7 @@ Each case study is one folder with one `index.html`. The site has no build step,
 
 1. **Copy the template.** Duplicate `ronda/` and rename the folder to a short slug, e.g. `my-project/`. The page will live at `/my-project`.
 2. **Edit `my-project/index.html`.** Change the `<title>`, the description, the `<h1>`, the one-line summary, the links, and the facts box. Then rewrite the three sections below.
-3. **Add it to the home page.** In `index.html`, copy one `<li>` inside `<ul class="work">`, point it at `/my-project`, and write a one-sentence teaser and a status (Live or In development).
+3. **Add it to the home page.** In `index.html`, copy one `<article class="proj">` block under Projects, point its "Case study" link at `/my-project`, and update the icon, the description and the status (Live or In development).
 4. **Check it.** Tab through the page with only the keyboard, click every link, and search the project for `TODO`.
 5. **Publish.** Commit and push to GitHub. Vercel redeploys automatically, usually in under a minute.
 
@@ -22,5 +22,5 @@ Keep the Claude Project for this portfolio. Open it, paste rough notes about the
 
 ## Next case
 
-- **Next piece of work:** TODO name it here
-- **Reminder set for:** TODO date and where (calendar, phone, recurring note)
+- **Next piece of work:** CivicGuard (https://github.com/miconvr/civicguard).
+- **Reminder set for:** October 27, 2026 at 1 PM, in my calendar, with an alert at the time of the event.
