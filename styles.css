@@ -113,3 +113,37 @@ article h1{font-size:2.6rem}
 .js .sub{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
 .js .sub.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .sub{opacity:1;transform:none;transition:none}}
+
+/* ---- Mobile polish ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+
+/* keep content clear of notches in landscape (viewport-fit=cover is on) */
+.wrap,.home .shell{padding-left:max(1.5rem,env(safe-area-inset-left,0px));padding-right:max(1.5rem,env(safe-area-inset-right,0px))}
+
+/* long emails/URLs never force sideways scroll */
+.contact a,.side-links a,.meta a,.links a{overflow-wrap:anywhere}
+
+/* bigger invisible hit area on inline links, without changing how they look */
+.meta a,.links a{position:relative}
+.meta a::before,.links a::before{content:"";position:absolute;inset:-.7rem -.4rem}
+.back a{width:2.75rem;height:2.75rem}
+
+@media (max-width:56rem){
+  .side h1{font-size:2.25rem}
+  .side nav ul{flex-wrap:wrap;gap:0 1.75rem}
+  .side nav a,.side-links a{display:inline-flex;align-items:center;min-height:2.75rem}
+  .side-links{gap:0;margin-top:1.5rem}
+  .meta,.links{gap:.9rem 1.5rem}
+}
+
+@media (max-width:34rem){
+  .home .shell,.wrap{padding-left:max(1.25rem,env(safe-area-inset-left,0px));padding-right:max(1.25rem,env(safe-area-inset-right,0px))}
+  .side{padding-top:2.5rem}
+  .item{padding-bottom:3.5rem}
+  .item h3{font-size:1.75rem}
+  .item-head{gap:.85rem}
+  .meta,.links{font-size:.875rem}
+  .status{font-size:.8125rem}
+  .contact li{gap:.15rem 1rem}
+  footer.site{font-size:.85rem}
+}
