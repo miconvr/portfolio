@@ -2,9 +2,7 @@
   var root=document.documentElement,els=document.querySelectorAll('.reveal');
   function showAll(){root.classList.remove('js');els.forEach(function(el){el.classList.add('in');});}
   try{
-    var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if('IntersectionObserver' in window && !reduce){
-      root.classList.add('js');
+    if(root.classList.contains('js') && 'IntersectionObserver' in window){
       var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.05});
       els.forEach(function(el){io.observe(el);});
     }else{showAll();}
