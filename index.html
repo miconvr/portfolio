@@ -5,76 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mico Gerard Navarro</title>
 <meta name="description" content="Mico Gerard Navarro. Projects and contact details.">
+<meta property="og:title" content="Mico Gerard Navarro">
+<meta property="og:description" content="Projects and contact details.">
+<meta property="og:image" content="https://miconvr.vercel.app/images/ronda.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23141413%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Newsreader:wght@500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
-<meta property="og:title" content="Mico Gerard Navarro">
-<meta property="og:description" content="Projects and contact details.">
-<meta property="og:image" content="https://miconvr.vercel.app/images/ronda.png">
-<meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-  <header class="site">
-    
-    <nav aria-label="Main"><ul><li><a href="/" aria-current="page">Projects</a></li><li><a href="/contact">Contact</a></li><li><button class="theme" id="theme" type="button" aria-pressed="false">Dark mode</button></li></ul></nav>
-  </header>
-  <main id="main" class="simple">
+<div class="progress" aria-hidden="true"></div>
+<div class="shell">
+  <aside class="side">
     <h1>Mico Gerard Navarro</h1>
     <p class="lead">Bachelor of Science in Information Technology</p>
-    <p class="lead">From San Fernando City, Pampanga, Philippines</p>
+    <p class="lead">San Fernando City, Pampanga, Philippines</p>
+    <nav aria-label="Sections"><ul><li><a href="#projects">projects</a></li><li><a href="#contact">contact</a></li></ul></nav>
+    <ul class="side-links">
+      <li><a href="mailto:micogerardnavarro@gmail.com">micogerardnavarro@gmail.com</a></li>
+      <li><a href="https://github.com/miconvr">github.com/miconvr</a></li>
+    </ul>
+    <p class="badge"><a href="https://internship.flyrank.ai/">Built during the FlyRank AI internship</a></p>
+  </aside>
+  <main id="main">
+    <section id="projects">
+      <h2 class="label">projects</h2>
 
-    <h2>Projects</h2>
-
-    <article class="proj">
-      <svg viewBox="0 0 72 72" role="img" aria-label="Ronda mark">
-        <rect width="72" height="72" fill="#1F3A5F"/>
-        <path d="M52.42 31.6A17 17 0 1 1 40.4 19.58" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
-        <path d="M27 36.5l6.5 6.5L46 29" fill="none" stroke="#F5B942" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div>
-        <h3>Ronda <span class="status">Live</span></h3>
+      <article class="item reveal">
+        <div class="frame ronda"><img src="/images/ronda.png" width="1917" height="904" loading="lazy" alt="Ronda in dark mode: the My round tab with an add-a-stop field, All, Active and Done filters, and three suggested stops."></div>
+        <div class="item-head">
+          <svg viewBox="0 0 72 72" role="img" aria-label="Ronda mark"><rect width="72" height="72" fill="#1F3A5F"/><path d="M52.42 31.6A17 17 0 1 1 40.4 19.58" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/><path d="M27 36.5l6.5 6.5L46 29" fill="none" stroke="#F5B942" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Ronda <span class="status">live</span></h3>
+        </div>
         <p>A daily round checklist built to test what AI-generated UI gets wrong about keyboard and screen reader behavior. I built the app with Claude, then wrote a Modal, Tabs and Disclosure from scratch in React and TypeScript against the WAI-ARIA patterns, tested them using only the keyboard, and compared them with shadcn/ui (Radix) by reading the source.</p>
         <p>The result is a live, keyboard-operable app and a NOTES.md file listing six concrete gaps between my components and shadcn/Radix.</p>
-        <img class="shot ronda" src="/images/ronda.png" width="1917" height="904" loading="lazy" alt="Ronda in dark mode: the My round tab with an add-a-stop field, All, Active and Done filters, and three suggested stops.">
         <ul class="meta">
-          <li><a href="/ronda">Case study</a></li>
-          <li><a href="https://ronda-playground.vercel.app/">Live site</a></li>
-          <li><a href="https://github.com/miconvr/ronda">Repository</a></li>
+          <li><a href="/ronda">case study</a></li>
+          <li><a href="https://ronda-playground.vercel.app/">live site</a></li>
+          <li><a href="https://github.com/miconvr/ronda">repository</a></li>
         </ul>
-      </div>
-    </article>
+      </article>
 
-    <article class="proj">
-      <img src="https://civicguard.wasmer.app/icons/icon-192.png" alt="CivicGuard app icon" width="48" height="48">
-      <div>
-        <h3>CivicGuard <span class="status">In development</span></h3>
+      <article class="item dev reveal">
+        <div class="frame civic"><img src="/images/civicguard.png" width="1919" height="913" loading="lazy" alt="CivicGuard home page reading Report an issue in Barangay Maimpis, with a five-step example of following a report from problem to resolved."></div>
+        <div class="item-head">
+          <img src="https://civicguard.wasmer.app/icons/icon-192.png" alt="CivicGuard app icon" width="44" height="44">
+          <h3>CivicGuard <span class="status">in development</span></h3>
+        </div>
         <p>A full-stack web system for Barangay Maimpis in San Fernando, Pampanga. Residents report an incident with a category, description, location and an optional photo and GPS pin, then follow it from Received to Resolved and can confirm a fix or reopen it within 7 days. Staff work from an urgency-sorted queue. Residents get a notification when the status of a report changes, and can install the app on their phone from the browser.</p>
         <p>A chatbot helps residents write reports and gives emergency guidance in English and Tagalog, and AI suggests a category and urgency that staff can always change. Access is role-based for residents, tanods, officials and admins, with audit logs, analytics and PDF exports.</p>
         <p>Developed by Mico Gerard Navarro, Franz Mikey Reyes, Carl Spencer Talon and Adriann Enriquez.</p>
-        <img class="shot civic" src="/images/civicguard.png" width="1919" height="913" loading="lazy" alt="CivicGuard home page reading Report an issue in Barangay Maimpis, with a five-step example of following a report from problem to resolved.">
         <ul class="meta">
-          <li><a href="/civicguard">Case study</a></li>
-          <li><a href="https://civicguard.wasmer.app/">Live site</a></li>
-          <li><a href="https://github.com/miconvr/civicguard">Repository</a></li>
+          <li><a href="/civicguard">case study</a></li>
+          <li><a href="https://civicguard.wasmer.app/">live site</a></li>
+          <li><a href="https://github.com/miconvr/civicguard">repository</a></li>
         </ul>
-      </div>
-    </article>
+      </article>
+    </section>
 
-    <h2>Contact</h2>
-    <ul class="contact">
-      <li><span>Email</span><a href="mailto:micogerardnavarro@gmail.com">micogerardnavarro@gmail.com</a></li>
-      <li><span>GitHub</span><a href="https://github.com/miconvr">github.com/miconvr</a></li>
-    </ul>
+    <section id="contact" class="reveal">
+      <h2 class="label">contact</h2>
+      <ul class="contact">
+        <li><span>email</span><a href="mailto:micogerardnavarro@gmail.com">micogerardnavarro@gmail.com</a></li>
+        <li><span>github</span><a href="https://github.com/miconvr">github.com/miconvr</a></li>
+      </ul>
+    </section>
   </main>
-  <footer class="site">
-    <p>Mico Gerard Navarro &middot; <a href="https://github.com/miconvr">GitHub</a> &middot; <a href="/contact">Contact</a></p>
-  <p class="badge"><a href="https://internship.flyrank.ai/">Built during the FlyRank AI internship</a></p>
-  </footer>
 </div>
-<script src="/script.js"></script>
+<script src="/home.js"></script>
 </body>
 </html>
