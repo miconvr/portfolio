@@ -55,3 +55,8 @@ footer.site p{margin:0 0 .75rem}
 footer.site a{color:var(--text)}
 footer.site .badge a{display:inline;padding:0;border:0;background:none;color:var(--muted);text-decoration:none}
 @media (max-width:34rem){.proj{grid-template-columns:1fr;gap:1.25rem 0}.simple h1{font-size:2.2rem}article h1{font-size:2rem}}
+.simple h1,article h1,.proj h3{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.02em;line-height:1.1}
+.simple h1{font-size:3.1rem}
+article h1{font-size:2.6rem}
+.proj h3{font-size:1.75rem}
+@media (max-width:34rem){.simple h1{font-size:2.5rem}article h1{font-size:2.2rem}}
