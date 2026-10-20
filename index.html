@@ -10,6 +10,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Newsreader:wght@500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<meta property="og:title" content="Mico Gerard Navarro">
+<meta property="og:description" content="Projects and contact details.">
+<meta property="og:image" content="https://miconvr.vercel.app/images/ronda.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -35,6 +39,7 @@
         <h3>Ronda <span class="status">Live</span></h3>
         <p>A daily round checklist built to test what AI-generated UI gets wrong about keyboard and screen reader behavior. I built the app with Claude, then wrote a Modal, Tabs and Disclosure from scratch in React and TypeScript against the WAI-ARIA patterns, tested them using only the keyboard, and compared them with shadcn/ui (Radix) by reading the source.</p>
         <p>The result is a live, keyboard-operable app and a NOTES.md file listing six concrete gaps between my components and shadcn/Radix.</p>
+        <img class="shot ronda" src="/images/ronda.png" width="1917" height="904" loading="lazy" alt="Ronda in dark mode: the My round tab with an add-a-stop field, All, Active and Done filters, and three suggested stops.">
         <ul class="meta">
           <li><a href="/ronda">Case study</a></li>
           <li><a href="https://ronda-playground.vercel.app/">Live site</a></li>
@@ -50,6 +55,7 @@
         <p>A full-stack web system for Barangay Maimpis in San Fernando, Pampanga. Residents report an incident with a category, description, location and an optional photo and GPS pin, then follow it from Received to Resolved and can confirm a fix or reopen it within 7 days. Staff work from an urgency-sorted queue. Residents get a notification when the status of a report changes, and can install the app on their phone from the browser.</p>
         <p>A chatbot helps residents write reports and gives emergency guidance in English and Tagalog, and AI suggests a category and urgency that staff can always change. Access is role-based for residents, tanods, officials and admins, with audit logs, analytics and PDF exports.</p>
         <p>Developed by Mico Gerard Navarro, Franz Mikey Reyes, Carl Spencer Talon and Adriann Enriquez.</p>
+        <img class="shot civic" src="/images/civicguard.png" width="1919" height="913" loading="lazy" alt="CivicGuard home page reading Report an issue in Barangay Maimpis, with a five-step example of following a report from problem to resolved.">
         <ul class="meta">
           <li><a href="/civicguard">Case study</a></li>
           <li><a href="https://civicguard.wasmer.app/">Live site</a></li>
@@ -65,7 +71,7 @@
     </ul>
   </main>
   <footer class="site">
-    <p>Mico Navarro. <a href="https://github.com/miconvr">GitHub</a>. <a href="/contact">Contact</a></p>
+    <p>Mico Gerard Navarro &middot; <a href="https://github.com/miconvr">GitHub</a> &middot; <a href="/contact">Contact</a></p>
   <p class="badge"><a href="https://internship.flyrank.ai/">Built during the FlyRank AI internship</a></p>
   </footer>
 </div>
