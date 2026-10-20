@@ -164,7 +164,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
   /* press feedback */
   .meta a,.links a,.back a,.side nav a{display:inline-block;transition:transform .15s ease,color .2s ease,border-color .2s ease}
-  .side nav a{display:inline-flex}
+  .side nav a,.back a{display:inline-flex}
   .meta a:active,.links a:active,.back a:active{transform:scale(.96)}
   .side nav a:active{transform:translateX(.25rem)}
 }
