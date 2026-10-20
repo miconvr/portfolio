@@ -22,5 +22,5 @@ Keep the Claude Project for this portfolio. Open it, paste rough notes about the
 
 ## Next case
 
-- **Next piece of work:** CivicGuard (https://github.com/miconvr/civicguard).
+- **Next piece of work:** CivicGuard follow-up case study: what barangay staff said after using it
 - **Reminder set for:** October 27, 2026 at 1 PM, in my calendar, with an alert at the time of the event.
