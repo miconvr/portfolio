@@ -1,80 +1,61 @@
 <div align="center">
+  <img src="images/mico-profile.png" alt="Portrait of Mico Gerard Navarro" width="84" height="84">
   <h1>Mico Gerard Navarro</h1>
-  <p>Portfolio: projects, case studies, and contact details</p>
-  <p><strong>Live site:</strong> <a href="https://miconvr.vercel.app">https://miconvr.vercel.app</a></p>
+  <p>A personal portfolio for projects, case studies, and experience.</p>
+  <p>
+    <a href="https://miconvr.vercel.app">Open the live portfolio</a> ·
+    <a href="https://github.com/miconvr">GitHub</a> ·
+    <a href="https://linkedin.com/in/miconvr">LinkedIn</a>
+  </p>
 </div>
 
----
+This is the source code for my personal portfolio. It presents my projects, including CivicGuard, my capstone project at Our Lady of Fatima University, along with a case study, experience, and contact details.
 
-This is the source code for my personal portfolio. It shows the projects I've built, with a case study for each one, and ways to get in touch. It is plain HTML, CSS, and a little JavaScript with no build step, and it's deployed on Vercel. Built during the FlyRank AI internship.
+The site is built with plain HTML, CSS, and JavaScript. It has no framework or build step and is deployed on Vercel. The portfolio was created during my Front-end AI Engineering internship at FlyRank AI.
 
----
+## Featured project
+
+### CivicGuard
+
+CivicGuard is an AI-integrated web-based incident and curfew monitoring system for Barangay Maimpis, City of San Fernando, Pampanga.
+
+It is an OLFU capstone project designed to connect residents with barangay staff through report submission, follow-up, incident management, and curfew monitoring tools. I led a four-member team as Project Manager and Full-Stack Developer.
+
+- [Open the live site](https://civicguard.wasmer.app/)
+- [Read the case study](https://miconvr.vercel.app/civicguard)
+- [View the repository](https://github.com/miconvr/civicguard)
 
 ## Features
 
-- **Project cards:** each project shows its status (live or in development), a short write-up, and links to its case study, live site, and repository
-- **Case study pages:** one page per project, written in the same structure so they're easy to compare
-- **Mobile friendly:** the layout collapses to one column on small screens, with larger tap targets and spacing that stays clear of phone notches
-- **Page and scroll animations:** staggered reveals as you scroll, and fade transitions between pages in browsers that support them
-- **Reduced motion:** every animation switches off for visitors who ask for less motion
-- **Keyboard friendly:** a skip-to-content link and visible focus outlines
-- **No dependencies:** no framework and no build step, only Google Fonts loaded from outside
-
----
+- **In-place navigation:** About, Experience, and Contact load in the main panel without removing the sidebar or navigating away from the portfolio shell
+- **Project presentation:** featured project preview with case study, live site, and repository links
+- **CivicGuard case study:** project context, responsibilities, technology, AI features, and deployment details
+- **Responsive layout:** desktop sidebar layout that collapses cleanly on smaller screens
+- **Motion:** page-panel transitions, scroll reveals, image movement, and link feedback with reduced-motion support
+- **Accessible basics:** skip link, semantic landmarks, visible focus states, descriptive image text, and keyboard-friendly navigation
+- **No build step:** static files that can be served with any simple local HTTP server
 
 ## Pages
 
 | Page | What's there |
 | --- | --- |
-| **Home** | Short intro and the project cards |
-| **CivicGuard** | Case study for the barangay incident reporting system |
+| **Home** | Introduction and featured project |
+| **CivicGuard** | Case study for the OLFU capstone project |
 | **About** | A short introduction |
-| **Experience** | Work and internship experience |
-| **Contact** | Ways to reach me |
+| **Experience** | FlyRank AI internship experience |
+| **Contact** | Email, GitHub, and LinkedIn |
 
----
+## Technology
 
-## Built with
+- **Frontend:** HTML, CSS, and vanilla JavaScript
+- **Layout:** CSS Grid, Flexbox, custom properties, and responsive media queries
+- **Fonts:** Manrope, Sora, and DM Mono from Google Fonts
+- **Motion:** Intersection Observer, View Transitions API, and CSS transitions
+- **Hosting:** Vercel
 
-**Frontend**
+## Run locally
 
-- HTML
-- CSS (custom properties, grid, flexbox)
-- Vanilla JavaScript
-
-**Fonts**
-
-- Geist and Geist Mono
-- Newsreader
-- Source Serif 4
-
-**Hosting**
-
-- Vercel
-
----
-
-## Project structure
-
-```
-.
-├── index.html            # home page
-├── about/
-├── civicguard/           # case study
-├── contact/
-├── experience/
-├── images/               # screenshots and logos
-├── home.js               # home page script
-├── script.js, sub.js     # scripts for the inner pages
-├── styles.css
-├── vercel.json
-```
-
----
-
-## Getting started
-
-There is nothing to install. Any static file server works, as long as it serves from the repo root (the pages use paths like `/styles.css`, so opening `index.html` directly won't load them).
+There is nothing to install. Serve the repository from its root because the pages use absolute paths such as `/styles.css`.
 
 ```bash
 git clone https://github.com/miconvr/portfolio.git
@@ -82,18 +63,35 @@ cd portfolio
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000`.
+Open [http://localhost:8000](http://localhost:8000).
 
+## Project structure
 
----
+```text
+.
+├── index.html              # portfolio homepage
+├── about/
+│   └── index.html          # about panel
+├── civicguard/
+│   └── index.html          # CivicGuard case study
+├── contact/
+│   └── index.html          # contact panel
+├── experience/
+│   └── index.html          # internship experience panel
+├── images/                 # profile, project screenshot, and app icon
+├── home.js                 # homepage navigation and project animations
+├── script.js               # theme controls for inner pages
+├── sub.js                  # inner-page reveal animations
+├── styles.css              # shared visual system
+└── vercel.json             # Vercel routing settings
+```
 
-## Good to know
+## Deployment
 
-- **Work in progress.** I add projects as I finish them, and projects still being built are marked "in development".
-- **Deploys on push.** Every push to `main` redeploys the site on Vercel.
+The site is deployed on Vercel. Pushes to `main` trigger a new deployment.
 
----
+## Credits
 
-## Built by
+Portfolio by Mico Gerard Navarro.
 
-Mico Gerard Navarro
+Built during the Front-end AI Engineering internship at [FlyRank AI](https://internship.flyrank.ai/).
