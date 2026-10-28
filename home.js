@@ -75,6 +75,7 @@
   function restoreHome(replace){
     if(!main||loading)return;
     main.innerHTML=initialView;
+    main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
     document.title=initialTitle;
     setActive('/');
     if(replace)history.replaceState({view:'/'},'', '/');
