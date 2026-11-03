@@ -184,3 +184,5 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){
   .panel-enter{animation:none}
 }
+
+.ico{width:1em;height:1em;vertical-align:-.125em;margin-right:.4em;fill:currentColor}
