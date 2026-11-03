@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Iskolar case study: Mico Navarro</title>
+<meta name="description" content="Iskolar, a privacy-first Chrome extension that shows students the discounts and education perks available on the website they are visiting.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23141413%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="site">
+
+    <nav aria-label="Main"><ul><li><a href="/" aria-current="page">Projects</a></li><li><a href="/about">About</a></li><li><a href="/experience">Experience</a></li><li><a href="/contact">Contact</a></li><li><button class="theme" id="theme" type="button" aria-pressed="false">Dark mode</button></li></ul></nav>
+  </header>
+  <main id="main">
+<article>
+        <p class="back"><a href="/" title="Back to projects" aria-label="Back to projects"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a></p>
+        <h1 tabindex="-1">Iskolar: a privacy-first Chrome extension for student perks</h1>
+        <p class="summary">A Chrome extension that shows students the discounts and education perks available on the website they are visiting, matched locally on the device with no tracking.</p>
+        <ul class="links">
+          <li><a href="https://github.com/miconvr/iskolar">Repository</a></li>
+        </ul>
+        <dl class="facts">
+          <div><dt>Project</dt><dd>Personal project</dd></div>
+          <div><dt>Focus</dt><dd>Students in the Philippines, with global offers included</dd></div>
+          <div><dt>Role</dt><dd>Solo developer</dd></div>
+          <div><dt>Status</dt><dd>Submitted to the Chrome Web Store, in review</dd></div>
+          <div><dt>Stack</dt><dd>JavaScript, HTML, CSS, Manifest V3</dd></div>
+        </dl>
+        <img class="shot" src="/images/iskolar.png" width="1280" height="800" loading="lazy" alt="Iskolar popup in dark mode showing a student offer for the website the user is visiting, with the caption Spot student perks as you browse.">
+        <section>
+          <h2>The project</h2>
+          <p>Iskolar is built for students in the Philippines first, with global offers included. Click the extension icon on a website and it checks whether a student deal is known for that site, then shows the eligibility requirements, caveats, the last verification month, and a link to the official offer page.</p>
+          <p>It is a guide, not a guarantee. Offers change, so every card points back to the provider's own page for the current terms.</p>
+        </section>
+        <section>
+          <h2>Privacy by design</h2>
+          <p>Matching happens in the popup against an offer list that ships with the extension. It asks only for the activeTab permission, opens only HTTPS links, and does not collect browsing history, page content, accounts, or analytics. Theme and footer preferences stay on the device.</p>
+        </section>
+        <img class="shot" src="/images/iskolar-browse.png" width="1280" height="800" loading="lazy" alt="Iskolar popup listing student deals that can be browsed and searched, with the caption Browse every student deal.">
+        <section>
+          <h2>My role</h2>
+          <p>I designed, built, and packaged Iskolar on my own. That covered domain matching against the bundled offers, region filtering for the Philippines and other countries, dark and light themes, a settings panel, and a browsable list of every student deal.</p>
+          <p>I also wrote a validation script that checks the offer data structure and HTTPS links, and prepared the Chrome Web Store listing, screenshots, privacy disclosures, and release package. The project is open source under the MIT License, with a README, a privacy policy, and a GitHub flow for reporting outdated offers.</p>
+        </section>
+        <section>
+          <h2>What came of it</h2>
+          <p>Version 1.0.1 has been submitted to the Chrome Web Store and is waiting for review. Offers are checked against official sources and reviewed by a person before each release, because automation may flag broken pages but should not publish student discounts.</p>
+        </section>
+      </article>
+  </main>
+  <footer class="site">
+    <p>Mico Gerard Navarro &middot; <a href="mailto:micogerardnavarro@gmail.com">Email</a> &middot; <a href="https://github.com/miconvr">GitHub</a> &middot; <a href="https://linkedin.com/in/miconvr">LinkedIn</a> &middot; <a href="/contact">Contact</a></p>
+  <p class="badge"><a href="https://internship.flyrank.ai/">Portfolio built during the FlyRank AI internship</a></p>
+  </footer>
+</div>
+<script src="/script.js"></script>
+<script src="/sub.js"></script>
+</body>
+</html>
