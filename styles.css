@@ -62,7 +62,7 @@ article h1{font-size:2.6rem}
 @media (max-width:34rem){.simple h1{font-size:2.5rem}article h1{font-size:2.2rem}}
 .shot{display:block;width:100%;height:auto;margin-top:1.5rem;border:1px solid var(--line);border-radius:.6rem;object-fit:cover;object-position:center top}
 .shot.civic{aspect-ratio:16/10}
-.shot.phone{width:100%;max-width:19rem;object-fit:contain}
+.shot.phone{width:100%;max-width:19rem;object-fit:contain;margin:3rem auto 0}
 .progress{position:fixed;top:0;left:0;right:0;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;z-index:20}
 .home .shell{max-width:76rem;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:19rem minmax(0,1fr);gap:7rem}
 .side{position:sticky;top:0;align-self:start;height:100dvh;padding:4.5rem 0 2.5rem;display:flex;flex-direction:column}
