@@ -436,3 +436,13 @@ html{scroll-padding-top:2rem}
 .side-links a{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;white-space:nowrap}
 .side-links .ico{flex:none;width:1rem;height:1rem}
 .side-links .ico path{fill-rule:evenodd}
+
+/* ---- project header: don't squeeze on mobile ---- */
+.item-head .status,.item .dates{white-space:nowrap}
+.item-head > img:first-child{flex:none}
+@media (max-width:40rem){
+  .item-head{flex-wrap:wrap;align-items:center;row-gap:.6rem}
+  .item-head .title-block{flex:1 1 0;min-width:0}
+  .item-head .flyrank-inline{flex:0 0 100%;display:block}
+  .item-head .flyrank-inline img{width:auto;height:1.4rem}
+}
