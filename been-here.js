@@ -35,7 +35,7 @@
 
   let tapped = false, busy = false;
   try { tapped = localStorage.getItem(KEY) === "1"; } catch (e) {}
-  line.textContent = tapped ? "welcome back!" : "tap if you are here";
+  line.textContent = tapped ? "welcome back!" : "tap if you are here!";
 
   async function call(path) {
     const r = await fetch("/api/hi", { method: path === "/up" ? "POST" : "GET", cache: "no-store" });
