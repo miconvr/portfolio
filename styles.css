@@ -412,3 +412,12 @@ body{line-height:1.7}
 /* ---- dimmed tagline ---- */
 .dim{color:var(--muted)}
 .home-intro-copy.dim{color:var(--muted)}
+
+/* ---- rail: logos always gray ---- */
+.rail button svg,.rail button img,
+.rail button.on svg,.rail button.on img{filter:grayscale(1)}
+.rail button.on svg,.rail button.on img{opacity:.95;transform:scale(1.08)}
+
+/* ---- exact scroll landing ---- */
+.item{scroll-margin-top:2rem}
+html{scroll-padding-top:2rem}
