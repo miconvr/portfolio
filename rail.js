@@ -57,7 +57,7 @@
     var h=it.querySelector('h3');
     var name=(h&&h.firstChild&&h.firstChild.textContent.trim())||('Project '+(i+1));
     b.setAttribute('aria-label',name);
-    b.title=name;
+    li.setAttribute('data-label',name);
     var logo=it.querySelector('.item-head svg,.item-head img');
     if(logo){
       var c=logo.cloneNode(true);
