@@ -108,15 +108,13 @@
       return;
     }
     btn.classList.add("been-cry");
-    setTimeout(function () { btn.classList.remove("been-cry"); }, 2100);
+    setTimeout(function () { btn.classList.remove("been-cry"); }, 2500);
     if (reduce) return;
     ["l", "r"].forEach(function (side) {
-      ["d1", "d2"].forEach(function (d) {
-        var t = document.createElement("span");
-        t.className = "been-tear " + side + " " + d;
-        btn.appendChild(t);
-        setTimeout(function () { t.remove(); }, 2800);
-      });
+      var s = document.createElement("span");
+      s.className = "been-stream " + side;
+      btn.appendChild(s);
+      setTimeout(function () { s.remove(); }, 2400);
     });
   });
 })();

@@ -518,8 +518,8 @@ html{scroll-padding-top:2rem}
   .been-ring{display:none}
 }
 
-/* ---- mascot cry (after many taps) ---- */
-.been-btn.been-cry{animation:been-sob 2s ease-in-out}
+/* ---- mascot cry v2: clean waterfall streams ---- */
+.been-btn.been-cry{animation:been-sob 2.4s ease-in-out}
 @keyframes been-sob{
   0%{transform:scale(1)}
   20%{transform:translateY(3px) scale(1.04,.94) rotate(-2deg)}
@@ -528,13 +528,14 @@ html{scroll-padding-top:2rem}
   65%{transform:translateY(2px) scale(1.03,.96) rotate(1.5deg)}
   100%{transform:scale(1)}
 }
-.been-tear{position:absolute;top:56%;width:.38rem;height:.52rem;border-radius:50% 50% 55% 55%/35% 35% 65% 65%;background:#bfe3ff;opacity:0;pointer-events:none;z-index:4;animation:been-tear 1.9s ease-in forwards}
-.been-tear.l{left:36%;margin-left:-.19rem}
-.been-tear.r{left:64%;margin-left:-.19rem}
-.been-tear.d2{animation-delay:.7s}
-@keyframes been-tear{
-  0%{opacity:0;transform:translateY(0) scale(.4)}
-  15%{opacity:.95;transform:translateY(2px) scale(1)}
-  100%{opacity:0;transform:translateY(26px) scale(.85)}
+.been-stream{position:absolute;top:58%;width:.3rem;height:2.4rem;margin-left:-.15rem;border-radius:999px;background:linear-gradient(to bottom,rgba(191,227,255,.95),rgba(191,227,255,.45));transform-origin:top center;transform:scaleY(0);opacity:0;pointer-events:none;z-index:4;animation:been-stream 2.2s cubic-bezier(.4,0,.3,1) forwards}
+.been-stream.l{left:36%}
+.been-stream.r{left:64%}
+@keyframes been-stream{
+  0%{transform:scaleY(0);opacity:0}
+  12%{opacity:1}
+  40%{transform:scaleY(1);opacity:1}
+  75%{transform:scaleY(1);opacity:.9}
+  100%{transform:scaleY(1) translateY(10px);opacity:0}
 }
-@media (prefers-reduced-motion:reduce){.been-tear{display:none}.been-btn.been-cry{animation:none}}
+@media (prefers-reduced-motion:reduce){.been-stream{display:none}.been-btn.been-cry{animation:none}}
