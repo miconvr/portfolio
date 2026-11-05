@@ -523,3 +523,11 @@ html{scroll-padding-top:2rem}
 .been-btn .been-mascot{transform-origin:50% 75%}
 .been-btn.been-pop .been-mascot{animation:been-spin .8s cubic-bezier(.3,.7,.4,1)}
 @media (prefers-reduced-motion:reduce){.been-btn .been-mascot{animation:none!important}}
+
+/* sidebar legibility */
+.side .lead{color:var(--text);font-size:1rem}
+.side .badge{font-size:.85rem;line-height:1.5;color:var(--text)}
+.side .badge a{color:var(--text)}
+.side .side-links a{font-size:.9rem;color:var(--text)}
+.side .side-links a:hover,.side .badge a:hover{color:var(--ink)}
+.side nav a{font-size:.85rem;color:var(--text)}
