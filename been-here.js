@@ -90,35 +90,22 @@
   });
 })();
 
-/* ---- tap burst: +1 and sparkles ---- */
+/* ---- tap animation: spin-hop and cream rings ---- */
 (function () {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var colors = ["#ffd77a", "#ff9fb2", "#9be7c4", "#fbf8f1"];
   document.addEventListener("click", function (e) {
     var btn = e.target.closest && e.target.closest(".been-btn");
     if (!btn) return;
     btn.classList.remove("been-pop");
     void btn.offsetWidth;
     btn.classList.add("been-pop");
-    setTimeout(function () { btn.classList.remove("been-pop"); }, 800);
+    setTimeout(function () { btn.classList.remove("been-pop"); }, 850);
     if (reduce) return;
-    var plus = document.createElement("span");
-    plus.className = "been-plus";
-    plus.textContent = "+1";
-    plus.style.setProperty("--drift", (Math.random() * 30 - 15) + "px");
-    plus.style.setProperty("--rot", (Math.random() * 24 - 12) + "deg");
-    btn.appendChild(plus);
-    setTimeout(function () { plus.remove(); }, 1200);
-    for (var i = 0; i < 8; i++) {
-      var a = (i / 8) * Math.PI * 2 + Math.random() * 0.5;
-      var d = 34 + Math.random() * 18;
-      var sp = document.createElement("span");
-      sp.className = "been-spark";
-      sp.style.setProperty("--dx", Math.cos(a) * d + "px");
-      sp.style.setProperty("--dy", Math.sin(a) * d + "px");
-      sp.style.setProperty("--c", colors[i % colors.length]);
-      btn.appendChild(sp);
-      setTimeout((function (n) { return function () { n.remove(); }; })(sp), 800);
-    }
+    ["r1", "r2"].forEach(function (c) {
+      var ring = document.createElement("span");
+      ring.className = "been-ring " + c;
+      btn.appendChild(ring);
+      setTimeout(function () { ring.remove(); }, 1200);
+    });
   });
 })();
