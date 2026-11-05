@@ -68,7 +68,7 @@
           if(window.initRail)window.initRail();
         }else animatePanel();
       })
-      .catch(function(){window.location.href=path;})
+      .catch(function(e){console.error('SWAP FAILED:',e);window.location.href=path;})
       .finally(function(){loading=false;main.removeAttribute('aria-busy');});
   }
 
