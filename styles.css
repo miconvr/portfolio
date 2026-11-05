@@ -383,3 +383,12 @@ body{line-height:1.65}
 .rail button.on{border-color:var(--accent)}
 .rail button.on svg,.rail button.on img{filter:none;opacity:1;transform:scale(1.08)}
 @media (prefers-reduced-motion:reduce){.rail,.rail-fill,.rail button,.rail button svg,.rail button img{transition:none}}
+
+/* ---- heading font + hero size ---- */
+:root{--display:"Bricolage Grotesque","Inter",system-ui,sans-serif}
+.side h1,.home-intro h2,.item h3,.proj h3,.simple h1,article h1,article h2{font-family:var(--display)}
+.side h1{letter-spacing:-.025em;font-weight:700}
+.home-intro h2{max-width:16ch;font-size:clamp(2.4rem,4.2vw,3.75rem);letter-spacing:-.03em;line-height:1.05;font-weight:700}
+.item h3{letter-spacing:-.02em;font-weight:700}
+.simple h1,article h1{letter-spacing:-.025em}
+@media (max-width:34rem){.home-intro h2{font-size:2.4rem}}
