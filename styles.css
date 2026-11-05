@@ -320,3 +320,30 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
 @media (prefers-reduced-motion:reduce){.overview-panel,.overview-inner .ov-item,.overview-toggle .ov-chev{transition:none}}
 
 .outcomes{margin:1.5rem 0 0;padding-left:1.1rem;display:grid;gap:.6rem;line-height:1.55}
+
+/* ---- polish pass ---- */
+
+/* one arrow on the overview button: remove the inherited →, keep the chevron */
+.item .meta li a.overview-toggle::after{content:none!important}
+.overview-toggle{gap:.5rem}
+.overview-toggle .ov-chev{flex:none;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.overview-toggle[aria-expanded="true"] .ov-chev{transform:rotate(180deg)}
+
+/* calmer reading width and rhythm for card text */
+.item p{max-width:62ch;line-height:1.65}
+.item p+p{margin-top:1rem}
+.item .meta{margin-top:1.5rem}
+
+/* buttons: clearer hover and keyboard focus */
+.item .meta a{transition:background .15s,border-color .15s,transform .15s}
+.item .meta a:hover{transform:translateY(-1px)}
+.item .meta a:focus-visible,.overview-toggle:focus-visible{outline:2px solid #D8CFB8;outline-offset:3px}
+
+/* more space between projects so each card reads as its own block */
+.item{margin-bottom:4.5rem}
+
+/* overview panel: keep it compact and visually tied to the card */
+.overview-inner{padding-top:.5rem}
+.overview-inner .facts{margin-top:1.25rem}
+.overview-inner .outcomes{max-width:62ch}
+.outcomes li::marker{color:#9C9A92}
