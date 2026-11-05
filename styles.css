@@ -446,3 +446,25 @@ html{scroll-padding-top:2rem}
   .item-head .flyrank-inline{flex:0 0 100%;display:block}
   .item-head .flyrank-inline img{width:auto;height:1.4rem}
 }
+
+/* ---- "been here" mascot ---- */
+.been{position:relative;display:flex;align-items:center;gap:.9rem;margin-top:2rem}
+.been-btn{all:unset;box-sizing:border-box;cursor:pointer;width:4.75rem;height:4.75rem;flex:none;border-radius:50%}
+.been-btn:focus-visible{outline:2px solid var(--muted);outline-offset:3px}
+.been-mascot{width:100%;height:100%;display:block;overflow:visible}
+.been-text{margin:0;font:400 .78rem var(--mono);color:var(--muted);line-height:1.5}
+.been-count{display:block;opacity:.75}
+.been .body,.been .arm,.been .blink{transform-box:fill-box}
+.been .body{transform-origin:50% 100%;transition:transform .2s ease}
+.been-btn:hover .body{transform:translateY(-3px)}
+.been .arm{transform-origin:50% 100%}
+.been .blink{transform-origin:50% 50%;animation:been-blink 5s infinite}
+@keyframes been-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+@keyframes been-hop{0%{transform:none}25%{transform:scale(1.08,.9)}55%{transform:translateY(-16px) scale(.96,1.06)}80%{transform:scale(1.06,.94)}100%{transform:none}}
+@keyframes been-wave{0%,100%{transform:rotate(0)}25%{transform:rotate(-35deg)}75%{transform:rotate(15deg)}}
+.been.hop .body{animation:been-hop .6s ease}
+.been.hop .arm{animation:been-wave .6s ease 2}
+.been-heart{position:absolute;pointer-events:none;color:#e58f7b;font-size:.9rem;opacity:0;animation:been-float 1.2s ease-out forwards}
+@keyframes been-float{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--dx),-3rem)}}
+@media (prefers-reduced-motion:reduce){.been .blink,.been.hop .body,.been.hop .arm,.been-heart{animation:none}}
+@media (max-width:40rem){.been{display:none}}

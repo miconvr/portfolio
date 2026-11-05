@@ -1,0 +1,101 @@
+(() => {
+  const NS = "miconvr-portfolio", NAME = "been-here";
+  const BASE = `https://api.counterapi.dev/v1/${NS}/${NAME}`;
+  const KEY = "been-here-v1";
+  const host = document.querySelector(".side-links");
+  if (!host) return;
+
+  const wrap = document.createElement("div");
+  wrap.className = "been";
+  wrap.innerHTML = `
+    <button class="been-btn" type="button" aria-label="Tap if you've been here">
+      <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
+        <ellipse cx="60" cy="113" rx="26" ry="4.5" fill="currentColor" opacity=".12"/>
+        <g class="body">
+          <ellipse cx="42" cy="104" rx="9" ry="6" fill="#e6dcc3"/>
+          <ellipse cx="78" cy="104" rx="9" ry="6" fill="#e6dcc3"/>
+          <ellipse cx="60" cy="72" rx="40" ry="34" fill="#e6dcc3"/>
+          <g class="arm"><ellipse cx="102" cy="78" rx="7" ry="12" fill="#e6dcc3" transform="rotate(-20 102 78)"/></g>
+          <ellipse cx="40" cy="81" rx="6" ry="4" fill="#e58f7b" opacity=".6"/>
+          <ellipse cx="80" cy="81" rx="6" ry="4" fill="#e58f7b" opacity=".6"/>
+          <g class="eyes"><g class="blink">
+            <circle cx="47" cy="69" r="5.5" fill="#222"/><circle cx="73" cy="69" r="5.5" fill="#222"/>
+            <circle cx="48.8" cy="67" r="1.7" fill="#fff"/><circle cx="74.8" cy="67" r="1.7" fill="#fff"/>
+          </g></g>
+          <path d="M52 83 Q60 91 68 83" stroke="#222" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M40 46 v10 q20 10 40 0 v-10z" fill="#c25b3c"/>
+          <polygon points="60,20 102,36 60,52 18,36" fill="#d9704a"/>
+          <line x1="96" y1="39" x2="96" y2="57" stroke="#f0c36a" stroke-width="2.5"/>
+          <circle cx="96" cy="59" r="3" fill="#f0c36a"/>
+        </g>
+      </svg>
+    </button>
+    <p class="been-text"><span class="been-line"></span><span class="been-count" aria-live="polite"></span></p>`;
+  host.insertAdjacentElement("afterend", wrap);
+
+  const btn = wrap.querySelector(".been-btn");
+  const line = wrap.querySelector(".been-line");
+  const cnt = wrap.querySelector(".been-count");
+  const eyes = wrap.querySelector(".eyes");
+  const fmt = n => Number(n).toLocaleString("en-US");
+
+  let tapped = false, busy = false;
+  try { tapped = localStorage.getItem(KEY) === "1"; } catch (e) {}
+  line.textContent = tapped ? "welcome back!" : "tap if you've been here";
+
+  async function call(path) {
+    const r = await fetch(BASE + path, { cache: "no-store" });
+    if (!r.ok) throw new Error("http " + r.status);
+    const d = await r.json();
+    const n = Number(d.count ?? d.value ?? (d.data && d.data.up_count));
+    if (!Number.isFinite(n)) throw new Error("bad response");
+    return n;
+  }
+  function render(n) {
+    cnt.textContent = n + "" === "0" ? "" : `${fmt(n)} ${n === 1 ? "person has" : "people have"} said hi`;
+  }
+
+  call("/").then(render).catch(() => {});
+
+  window.addEventListener("pointermove", e => {
+    const r = btn.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+    const d = Math.hypot(dx, dy) || 1, k = Math.min(3, d / 40);
+    eyes.style.transform = `translate(${(dx / d) * k}px, ${(dy / d) * k}px)`;
+  }, { passive: true });
+
+  function celebrate() {
+    wrap.classList.remove("hop");
+    void wrap.offsetWidth;
+    wrap.classList.add("hop");
+    for (let i = 0; i < 5; i++) {
+      const h = document.createElement("span");
+      h.className = "been-heart";
+      h.textContent = "♥";
+      h.style.left = 20 + Math.random() * 40 + "px";
+      h.style.top = "6px";
+      h.style.setProperty("--dx", (Math.random() * 44 - 22) + "px");
+      h.style.animationDelay = i * 90 + "ms";
+      wrap.appendChild(h);
+      setTimeout(() => h.remove(), 1500);
+    }
+  }
+
+  btn.addEventListener("click", async () => {
+    celebrate();
+    if (tapped) { line.textContent = "welcome back!"; return; }
+    if (busy) return;
+    busy = true;
+    line.textContent = "hi! thanks for stopping by";
+    try {
+      const n = await call("/up");
+      tapped = true;
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      line.textContent = `hi! you're #${fmt(n)}`;
+      render(n);
+    } catch (e) {
+      line.textContent = "hi! (counter is asleep, try later)";
+    }
+    busy = false;
+  });
+})();
