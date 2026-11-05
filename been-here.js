@@ -90,43 +90,14 @@
   });
 })();
 
-/* ---- tap animation: spin-hop, then heart eyes after many taps ---- */
+/* ---- tap animation: spin-hop ---- */
 (function () {
-  var NS = "http://www.w3.org/2000/svg";
-  var taps = 0, calm, loveT, LIMIT = 5;
-  function addHearts(btn) {
-    var body = btn.querySelector(".body");
-    if (!body || body.querySelector(".been-hearts")) return;
-    var wrap = document.createElementNS(NS, "g");
-    wrap.setAttribute("class", "been-hearts");
-    [[44, 65], [76, 65]].forEach(function (p) {
-      var g = document.createElementNS(NS, "g");
-      g.setAttribute("transform", "translate(" + p[0] + " " + p[1] + ")");
-      var h = document.createElementNS(NS, "path");
-      h.setAttribute("class", "been-heart");
-      h.setAttribute("d", "M0 4 C-6 -1 -5 -6 0 -2.6 C5 -6 6 -1 0 4Z");
-      g.appendChild(h);
-      wrap.appendChild(g);
-    });
-    body.appendChild(wrap);
-  }
   document.addEventListener("click", function (e) {
     var btn = e.target.closest && e.target.closest(".been-btn");
     if (!btn) return;
-    taps++;
-    clearTimeout(calm);
-    calm = setTimeout(function () { taps = 0; }, 6000);
-    btn.classList.remove("been-pop", "been-bump");
+    btn.classList.remove("been-pop");
     void btn.offsetWidth;
-    if (taps < LIMIT) {
-      btn.classList.add("been-pop");
-      setTimeout(function () { btn.classList.remove("been-pop"); }, 850);
-      return;
-    }
-    addHearts(btn);
-    btn.classList.add("been-love", "been-bump");
-    setTimeout(function () { btn.classList.remove("been-bump"); }, 500);
-    clearTimeout(loveT);
-    loveT = setTimeout(function () { btn.classList.remove("been-love"); }, 3500);
+    btn.classList.add("been-pop");
+    setTimeout(function () { btn.classList.remove("been-pop"); }, 850);
   });
 })();
