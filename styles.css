@@ -357,3 +357,15 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
   .item{margin-bottom:2.5rem}
   .car-btn{display:none}
 }
+
+/* ---- typography pass ---- */
+:root{--sans:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Segoe UI",sans-serif;--muted:#9A948C}
+body{line-height:1.65}
+.side h1{letter-spacing:-.04em;line-height:1.05}
+.simple h1,article h1,.proj h3,.item h3{letter-spacing:-.03em}
+.home-intro h2{letter-spacing:-.04em;line-height:1.05}
+.item p,.proj p{color:var(--text);line-height:1.65}
+.summary{color:var(--text);font-size:1.2rem;line-height:1.55}
+.meta,.links,nav a,.facts dt,.status,.side-links,.home h2.label{font-size:.85rem}
+.outcomes{max-width:36rem;margin:2rem 0 0;padding-left:1.2rem}
+.outcomes li{margin:0 0 .7rem;font-size:1.0625rem;line-height:1.6}
