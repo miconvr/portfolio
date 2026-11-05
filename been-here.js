@@ -8,7 +8,7 @@
   const wrap = document.createElement("div");
   wrap.className = "been";
   wrap.innerHTML = `
-    <button class="been-btn" type="button" aria-label="Tap if you've been here">
+    <button class="been-btn" type="button" aria-label="Tap if you are here">
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="109" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
@@ -35,7 +35,7 @@
 
   let tapped = false, busy = false;
   try { tapped = localStorage.getItem(KEY) === "1"; } catch (e) {}
-  line.textContent = tapped ? "welcome back!" : "tap if you've been here";
+  line.textContent = tapped ? "welcome back!" : "tap if you are here";
 
   async function call(path) {
     const r = await fetch("/api/hi", { method: path === "/up" ? "POST" : "GET", cache: "no-store" });
