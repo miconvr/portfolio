@@ -391,14 +391,20 @@ body{line-height:1.65}
 .home-intro h2{max-width:16ch;font-size:clamp(2.4rem,4.2vw,3.75rem);letter-spacing:-.03em;line-height:1.05;font-weight:700}
 .item h3{letter-spacing:-.02em;font-weight:700}
 .simple h1,article h1{letter-spacing:-.025em}
-@media (max-width:34rem){.home-intro h2{font-size:2.4rem}}
 
 /* ---- bigger hero ---- */
 .home-intro h2{max-width:none;font-size:clamp(3.2rem,6.8vw,6.5rem);line-height:1;letter-spacing:-.035em;font-weight:700;text-wrap:balance}
 .home-intro-copy{margin-top:2rem;font-size:1.25rem}
-@media (max-width:34rem){.home-intro h2{font-size:3rem}}
 
 /* ---- hero: big but shorter ---- */
 .home-intro h2{font-size:clamp(3rem,5.4vw,5rem);font-weight:600;letter-spacing:-.03em;line-height:1.02}
 .home-intro-copy{margin-top:1.75rem}
+
+/* ---- type scale (final) ---- */
+body{line-height:1.7}
+.item p,.proj p,article section p,article section li,.outcomes li{font-size:1.125rem;line-height:1.7;color:var(--text)}
+.item p,.proj p{max-width:36rem}
+.summary{font-size:1.3rem;line-height:1.55}
+.meta,.links,nav a,.facts dt,.status,.side-links,.home h2.label{font-size:.9rem}
+.home-intro-copy{line-height:1.6;color:var(--text);max-width:34rem}
 @media (max-width:34rem){.home-intro h2{font-size:2.8rem}}
