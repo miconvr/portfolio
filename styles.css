@@ -421,3 +421,11 @@ body{line-height:1.7}
 /* ---- exact scroll landing ---- */
 .item{scroll-margin-top:2rem}
 html{scroll-padding-top:2rem}
+
+/* ---- experience: org logo beside the role ---- */
+.entry h2{display:flex;align-items:center;gap:.75rem}
+.org-logo{width:1.75rem;height:1.75rem;border-radius:.4rem;display:block;flex:none}
+
+/* ---- experience: FlyRank wordmark beside the role (overrides earlier square sizing) ---- */
+.entry h2{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
+.org-logo{width:auto;height:1.4rem;border-radius:0;display:block;flex:none;opacity:.9}
