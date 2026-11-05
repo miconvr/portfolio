@@ -532,3 +532,17 @@ html{scroll-padding-top:2rem}
 .side .side-links a:hover,.side .badge a:hover{color:var(--ink)}
 .side nav a{font-size:.85rem;color:var(--text)}
 .status.dev::before{background:var(--dev)}
+
+/* ---- rail: brand colors ---- */
+:root{--k1:#E8832A;--k2:#7A1F3D}
+.rail li:nth-child(1) button{--c:var(--k1)}
+.rail li:nth-child(2) button{--c:var(--k2)}
+.rail-fill{background:linear-gradient(to bottom,var(--k1),var(--k2))}
+.rail button{position:relative}
+.rail button svg,.rail button img{filter:grayscale(.65);opacity:.6}
+.rail button:hover svg,.rail button:hover img{filter:grayscale(0);opacity:.95}
+.rail button.on{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 22%,transparent),0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
+.rail button.on svg,.rail button.on img{filter:none;opacity:1;transform:scale(1.08)}
+.rail button.on::after{content:"";position:absolute;inset:-1px;border-radius:.6rem;border:2px solid var(--c);pointer-events:none;animation:railpulse .8s ease-out 1}
+@keyframes railpulse{from{opacity:.8;transform:scale(1)}to{opacity:0;transform:scale(1.7)}}
+@media (prefers-reduced-motion:reduce){.rail button.on::after{animation:none;opacity:0}}
