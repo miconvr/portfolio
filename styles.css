@@ -348,3 +348,12 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
 .overview-inner .outcomes{max-width:62ch}
 .outcomes li::marker{color:#9C9A92}
 
+
+/* ---- mobile: tidy card buttons and carousel ---- */
+@media (max-width:34rem){
+  .item .meta{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .item .meta li:first-child{grid-column:1/-1}
+  .item .meta li a{display:flex;width:100%;box-sizing:border-box;justify-content:center;align-items:center;text-align:center}
+  .item{margin-bottom:2.5rem}
+  .car-btn{display:none}
+}
