@@ -302,3 +302,19 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
 
 /* ---- Wordmark titles ---- */
 .item h3,article h1{font-family:"Plus Jakarta Sans","Inter",system-ui,sans-serif;font-weight:800;letter-spacing:-.03em}
+
+/* ---- Overview dropdown ---- */
+.overview-toggle{cursor:pointer;gap:.5rem}
+.overview-toggle .ov-chev{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.overview-toggle[aria-expanded="true"] .ov-chev{transform:rotate(180deg)}
+.overview-toggle.loading{opacity:.7;pointer-events:none}
+.overview-panel{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1),opacity .35s ease,margin .5s cubic-bezier(.2,.8,.2,1);margin-top:0}
+.overview-panel.open{grid-template-rows:1fr;opacity:1;margin-top:1.25rem}
+.overview-clip{overflow:hidden;min-height:0}
+.overview-inner{padding:1.25rem 0 .25rem 1.25rem;border-left:2px solid #D8CFB8}
+.overview-inner article{max-width:none;margin:0;padding:0}
+.overview-inner article section:first-child{margin-top:0}
+.overview-inner .ov-item{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+.overview-panel.open .ov-item{opacity:1;transform:none;transition-delay:calc(var(--i,0)*45ms + 120ms)}
+@media (max-width:34rem){.overview-inner{padding-left:1rem}}
+@media (prefers-reduced-motion:reduce){.overview-panel,.overview-inner .ov-item,.overview-toggle .ov-chev{transition:none}}
