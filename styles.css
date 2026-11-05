@@ -253,14 +253,14 @@ article section h2{font-size:1.5rem;line-height:1.25}
 .home-intro h2{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:700;letter-spacing:-.035em;line-height:1.02;font-size:clamp(2.75rem,6.5vw,5rem)}
 
 /* ---- Claude dark theme ---- */
-:root{--bg:#262624;--surface:#30302E;--line:#3F3E3B;--ink:#FAF9F5;--muted:#B7B5A9;--accent:#D97757;color-scheme:dark}
+:root{--bg:#262624;--surface:#30302E;--line:#3F3E3B;--ink:#FAF9F5;--muted:#B7B5A9;--accent:#D8CFB8;color-scheme:dark}
 html,body{background:#262624;color:#FAF9F5}
 .item .meta a{border-color:#4A4945}
 .item .meta li:first-child a{background:#FAF9F5;color:#262624;border-color:#FAF9F5}
 .item .meta li+li a:hover{border-color:#FAF9F5}
 hr,.rule{border-color:#3F3E3B}
-a:hover{color:#D97757}
-::selection{background:#D97757;color:#262624}
+a:hover{color:#D8CFB8}
+::selection{background:#D8CFB8;color:#262624}
 
 /* ---- Soft text and avatar ---- */
 :root{--ink:#C2C0B6;--muted:#9C9A92}
@@ -268,7 +268,14 @@ body,p,li,.item p,article p,article section p{color:#C2C0B6}
 h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{color:#FAF9F5}
 .meta,.item .date,time{color:#9C9A92}
 .item .meta a{color:#E8E6DC;border-color:#4A4945}
-.item .meta li:first-child a{background:#D97757;color:#1F1E1D;border-color:#D97757;font-weight:600}
-.item .meta li:first-child a:hover{background:#E08B6E;border-color:#E08B6E}
+.item .meta li:first-child a{background:#D8CFB8;color:#1F1E1D;border-color:#D8CFB8;font-weight:600}
+.item .meta li:first-child a:hover{background:#E6DECA;border-color:#E6DECA}
 .side img:first-of-type{width:140px;height:140px;object-fit:cover;border-radius:50%}
 @media (max-width:34rem){.side img:first-of-type{width:112px;height:112px}}
+
+/* ---- Button restyle ---- */
+.item .meta{gap:.625rem}
+.item .meta a{border-radius:10px;padding:.7rem 1.1rem;background:#30302E;border:1px solid #3F3E3B;color:#E8E6DC;font-weight:500;transition:background .15s,border-color .15s}
+.item .meta li+li a:hover{background:#3A3936;border-color:#5A5954;color:#FAF9F5}
+.item .meta li:first-child a{background:#D8CFB8;color:#262624;border-color:#D8CFB8;font-weight:600}
+.item .meta li:first-child a:hover{background:#E6DECA;border-color:#E6DECA;color:#262624}
