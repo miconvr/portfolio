@@ -12,17 +12,23 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="113" rx="26" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <ellipse cx="42" cy="104" rx="9" ry="6" fill="#e6dcc3"/>
-          <ellipse cx="78" cy="104" rx="9" ry="6" fill="#e6dcc3"/>
-          <ellipse cx="60" cy="72" rx="40" ry="34" fill="#e6dcc3"/>
-          <g class="arm"><ellipse cx="102" cy="78" rx="7" ry="12" fill="#e6dcc3" transform="rotate(-20 102 78)"/></g>
-          <ellipse cx="40" cy="81" rx="6" ry="4" fill="#e58f7b" opacity=".6"/>
-          <ellipse cx="80" cy="81" rx="6" ry="4" fill="#e58f7b" opacity=".6"/>
+          <ellipse cx="42" cy="104" rx="10" ry="6.5" fill="#222"/>
+          <ellipse cx="78" cy="104" rx="10" ry="6.5" fill="#222"/>
+          <circle cx="26" cy="53" r="11" fill="#222"/>
+          <circle cx="94" cy="53" r="11" fill="#222"/>
+          <ellipse cx="60" cy="72" rx="40" ry="34" fill="#fff" stroke="#222" stroke-width="2"/>
+          <ellipse cx="17" cy="80" rx="7" ry="12" fill="#222" transform="rotate(20 17 80)"/>
+          <g class="arm"><ellipse cx="103" cy="78" rx="7" ry="12" fill="#222" transform="rotate(-20 103 78)"/></g>
+          <ellipse cx="46" cy="69" rx="8" ry="10.5" fill="#222" transform="rotate(25 46 69)"/>
+          <ellipse cx="74" cy="69" rx="8" ry="10.5" fill="#222" transform="rotate(-25 74 69)"/>
           <g class="eyes"><g class="blink">
-            <circle cx="47" cy="69" r="5.5" fill="#222"/><circle cx="73" cy="69" r="5.5" fill="#222"/>
-            <circle cx="48.8" cy="67" r="1.7" fill="#fff"/><circle cx="74.8" cy="67" r="1.7" fill="#fff"/>
+            <circle cx="47" cy="68" r="3.4" fill="#fff"/><circle cx="73" cy="68" r="3.4" fill="#fff"/>
+            <circle cx="47.8" cy="67" r="1.2" fill="#222"/><circle cx="73.8" cy="67" r="1.2" fill="#222"/>
           </g></g>
-          <path d="M52 83 Q60 91 68 83" stroke="#222" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="36" cy="85" rx="6" ry="4" fill="#e58f7b" opacity=".55"/>
+          <ellipse cx="84" cy="85" rx="6" ry="4" fill="#e58f7b" opacity=".55"/>
+          <ellipse cx="60" cy="79" rx="5.5" ry="3.8" fill="#222"/>
+          <path d="M53 85 Q60 91 67 85" stroke="#222" stroke-width="2.2" fill="none" stroke-linecap="round"/>
           <path d="M40 46 v10 q20 10 40 0 v-10z" fill="#c25b3c"/>
           <polygon points="60,20 102,36 60,52 18,36" fill="#d9704a"/>
           <line x1="96" y1="39" x2="96" y2="57" stroke="#f0c36a" stroke-width="2.5"/>
