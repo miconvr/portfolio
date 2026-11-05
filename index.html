@@ -62,7 +62,7 @@
         </div>
         <p>Kaltas is a privacy-first Chrome extension that shows students the discounts and education perks available on the website they are visiting. It matches the current site locally against a curated offer list, with a focus on students in the Philippines and global offers included.</p>
         <ul class="meta">
-          <li><a href="/kaltas">View overview</a></li>
+          <li><a href="#ov-kaltas">View overview</a></li>
           <li><a href="https://ggl.link/kaltas" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8.6M4.5 6.5 8 10l3.5-3.5M2 13.5h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>download</a></li>
           <li><a href="https://git.new/kaltas" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>repository</a></li>
         </ul>
@@ -88,7 +88,7 @@
         <p>CivicGuard is an AI-integrated incident and curfew monitoring system built as our capstone project at Our Lady of Fatima University. It connects residents with barangay staff through reporting, status updates, and incident management tools.</p>
         <p>Built with Franz Mikey Reyes, Carl Spencer Talon, and Adriann Enriquez.</p>
         <ul class="meta">
-          <li><a href="/civicguard">View overview</a></li>
+          <li><a href="#ov-civicguard">View overview</a></li>
           <li><a href="https://civicguard.wasmer.app/" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13"/><path d="M8 1.5c1.8 1.9 2.7 4.1 2.7 6.5S9.8 12.6 8 14.5C6.2 12.6 5.3 10.4 5.3 8S6.2 3.4 8 1.5z"/></g></svg>live site</a></li>
           <li><a href="https://github.com/miconvr/civicguard" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>repository</a></li>
         </ul>
@@ -96,6 +96,37 @@
     </section>
   </main>
 </div>
+<template id="ov-kaltas">
+<dl class="facts">
+          <div><dt>Role</dt><dd>Solo Developer</dd></div>
+          <div><dt>Status</dt><dd>Live on the Chrome Web Store</dd></div>
+          <div><dt>Stack</dt><dd>JavaScript, HTML, CSS, Manifest V3</dd></div>
+        </dl>
+<ul class="outcomes">
+          <li>Designed, built and published solo on the Chrome Web Store, including the listing, screenshots, privacy disclosures and packaging.</li>
+          <li>Built local domain matching against a bundled offer list, with Philippines and global region filters.</li>
+          <li>Added a green toolbar badge using the declarativeContent API, so the extension never reads tabs or page content.</li>
+          <li>Built the popup with dark and light themes, a settings panel and a searchable list of all deals.</li>
+          <li>Kept it private: Manifest V3, two permissions (activeTab and declarativeContent), HTTPS-only links, and no accounts, analytics or browsing history.</li>
+          <li>Wrote an offer data format and a validation script, and verified every offer against an official source before release.</li>
+          <li>Open sourced under the MIT License with a README, privacy policy and a GitHub flow for reporting outdated offers.</li>
+        </ul>
+</template>
+<template id="ov-civicguard">
+<dl class="facts">
+          <div><dt>Role</dt><dd>Project Manager and Full-Stack Developer</dd></div>
+          <div><dt>Status</dt><dd>In Development, Live</dd></div>
+          <div><dt>Stack</dt><dd>Laravel 12, MySQL, Tailwind CSS, Alpine.js</dd></div>
+        </dl>
+<ul class="outcomes">
+          <li>Led a four-member team as Project Manager and Full-Stack Developer.</li>
+          <li>Built the resident side: reporting with optional photos and location pins, plus follow-up tracking.</li>
+          <li>Built the staff side: report review, assignment, status updates, residence verification, curfew incident logging and analytics.</li>
+          <li>Integrated AI-assisted report writing and classification using Google Gemini and Groq.</li>
+          <li>Added English and Tagalog support, role-based access control and automated testing with GitHub Actions CI.</li>
+          <li>Deployed on Wasmer.</li>
+        </ul>
+</template>
 <script src="/carousel.js"></script>
 <script src="/home.js"></script>
 
@@ -104,7 +135,7 @@
   var cache={};
   var chev='<svg class="ov-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>';
   var links=[].slice.call(document.querySelectorAll('.item a')).filter(function(a){
-    return /overview/i.test(a.textContent)&&a.getAttribute('href')&&a.getAttribute('href').charAt(0)!=='#';
+    return /overview/i.test(a.textContent)&&a.getAttribute('href');
   });
   links.forEach(function(a,n){
     var href=a.href,meta=a.closest('.meta')||a.parentNode;
@@ -126,24 +157,11 @@
     a.addEventListener('focus',warm,{once:true});
 
     function load(){
-      if(cache[href])return Promise.resolve(cache[href]);
-      return fetch(href).then(function(r){
-        if(!r.ok)throw new Error('bad response');
-        return r.text();
-      }).then(function(t){
-        var doc=new DOMParser().parseFromString(t,'text/html');
-        var art=doc.querySelector('article')||doc.querySelector('main');
-        if(!art)throw new Error('no content');
-        art=art.cloneNode(true);
-        [].slice.call(art.querySelectorAll('h1,nav,script,.back,.crumb,.summary,.links,img')).forEach(function(x){x.remove();});
-        [].slice.call(art.querySelectorAll('[src]')).forEach(function(x){x.setAttribute('src',new URL(x.getAttribute('src'),href).href);});
-        [].slice.call(art.querySelectorAll('[href]')).forEach(function(x){
-          var h=x.getAttribute('href');
-          if(h&&h.charAt(0)!=='#')x.setAttribute('href',new URL(h,href).href);
-        });
-        cache[href]=art;
-        return art;
-      });
+      var t=document.getElementById(a.getAttribute('href').slice(1));
+      if(!t)return Promise.reject(new Error('missing'));
+      var art=document.createElement('article');
+      art.appendChild(t.content.cloneNode(true));
+      return Promise.resolve(art);
     }
 
     function setOpen(open){

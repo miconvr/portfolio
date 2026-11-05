@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/kaltas", "destination": "/", "permanent": true },
+    { "source": "/civicguard", "destination": "/", "permanent": true }
+  ]
 }
