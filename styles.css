@@ -261,3 +261,14 @@ html,body{background:#262624;color:#FAF9F5}
 hr,.rule{border-color:#3F3E3B}
 a:hover{color:#D97757}
 ::selection{background:#D97757;color:#262624}
+
+/* ---- Soft text and avatar ---- */
+:root{--ink:#C2C0B6;--muted:#9C9A92}
+body,p,li,.item p,article p,article section p{color:#C2C0B6}
+h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{color:#FAF9F5}
+.meta,.item .date,time{color:#9C9A92}
+.item .meta a{color:#E8E6DC;border-color:#4A4945}
+.item .meta li:first-child a{background:#D97757;color:#1F1E1D;border-color:#D97757;font-weight:600}
+.item .meta li:first-child a:hover{background:#E08B6E;border-color:#E08B6E}
+.side img:first-of-type{width:140px;height:140px;object-fit:cover;border-radius:50%}
+@media (max-width:34rem){.side img:first-of-type{width:112px;height:112px}}
