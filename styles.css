@@ -270,8 +270,6 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
 .item .meta a{color:#E8E6DC;border-color:#4A4945}
 .item .meta li:first-child a{background:#D8CFB8;color:#1F1E1D;border-color:#D8CFB8;font-weight:600}
 .item .meta li:first-child a:hover{background:#E6DECA;border-color:#E6DECA}
-.side img:first-of-type{width:140px;height:140px;object-fit:cover;border-radius:50%}
-@media (max-width:34rem){.side img:first-of-type{width:112px;height:112px}}
 
 /* ---- Button restyle ---- */
 .item .meta{gap:.625rem}
@@ -429,3 +427,7 @@ html{scroll-padding-top:2rem}
 /* ---- experience: FlyRank wordmark beside the role (overrides earlier square sizing) ---- */
 .entry h2{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
 .org-logo{width:auto;height:1.4rem;border-radius:0;display:block;flex:none;opacity:.9}
+
+/* ---- profile photo: one rule, every page ---- */
+.profile-photo{width:8.75rem;height:8.75rem}
+@media (max-width:34rem){.profile-photo{width:7rem;height:7rem}}
