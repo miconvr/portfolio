@@ -40,23 +40,5 @@
 </div>
 <script src="/script.js"></script>
 <script src="/sub.js"></script>
-
-<script>
-(function(){
-  var side=document.querySelector('.side');
-  if(!side||side.querySelector('.side-card'))return;
-  var c=document.createElement('div');
-  c.className='side-card';
-  c.innerHTML='<div class="side-card-status"><span class="side-card-dot"></span>Open to internships</div>'
-    +'<p>Currently building <strong>CivicGuard</strong>, my capstone project.</p>'
-    +'<a href="mailto:micogerardnavarro@gmail.com">Get in touch &rarr;</a>';
-  var kids=side.querySelectorAll('*'),foot=null;
-  for(var i=0;i<kids.length;i++){
-    var k=kids[i];
-    if(k.children.length===0&&/Portfolio built during/.test(k.textContent)){foot=k;break;}
-  }
-  if(foot&&foot.parentNode){foot.parentNode.insertBefore(c,foot);}else{side.appendChild(c);}
-})();
-</script>
 </body>
 </html>
