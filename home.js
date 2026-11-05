@@ -89,7 +89,7 @@
       var path=link.getAttribute('href');
       if(!path||path.charAt(0)==='#'||path.indexOf('://')!==-1)return;
       if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-      if((path==='/'||path==='/index.html')&&!isHome)return;
+      if(path==='/'||path==='/index.html')return;
       event.preventDefault();
       if(path==='/'||path==='/index.html'){
         history.pushState({view:'/'},'', '/');
@@ -102,7 +102,7 @@
   });
 
   addEventListener('popstate',function(){
-    if(!isHome&&(location.pathname==='/'||location.pathname==='/index.html')){location.reload();return;}
+    if(location.pathname==='/'||location.pathname==='/index.html'){location.reload();return;}
     if(location.pathname==='/'||location.pathname==='/index.html')restoreHome(false);
     else loadView(location.pathname,false);
   });
