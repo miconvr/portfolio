@@ -1,4 +1,8 @@
 (function(){
+  var cleanup=null;
+  function destroy(){if(cleanup){cleanup();cleanup=null;}}
+  function init(){
+  destroy();
   var items=[].slice.call(document.querySelectorAll('.home .item'));
   if(items.length<2)return;
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -99,4 +103,8 @@
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',onScroll);
   update();
+  cleanup=function(){window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll);rail.remove();};
+  }
+  window.initRail=init;window.destroyRail=destroy;
+  init();
 })();
