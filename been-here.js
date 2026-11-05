@@ -44,10 +44,9 @@
   line.textContent = tapped ? "welcome back!" : "tap if you've been here";
 
   async function call(path) {
-    const r = await fetch(BASE + path, { cache: "no-store" });
+    const r = await fetch("/api/hi", { method: path === "/up" ? "POST" : "GET", cache: "no-store" });
     if (!r.ok) throw new Error("http " + r.status);
-    const d = await r.json();
-    const n = Number(d.count ?? d.value ?? (d.data && d.data.up_count));
+    const n = Number((await r.json()).count);
     if (!Number.isFinite(n)) throw new Error("bad response");
     return n;
   }
