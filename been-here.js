@@ -90,22 +90,33 @@
   });
 })();
 
-/* ---- tap animation: spin-hop and cream rings ---- */
+/* ---- tap animation: spin-hop, then cry after many taps ---- */
 (function () {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var taps = 0, calm, LIMIT = 5;
   document.addEventListener("click", function (e) {
     var btn = e.target.closest && e.target.closest(".been-btn");
     if (!btn) return;
-    btn.classList.remove("been-pop");
+    taps++;
+    clearTimeout(calm);
+    calm = setTimeout(function () { taps = 0; }, 6000);
+    btn.classList.remove("been-pop", "been-cry");
     void btn.offsetWidth;
-    btn.classList.add("been-pop");
-    setTimeout(function () { btn.classList.remove("been-pop"); }, 850);
+    if (taps < LIMIT) {
+      btn.classList.add("been-pop");
+      setTimeout(function () { btn.classList.remove("been-pop"); }, 850);
+      return;
+    }
+    btn.classList.add("been-cry");
+    setTimeout(function () { btn.classList.remove("been-cry"); }, 2100);
     if (reduce) return;
-    ["r1", "r2"].forEach(function (c) {
-      var ring = document.createElement("span");
-      ring.className = "been-ring " + c;
-      btn.appendChild(ring);
-      setTimeout(function () { ring.remove(); }, 1200);
+    ["l", "r"].forEach(function (side) {
+      ["d1", "d2"].forEach(function (d) {
+        var t = document.createElement("span");
+        t.className = "been-tear " + side + " " + d;
+        btn.appendChild(t);
+        setTimeout(function () { t.remove(); }, 2800);
+      });
     });
   });
 })();
