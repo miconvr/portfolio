@@ -467,4 +467,8 @@ html{scroll-padding-top:2rem}
 .been-heart{position:absolute;pointer-events:none;color:#e58f7b;font-size:.9rem;opacity:0;animation:been-float 1.2s ease-out forwards}
 @keyframes been-float{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--dx),-3rem)}}
 @media (prefers-reduced-motion:reduce){.been .blink,.been.hop .body,.been.hop .arm,.been-heart{animation:none}}
-@media (max-width:40rem){.been{display:none}}
+@media (max-width:40rem){
+  .been{margin-top:1.25rem;gap:.7rem}
+  .been-btn{width:3.25rem;height:3.25rem}
+  .been-text{font-size:.72rem}
+}
