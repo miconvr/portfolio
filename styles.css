@@ -1,5 +1,5 @@
 :root{color-scheme:dark;--bg:#0C0C0F;--ink:#F1E8D8;--text:#C8C0B3;--muted:#89837C;--line:#2A2826;--live:#7ACB8D;--dev:#D8A95C;--accent:#D6A56A;
---sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;--serif:var(--sans);
+--sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;--serif:var(--sans);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
 ::selection{background:#E6D7C1;color:#211C18}
@@ -67,7 +67,7 @@ article h1{font-size:2.6rem}
 .home .shell{max-width:76rem;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:19rem minmax(0,1fr);gap:7rem}
 .side{position:sticky;top:0;align-self:start;height:100dvh;padding:4.5rem 0 2.5rem;display:flex;flex-direction:column}
 .profile-photo{width:6.5rem;height:6.5rem;object-fit:cover;border-radius:50%;margin:0 0 1.5rem;border:1px solid var(--line);filter:saturate(.9)}
-.side h1{font-family:"Sora",var(--sans);font-weight:700;font-size:2.5rem;letter-spacing:-.065em;line-height:1.02;margin:0 0 1.25rem;text-wrap:balance}
+.side h1{font-family:var(--sans);font-weight:700;font-size:2.5rem;letter-spacing:-.065em;line-height:1.02;margin:0 0 1.25rem;text-wrap:balance}
 .side .lead{color:var(--muted);margin:0 0 .15rem;font-size:.95rem}
 .side nav ul{list-style:none;padding:0;margin:3.5rem 0 0;display:flex;flex-direction:column;gap:.9rem}
 .side nav a{display:flex;align-items:center;gap:.75rem;font:400 .8rem var(--mono);text-transform:lowercase;color:var(--muted);text-decoration:none}
@@ -222,8 +222,19 @@ img{max-width:100%}
 .item .dates{margin-top:.35rem;font:400 .8rem var(--mono);color:var(--muted)}
 .item-head .title-block{min-width:0}
 
-/* ---- UI font for body text and dates ---- */
-:root{--ui:system-ui,-apple-system,"Segoe UI Variable","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-.item p,article section p,article .facts,.item .dates,.item .meta,.links,.meta{font-family:var(--ui)}
+/* ---- Editorial type system ---- */
+:root{--display:"Instrument Serif","Iowan Old Style",Georgia,serif;--muted:#A1A1AA}
+.side h1,.home-intro h2,.item h3,article h1,.simple h1,.proj h3,article section h2{font-family:var(--display);font-weight:400;letter-spacing:-.01em}
+.side h1{font-size:3rem;line-height:1.02}
+.home-intro h2{line-height:1}
+.item h3{font-size:2.75rem;line-height:1.05}
+article h1{font-size:clamp(2.4rem,5vw,3.5rem);line-height:1.05}
+article section h2{font-size:2rem;line-height:1.15}
 .item p,article section p{line-height:1.65}
-.item .dates,.facts dt,.meta,.links{font-size:.85rem;letter-spacing:0}
+
+/* ---- Buttons on project cards ---- */
+.item .meta{align-items:center;gap:.75rem}
+.item .meta a{display:inline-flex;align-items:center;padding:.6rem 1rem;border:1px solid #3A3A44;border-radius:999px;font-family:var(--sans);font-size:.875rem;text-transform:capitalize;color:var(--ink)}
+.item .meta li:first-child a{background:var(--ink);color:#0A0A0A;border-color:var(--ink);font-weight:500}
+.item .meta li+li a:hover{border-color:var(--ink)}
+@media (max-width:34rem){.side h1{font-size:2.5rem}.item h3{font-size:2.25rem}}
