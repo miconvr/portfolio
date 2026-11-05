@@ -14,6 +14,38 @@
   rail.appendChild(track);
   var list=document.createElement('ul');
 
+
+  function goTo(it){
+    var off=32;
+    function target(){
+      var r=it.getBoundingClientRect(),vh=window.innerHeight;
+      var y=window.pageYOffset+r.top;
+      var t=r.height<vh-2*off?y-(vh-r.height)/2:y-off;
+      var max=document.documentElement.scrollHeight-vh;
+      return Math.max(0,Math.min(max,t));
+    }
+    function jump(y){window.scrollTo({top:y,behavior:'instant'});}
+    if(reduce){jump(target());return;}
+    var start=window.pageYOffset,t0=null,dur=550,settle=700,stopped=false;
+    var evs=['wheel','touchstart','keydown'];
+    function stop(){stopped=true;cleanup();}
+    function cleanup(){evs.forEach(function(e){window.removeEventListener(e,stop);});}
+    evs.forEach(function(e){window.addEventListener(e,stop,{passive:true});});
+    function step(ts){
+      if(stopped)return;
+      if(t0===null)t0=ts;
+      var el=ts-t0,to=target();
+      if(el<dur){
+        var p=el/dur,e=1-Math.pow(1-p,3);
+        jump(start+(to-start)*e);
+      }else if(Math.abs(to-window.pageYOffset)>1){
+        jump(to);
+      }
+      if(el<dur+settle)requestAnimationFrame(step);else cleanup();
+    }
+    requestAnimationFrame(step);
+  }
+
   var btns=items.map(function(it,i){
     var li=document.createElement('li');
     var b=document.createElement('button');
@@ -33,9 +65,7 @@
     }else{
       b.textContent=String(i+1);
     }
-    b.addEventListener('click',function(){
-      it.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
-    });
+    b.addEventListener('click',function(){goTo(it);});
     li.appendChild(b);
     list.appendChild(li);
     return b;
