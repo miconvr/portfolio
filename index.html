@@ -135,7 +135,7 @@
         var art=doc.querySelector('article')||doc.querySelector('main');
         if(!art)throw new Error('no content');
         art=art.cloneNode(true);
-        [].slice.call(art.querySelectorAll('h1,nav,script,.back,.crumb')).forEach(function(x){x.remove();});
+        [].slice.call(art.querySelectorAll('h1,nav,script,.back,.crumb,.summary,.links,img')).forEach(function(x){x.remove();});
         [].slice.call(art.querySelectorAll('[src]')).forEach(function(x){x.setAttribute('src',new URL(x.getAttribute('src'),href).href);});
         [].slice.call(art.querySelectorAll('[href]')).forEach(function(x){
           var h=x.getAttribute('href');
