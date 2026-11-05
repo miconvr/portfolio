@@ -10,19 +10,21 @@
   wrap.innerHTML = `
     <button class="been-btn" type="button" aria-label="Tap if you've been here">
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
-        <ellipse cx="60" cy="108" rx="30" ry="4.5" fill="currentColor" opacity=".12"/>
+        <ellipse cx="60" cy="109" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <circle cx="32" cy="36" r="10" fill="#8c6540"/>
-          <circle cx="88" cy="36" r="10" fill="#8c6540"/>
-          <rect x="18" y="30" width="84" height="74" rx="36" fill="#b98a5e"/>
-          <ellipse cx="60" cy="84" rx="27" ry="17" fill="#8c6540"/>
-          <ellipse cx="51" cy="79" rx="3" ry="2.2" fill="#2e2014"/>
-          <ellipse cx="69" cy="79" rx="3" ry="2.2" fill="#2e2014"/>
-          <path d="M53 91 Q60 96 67 91" stroke="#2e2014" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="29" cy="35" r="12" fill="#2f2f2f" stroke="#e6dcc3" stroke-width="2.5"/>
+          <circle cx="91" cy="35" r="12" fill="#2f2f2f" stroke="#e6dcc3" stroke-width="2.5"/>
+          <circle cx="60" cy="66" r="40" fill="#fbf8f1"/>
+          <ellipse cx="42" cy="66" rx="9" ry="11" fill="#2f2f2f" transform="rotate(20 42 66)"/>
+          <ellipse cx="78" cy="66" rx="9" ry="11" fill="#2f2f2f" transform="rotate(-20 78 66)"/>
           <g class="eyes"><g class="blink">
-            <circle cx="40" cy="58" r="4.2" fill="#222"/><circle cx="80" cy="58" r="4.2" fill="#222"/>
-            <circle cx="41.4" cy="56.6" r="1.3" fill="#fff"/><circle cx="81.4" cy="56.6" r="1.3" fill="#fff"/>
+            <circle cx="43" cy="65" r="4.4" fill="#fff"/><circle cx="77" cy="65" r="4.4" fill="#fff"/>
+            <circle cx="43.8" cy="65.6" r="2.4" fill="#111"/><circle cx="77.8" cy="65.6" r="2.4" fill="#111"/>
           </g></g>
+          <ellipse cx="32" cy="82" rx="6.5" ry="4.2" fill="#f2a493" opacity=".7"/>
+          <ellipse cx="88" cy="82" rx="6.5" ry="4.2" fill="#f2a493" opacity=".7"/>
+          <ellipse cx="60" cy="77" rx="4.6" ry="3.2" fill="#2f2f2f"/>
+          <path d="M53.5 83 Q57 88 60 83 Q63 88 66.5 83" stroke="#2f2f2f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </g>
       </svg>
     </button>
