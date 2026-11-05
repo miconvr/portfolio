@@ -187,3 +187,33 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 }
 
 .ico{width:1em;height:1em;vertical-align:-.125em;margin-right:.4em;fill:currentColor}
+
+/* ---- Image carousel on project cards ---- */
+.frame.carousel{position:relative;aspect-ratio:16/10}
+.slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.slides::-webkit-scrollbar{display:none}
+.slides:focus-visible{outline-offset:-4px}
+.slide{flex:0 0 100%;height:100%;scroll-snap-align:start;display:block}
+.slide img{width:100%;height:100%}
+.slide img.contain{object-fit:contain;object-position:center}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;display:grid;place-items:center;width:2.75rem;height:2.75rem;padding:0;border:1px solid #3A3A44;border-radius:50%;background:rgba(12,12,15,.72);color:var(--ink);cursor:pointer;backdrop-filter:blur(6px);transition:background .2s ease,border-color .2s ease,transform .15s ease}
+.car-btn:hover{background:rgba(12,12,15,.92);border-color:var(--ink)}
+.car-btn:active{transform:translateY(-50%) scale(.94)}
+.car-btn svg{width:1.1rem;height:1.1rem}
+.car-btn.prev{left:.75rem}
+.car-btn.next{right:.75rem}
+.car-count{position:absolute;right:.75rem;bottom:.75rem;z-index:2;padding:.15rem .65rem;border:1px solid #3A3A44;border-radius:999px;background:rgba(12,12,15,.72);color:var(--ink);font:400 .75rem var(--mono)}
+@media (prefers-reduced-motion:reduce){.car-btn{transition:none}}
+
+/* ---- Mobile tweaks ---- */
+img{max-width:100%}
+@media (max-width:34rem){
+  .car-btn{width:2.25rem;height:2.25rem}
+  .car-btn svg{width:1rem;height:1rem}
+  .car-btn.prev{left:.4rem}.car-btn.next{right:.4rem}
+  .car-btn::before{content:"";position:absolute;inset:-.25rem}
+  nav a{display:inline-flex;align-items:center;min-height:2.75rem}
+  header.site{padding-top:.5rem}
+  .flyrank-inline{margin-left:0;flex-basis:100%}
+  .item .meta{gap:.5rem 1.25rem}
+}
