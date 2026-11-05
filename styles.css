@@ -1,5 +1,5 @@
 :root{color-scheme:dark;--bg:#0C0C0F;--ink:#F1E8D8;--text:#C8C0B3;--muted:#89837C;--line:#2A2826;--live:#7ACB8D;--dev:#D8A95C;--accent:#D6A56A;
---sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;--serif:var(--sans);
+--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;--serif:var(--sans);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
 ::selection{background:#E6D7C1;color:#211C18}
@@ -238,3 +238,13 @@ article section h2{font-size:2rem;line-height:1.15}
 .item .meta li:first-child a{background:var(--ink);color:#0A0A0A;border-color:var(--ink);font-weight:500}
 .item .meta li+li a:hover{border-color:var(--ink)}
 @media (max-width:34rem){.side h1{font-size:2.5rem}.item h3{font-size:2.25rem}}
+
+/* ---- Apple-style type ---- */
+:root{--display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,sans-serif;--muted:#A1A1AA}
+.side h1,.home-intro h2,.item h3,article h1,.simple h1,.proj h3,article section h2{font-family:var(--display);font-weight:700;letter-spacing:-.03em}
+.side h1{font-size:2.25rem;line-height:1.1}
+.home-intro h2{line-height:1.15}
+.item h3{font-size:2rem;line-height:1.15}
+article h1{font-size:clamp(2rem,4.5vw,2.75rem);line-height:1.1}
+article section h2{font-size:1.5rem;line-height:1.25}
+@media (max-width:34rem){.side h1{font-size:2rem}.item h3{font-size:1.75rem}}
