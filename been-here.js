@@ -15,16 +15,12 @@
           <circle cx="29" cy="35" r="12" fill="#2f2f2f" stroke="#e6dcc3" stroke-width="2.5"/>
           <circle cx="91" cy="35" r="12" fill="#2f2f2f" stroke="#e6dcc3" stroke-width="2.5"/>
           <circle cx="60" cy="66" r="40" fill="#fbf8f1"/>
-          <ellipse cx="42" cy="66" rx="9" ry="11" fill="#2f2f2f" transform="rotate(20 42 66)"/>
-          <ellipse cx="78" cy="66" rx="9" ry="11" fill="#2f2f2f" transform="rotate(-20 78 66)"/>
+          <ellipse cx="43" cy="66" rx="8" ry="10" fill="#2f2f2f" transform="rotate(20 43 66)"/>
+          <ellipse cx="77" cy="66" rx="8" ry="10" fill="#2f2f2f" transform="rotate(-20 77 66)"/>
           <g class="eyes"><g class="blink">
-            <circle cx="43" cy="65" r="4.4" fill="#fff"/><circle cx="77" cy="65" r="4.4" fill="#fff"/>
-            <circle cx="43.8" cy="65.6" r="2.4" fill="#111"/><circle cx="77.8" cy="65.6" r="2.4" fill="#111"/>
+            <circle cx="44" cy="65" r="2.6" fill="#fff"/><circle cx="76" cy="65" r="2.6" fill="#fff"/>
           </g></g>
-          <ellipse cx="32" cy="82" rx="6.5" ry="4.2" fill="#f2a493" opacity=".7"/>
-          <ellipse cx="88" cy="82" rx="6.5" ry="4.2" fill="#f2a493" opacity=".7"/>
-          <ellipse cx="60" cy="77" rx="4.6" ry="3.2" fill="#2f2f2f"/>
-          <path d="M53.5 83 Q57 88 60 83 Q63 88 66.5 83" stroke="#2f2f2f" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="60" cy="80" rx="4.5" ry="3.2" fill="#2f2f2f"/>
         </g>
       </svg>
     </button>
