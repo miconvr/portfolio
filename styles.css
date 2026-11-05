@@ -221,3 +221,9 @@ img{max-width:100%}
 /* ---- Project dates under the title ---- */
 .item .dates{margin-top:.35rem;font:400 .8rem var(--mono);color:var(--muted)}
 .item-head .title-block{min-width:0}
+
+/* ---- UI font for body text and dates ---- */
+:root{--ui:system-ui,-apple-system,"Segoe UI Variable","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.item p,article section p,article .facts,.item .dates,.item .meta,.links,.meta{font-family:var(--ui)}
+.item p,article section p{line-height:1.65}
+.item .dates,.facts dt,.meta,.links{font-size:.85rem;letter-spacing:0}
