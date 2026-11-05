@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23141413%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Bricolage+Grotesque:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -36,5 +36,23 @@
 </div>
 <script src="/script.js"></script>
 <script src="/sub.js"></script>
+
+<script>
+(function(){
+  var side=document.querySelector('.side');
+  if(!side||side.querySelector('.side-card'))return;
+  var c=document.createElement('div');
+  c.className='side-card';
+  c.innerHTML='<div class="side-card-status"><span class="side-card-dot"></span>Open to internships</div>'
+    +'<p>Currently building <strong>CivicGuard</strong>, my capstone project.</p>'
+    +'<a href="mailto:micogerardnavarro@gmail.com">Get in touch &rarr;</a>';
+  var kids=side.querySelectorAll('*'),foot=null;
+  for(var i=0;i<kids.length;i++){
+    var k=kids[i];
+    if(k.children.length===0&&/Portfolio built during/.test(k.textContent)){foot=k;break;}
+  }
+  if(foot&&foot.parentNode){foot.parentNode.insertBefore(c,foot);}else{side.appendChild(c);}
+})();
+</script>
 </body>
 </html>
