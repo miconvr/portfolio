@@ -472,3 +472,11 @@ html{scroll-padding-top:2rem}
   .been-btn{width:3.25rem;height:3.25rem}
   .been-text{font-size:.72rem}
 }
+
+/* ---- mascot: +1 and idle bob ---- */
+.been-plus{position:absolute;left:1.7rem;top:.1rem;pointer-events:none;font:600 .85rem var(--mono);color:var(--muted);opacity:0;animation:been-plus 1.1s ease-out forwards}
+@keyframes been-plus{0%{opacity:0;transform:translateY(6px) scale(.8)}25%{opacity:1;transform:translateY(0) scale(1.05)}100%{opacity:0;transform:translateY(-1.6rem) scale(1)}}
+.been-mascot{animation:been-bob 4s ease-in-out infinite}
+@keyframes been-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@media (max-width:40rem){.been-plus{left:.9rem}}
+@media (prefers-reduced-motion:reduce){.been-plus,.been-mascot{animation:none}.been-plus{opacity:0}}
