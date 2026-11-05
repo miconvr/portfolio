@@ -10,17 +10,19 @@
   wrap.innerHTML = `
     <button class="been-btn" type="button" aria-label="Tap if you've been here">
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
-        <ellipse cx="60" cy="108" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
+        <ellipse cx="60" cy="108" rx="30" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <circle cx="28" cy="36" r="11" fill="#222"/>
-          <circle cx="92" cy="36" r="11" fill="#222"/>
-          <circle cx="60" cy="64" r="38" fill="#fff" stroke="#222" stroke-width="2.5"/>
-          <ellipse cx="45" cy="66" rx="7.5" ry="9.5" fill="#222" transform="rotate(25 45 66)"/>
-          <ellipse cx="75" cy="66" rx="7.5" ry="9.5" fill="#222" transform="rotate(-25 75 66)"/>
+          <circle cx="32" cy="36" r="10" fill="#8c6540"/>
+          <circle cx="88" cy="36" r="10" fill="#8c6540"/>
+          <rect x="18" y="30" width="84" height="74" rx="36" fill="#b98a5e"/>
+          <ellipse cx="60" cy="84" rx="27" ry="17" fill="#8c6540"/>
+          <ellipse cx="51" cy="79" rx="3" ry="2.2" fill="#2e2014"/>
+          <ellipse cx="69" cy="79" rx="3" ry="2.2" fill="#2e2014"/>
+          <path d="M53 91 Q60 96 67 91" stroke="#2e2014" stroke-width="2" fill="none" stroke-linecap="round"/>
           <g class="eyes"><g class="blink">
-            <circle cx="46" cy="65" r="2.6" fill="#fff"/><circle cx="74" cy="65" r="2.6" fill="#fff"/>
+            <circle cx="40" cy="58" r="4.2" fill="#222"/><circle cx="80" cy="58" r="4.2" fill="#222"/>
+            <circle cx="41.4" cy="56.6" r="1.3" fill="#fff"/><circle cx="81.4" cy="56.6" r="1.3" fill="#fff"/>
           </g></g>
-          <ellipse cx="60" cy="79" rx="4.5" ry="3.2" fill="#222"/>
         </g>
       </svg>
     </button>
