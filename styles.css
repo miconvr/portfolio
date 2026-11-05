@@ -299,3 +299,6 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
 .side-card{display:none !important}
 .side{box-sizing:border-box;background:#1F1E1D;border:1px solid #333230;border-radius:18px;padding:2rem 1.75rem}
 @media (max-width:34rem){.side{padding:1.5rem 1.25rem;border-radius:14px}}
+
+/* ---- Wordmark titles ---- */
+.item h3,article h1{font-family:"Plus Jakarta Sans","Inter",system-ui,sans-serif;font-weight:800;letter-spacing:-.03em}
