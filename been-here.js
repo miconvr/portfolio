@@ -12,18 +12,15 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="108" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <circle cx="28" cy="48" r="11" fill="#222"/>
-          <circle cx="92" cy="48" r="11" fill="#222"/>
-          <circle cx="60" cy="68" r="38" fill="#fff" stroke="#222" stroke-width="2.5"/>
-          <ellipse cx="45" cy="70" rx="7.5" ry="9.5" fill="#222" transform="rotate(25 45 70)"/>
-          <ellipse cx="75" cy="70" rx="7.5" ry="9.5" fill="#222" transform="rotate(-25 75 70)"/>
+          <circle cx="28" cy="36" r="11" fill="#222"/>
+          <circle cx="92" cy="36" r="11" fill="#222"/>
+          <circle cx="60" cy="64" r="38" fill="#fff" stroke="#222" stroke-width="2.5"/>
+          <ellipse cx="45" cy="66" rx="7.5" ry="9.5" fill="#222" transform="rotate(25 45 66)"/>
+          <ellipse cx="75" cy="66" rx="7.5" ry="9.5" fill="#222" transform="rotate(-25 75 66)"/>
           <g class="eyes"><g class="blink">
-            <circle cx="46" cy="69" r="2.6" fill="#fff"/><circle cx="74" cy="69" r="2.6" fill="#fff"/>
+            <circle cx="46" cy="65" r="2.6" fill="#fff"/><circle cx="74" cy="65" r="2.6" fill="#fff"/>
           </g></g>
-          <ellipse cx="60" cy="82" rx="4.5" ry="3.2" fill="#222"/>
-          <polygon points="60,16 100,32 60,48 20,32" fill="#d9704a"/>
-          <line x1="94" y1="35" x2="94" y2="52" stroke="#f0c36a" stroke-width="2.5"/>
-          <circle cx="94" cy="54" r="3" fill="#f0c36a"/>
+          <ellipse cx="60" cy="79" rx="4.5" ry="3.2" fill="#222"/>
         </g>
       </svg>
     </button>
@@ -64,17 +61,13 @@
     wrap.classList.remove("hop");
     void wrap.offsetWidth;
     wrap.classList.add("hop");
-    for (let i = 0; i < 5; i++) {
-      const h = document.createElement("span");
-      h.className = "been-heart";
-      h.textContent = "♥";
-      h.style.left = 20 + Math.random() * 40 + "px";
-      h.style.top = "6px";
-      h.style.setProperty("--dx", (Math.random() * 44 - 22) + "px");
-      h.style.animationDelay = i * 90 + "ms";
-      wrap.appendChild(h);
-      setTimeout(() => h.remove(), 1500);
-    }
+  }
+  function plusOne() {
+    const p = document.createElement("span");
+    p.className = "been-plus";
+    p.textContent = "+1";
+    wrap.appendChild(p);
+    setTimeout(() => p.remove(), 1200);
   }
 
   btn.addEventListener("click", async () => {
@@ -89,6 +82,7 @@
       try { localStorage.setItem(KEY, "1"); } catch (e) {}
       line.textContent = `hi! you're #${fmt(n)}`;
       render(n);
+      plusOne();
     } catch (e) {
       line.textContent = "hi! (counter is asleep, try later)";
     }
