@@ -431,3 +431,8 @@ html{scroll-padding-top:2rem}
 /* ---- profile photo: one rule, every page ---- */
 .profile-photo{width:8.75rem;height:8.75rem}
 @media (max-width:34rem){.profile-photo{width:7rem;height:7rem}}
+
+/* ---- sidebar links: keep icon and text on one line ---- */
+.side-links a{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;white-space:nowrap}
+.side-links .ico{flex:none;width:1rem;height:1rem}
+.side-links .ico path{fill-rule:evenodd}
