@@ -518,23 +518,8 @@ html{scroll-padding-top:2rem}
   .been-ring{display:none}
 }
 
-/* ---- mascot v4: no hover glitch, heart eyes ---- */
+/* ---- mascot v5: tap on the panda, hover on the button ---- */
 .been-btn.been-pop{animation:none}
 .been-btn .been-mascot{transform-origin:50% 75%}
 .been-btn.been-pop .been-mascot{animation:been-spin .8s cubic-bezier(.3,.7,.4,1)}
-.been-btn.been-bump .been-mascot{animation:been-bump .45s cubic-bezier(.3,.7,.4,1)}
-@keyframes been-bump{
-  0%{transform:scale(1)}
-  30%{transform:translateY(-8px) scale(.96,1.06)}
-  65%{transform:translateY(0) scale(1.06,.94)}
-  100%{transform:scale(1)}
-}
-.been-heart{fill:#ff6b8a;transform-box:fill-box;transform-origin:center}
-.been-hearts{display:none}
-.been-love .been-hearts{display:block}
-.been-love .eyes{opacity:0}
-.been-love .been-heart{animation:been-beat .7s ease-in-out infinite}
-@keyframes been-beat{0%,100%{transform:scale(1)}50%{transform:scale(1.28)}}
-@media (prefers-reduced-motion:reduce){
-  .been-btn .been-mascot,.been-heart{animation:none!important}
-}
+@media (prefers-reduced-motion:reduce){.been-btn .been-mascot{animation:none!important}}
