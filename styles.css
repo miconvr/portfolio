@@ -369,3 +369,17 @@ body{line-height:1.65}
 .meta,.links,nav a,.facts dt,.status,.side-links,.home h2.label{font-size:.85rem}
 .outcomes{max-width:36rem;margin:2rem 0 0;padding-left:1.2rem}
 .outcomes li{margin:0 0 .7rem;font-size:1.0625rem;line-height:1.6}
+
+/* ---- project scroll rail ---- */
+.rail{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:5;display:none;opacity:0;pointer-events:none;transition:opacity .4s ease}
+@media (min-width:80rem){.rail{display:block}}
+.rail.show{opacity:1;pointer-events:auto}
+.rail ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2.25rem;position:relative;z-index:1}
+.rail-track{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line);transform:translateX(-50%)}
+.rail-fill{position:absolute;inset:0;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .15s linear}
+.rail button{display:grid;place-items:center;width:2.25rem;height:2.25rem;padding:0;border:1px solid var(--line);border-radius:.6rem;background:var(--bg);color:var(--muted);font:400 .75rem var(--mono);cursor:pointer;overflow:hidden;transition:border-color .3s ease}
+.rail button svg,.rail button img{width:1.5rem;height:1.5rem;border-radius:.4rem;display:block;filter:grayscale(1);opacity:.4;transition:filter .3s ease,opacity .3s ease,transform .3s ease}
+.rail button:hover svg,.rail button:hover img{opacity:.8}
+.rail button.on{border-color:var(--accent)}
+.rail button.on svg,.rail button.on img{filter:none;opacity:1;transform:scale(1.08)}
+@media (prefers-reduced-motion:reduce){.rail,.rail-fill,.rail button,.rail button svg,.rail button img{transition:none}}
