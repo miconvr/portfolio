@@ -6,6 +6,12 @@
   var navLinks=document.querySelectorAll('.side nav a');
   var loading=false;
   var isHome=(location.pathname==='/'||location.pathname==='/index.html');
+  var homeNodes=document.createDocumentFragment(),homeActive=isHome;
+  function stashHome(){
+    if(!homeActive)return;
+    while(main.firstChild)homeNodes.appendChild(main.firstChild);
+    homeActive=false;
+  }
   function showAll(){root.classList.remove('js');els.forEach(function(el){el.classList.add('in');});}
   try{
     if(root.classList.contains('js') && 'IntersectionObserver' in window){
@@ -56,7 +62,7 @@
       })
       .then(function(html){
         var view=extractArticle(html);
-        main.innerHTML=view.article.outerHTML;
+        stashHome();main.innerHTML=view.article.outerHTML;
         document.title=view.title;
         setActive(path);
         if(replace)history.replaceState({view:path},'',path);
@@ -64,7 +70,7 @@
         animatePanel();
       })
       .catch(function(){
-        main.innerHTML='<article><h1>Unable to load this page</h1><p class="summary">Please try again, or open the page directly.</p></article>';
+        stashHome();main.innerHTML='<article><h1>Unable to load this page</h1><p class="summary">Please try again, or open the page directly.</p></article>';
         setActive(path);
       })
       .finally(function(){
@@ -75,7 +81,9 @@
 
   function restoreHome(replace){
     if(!main||loading)return;
-    main.innerHTML=initialView;
+    if(homeActive){window.scrollTo(0,0);return;}
+    if(homeNodes.firstChild){main.textContent='';main.appendChild(homeNodes);homeActive=true;}
+    else{main.innerHTML=initialView;}
     main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
     document.title=initialTitle;
     setActive('/');
@@ -89,7 +97,7 @@
       var path=link.getAttribute('href');
       if(!path||path.charAt(0)==='#'||path.indexOf('://')!==-1)return;
       if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-      if(path==='/'||path==='/index.html')return;
+      if((path==='/'||path==='/index.html')&&!isHome)return;
       event.preventDefault();
       if(path==='/'||path==='/index.html'){
         history.pushState({view:'/'},'', '/');
@@ -102,7 +110,7 @@
   });
 
   addEventListener('popstate',function(){
-    if(location.pathname==='/'||location.pathname==='/index.html'){location.reload();return;}
+    if(!isHome&&(location.pathname==='/'||location.pathname==='/index.html')){location.reload();return;}
     if(location.pathname==='/'||location.pathname==='/index.html')restoreHome(false);
     else loadView(location.pathname,false);
   });
