@@ -251,3 +251,13 @@ article section h2{font-size:1.5rem;line-height:1.25}
 
 /* ---- Hero headline font ---- */
 .home-intro h2{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:700;letter-spacing:-.035em;line-height:1.02;font-size:clamp(2.75rem,6.5vw,5rem)}
+
+/* ---- Claude dark theme ---- */
+:root{--bg:#262624;--surface:#30302E;--line:#3F3E3B;--ink:#FAF9F5;--muted:#B7B5A9;--accent:#D97757;color-scheme:dark}
+html,body{background:#262624;color:#FAF9F5}
+.item .meta a{border-color:#4A4945}
+.item .meta li:first-child a{background:#FAF9F5;color:#262624;border-color:#FAF9F5}
+.item .meta li+li a:hover{border-color:#FAF9F5}
+hr,.rule{border-color:#3F3E3B}
+a:hover{color:#D97757}
+::selection{background:#D97757;color:#262624}
