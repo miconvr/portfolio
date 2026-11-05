@@ -123,6 +123,10 @@
     panel.innerHTML='<div class="overview-clip"><div class="overview-inner"></div></div>';
     meta.parentNode.insertBefore(panel,meta.nextSibling);
     var inner=panel.querySelector('.overview-inner'),loaded=false;
+    var warm=function(){load().catch(function(){});};
+    a.addEventListener('mouseenter',warm,{once:true});
+    a.addEventListener('touchstart',warm,{once:true,passive:true});
+    a.addEventListener('focus',warm,{once:true});
 
     function load(){
       if(cache[href])return Promise.resolve(cache[href]);
