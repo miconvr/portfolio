@@ -1,11 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/iskolar",
-      "destination": "/kaltas",
-      "permanent": true
-    }
-  ]
+  "trailingSlash": false
 }
