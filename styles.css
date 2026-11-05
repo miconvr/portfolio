@@ -318,3 +318,5 @@ h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{c
 .overview-panel.open .ov-item{opacity:1;transform:none;transition-delay:calc(var(--i,0)*45ms + 120ms)}
 @media (max-width:34rem){.overview-inner{padding-left:1rem}}
 @media (prefers-reduced-motion:reduce){.overview-panel,.overview-inner .ov-item,.overview-toggle .ov-chev{transition:none}}
+
+.outcomes{margin:1.5rem 0 0;padding-left:1.1rem;display:grid;gap:.6rem;line-height:1.55}
