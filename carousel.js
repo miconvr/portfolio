@@ -39,7 +39,19 @@
       else v.pause();
     });
   },{threshold:[0,.6]});
-  for(var j=0;j<vids.length;j++)io.observe(vids[j]);
+  function observeAll(){
+    for(var j=0;j<vids.length;j++){io.unobserve(vids[j]);io.observe(vids[j])}
+  }
+  observeAll();
+
+  // re-check when returning to the page (back button, bfcache, tab switch)
+  function recheck(){
+    observeAll();
+    setTimeout(observeAll,250);
+  }
+  window.addEventListener('pageshow',recheck);
+  window.addEventListener('load',recheck);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)recheck()});
 })();
 
 
