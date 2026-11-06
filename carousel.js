@@ -41,3 +41,12 @@
   },{threshold:[0,.6]});
   for(var j=0;j<vids.length;j++)io.observe(vids[j]);
 })();
+
+(function(){
+  var f=document.querySelector('iframe.kaltas-yt');
+  if(!f||!('IntersectionObserver' in window))return;
+  function cmd(fn){try{f.contentWindow.postMessage(JSON.stringify({event:'command',func:fn,args:''}),'*')}catch(e){}}
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(e){cmd(e.isIntersecting&&e.intersectionRatio>=.6?'playVideo':'pauseVideo')});
+  },{threshold:[0,.6]}).observe(f);
+})();
