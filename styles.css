@@ -587,3 +587,12 @@ html{scroll-padding-top:2rem}
 .rail li{position:relative}
 .rail li::after{content:attr(data-label);position:absolute;left:calc(100% + .75rem);top:50%;transform:translateY(-50%);font:400 .75rem var(--mono,monospace);color:var(--muted);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease}
 .rail li:hover::after,.rail li:focus-within::after{opacity:1}
+
+/* ---- rail: dots ---- */
+.rail ul{gap:3rem}
+.rail button{width:.5rem;height:.5rem;border-radius:50%;border:1px solid var(--muted);background:var(--bg);opacity:.55;position:relative;transition:opacity .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
+.rail button svg,.rail button img{display:none}
+.rail button::before{content:"";position:absolute;inset:-.75rem}
+.rail button:hover{opacity:1}
+.rail button.on{background:var(--ink);border-color:var(--ink);opacity:1;transform:scale(1.35)}
+.rail-fill{background:var(--muted);opacity:.5}
