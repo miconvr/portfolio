@@ -12,7 +12,7 @@ window.initOverview=function(){
     a.setAttribute('role','button');
     a.setAttribute('aria-expanded','false');
     a.setAttribute('aria-controls',id);
-    a.innerHTML='<span class="ov-label">View Overview</span>'+chev;
+    a.innerHTML='<span class="ov-label">Overview</span>'+chev;
     var panel=document.createElement('div');
     panel.className='overview-panel';
     panel.id=id;
@@ -34,7 +34,7 @@ window.initOverview=function(){
 
     function setOpen(open){
       a.setAttribute('aria-expanded',open?'true':'false');
-      a.querySelector('.ov-label').textContent=open?'Hide Overview':'View Overview';
+      a.querySelector('.ov-label').textContent=open?'Hide Overview':'Overview';
       panel.classList.toggle('open',open);
     }
 
