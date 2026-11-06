@@ -26,32 +26,40 @@
 })();
 
 (function(){
-  var vids=document.querySelectorAll('.slide video');
-  if(!vids.length)return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-    for(var i=0;i<vids.length;i++)vids[i].controls=true;
-    return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io=null;
+  if(!reduce){
+    io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var v=e.target;
+        if(e.isIntersecting&&e.intersectionRatio>=.6){
+          v.muted=true;
+          var p=v.play();if(p&&p.catch)p.catch(function(){});
+        }else v.pause();
+      });
+    },{threshold:[0,.6]});
   }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      var v=e.target;
-      if(e.isIntersecting&&e.intersectionRatio>=.6){var p=v.play();if(p&&p.catch)p.catch(function(){})}
-      else v.pause();
-    });
-  },{threshold:[0,.6]});
-  function observeAll(){
-    for(var j=0;j<vids.length;j++){io.unobserve(vids[j]);io.observe(vids[j])}
-  }
-  observeAll();
 
-  // re-check when returning to the page (back button, bfcache, tab switch)
-  function recheck(){
-    observeAll();
-    setTimeout(observeAll,250);
+  // attach to any video not yet watched (runs again after home.js swaps the page content)
+  function scan(){
+    var vids=document.querySelectorAll('.slide video');
+    for(var i=0;i<vids.length;i++){
+      var v=vids[i];
+      if(reduce){v.controls=true;continue}
+      if(!v._watched){v._watched=true;io.observe(v)}
+    }
   }
-  window.addEventListener('pageshow',recheck);
-  window.addEventListener('load',recheck);
-  document.addEventListener('visibilitychange',function(){if(!document.hidden)recheck()});
+  scan();
+  new MutationObserver(scan).observe(document.getElementById('main')||document.body,{childList:true,subtree:true});
+
+  // re-check on bfcache restore / tab switch
+  function rewatch(){
+    if(reduce)return;
+    var vids=document.querySelectorAll('.slide video');
+    for(var i=0;i<vids.length;i++){io.unobserve(vids[i]);io.observe(vids[i])}
+  }
+  window.addEventListener('pageshow',rewatch);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)rewatch()});
 })();
 
 
