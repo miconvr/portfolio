@@ -24,3 +24,20 @@
     e.preventDefault();var c=s.closest('.carousel');go(c,base(c)+(e.key==='ArrowRight'?1:-1));
   });
 })();
+
+(function(){
+  var vids=document.querySelectorAll('.slide video');
+  if(!vids.length)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    for(var i=0;i<vids.length;i++)vids[i].controls=true;
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting&&e.intersectionRatio>=.6){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+      else v.pause();
+    });
+  },{threshold:[0,.6]});
+  for(var j=0;j<vids.length;j++)io.observe(vids[j]);
+})();
