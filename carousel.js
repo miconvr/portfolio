@@ -42,3 +42,11 @@
   for(var j=0;j<vids.length;j++)io.observe(vids[j]);
 })();
 
+
+(function(){
+  var cs=document.querySelectorAll('.carousel');
+  for(var i=0;i<cs.length;i++){
+    var s=cs[i].querySelector('.slides'),el=cs[i].querySelector('.car-count');
+    if(s&&el)el.textContent='1 / '+s.children.length;
+  }
+})();
