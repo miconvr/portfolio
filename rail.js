@@ -92,7 +92,7 @@
       if(i===best)b.setAttribute('aria-current','true');
       else b.removeAttribute('aria-current');
     });
-    var first=items[0].getBoundingClientRect();
+    var first=items[0].getBoundingClientRect();rail.style.left=Math.round(first.right+28)+"px";
     var last=items[items.length-1].getBoundingClientRect();
     fill.style.transform='scaleY('+clamp((mid-first.top)/(last.bottom-first.top))+')';
     rail.classList.toggle('show',first.top<vh*0.75&&last.bottom>vh*0.25);
