@@ -8,7 +8,5 @@
   </p>
 </div>
 
-This is the source code for my personal portfolio. It presents my projects, case studies, and experience.
-
-It was made with HTML, CSS, and vanilla JavaScript, using CSS Grid, Flexbox, responsive media queries, and Google Fonts.
+Source code for my personal portfolio, built with plain HTML, CSS and vanilla JavaScript (CSS Grid, Flexbox, responsive media queries and Google Fonts). No framework, no build step.
 
