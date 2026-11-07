@@ -1,6 +1,5 @@
 <div align="center">
   <img src="images/profile/mico-400.jpg" alt="Mico Gerard Navarro" width="120" height="120">
-  <img src="images/profile/mico-400.jpg" alt="Mico Gerard Navarro" width="120" height="120">
   <h1>Mico Gerard Navarro</h1>
   <p>A personal portfolio for projects, case studies, and experience.</p>
   <p>
