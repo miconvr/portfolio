@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guidance for any AI coding agent working in this repository (Claude Code, Codex, Copilot, Cursor, Gemini, and others). Human contributors can read it too.
+Guidance for any AI coding agent working in this repository (Codex, Copilot, Cursor, Gemini, and others). Human contributors can read it too.
 
 This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernando City, Pampanga). Live site: https://miconvr.vercel.app. Repo: `miconvr/portfolio`. It was built during the Front-end AI Engineering internship at FlyRank AI.
 
@@ -60,4 +60,4 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 
 ## Working with the owner
 
-Pushes from a Claude chat session have been blocked in the past, so the owner often applies changes by copy-pasting terminal commands. When you cannot push, deliver changes as terminal commands or a patch and say how to verify them. When you do have push access, edit the files directly.
+Pushes from AI chat sessions have been blocked in the past, so the owner often applies changes by copy-pasting terminal commands. When you cannot push, deliver changes as terminal commands or a patch and say how to verify them. When you do have push access, edit the files directly.
