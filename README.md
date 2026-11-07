@@ -8,5 +8,4 @@
   </p>
 </div>
 
-Source code for my personal portfolio, built with plain HTML, CSS and vanilla JavaScript (CSS Grid, Flexbox, responsive media queries and Google Fonts). No framework, no build step.
 
