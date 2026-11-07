@@ -39,7 +39,6 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 - Theme: the site is dark only. Do not add a light theme or a theme toggle unless asked.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - Mascot: a simple panda with a visitor counter. Keep it simple (no blush, no smile, no big eyes), keep the cream-outlined ears, and show it on mobile too.
-- The FlyRank graduate badge in the footer should stay subtle. There is no verification page link yet; do not invent one.
 - No custom domain for now; keep `miconvr.vercel.app` as the canonical URL.
 - The Ronda repo was deleted; do not link to it. Do not link a license for CivicGuard (it has none).
 - Keep accessibility: skip link, labelled controls, alt text on images, `aria-live` on the counter, keyboard-usable carousels, and `prefers-reduced-motion` support. Never make content depend on animation or JavaScript where it can be avoided.

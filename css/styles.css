@@ -95,9 +95,6 @@ article h1{font-size:2.6rem}
 .item p{font-family:var(--serif);font-size:1.0625rem;max-width:38rem;margin:1.1rem 0 0}
 .item .meta{margin-top:1.75rem}
 .item .meta li:first-child a::after{content:" \2192"}
-.flyrank-inline{display:inline-flex;align-items:center;margin-left:auto;padding:.35rem 0;text-decoration:none;opacity:.72;transition:opacity .2s ease,transform .2s ease}
-.flyrank-inline img{display:block;width:4.8rem;height:auto}
-.flyrank-inline:hover,.flyrank-inline:focus-visible{opacity:1;transform:translateY(-1px)}
 .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .js .reveal.in{opacity:1;transform:none}
 .js .reveal .frame img{transform:scale(1.06)}
@@ -209,7 +206,6 @@ img{max-width:100%}
   .car-btn::before{content:"";position:absolute;inset:-.25rem}
   nav a{display:inline-flex;align-items:center;min-height:2.75rem}
   header.site{padding-top:.5rem}
-  .flyrank-inline{margin-left:0;flex-basis:100%}
   .item .meta{gap:.5rem 1.25rem}
 }
 
@@ -419,7 +415,7 @@ html{scroll-padding-top:2rem}
 .entry h2{display:flex;align-items:center;gap:.75rem}
 .org-logo{width:1.75rem;height:1.75rem;border-radius:.4rem;display:block;flex:none}
 
-/* ---- experience: FlyRank wordmark beside the role (overrides earlier square sizing) ---- */
+/* ---- experience: org logo beside the role ---- */
 .entry h2{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
 .org-logo{width:auto;height:1.4rem;border-radius:0;display:block;flex:none;opacity:.9}
 
@@ -438,8 +434,6 @@ html{scroll-padding-top:2rem}
 @media (max-width:40rem){
   .item-head{flex-wrap:wrap;align-items:center;row-gap:.6rem}
   .item-head .title-block{flex:1 1 0;min-width:0}
-  .item-head .flyrank-inline{flex:0 0 100%;display:block}
-  .item-head .flyrank-inline img{width:auto;height:1.4rem}
 }
 
 /* ---- "been here" mascot ---- */
