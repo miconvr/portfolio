@@ -1,6 +1,5 @@
 <div align="center">
   <h1>Mico Gerard Navarro</h1>
-  <p>A personal portfolio for projects, case studies, and experience.</p>
   <p>
     <a href="https://miconvr.vercel.app">Live Site</a> ·
     <a href="https://github.com/miconvr">GitHub</a> ·
