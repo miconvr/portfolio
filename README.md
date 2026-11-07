@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="images/profile/mico-400.jpg" alt="Mico Gerard Navarro" width="120" height="120">
+  <img src="images/profile/mico-400.jpg" alt="Mico Gerard Navarro" width="120" height="120">
   <h1>Mico Gerard Navarro</h1>
   <p>A personal portfolio for projects, case studies, and experience.</p>
   <p>
@@ -7,8 +10,7 @@
   </p>
 </div>
 
-This is the source code for my personal portfolio. It presents my projects, case studies, experience, and contact details.
+This is the source code for my personal portfolio. It presents my projects, case studies, and experience.
 
 It was made with HTML, CSS, and vanilla JavaScript, using CSS Grid, Flexbox, responsive media queries, and Google Fonts.
 
-This portfolio was built during my Front-end AI Engineering internship at [FlyRank AI](https://internship.flyrank.ai/).
