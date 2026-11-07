@@ -2,7 +2,7 @@
 
 Guidance for any AI coding agent working in this repository (Codex, Copilot, Cursor, Gemini, and others). Human contributors can read it too.
 
-This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernando City, Pampanga). Live site: https://miconvr.vercel.app. Repo: `miconvr/portfolio`. It was built during the Front-end AI Engineering internship at FlyRank AI.
+This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernando City, Pampanga). Live site: https://miconvr.vercel.app. Repo: `miconvr/portfolio`.
 
 ## Stack
 
