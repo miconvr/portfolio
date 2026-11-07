@@ -14,16 +14,16 @@ Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.js
 |---|---|
 | `index.html` | Home page with the project list (Kaltas, CivicGuard, and others) |
 | `about/index.html`, `experience/index.html` | Sub-pages, served as `/about` and `/experience` (`cleanUrls` is on) |
-| `styles.css` | All styling, including light and dark themes |
-| `script.js` | Theme toggle (stores `theme` in localStorage, respects `prefers-color-scheme`) |
-| `home.js` | Page navigation behavior for the sidebar links |
-| `sub.js` | Entrance and reveal behavior on sub-pages (skips for reduced motion and back/forward) |
-| `rail.js` | Scroll rail for the item list |
-| `overview.js` | Expandable "overview" panels on project items (`window.initOverview`) |
-| `carousel.js` | Screenshot carousels with arrow-key, button and counter support |
-| `been-here.js` | "been here" panda mascot and visitor counter, calls `/api/hi` |
+| `css/styles.css` | All styling, including light and dark themes |
+| `js/script.js` | Theme toggle (stores `theme` in localStorage, respects `prefers-color-scheme`) |
+| `js/home.js` | Page navigation behavior for the sidebar links |
+| `js/sub.js` | Entrance and reveal behavior on sub-pages (skips for reduced motion and back/forward) |
+| `js/rail.js` | Scroll rail for the item list |
+| `js/overview.js` | Expandable "overview" panels on project items (`window.initOverview`) |
+| `js/carousel.js` | Screenshot carousels with arrow-key, button and counter support |
+| `js/been-here.js` | "been here" panda mascot and visitor counter, calls `/api/hi` |
 | `api/hi.js` | Vercel function. `GET` reads and `POST` increments an Upstash Redis counter. Needs `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`) |
-| `images/` | Screenshots, icons, portrait, and the Kaltas trailer video |
+| `images/projects/`, `images/profile/` | Project screenshots, icons and the Kaltas trailer video; portrait photos |
 | `vercel.json` | `cleanUrls`, no trailing slash, permanent redirects from `/kaltas` and `/civicguard` to `/` |
 
 ## Run and check
@@ -49,7 +49,8 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 
 ## Open items
 
-- `been-here.js` still defines an unused CounterAPI v1 constant (`BASE`); CounterAPI v1 is deprecated (HTTP 410). The live counter goes through `/api/hi` and Upstash Redis. Remove the dead constant when touching that file.
+- `js/been-here.js` still defines an unused CounterAPI v1 constant (`BASE`); CounterAPI v1 is deprecated (HTTP 410). The live counter goes through `/api/hi` and Upstash Redis. Remove the dead constant when touching that file.
+- `js/script.js` and `js/sub.js` are not loaded by any page (theme toggle and sub-page reveal are unused). `images/profile/mico.jpg` and `images/projects/civicguard-mobile.png` are not referenced either. Delete them if they are no longer needed.
 
 ## Conventions
 
