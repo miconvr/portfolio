@@ -36,7 +36,6 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 
 ## Design and content rules
 
-
 - Theme: the site is dark only. Do not add a light theme or a theme toggle unless asked.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - Mascot: a simple panda with a visitor counter. Keep it simple (no blush, no smile, no big eyes), keep the cream-outlined ears, and show it on mobile too.
