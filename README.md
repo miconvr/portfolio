@@ -7,5 +7,3 @@
     <a href="https://linkedin.com/in/miconvr">LinkedIn</a>
   </p>
 </div>
-
-
