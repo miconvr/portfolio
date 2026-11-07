@@ -1,6 +1,4 @@
 (() => {
-  const NS = "miconvr-portfolio", NAME = "been-here";
-  const BASE = `https://api.counterapi.dev/v1/${NS}/${NAME}`;
   const KEY = "been-here-v1";
   const host = document.querySelector(".side-links");
   if (!host) return;
