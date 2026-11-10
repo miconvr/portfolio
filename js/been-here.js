@@ -10,11 +10,14 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="109" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <path d="M60 104C22 78 10 48 28 30c13-12 29-6 32 8 3-14 19-20 32-8 18 18 6 48-32 74Z" fill="#e58f7b" transform="rotate(-6 60 66)"/>
-          <path d="M33 38c4-6 11-8 16-5" fill="none" stroke="#f6cfc4" stroke-width="4" stroke-linecap="round" transform="rotate(-6 60 66)"/>
+          <path class="arm" d="M18 72q-12 -2 -12 -16" fill="none" stroke="#1f1a14" stroke-width="6" stroke-linecap="round"/>
+          <path class="arm" d="M102 72q12 -2 12 -16" fill="none" stroke="#1f1a14" stroke-width="6" stroke-linecap="round"/>
+          <ellipse cx="60" cy="62" rx="42" ry="41" fill="#f6b92b" stroke="#1f1a14" stroke-width="6" transform="rotate(-4 60 62)"/>
           <g class="eyes">
-            <path d="M40 66q6 -7 12 0M68 66q6 -7 12 0" fill="none" stroke="#2f2f2f" stroke-width="3.4" stroke-linecap="round"/>
+            <ellipse cx="46" cy="52" rx="4.6" ry="8.5" fill="#1f1a14"/>
+            <ellipse cx="74" cy="52" rx="4.6" ry="8.5" fill="#1f1a14"/>
           </g>
+          <path d="M33 71Q60 98 87 71" fill="none" stroke="#1f1a14" stroke-width="5.5" stroke-linecap="round"/>
         </g>
       </svg>
     </button>
