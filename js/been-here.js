@@ -18,7 +18,7 @@
               <ellipse class="blink" cx="48" cy="48" rx="4.6" ry="10" fill="#1f1a14"/>
               <ellipse class="blink" cx="71" cy="48" rx="4.6" ry="10" fill="#1f1a14"/>
             </g>
-            <path d="M34.2 60.3C30 60.5 28 63.5 28.4 66.5C28.8 69 31 69.6 32.5 68.6C38 78 48 90 60 90C72 90 82 78 87.5 68.6C89 69.6 91.2 69 91.6 66.5C92 63.5 90 60.5 85.8 60.3C86.5 66 84 74 76 80.5C70 85 64 86.2 60 86.2C56 86.2 50 85 44 80.5C36 74 33.5 66 34.2 60.3Z" fill="#1f1a14" stroke="#1f1a14" stroke-width="2.4" stroke-linejoin="round"/>
+            <text x="60" y="86" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-size="25" font-weight="700" letter-spacing="1" fill="#1f1a14" textLength="50" lengthAdjust="spacingAndGlyphs">mico</text>
           </g>
         </g>
       </svg>
