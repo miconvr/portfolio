@@ -668,3 +668,7 @@ a:hover{color:#fff}
 @keyframes been-blink{0%,88%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
 .been .blink{animation:been-blink 1s infinite}
 .been-btn.been-pop .been-mascot{will-change:transform}
+
+/* ---- mascot: blink every 2 seconds ---- */
+@keyframes been-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.been .blink{animation:been-blink 2s infinite}
