@@ -10,15 +10,11 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="109" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <circle cx="29" cy="35" r="12" fill="#2f2f2f" stroke="#e6dcc3" stroke-width="2.5"/>
-          <circle cx="91" cy="35" r="12" fill="#2f2f2f" stroke="#e6dcc3" stroke-width="2.5"/>
-          <circle cx="60" cy="66" r="40" fill="#fbf8f1"/>
-          <ellipse cx="43" cy="66" rx="8" ry="10" fill="#2f2f2f" transform="rotate(20 43 66)"/>
-          <ellipse cx="77" cy="66" rx="8" ry="10" fill="#2f2f2f" transform="rotate(-20 77 66)"/>
-          <g class="eyes"><g class="blink">
-            <circle cx="44" cy="65" r="2.6" fill="#fff"/><circle cx="76" cy="65" r="2.6" fill="#fff"/>
-          </g></g>
-          <ellipse cx="60" cy="80" rx="4.5" ry="3.2" fill="#2f2f2f"/>
+          <path d="M60 104C22 78 10 48 28 30c13-12 29-6 32 8 3-14 19-20 32-8 18 18 6 48-32 74Z" fill="#e58f7b" transform="rotate(-6 60 66)"/>
+          <path d="M33 38c4-6 11-8 16-5" fill="none" stroke="#f6cfc4" stroke-width="4" stroke-linecap="round" transform="rotate(-6 60 66)"/>
+          <g class="eyes">
+            <path d="M40 66q6 -7 12 0M68 66q6 -7 12 0" fill="none" stroke="#2f2f2f" stroke-width="3.4" stroke-linecap="round"/>
+          </g>
         </g>
       </svg>
     </button>
