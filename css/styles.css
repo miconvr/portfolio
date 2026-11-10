@@ -585,3 +585,25 @@ html{scroll-padding-top:2rem}
 .rail button:hover{opacity:1}
 .rail button.on{background:var(--ink);border-color:var(--ink);opacity:1;transform:scale(1.35)}
 .rail-fill{background:var(--muted);opacity:.5}
+
+/* ---- type and color refresh: Geist, neutral text ---- */
+:root{--sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--display:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--ink:#F5F5F3;--text:#D4D4D0;--muted:#A5A5A0;--accent:#E7E7E3}
+body{font-family:var(--sans);color:var(--text)}
+body,p,li,.item p,article p,article section p,.outcomes li{color:var(--text)}
+.side h1,.home-intro h2,.item h3,.proj h3,.simple h1,article h1,article h2,article section h2{font-family:var(--display);font-weight:600;letter-spacing:-.03em;color:var(--ink)}
+.home-intro h2{letter-spacing:-.04em}
+.home-intro-copy.dim,.dim,.dates,.item .dates{color:var(--muted)}
+h1,h2,h3,strong{color:var(--ink)}
+a{color:var(--ink)}
+a:hover{color:#fff}
+.item .meta a{color:var(--ink)}
+.item .meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#1F1F1E}
+.item .meta li:first-child a:hover{background:#fff;border-color:#fff;color:#1F1F1E}
+.overview-inner{border-left-color:var(--muted)}
+.outcomes li::marker{color:var(--muted)}
+.skip{background:var(--ink)}
+::selection{background:var(--ink);color:#1F1F1E}
+
+/* location line with pin icon */
+.side .lead.loc{display:flex;align-items:flex-start;gap:.5rem;color:var(--muted)}
+.side .lead.loc .ico{flex:none;width:1.05em;height:1.05em;margin:.2em 0 0;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
