@@ -672,3 +672,6 @@ a:hover{color:#fff}
 /* ---- mascot: blink every 2 seconds ---- */
 @keyframes been-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
 .been .blink{animation:been-blink 2s infinite}
+
+/* ---- credit line under the counter ---- */
+.been-credit{display:block;margin-top:.35rem;font:400 .7rem var(--mono);opacity:.5}
