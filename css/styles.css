@@ -761,3 +761,8 @@ a:hover{color:var(--ink)}
 /* ---- no border on hover: buttons only change background ---- */
 .item .meta li+li a:hover,
 .item .meta li:first-child a:hover{border-color:transparent}
+
+/* ---- sidebar description matches about: same size and line height ---- */
+@media (min-width:56.01rem){
+  .side .lead:not(.loc){font-size:1.125rem;line-height:1.7}
+}
