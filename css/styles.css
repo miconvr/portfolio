@@ -697,3 +697,13 @@ a:hover{color:#fff}
 @media (min-width:56.01rem) and (max-height:54rem){
   .side{position:static}
 }
+
+/* ---- sidebar bigger card: fills the window, roomier spacing ---- */
+@media (min-width:56.01rem){
+  .side{min-height:calc(100dvh - 2rem);padding:2.5rem 1.75rem 2rem}
+  .side .profile-photo{width:8rem;height:8rem}
+  .side h1{margin-bottom:1.25rem}
+  .side nav ul{margin-top:2.5rem;gap:1rem}
+  .side-links{margin-top:2.5rem;gap:.65rem}
+  .side .been{margin-top:auto;padding-top:2rem}
+}
