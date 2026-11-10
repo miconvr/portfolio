@@ -17,7 +17,7 @@
               <ellipse class="blink" cx="48" cy="48" rx="4.6" ry="10" fill="#1f1a14"/>
               <ellipse class="blink" cx="71" cy="48" rx="4.6" ry="10" fill="#1f1a14"/>
             </g>
-            <defs><path id="been-smile-path" d="M31 77Q60 93 89 77"/></defs><text font-family="Geist, system-ui, sans-serif" font-size="23" font-weight="700" letter-spacing="1" fill="#1f1a14"><textPath href="#been-smile-path" startOffset="50%" text-anchor="middle">mico</textPath></text>
+            <defs><path id="been-smile-path" d="M31 79Q60 87 89 79"/></defs><text font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="-0.6" fill="#1f1a14" stroke="#1f1a14" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><textPath href="#been-smile-path" startOffset="50%" text-anchor="middle">mico</textPath></text>
           </g>
         </g>
       </svg>
