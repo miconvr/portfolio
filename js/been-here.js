@@ -20,7 +20,7 @@
         </g>
       </svg>
     </button>
-    <p class="been-text"><span class="been-line"></span><span class="been-count" aria-live="polite"></span><span class="been-credit">designed and built by mico</span></p>`;
+    <p class="been-text"><span class="been-line"></span><span class="been-count" aria-live="polite"></span><span class="been-credit">designed and built by mico</span><span class="been-credit been-credit-sub">inspired by drew house</span></p>`;
   host.insertAdjacentElement("afterend", wrap);
 
   const btn = wrap.querySelector(".been-btn");
