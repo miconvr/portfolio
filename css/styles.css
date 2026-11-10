@@ -747,3 +747,13 @@ a:hover{color:#fff}
 /* ---- warm cream text: matches the yellow mascot ---- */
 :root,html,body{--ink:#F3E9D2;--text:#E4DAC3}
 h1,h2,h3,strong,.side h1,.home-intro h2,.item h3,.proj h3,.simple h1,article h1,article h2,article section h2{color:var(--ink)}
+
+/* ---- cream hover fix: no hardcoded whites on hover ---- */
+:root{--ink:#F3E9D2;--text:#E4DAC3}
+html,body{color:var(--text)}
+a:hover{color:var(--ink)}
+.item .meta li+li a:hover{border-color:var(--ink);color:var(--ink)}
+.item .meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#262624}
+.item .meta li:first-child a:hover{background:#E4DAC3;border-color:#E4DAC3;color:#262624}
+.side-card a:hover{color:var(--ink);border-color:var(--ink)}
+::selection{background:#F3E9D2;color:#262624}
