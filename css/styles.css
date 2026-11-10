@@ -632,3 +632,15 @@ a:hover{color:#fff}
 /* click: keep the spin-hop */
 .been-btn.been-pop .been-mascot{animation:been-spin .8s cubic-bezier(.3,.7,.4,1)}
 @media (prefers-reduced-motion:reduce){.been-btn .been-mascot{animation:none!important}}
+
+/* ---- smiley: force-kill leftover panda hover/ear rules ---- */
+.been-btn .body,
+.been-btn .body>circle,
+.been-btn:hover .body,
+.been-btn:hover .body>circle,
+.been-btn:hover .body>circle:nth-of-type(1),
+.been-btn:hover .body>circle:nth-of-type(2){
+  animation:none!important;
+  transform:none!important;
+  transition:none!important;
+}
