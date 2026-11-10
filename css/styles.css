@@ -611,3 +611,8 @@ a:hover{color:#fff}
   .side nav ul{margin-top:2.25rem}
 }
 .side .lead.loc .ico{flex:none;width:1.1em;height:1.5em;margin:0;vertical-align:baseline;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---- desktop scale: everything 10% larger ---- */
+@media (min-width:56.01rem){
+  html{font-size:110%}
+}
