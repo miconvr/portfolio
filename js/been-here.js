@@ -47,17 +47,36 @@
 
   call("/").then(render).catch(() => {});
 
-  window.addEventListener("pointermove", e => {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let px = 0, py = 0, raf = 0;
+  function look() {
+    raf = 0;
     const r = btn.getBoundingClientRect();
-    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+    const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
     const d = Math.hypot(dx, dy) || 1, k = Math.min(1.5, d / 100);
     eyes.style.transform = `translate(${(dx / d) * k}px, ${(dy / d) * k}px)`;
+  }
+  window.addEventListener("pointermove", e => {
+    if (reduceMotion.matches) return;
+    px = e.clientX; py = e.clientY;
+    if (!raf) raf = requestAnimationFrame(look);
   }, { passive: true });
 
-  function celebrate() {
-    wrap.classList.remove("hop");
-    void wrap.offsetWidth;
-    wrap.classList.add("hop");
+  const mascot = wrap.querySelector(".been-mascot");
+  let spinning = false, spinTimer = 0;
+  function spin() {
+    if (spinning || reduceMotion.matches) return;
+    spinning = true;
+    btn.classList.add("been-pop");
+    const onEnd = e => { if (e.target === mascot) done(); };
+    const done = () => {
+      clearTimeout(spinTimer);
+      mascot.removeEventListener("animationend", onEnd);
+      btn.classList.remove("been-pop");
+      spinning = false;
+    };
+    mascot.addEventListener("animationend", onEnd);
+    spinTimer = setTimeout(done, 1000);
   }
   function plusOne() {
     const p = document.createElement("span");
@@ -68,7 +87,7 @@
   }
 
   btn.addEventListener("click", async () => {
-    celebrate();
+    spin();
     if (tapped) { line.textContent = "welcome back! tap again"; return; }
     if (busy) return;
     busy = true;
@@ -84,17 +103,5 @@
       line.textContent = "hi! (counter is asleep, try later)";
     }
     busy = false;
-  });
-})();
-
-/* ---- tap animation: spin-hop ---- */
-(function () {
-  document.addEventListener("click", function (e) {
-    var btn = e.target.closest && e.target.closest(".been-btn");
-    if (!btn) return;
-    btn.classList.remove("been-pop");
-    void btn.offsetWidth;
-    btn.classList.add("been-pop");
-    setTimeout(function () { btn.classList.remove("been-pop"); }, 850);
   });
 })();

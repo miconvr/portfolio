@@ -663,3 +663,8 @@ a:hover{color:#fff}
 
 /* +1 matches the smiley's yellow */
 .been-plus{color:#f7bd2e}
+
+/* ---- mascot: blink every second, steadier click animation ---- */
+@keyframes been-blink{0%,88%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+.been .blink{animation:been-blink 1s infinite}
+.been-btn.been-pop .been-mascot{will-change:transform}
