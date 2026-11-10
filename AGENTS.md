@@ -6,7 +6,7 @@ This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernand
 
 ## Stack
 
-Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.json`. Hosted on Vercel; the only server code is one serverless function in `api/`. Fonts come from Google Fonts (Inter, Geist Mono, Bricolage Grotesque, Plus Jakarta Sans). Keep it dependency-free.
+Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.json`. Hosted on Vercel; the only server code is one serverless function in `api/`. Fonts come from Google Fonts (Geist and Geist Mono). Keep it dependency-free.
 
 ## Layout
 
@@ -19,7 +19,7 @@ Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.js
 | `js/rail.js` | Scroll rail for the item list |
 | `js/overview.js` | Expandable "overview" panels on project items (`window.initOverview`) |
 | `js/carousel.js` | Screenshot carousels with arrow-key, button and counter support |
-| `js/been-here.js` | "been here" panda mascot and visitor counter, calls `/api/hi` |
+| `js/been-here.js` | "been here" smiley mascot and visitor counter, calls `/api/hi` |
 | `api/hi.js` | Vercel function. `GET` reads and `POST` increments an Upstash Redis counter. Needs `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`) |
 | `images/projects/`, `images/profile/` | Project screenshots, icons and the Kaltas trailer video; portrait photos |
 | `vercel.json` | `cleanUrls`, no trailing slash, permanent redirects from `/kaltas` and `/civicguard` to `/` |
@@ -37,9 +37,11 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 ## Design and content rules
 
 - Theme: the site is dark only. Do not add a light theme or a theme toggle unless asked.
+- Type and color: Geist for text and Geist Mono for small labels. Headings are near-white, body text is soft gray and secondary text is gray. Do not bring back the old mixed fonts.
+- Sidebar: the location line ("San Fernando City, Pampanga, Philippines") has a pin icon and stays on one line on desktop. From 56.01rem up, the base font size is 110%.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - The Experience page lists real roles. Do not remove or rewrite entries without being asked.
-- Mascot: a simple panda with a visitor counter. Keep it simple (no blush, no smile, no big eyes), keep the cream-outlined ears, and show it on mobile too.
+- Mascot: a flat yellow smiley (`#f7bd2e`, outline and features `#14110d`) with a visitor counter. Its smile is the name "mico", drawn as one warped outline path rather than live text, so leave that path alone unless asked. Keep it simple: no arms, no shadow, no idle floating or hover movement. The only animations are the eyes following the pointer (small range, throttled with `requestAnimationFrame`), a blink every second, and one spin-hop on click. The spin always plays in full and clicks during it are ignored, so rapid clicking never restarts it. The yellow "+1" shows only on the first tap, and the count line stays plain text. With reduced motion on, the eyes stay still and there is no blink or spin. Show it on mobile too.
 - No custom domain for now; keep `miconvr.vercel.app` as the canonical URL.
 - The Ronda repo was deleted; do not link to it. Do not link a license for CivicGuard (it has none).
 - Keep accessibility: skip link, labelled controls, alt text on images, `aria-live` on the counter, keyboard-usable carousels, and `prefers-reduced-motion` support. Never make content depend on animation or JavaScript where it can be avoided.
