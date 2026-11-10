@@ -605,5 +605,9 @@ a:hover{color:#fff}
 ::selection{background:var(--ink);color:#1F1F1E}
 
 /* location line with pin icon */
-.side .lead.loc{display:flex;align-items:flex-start;gap:.5rem;line-height:1.5;color:var(--muted)}
+.side .lead.loc{display:flex;align-items:flex-start;gap:.5rem;line-height:1.5;font-size:.85rem;color:var(--muted)}
+@media (min-width:56.01rem){
+  .home .shell{grid-template-columns:22rem minmax(0,1fr);gap:6rem}
+  .side nav ul{margin-top:2.25rem}
+}
 .side .lead.loc .ico{flex:none;width:1.1em;height:1.5em;margin:0;vertical-align:baseline;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
