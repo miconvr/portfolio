@@ -644,3 +644,11 @@ a:hover{color:#fff}
   transform:none!important;
   transition:none!important;
 }
+
+/* ---- mascot: bigger, tighter to its text, clearer count ---- */
+.been{gap:.7rem}
+.been-btn{width:5.5rem;height:5.5rem}
+.been-num{color:var(--ink);font-weight:600}
+@media (max-width:40rem){
+  .been-btn{width:3.75rem;height:3.75rem}
+}
