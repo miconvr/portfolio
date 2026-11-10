@@ -707,3 +707,23 @@ a:hover{color:#fff}
   .side-links{margin-top:2.5rem;gap:.65rem}
   .side .been{margin-top:auto;padding-top:2rem}
 }
+
+/* ---- sidebar static fit: card = window height, spacing scales with window ---- */
+@media (min-width:56.01rem){
+  .side{
+    position:sticky;top:1rem;
+    height:calc(100dvh - 2rem);min-height:0;
+    padding:clamp(1.25rem,3dvh,2.25rem) 1.75rem;
+    overflow:visible;
+  }
+  .side .profile-photo{width:clamp(5rem,14dvh,8.5rem);height:clamp(5rem,14dvh,8.5rem)}
+  .side h1{margin-bottom:clamp(.6rem,1.5dvh,1.25rem)}
+  .side nav ul{margin-top:clamp(.9rem,3.5dvh,2.25rem);gap:clamp(.6rem,1.6dvh,1rem)}
+  .side-links{margin-top:clamp(.9rem,3.5dvh,2.25rem);gap:.6rem}
+  .side .been{margin-top:auto;padding-top:clamp(.75rem,2dvh,1.5rem)}
+}
+/* windows too short to fit it all: card flows with the page so nothing is cut off */
+@media (min-width:56.01rem) and (max-height:52rem){
+  .side{position:static;height:auto}
+  .side .been{margin-top:1.5rem}
+}
