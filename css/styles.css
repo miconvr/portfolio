@@ -675,3 +675,11 @@ a:hover{color:#fff}
 
 /* ---- credit line under the counter ---- */
 .been-credit{display:block;margin-top:.35rem;font:400 .7rem var(--mono);opacity:.5}
+
+/* ---- sidebar breathing room ---- */
+.been-credit-sub{margin-top:.1rem}
+@media (min-width:56.01rem){
+  .side{top:1rem;height:calc(100dvh - 2rem);padding:2rem 1.75rem 1.75rem;overflow-y:auto;scrollbar-width:none}
+  .side::-webkit-scrollbar{display:none}
+  .side .been{margin-top:auto;padding-top:1.5rem}
+}
