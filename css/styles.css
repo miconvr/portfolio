@@ -727,3 +727,11 @@ a:hover{color:#fff}
   .side{position:static;height:auto}
   .side .been{margin-top:1.5rem}
 }
+
+/* ---- sidebar full height: flush to top and bottom, square corners ---- */
+@media (min-width:56.01rem){
+  .side{top:0;height:100dvh;border-radius:0;border-top:0;border-bottom:0}
+}
+@media (min-width:56.01rem) and (max-height:52rem){
+  .side{height:auto}
+}
