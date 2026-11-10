@@ -62,7 +62,7 @@
             <div class="dates">Nov 2026 to Present</div>
           </div>
         </div>
-        <p>Kaltas is a privacy-first Chrome extension that shows students the discounts and education perks available on the website they are visiting. It matches the current site locally against a curated offer list, with a focus on students in the Philippines and global offers included.</p>
+        <p>Kaltas is a privacy-first Chrome extension that shows students the discounts and education perks available on the website they are visiting. It matches the current site locally against a curated offer list that updates from GitHub, with a focus on students in the Philippines and global offers included. Weekly GitHub Actions check offer links and collect new deal leads for manual review.</p>
         <ul class="meta">
           <li><a href="#ov-kaltas">Overview</a></li>
           <li><a href="https://ggl.link/kaltas" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1v8.6M4.5 6.5 8 10l3.5-3.5M2 13.5h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>download</a></li>
@@ -102,15 +102,17 @@
 <dl class="facts">
           <div><dt>Role</dt><dd>Solo Developer</dd></div>
           <div><dt>Status</dt><dd>Live</dd></div>
-          <div><dt>Stack</dt><dd>JavaScript, HTML, CSS, Manifest V3</dd></div>
+          <div><dt>Stack</dt><dd>JavaScript, HTML, CSS, Manifest V3, GitHub Actions</dd></div>
         </dl>
 <ul class="outcomes">
           <li>Designed, built and published solo on the Chrome Web Store, including the listing, screenshots, privacy disclosures and packaging.</li>
-          <li>Built local domain matching against a bundled offer list, with Philippines and global region filters.</li>
-          <li>Added a green toolbar badge using the declarativeContent API, so the extension never reads tabs or page content.</li>
+          <li>Built local domain matching against a curated offer list, with Philippines and other-country region filters.</li>
+          <li>Added a green toolbar badge using the declarativeContent API, so the badge works without the extension reading tabs or page content.</li>
+          <li>Built a remote offers update: the popup and badge load the list from GitHub with a timeout, validate every entry, and fall back to a saved copy and then a bundled one, so new deals reach users without a store release.</li>
           <li>Built the popup with dark and light themes, a settings panel and a searchable list of all deals.</li>
-          <li>Kept it private: Manifest V3, two permissions (activeTab and declarativeContent), HTTPS-only links, and no accounts, analytics or browsing history.</li>
-          <li>Wrote an offer data format and a validation script, and verified every offer against an official source before release.</li>
+          <li>Kept it private: Manifest V3, two permissions (activeTab and declarativeContent), no host permissions, HTTPS-only links, and no accounts, analytics or browsing history.</li>
+          <li>Wrote an offer data format and a validation script that runs in CI on every push, and checked offers against official sources, with a last-verified date shown on each card.</li>
+          <li>Automated maintenance with GitHub Actions: a weekly link checker flags broken or moved offer links, and a weekly job collects new deal leads from community lists for manual review. Automation never publishes an offer on its own.</li>
           <li>Open sourced under the MIT License with a README, privacy policy and a GitHub flow for reporting outdated offers.</li>
         </ul>
 </template>
