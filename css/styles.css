@@ -652,3 +652,11 @@ a:hover{color:#fff}
 @media (max-width:40rem){
   .been-btn{width:3.75rem;height:3.75rem}
 }
+
+/* ---- mascot: align with the sidebar's left edge ---- */
+.been{gap:.35rem}
+.been-btn{margin-left:-.8rem}
+.been-num{color:inherit;font-weight:inherit}
+@media (max-width:40rem){
+  .been-btn{margin-left:-.55rem}
+}
