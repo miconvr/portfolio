@@ -10,7 +10,6 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="108" rx="21" ry="3" fill="currentColor" opacity=".16"/>
         <g class="body">
-          <circle cx="60" cy="62" r="43" fill="none" stroke="#efe6cf" stroke-opacity=".5" stroke-width="1.8"/>
           <circle cx="60" cy="62" r="39" fill="#f7bd2e" stroke="#1f1a14" stroke-width="6"/>
           <ellipse cx="43" cy="40" rx="10" ry="4.5" fill="#fff" opacity=".2" transform="rotate(-35 43 40)"/>
           <g transform="translate(60 62) scale(.9) translate(-60 -62)">
@@ -18,7 +17,7 @@
               <ellipse class="blink" cx="48" cy="48" rx="4.6" ry="10" fill="#1f1a14"/>
               <ellipse class="blink" cx="71" cy="48" rx="4.6" ry="10" fill="#1f1a14"/>
             </g>
-            <text x="60" y="86" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-size="25" font-weight="700" letter-spacing="1" fill="#1f1a14" textLength="50" lengthAdjust="spacingAndGlyphs">mico</text>
+            <defs><path id="been-smile-path" d="M31 77Q60 93 89 77"/></defs><text font-family="Geist, system-ui, sans-serif" font-size="23" font-weight="700" letter-spacing="1" fill="#1f1a14"><textPath href="#been-smile-path" startOffset="50%" text-anchor="middle">mico</textPath></text>
           </g>
         </g>
       </svg>
