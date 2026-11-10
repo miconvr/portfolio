@@ -10,7 +10,6 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <g class="body">
           <circle cx="60" cy="62" r="39" fill="#f7bd2e" stroke="#14110d" stroke-width="6"/>
-          <ellipse cx="34" cy="46" rx="9" ry="3.6" fill="#fff" opacity=".1" transform="rotate(-62 34 46)"/>
           <g transform="translate(60 62) scale(.9) translate(-60 -62)">
             <g class="eyes">
               <ellipse class="blink" cx="48" cy="48" rx="4.2" ry="9.6" fill="#14110d" stroke="#14110d" stroke-width="1"/>
