@@ -609,6 +609,7 @@ a:hover{color:#fff}
 @media (min-width:56.01rem){
   .home .shell{grid-template-columns:22rem minmax(0,1fr);gap:6rem}
   .side nav ul{margin-top:2.25rem}
+  .side .lead.loc{margin-top:.9rem}
 }
 .side .lead.loc .ico{flex:none;width:1.1em;height:1.5em;margin:0;vertical-align:baseline;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
