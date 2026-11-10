@@ -31,7 +31,7 @@
 
   let tapped = false, busy = false;
   try { tapped = localStorage.getItem(KEY) === "1"; } catch (e) {}
-  line.textContent = tapped ? "welcome back! tap again" : "tap if you are here!";
+  line.textContent = tapped ? "welcome back!" : "tap if you are here!";
 
   async function call(path) {
     const r = await fetch("/api/hi", { method: path === "/up" ? "POST" : "GET", cache: "no-store" });
@@ -87,7 +87,7 @@
 
   btn.addEventListener("click", async () => {
     spin();
-    if (tapped) { line.textContent = "welcome back! tap again"; return; }
+    if (tapped) { line.textContent = "welcome back!"; return; }
     if (busy) return;
     busy = true;
     line.textContent = "hi! thanks for stopping by";
