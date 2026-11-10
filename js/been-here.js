@@ -10,14 +10,12 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <ellipse cx="60" cy="109" rx="28" ry="4.5" fill="currentColor" opacity=".12"/>
         <g class="body">
-          <path class="arm" d="M18 72q-12 -2 -12 -16" fill="none" stroke="#1f1a14" stroke-width="6" stroke-linecap="round"/>
-          <path class="arm" d="M102 72q12 -2 12 -16" fill="none" stroke="#1f1a14" stroke-width="6" stroke-linecap="round"/>
-          <ellipse cx="60" cy="62" rx="42" ry="41" fill="#f6b92b" stroke="#1f1a14" stroke-width="6" transform="rotate(-4 60 62)"/>
+          <circle cx="60" cy="62" r="40" fill="#f6b92b" stroke="#1f1a14" stroke-width="4.5"/>
           <g class="eyes">
-            <ellipse cx="46" cy="52" rx="4.6" ry="8.5" fill="#1f1a14"/>
-            <ellipse cx="74" cy="52" rx="4.6" ry="8.5" fill="#1f1a14"/>
+            <ellipse cx="48" cy="48" rx="4" ry="9.3" fill="#1f1a14"/>
+            <ellipse cx="71" cy="48" rx="4" ry="9.3" fill="#1f1a14"/>
           </g>
-          <path d="M33 71Q60 98 87 71" fill="none" stroke="#1f1a14" stroke-width="5.5" stroke-linecap="round"/>
+          <path d="M34.2 60.3C30 60.5 28 63.5 28.4 66.5C28.8 69 31 69.6 32.5 68.6C38 78 48 90 60 90C72 90 82 78 87.5 68.6C89 69.6 91.2 69 91.6 66.5C92 63.5 90 60.5 85.8 60.3C86.5 66 84 74 76 80.5C70 85 64 86.2 60 86.2C56 86.2 50 85 44 80.5C36 74 33.5 66 34.2 60.3Z" fill="#1f1a14" stroke="#1f1a14" stroke-width="1" stroke-linejoin="round"/>
         </g>
       </svg>
     </button>
