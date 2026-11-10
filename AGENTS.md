@@ -40,6 +40,7 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 - Type and color: Geist for text and Geist Mono for small labels. Headings are near-white, body text is soft gray and secondary text is gray. Do not bring back the old mixed fonts.
 - Text color: primary text is a warm cream to match the yellow mascot, `--ink` `#F3E9D2` for headings and `--text` `#E4DAC3` for body and links. Secondary text stays gray (`--muted`). Do not go back to pure or cool white. This overrides the "near-white" wording above.
 - No hardcoded whites: use `var(--ink)` and `var(--text)` for light text, hovers and filled buttons. Never write `#fff` or `#FAF9F5` for text or hover states, or the cool white comes back.
+- Button hover: the project buttons (Overview, Live Site, Repository) change only their background on hover. The border goes transparent, with no outline or border highlight. Keep the `:focus-visible` outline for keyboard users.
 - Sidebar: the location line ("San Fernando City, Pampanga, Philippines") has a pin icon and stays on one line on desktop. From 56.01rem up, the base font size is 110%.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - The Experience page lists real roles. Do not remove or rewrite entries without being asked.
