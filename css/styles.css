@@ -757,3 +757,7 @@ a:hover{color:var(--ink)}
 .item .meta li:first-child a:hover{background:#E4DAC3;border-color:#E4DAC3;color:#262624}
 .side-card a:hover{color:var(--ink);border-color:var(--ink)}
 ::selection{background:#F3E9D2;color:#262624}
+
+/* ---- no border on hover: buttons only change background ---- */
+.item .meta li+li a:hover,
+.item .meta li:first-child a:hover{border-color:transparent}
