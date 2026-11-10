@@ -683,3 +683,17 @@ a:hover{color:#fff}
   .side::-webkit-scrollbar{display:none}
   .side .been{margin-top:auto;padding-top:1.5rem}
 }
+
+/* ---- sidebar fit fix: full card, no inner scroll ---- */
+@media (min-width:56.01rem){
+  .side{top:1rem;height:auto;max-height:none;overflow:visible;padding:1.5rem 1.75rem}
+  .side .profile-photo{width:6rem;height:6rem}
+  .side h1{margin-bottom:1rem}
+  .side nav ul{margin-top:1.75rem;gap:.75rem}
+  .side-links{margin-top:1.75rem}
+  .side .been{margin-top:1.5rem;padding-top:0}
+}
+/* very short windows: let the card scroll with the page so nothing is cut off */
+@media (min-width:56.01rem) and (max-height:54rem){
+  .side{position:static}
+}
