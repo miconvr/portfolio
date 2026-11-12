@@ -47,10 +47,7 @@ async function repoCommits(repo) {
   return Array.isArray(list) ? list.length : 0;
 }
 
-const round = (n) => {
-  const step = n >= 1000 ? 100 : 50;
-  return Math.floor(n / step) * step;
-};
+const round = (n) => Math.floor(n / 10) * 10;
 
 module.exports = async (req, res) => {
   try {
