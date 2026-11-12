@@ -8,13 +8,14 @@
     if (!list || !Number.isFinite(n) || n < 1) return;
     const gh = list.querySelector('a[href^="https://github.com/miconvr"]');
     if (!gh) return;
-    let note = gh.querySelector(".commits-note");
+    const li = gh.closest("li") || gh.parentElement;
+    let note = li.querySelector(".commits-note");
     if (!note) {
       note = document.createElement("span");
       note.className = "commits-note";
-      gh.appendChild(note);
+      li.appendChild(note);
     }
-    note.textContent = fmt(n);
+    note.textContent = `(${fmt(n)})`;
   }
 
   function showRepos(d) {
