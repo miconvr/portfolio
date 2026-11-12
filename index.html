@@ -109,7 +109,7 @@
           <li>Built a remote offers update: the popup and badge load the list from GitHub with a timeout, validate every entry, and fall back to a saved copy and then a bundled one, so new deals reach users without a store release.</li>
           <li>Built the popup with dark and light themes, a settings panel and a searchable list of all deals.</li>
           <li>Kept it private: Manifest V3, two permissions (activeTab and declarativeContent), no host permissions, HTTPS-only links, and no accounts, analytics or browsing history.</li>
-          <li>Wrote an offer data format and a validation script that runs in CI on every push, and checked offers against official sources, with a last-verified date shown on each card.</li>
+          <li>Wrote an offer data format and a validation script that runs in CI on every push, and checked offers against official sources.</li>
           <li>Automated maintenance with GitHub Actions: a weekly link checker flags broken or moved offer links, and a weekly job collects new deal leads from community lists for manual review. Automation never publishes an offer on its own.</li>
           <li>Open sourced under the MIT License with a README, privacy policy and a GitHub flow for reporting outdated offers.</li>
         </ul>
