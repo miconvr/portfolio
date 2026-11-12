@@ -1,10 +1,9 @@
 (() => {
-  const KEY = "commits-v1";
+  const KEY = "commits-v2";
   const list = document.querySelector(".side-links");
-  if (!list) return;
 
   function show(n) {
-    if (!Number.isFinite(n) || n < 1) return;
+    if (!list || !Number.isFinite(n) || n < 1) return;
     let li = list.querySelector(".commits-item");
     if (!li) {
       li = document.createElement("li");
@@ -15,18 +14,30 @@
     li.querySelector("span").textContent = `${n.toLocaleString("en-US")}+ commits`;
   }
 
+  function showRepos(d) {
+    document.querySelectorAll("[data-repo-commits]").forEach((el) => {
+      const v = Number(d[el.dataset.repoCommits]);
+      if (Number.isFinite(v) && v > 0) {
+        el.textContent = `${v.toLocaleString("en-US")}+ commits`;
+        el.hidden = false;
+      }
+    });
+  }
+
   try { show(Number(localStorage.getItem(KEY))); } catch (e) {}
 
   fetch("/api/commits")
-    .then(r => {
+    .then((r) => {
       if (!r.ok) throw new Error("http " + r.status);
       return r.json();
     })
-    .then(d => {
+    .then((d) => {
       const n = Number(d.commits);
-      if (!Number.isFinite(n) || n < 1) return;
-      show(n);
-      try { localStorage.setItem(KEY, String(n)); } catch (e) {}
+      if (Number.isFinite(n) && n >= 1) {
+        show(n);
+        try { localStorage.setItem(KEY, String(n)); } catch (e) {}
+      }
+      showRepos(d);
     })
     .catch(() => {});
 })();
