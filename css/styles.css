@@ -785,3 +785,6 @@ a:hover{color:var(--ink)}
 .repo-commits{display:inline-flex;align-items:center;gap:.4rem;border:0;padding:.15rem .6rem;background:color-mix(in srgb,currentColor 10%,transparent);font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:.72rem;font-weight:400;opacity:.75}
 .repo-commits::before{content:"";width:.5em;height:.5em;border:1.5px solid currentColor;border-radius:50%}
 .repo-commits[hidden]{display:none}
+
+/* ---- spacing fix: keep the sidebar note inside the divider width ---- */
+.commits-note{margin-left:.4rem;font-size:.66rem;letter-spacing:0}
