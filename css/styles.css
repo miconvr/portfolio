@@ -766,3 +766,8 @@ a:hover{color:var(--ink)}
 @media (min-width:56.01rem){
   .side .lead:not(.loc){font-size:1.125rem;line-height:1.7}
 }
+
+/* ---- sidebar commit count: js/commits.js adds the row, keep its text visible on small screens ---- */
+@media (max-width:56rem){
+  .side .side-links a.commits{font-size:.85rem;gap:.5rem;width:auto;padding:0 .9rem}
+}
