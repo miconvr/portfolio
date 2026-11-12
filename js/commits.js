@@ -1,6 +1,8 @@
 (() => {
-  const KEY = "commits-v2";
+  const KEY = "commits-v3";
   const list = document.querySelector(".side-links");
+
+  function fmt(n) { return `${n.toLocaleString("en-US")}+ commits`; }
 
   function show(n) {
     if (!list || !Number.isFinite(n) || n < 1) return;
@@ -12,33 +14,40 @@
       note.className = "commits-note";
       gh.appendChild(note);
     }
-    note.textContent = `${n.toLocaleString("en-US")}+ commits`;
+    note.textContent = fmt(n);
   }
 
   function showRepos(d) {
     document.querySelectorAll("[data-repo-commits]").forEach((el) => {
       const v = Number(d[el.dataset.repoCommits]);
       if (Number.isFinite(v) && v > 0) {
-        el.textContent = `${v.toLocaleString("en-US")}+ commits`;
+        el.textContent = fmt(v);
         el.hidden = false;
       }
     });
   }
 
-  try { show(Number(localStorage.getItem(KEY))); } catch (e) {}
+  function render(d) {
+    show(Number(d.commits));
+    showRepos(d);
+  }
 
-  fetch("/api/commits")
-    .then((r) => {
-      if (!r.ok) throw new Error("http " + r.status);
-      return r.json();
-    })
-    .then((d) => {
-      const n = Number(d.commits);
-      if (Number.isFinite(n) && n >= 1) {
-        show(n);
-        try { localStorage.setItem(KEY, String(n)); } catch (e) {}
-      }
-      showRepos(d);
-    })
-    .catch(() => {});
+  try {
+    const cached = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (cached) render(cached);
+  } catch (e) {}
+
+  function load(retry) {
+    fetch("/api/commits")
+      .then((r) => {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      })
+      .then((d) => {
+        render(d);
+        try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {}
+      })
+      .catch(() => { if (retry) setTimeout(() => load(false), 2000); });
+  }
+  load(true);
 })();
