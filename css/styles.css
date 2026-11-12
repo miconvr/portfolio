@@ -788,3 +788,15 @@ a:hover{color:var(--ink)}
 
 /* ---- spacing fix: keep the sidebar note inside the divider width ---- */
 .commits-note{margin-left:.4rem;font-size:.66rem;letter-spacing:0}
+
+/* ---- commits v4: tag on the date line, note beside the GitHub link, mobile line ---- */
+.item .dates{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .75rem}
+.item .dates .repo-commits{margin:0}
+.side-links li:has(.commits-note){display:flex;align-items:center}
+.commits-note{display:inline;margin-left:.4rem;font-size:.66rem;opacity:.5;white-space:nowrap}
+.side-links li:hover .commits-note{opacity:.8}
+@media (max-width:56rem){
+  .side .side-links li:has(.commits-note){display:contents}
+  .side .side-links .commits-note{display:block;order:99;flex-basis:100%;margin:.5rem 0 0;font-size:.75rem;opacity:.6}
+  .side .side-links .commits-note::before{content:"GitHub "}
+}
