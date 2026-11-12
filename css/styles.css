@@ -775,3 +775,13 @@ a:hover{color:var(--ink)}
 /* ---- per-project commit count: js/commits.js fills it and unhides it ---- */
 .repo-commits{display:inline-block;margin-left:.35rem;padding:.1rem .5rem;border:1px solid currentColor;border-radius:999px;font-size:.7rem;font-weight:500;line-height:1.4;letter-spacing:0;vertical-align:middle;opacity:.7;white-space:nowrap}
 .repo-commits[hidden]{display:none}
+
+/* ---- redesign: sidebar note beside the GitHub link, softer project tag ---- */
+.commits-note{margin-left:.6rem;font-size:.7rem;opacity:.5;white-space:nowrap}
+.side-links a:hover .commits-note{opacity:.8}
+@media (max-width:56rem){
+  .commits-note{display:none}
+}
+.repo-commits{display:inline-flex;align-items:center;gap:.4rem;border:0;padding:.15rem .6rem;background:color-mix(in srgb,currentColor 10%,transparent);font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,Consolas,monospace);font-size:.72rem;font-weight:400;opacity:.75}
+.repo-commits::before{content:"";width:.5em;height:.5em;border:1.5px solid currentColor;border-radius:50%}
+.repo-commits[hidden]{display:none}
