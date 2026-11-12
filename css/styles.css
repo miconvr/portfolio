@@ -771,3 +771,7 @@ a:hover{color:var(--ink)}
 @media (max-width:56rem){
   .side .side-links a.commits{font-size:.85rem;gap:.5rem;width:auto;padding:0 .9rem}
 }
+
+/* ---- per-project commit count: js/commits.js fills it and unhides it ---- */
+.repo-commits{display:inline-block;margin-left:.35rem;padding:.1rem .5rem;border:1px solid currentColor;border-radius:999px;font-size:.7rem;font-weight:500;line-height:1.4;letter-spacing:0;vertical-align:middle;opacity:.7;white-space:nowrap}
+.repo-commits[hidden]{display:none}
