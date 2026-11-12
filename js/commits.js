@@ -4,14 +4,15 @@
 
   function show(n) {
     if (!list || !Number.isFinite(n) || n < 1) return;
-    let li = list.querySelector(".commits-item");
-    if (!li) {
-      li = document.createElement("li");
-      li.className = "commits-item";
-      li.innerHTML = `<a class="commits" href="https://github.com/miconvr" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><path d="M1 8h4M11 8h4"/></g></svg><span></span></a>`;
-      list.appendChild(li);
+    const gh = list.querySelector('a[href^="https://github.com/miconvr"]');
+    if (!gh) return;
+    let note = gh.querySelector(".commits-note");
+    if (!note) {
+      note = document.createElement("span");
+      note.className = "commits-note";
+      gh.appendChild(note);
     }
-    li.querySelector("span").textContent = `${n.toLocaleString("en-US")}+ commits`;
+    note.textContent = `${n.toLocaleString("en-US")}+ commits`;
   }
 
   function showRepos(d) {
