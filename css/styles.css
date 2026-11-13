@@ -780,3 +780,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
     font-size: .85rem
   }
 }
+
+/* Commit count row in project facts */
+.facts > div:last-child { grid-column: 1 / -1 }
+.facts > div:has([data-repo-commits][hidden]) { display: none }

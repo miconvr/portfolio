@@ -65,5 +65,10 @@
       })
       .catch(() => { if (retry) setTimeout(() => load(false), 2000); });
   }
+  const main = document.getElementById("main");
+  if (main && "MutationObserver" in window) {
+    new MutationObserver(() => { if (latestData) showRepos(latestData); }).observe(main, { childList: true });
+  }
+
   load(true);
 })();
