@@ -12,7 +12,7 @@ window.initOverview=function(){
     a.setAttribute('role','button');
     a.setAttribute('aria-expanded','false');
     a.setAttribute('aria-controls',id);
-    a.innerHTML='<span class="ov-label">Overview</span>'+chev;
+    a.innerHTML='<span class="ov-label">' + (/hide/i.test(a.textContent) ? 'Hide Overview' : 'Show Overview') + '</span>' + chev;
     var panel=document.createElement('div');
     panel.className='overview-panel';
     panel.id=id;
@@ -34,7 +34,7 @@ window.initOverview=function(){
 
     function setOpen(open){
       a.setAttribute('aria-expanded',open?'true':'false');
-      a.querySelector('.ov-label').textContent=open?'Hide Overview':'Overview';
+      a.querySelector('.ov-label').textContent=open?'Hide Overview':'Show Overview';
       panel.classList.toggle('open',open);
     }
 
@@ -46,7 +46,7 @@ window.initOverview=function(){
       a.classList.add('loading');
       load().then(function(art){
         inner.appendChild(art);
-        [].slice.call(art.querySelectorAll('section,p,ul,h2,h3')).forEach(function(el,i){el.style.setProperty('--i',i);el.classList.add('ov-item');});
+        [].slice.call(art.querySelectorAll('.facts, .outcomes li, section, p, h2, h3')).forEach(function(el,i){el.style.setProperty('--i',i);el.classList.add('ov-item');});
         loaded=true;
         a.classList.remove('loading');
         requestAnimationFrame(function(){requestAnimationFrame(function(){setOpen(true);});});
