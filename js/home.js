@@ -3,7 +3,7 @@
   var main=document.getElementById('main');
   var navLinks=document.querySelectorAll('.side nav a');
   var loading=false;
-  function norm(p){p=p.replace(/index\.html$/,'');if(p.length>1)p=p.replace(/\/$/,'');return p||'/';}
+  function norm(p){p=p.replace(/index\.html$/,'').replace(/\.html$/,'');if(p.length>1)p=p.replace(/\/$/,'');return p||'/';}
   var current=norm(location.pathname);
 
   var els=document.querySelectorAll('.reveal');
@@ -24,7 +24,7 @@
   function setActive(path){
     navLinks.forEach(function(a){
       a.removeAttribute('aria-current');
-      if(norm(a.getAttribute('href')||'')===path)a.setAttribute('aria-current','true');
+      if(norm(a.getAttribute('href')||'')===(path.indexOf('/projects/')===0?'/':path))a.setAttribute('aria-current','true');
     });
   }
 
@@ -69,9 +69,18 @@
   }
 
   if('fetch' in window){
-    ['/','/about','/experience'].forEach(function(p){
+    ['/','/about','/experience','/projects/kaltas','/projects/civicguard'].forEach(function(p){
       if(p!==current)prefetch(p);
     });
+  }
+
+  function ensureCarousel(){
+    if(window.initCarousel){window.initCarousel();return;}
+    if(document.querySelector('script[data-carousel]'))return;
+    var s=document.createElement('script');
+    s.src='/js/carousel.js';
+    s.setAttribute('data-carousel','1');
+    document.body.appendChild(s);
   }
 
   function applyPage(data, path, mode){
@@ -93,6 +102,10 @@
     window.scrollTo(0,0);
 
     var home=path==='/';
+    if(!home){
+      main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+      ensureCarousel();
+    }
     if(home){
       main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
       if(window.initOverview)window.initOverview();
@@ -133,6 +146,19 @@
       event.preventDefault();
       show(path,'push');
     });
+  });
+
+  var inPage=/^\/(about|experience|projects\/[\w-]+)?$/;
+  main.addEventListener('click',function(event){
+    if(event.defaultPrevented||event.button!==0)return;
+    if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    var a=event.target.closest&&event.target.closest('a[href]');
+    if(!a||(a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+    if(a.origin!==location.origin||a.hash||a.search)return;
+    var path=norm(a.pathname);
+    if(!inPage.test(path))return;
+    event.preventDefault();
+    show(path,'push');
   });
 
   addEventListener('popstate',function(){show(location.pathname,'none');});
