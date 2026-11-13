@@ -61,7 +61,7 @@
   }
   const down = () => thock(.3, 140 + Math.random() * 20, 2200 + Math.random() * 300, .11);
   const up   = () => thock(.12, 230 + Math.random() * 20, 3600 + Math.random() * 400, .04);
-  // Hover tick: original noise tick, one voice at a time (new tick cuts off the old one)
+  // Hover tick: crisp click, no low body, one voice at a time
   let tickG = null;
   function tick() {
     if (!on || !ctx || ctx.state !== "running") return;
@@ -70,18 +70,18 @@
       try {
         tickG.gain.cancelScheduledValues(t);
         tickG.gain.setValueAtTime(Math.max(tickG.gain.value, .0001), t);
-        tickG.gain.exponentialRampToValueAtTime(.0001, t + .008);
+        tickG.gain.exponentialRampToValueAtTime(.0001, t + .006);
       } catch (e) {}
     }
     const g = ctx.createGain(); tickG = g;
-    g.gain.setValueAtTime(.16, t);
-    g.gain.exponentialRampToValueAtTime(.0001, t + .025);
+    g.gain.setValueAtTime(.22, t);
+    g.gain.exponentialRampToValueAtTime(.0001, t + .014);
     g.connect(master);
     const src = ctx.createBufferSource(); src.buffer = noise;
     const f = ctx.createBiquadFilter(); f.type = "bandpass";
-    f.frequency.value = 4200 + Math.random() * 500; f.Q.value = 1.1;
+    f.frequency.value = 3200 + Math.random() * 300; f.Q.value = 3;
     src.connect(f); f.connect(g);
-    src.start(t); src.stop(t + .03);
+    src.start(t); src.stop(t + .02);
   }
 
   // Browsers only allow audio after a gesture, so wake the context on the first one.
