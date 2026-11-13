@@ -29,10 +29,12 @@
   }
 
   function animatePanel(){
-    var panel=main.querySelector('article');
-    if(!panel)return;
-    panel.classList.remove('panel-enter');
-    requestAnimationFrame(function(){panel.classList.add('panel-enter');});
+    main.classList.remove('panel-enter');
+    void main.offsetWidth;
+    main.classList.add('panel-enter');
+    main.addEventListener('animationend',function(){
+      main.classList.remove('panel-enter');
+    },{once:true});
   }
 
   function show(path,mode){
@@ -67,7 +69,8 @@
           if(window.initOverview)window.initOverview();
           if(window.initCarousel)window.initCarousel();
           if(window.initCommits)window.initCommits();
-        }else animatePanel();
+        }
+        animatePanel();
       })
       .catch(function(e){console.error('SWAP FAILED:',e);window.location.href=path;})
       .finally(function(){loading=false;main.removeAttribute('aria-busy');});
