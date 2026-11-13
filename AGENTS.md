@@ -90,3 +90,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - The old drag slider (`.cs-knob`) is gone. The screenshot keys press down on `:active`, and the clack comes from `clack.js` because they are buttons.
 - The sound mute button is removed. `clack.js` always plays.
 - Project pages: `.home main:has(> article)` has less top padding on phones, and `article h1` has a small top margin, to remove the big gap above the title.
+- The `.cs-key` buttons are styled as cream mechanical keycaps (side wall, dished top face via `::before`, highlight via `::after`). The left legend is brown and the right is terracotta. The pressed state moves the key down 7px and collapses the base shadow. The `.car-slider` bottom padding (12px) leaves room for that travel, so keep the two in sync.

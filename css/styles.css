@@ -965,3 +965,50 @@ article h1 { margin-top: .5rem }
 @media (max-width: 56rem) {
   .home main:has(> article) { padding-top: .75rem }
 }
+
+/* Cream mechanical keycaps (overrides the plain keys above) */
+.car-slider { gap: 1.1rem; padding-bottom: 12px; margin-top: 1rem }
+.cs-key {
+  position: relative; width: 3.9rem; height: 3.3rem; border-radius: .8rem; color: #5a4636; border: 0;
+  background: linear-gradient(180deg, #d8ccae, #c4b794);
+  box-shadow:
+    0 2px 0 #b8aa86,
+    0 5px 0 #a89a76,
+    0 8px 0 #8c8062,
+    0 10px 14px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .35);
+  transition: transform .07s ease, box-shadow .07s ease, filter .2s ease;
+}
+.cs-key::before {
+  content: ""; position: absolute; inset: 3px 4px 9px; border-radius: .6rem; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #fffbf1 0%, #f6edd6 55%, #e9dec2 100%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -3px 4px rgba(120, 98, 58, .22),
+    inset 0 0 0 1px rgba(255, 255, 255, .4),
+    0 1px 0 rgba(60, 45, 25, .25);
+}
+.cs-key::after {
+  content: ""; position: absolute; left: 14%; right: 14%; top: 7px; height: 5px; border-radius: 99px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0));
+}
+.cs-key svg {
+  position: relative; z-index: 1; margin-top: -6px; stroke-width: 2.8;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8));
+}
+.car-slider > .cs-key:first-child { color: #5a4636 }
+.car-slider > .cs-key:last-child { color: #c4563a }
+.cs-key:hover { filter: brightness(1.04) }
+.cs-key:active {
+  transform: translateY(7px); filter: none;
+  box-shadow:
+    0 1px 0 #8c8062,
+    0 2px 3px rgba(0, 0, 0, .5),
+    inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+.cs-key:active::before {
+  box-shadow: inset 0 2px 3px rgba(120, 98, 58, .3), inset 0 0 0 1px rgba(255, 255, 255, .3);
+}
+.cs-key:focus-visible { outline: 2px solid #e9dec2; outline-offset: 4px }
+.cs-num { color: #b8aa86; min-width: 3rem }
