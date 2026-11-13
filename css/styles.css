@@ -57,40 +57,39 @@ button.theme { display: none }
 .side {
   position: sticky; top: 0; align-self: start;
   height: 100dvh;
-  padding: 4.5rem 0 2.5rem;
   display: flex; flex-direction: column;
   box-sizing: border-box;
   background: #050505;
   border: 1px solid #1A1A1A;
   border-radius: 18px;
-  padding: 2rem 1.75rem;
+  padding: 2rem 1.5rem;
 }
-.profile-photo { width: 8.75rem; height: 8.75rem; object-fit: cover; border-radius: 50%; margin: 0 0 1.5rem; border: 1px solid var(--line) }
-.side h1 { font-family: var(--sans); font-weight: 700; font-size: 2.5rem; letter-spacing: -.04em; line-height: 1.05; margin: 0 0 1.25rem; color: var(--ink); text-wrap: balance }
+.profile-photo { width: 7.5rem; height: 7.5rem; object-fit: cover; border-radius: 50%; margin: 0 0 1.25rem; border: 1px solid var(--line) }
+.side h1 { font-family: var(--sans); font-weight: 700; font-size: 2.25rem; letter-spacing: -.04em; line-height: 1.05; margin: 0; color: var(--ink); text-wrap: balance }
 
 /* Sidebar description: matches About paragraphs */
 .side .lead { color: var(--muted); margin: 0 0 .15rem; font-size: .95rem }
 
 /* Location line with pin icon */
-.side .lead.loc { display: flex; align-items: flex-start; gap: .5rem; line-height: 1.5; font-family: var(--mono); font-size: .82rem; color: var(--muted) }
-.side .lead.loc .ico { flex: none; width: 1.1em; height: 1.5em; margin: 0; vertical-align: baseline; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.side .lead.loc { display: flex; align-items: center; gap: .4rem; line-height: 1.4; font-family: var(--mono); font-size: .76rem; letter-spacing: -0.015em; color: var(--muted); margin: .6rem 0 0 }
+.side .lead.loc .ico { flex: none; width: 1.1em; height: 1.1em; margin: 0; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
 
 /* Sidebar nav: dash lines */
-.side nav ul { list-style: none; padding: 0; margin: 3.5rem 0 0; display: flex; flex-direction: column; gap: .9rem }
+.side nav ul { list-style: none; padding: 0; margin: 2.5rem 0 0; display: flex; flex-direction: column; gap: .85rem }
 .side nav a { display: flex; align-items: center; gap: .75rem; font: 400 .82rem var(--mono); text-transform: lowercase; color: var(--muted); text-decoration: none; text-shadow: none }
 .side nav a::before { content: ""; width: 1.5rem; height: 1px; background: currentColor; transition: width .3s ease }
 .side nav a:hover, .side nav a[aria-current="true"] { color: var(--ink) }
 .side nav a:hover::before, .side nav a[aria-current="true"]::before { width: 3rem }
 
 /* Sidebar links: no underline at rest, underline on hover */
-.side-links { list-style: none; padding: 0; margin: 2.5rem 0 0; display: flex; flex-direction: column; gap: .5rem; font: 400 .9rem var(--mono) }
+.side-links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: .45rem; font: 400 .82rem var(--mono) }
 .side-links a { color: var(--text); text-decoration: none; text-underline-offset: .25em; text-decoration-thickness: 1px; display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap; overflow-wrap: anywhere }
 .side-links a:hover, .side-links a:focus-visible { color: var(--ink); text-decoration: underline; text-decoration-color: currentColor }
 .side-links .ico { flex: none; width: 1rem; height: 1rem }
 .side-links .ico path { fill-rule: evenodd }
 
 /* Sidebar badge */
-.side .badge { margin: auto 0 0; font: 400 .85rem var(--mono); line-height: 1.5; color: var(--text) }
+.side .badge { margin: auto 0 0; font: 400 .82rem var(--mono); line-height: 1.5; color: var(--text) }
 .side .badge a { color: var(--text); text-decoration: none }
 .side .badge a:hover { color: var(--ink) }
 
@@ -394,25 +393,33 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 /* ---- Desktop: 56.01rem+ ---- */
 @media (min-width: 56.01rem) {
   html { font-size: 110% }
-  .home .shell { grid-template-columns: 22rem minmax(0, 1fr); gap: 6rem }
+  .home .shell { grid-template-columns: 22rem minmax(0, 1fr); gap: 5.5rem }
 
   /* Sidebar: sticky full height, square corners flush to window */
   .side {
     position: sticky; top: 0;
     height: 100dvh;
     border-radius: 0; border-top: 0; border-bottom: 0;
-    padding: clamp(1.25rem, 3dvh, 2.25rem) 1.75rem;
+    padding: clamp(1.25rem, 3dvh, 2.25rem) 1.5rem;
     overflow: visible;
   }
-  .side .profile-photo { width: clamp(5rem, 14dvh, 8.5rem); height: clamp(5rem, 14dvh, 8.5rem) }
-  .side h1 { margin-bottom: clamp(.6rem, 1.5dvh, 1.25rem) }
+  .side .profile-photo { width: clamp(4.5rem, 12dvh, 7.5rem); height: clamp(4.5rem, 12dvh, 7.5rem); margin-bottom: clamp(.5rem, 1.2dvh, 1rem) }
+  .side h1 { font-size: clamp(1.85rem, 3.2dvh, 2.35rem); margin-bottom: 0 }
   .side .lead:not(.loc) { font-size: 1.125rem; line-height: 1.7 }
-  .side .lead.loc { margin-top: .9rem; white-space: nowrap }
-  .side nav ul { margin-top: clamp(.9rem, 3.5dvh, 2.25rem); gap: clamp(.6rem, 1.6dvh, 1rem) }
-  .side-links { margin-top: clamp(.9rem, 3.5dvh, 2.25rem); gap: .6rem }
+  .side .lead.loc {
+    margin: clamp(.4rem, 1dvh, .75rem) 0 0;
+    font-size: .76rem;
+    letter-spacing: -0.015em;
+    gap: .4rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .side nav ul { margin-top: clamp(1rem, 3dvh, 2rem); gap: clamp(.5rem, 1.4dvh, .85rem) }
+  .side-links { margin-top: clamp(1rem, 3dvh, 2rem); gap: clamp(.35rem, 1dvh, .55rem); font-size: .82rem }
 
   /* Mascot pinned to bottom with hairline above */
-  .side .been { margin-top: auto; padding-top: clamp(.75rem, 2dvh, 1.5rem); border-top: 1px solid #333230 }
+  .side .been { margin-top: auto; padding-top: clamp(.75rem, 2dvh, 1.25rem); border-top: 1px solid #333230 }
 }
 
 /* Short windows: let sidebar flow with the page */
@@ -424,7 +431,19 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 /* ---- Tablet: max 56rem ---- */
 @media (max-width: 56rem) {
   .home .shell { display: block }
-  .side { position: static; height: auto; padding: 3rem 0 0; background: transparent; border: 0; border-radius: 0 }
+  .side {
+    position: static;
+    height: auto;
+    padding: 2.5rem 0 1.25rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.25rem;
+    row-gap: .6rem;
+    align-items: center;
+  }
 
   /* Fixed top nav bar */
   .home { padding-top: 3rem }
@@ -435,15 +454,20 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side nav a::before { display: none }
   .side nav a:hover, .side nav a[aria-current="true"], .side nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink) }
 
-  /* Compact sidebar */
-  .side { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; align-items: start }
+  /* Compact sidebar items */
   .side > * { grid-column: 1 / -1 }
   .side .profile-photo { grid-column: 1; grid-row: 1; width: 4.25rem; height: 4.25rem; margin: 0 }
-  .side h1 { grid-column: 2; grid-row: 1; align-self: center; font-size: 1.75rem; margin: 0 }
-  .side .lead { font-size: .9rem; margin-top: 1rem }
+  .side h1 { grid-column: 2; grid-row: 1; align-self: center; font-size: 1.65rem; line-height: 1.1; margin: 0 }
+  .side .lead.loc {
+    grid-column: 1 / -1;
+    font-size: .8rem;
+    line-height: 1.4;
+    margin: .25rem 0 0;
+    white-space: normal;
+  }
 
   /* Icon-only contact links */
-  .side .side-links { flex-direction: row; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem }
+  .side .side-links { flex-direction: row; flex-wrap: wrap; gap: .5rem; margin-top: .75rem }
   .side .side-links a { font-size: 0; gap: 0; justify-content: center; width: 2.75rem; height: 2.75rem; min-height: 0; border: 1px solid #333230; border-radius: .6rem }
   .side .side-links .ico { width: 1.25rem; height: 1.25rem }
 
@@ -474,10 +498,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 @media (max-width: 34rem) {
   .home .shell, .wrap { padding-left: max(1.25rem, env(safe-area-inset-left, 0px)); padding-right: max(1.25rem, env(safe-area-inset-right, 0px)) }
   .home .shell { display: block }
-  .side { padding-top: 2.5rem }
-  .profile-photo { width: 5rem; height: 5rem; margin-bottom: 1.25rem }
-  .side h1 { font-size: 2.5rem }
-  .side { padding: 1.5rem 1.25rem; border-radius: 14px }
+  .side { padding-top: 2rem }
   .home main { padding-top: 3.5rem }
   .home-intro { padding-bottom: 3.5rem }
   .home-intro h2 { font-size: 2.8rem }
