@@ -904,3 +904,13 @@ html body .item p.team{font-size:.78rem;line-height:1.6}
 /* ---- team icon on the "Built with" line ---- */
 html body .item p.team{display:flex;align-items:center;gap:.6rem}
 html body .item p.team .team-ico{flex:none;color:var(--muted)}
+
+/* ---- overview in Geist Mono, pure white text ---- */
+:root{--ink:#FFFFFF;--text:#FFFFFF;--accent:#FFFFFF}
+html body .overview-inner,
+html body .overview-inner p,
+html body .overview-inner li,
+html body .overview-inner .outcomes li{font-family:var(--mono);font-size:.9rem;line-height:1.8;letter-spacing:0;color:#FFFFFF}
+html body .item p,html body .item p.team{color:#FFFFFF}
+html body .overview-inner .outcomes li::marker{color:#FFFFFF}
+html body .facts dd,html body .side h1,html body .home-intro h2,html body .item h3{color:#FFFFFF}
