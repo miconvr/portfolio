@@ -711,3 +711,12 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .project-title { display: flex; align-items: center; gap: 1rem; margin: 1.25rem 0 0 }
 .project-title img { display: block; flex: none; width: 3.5rem; height: 3.5rem; object-fit: contain }
 .project-title h1 { margin: 0 }
+
+/* Back button sits left of the project icon */
+.project-title .back { margin: 0; flex: none; display: flex }
+.project-title .back a { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem }
+.project-title h1 { min-width: 0; overflow-wrap: anywhere }
+@media (max-width: 480px) {
+  .project-title { gap: .65rem }
+  .project-title img { width: 2.75rem; height: 2.75rem }
+}
