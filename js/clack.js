@@ -91,7 +91,7 @@
   let lastHover = 0, lastEl = null;
   document.addEventListener("pointerover", e => {
     if (e.pointerType !== "mouse") return;
-    const t = e.target.closest && e.target.closest(SEL);
+    const t = e.target.closest && (e.target.closest(".projects-grid .item") || e.target.closest(SEL));
     if (!t || t === lastEl) return;
     if (e.relatedTarget && t.contains(e.relatedTarget)) return;
     lastEl = t;
@@ -100,7 +100,9 @@
     lastHover = now;
     tick();
   }, true);
-  document.addEventListener("pointerout", e => { if (e.target === lastEl) lastEl = null; }, true);
+  document.addEventListener("pointerout", e => {
+    if (lastEl && !lastEl.contains(e.relatedTarget)) lastEl = null;
+  }, true);
 
   document.addEventListener("pointerdown", e => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
