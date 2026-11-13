@@ -855,3 +855,6 @@ h2 > .org-logo { margin-top: 0 }
     margin-top: calc((1lh - 1.05rem) / 2);
   }
 }
+
+/* Project facts: Activity row spans the full width like Stack */
+.facts > div:has([data-repo-commits]) { grid-column: 1 / -1 }
