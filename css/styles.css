@@ -900,3 +900,7 @@ html body ::selection{background:var(--ink);color:#0B0B0B}
 /* ---- project descriptions in Geist Mono (same as sidebar email) ---- */
 html body .item p{font-family:var(--mono);font-size:.9rem;line-height:1.8;letter-spacing:0;max-width:40rem}
 html body .item p.team{font-size:.78rem;line-height:1.6}
+
+/* ---- team icon on the "Built with" line ---- */
+html body .item p.team{display:flex;align-items:center;gap:.6rem}
+html body .item p.team .team-ico{flex:none;color:var(--muted)}
