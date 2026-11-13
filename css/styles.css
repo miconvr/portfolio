@@ -901,3 +901,9 @@ h2 > .org-logo { margin-top: 0 }
   .projects-grid .item .meta li:first-child a.nudge { animation: slide-nudge .6s ease-in-out }
 }
 @keyframes slide-nudge { 0%, 100% { --x: 0px } 40% { --x: 16px } 65% { --x: 6px } }
+
+/* Slider: stay black in every state, and cap the track width on wide cards */
+.projects-grid .item .meta li:first-child a,
+.projects-grid .item .meta li:first-child a:hover,
+.projects-grid .item .meta li:first-child a:focus-visible { background: #0b0b0c; color: var(--ink) }
+.projects-grid .item .meta li:first-child a { width: 100%; max-width: 20rem }
