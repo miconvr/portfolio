@@ -692,3 +692,13 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .been-btn .been-mascot { animation: none !important }
   .been-plus { animation: none; opacity: 0 }
 }
+
+/* Project page intro paragraph */
+.project-lede {
+  font-family: var(--mono);
+  font-size: .95rem;
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  line-height: 1.7;
+  color: var(--text);
+}
