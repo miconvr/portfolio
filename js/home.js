@@ -161,6 +161,19 @@
     show(path,'push');
   });
 
+  var spot=0;
+  document.addEventListener('pointermove',function(e){
+    if(e.pointerType!=='mouse')return;
+    var c=e.target.closest&&e.target.closest('.projects-grid .item');
+    if(!c)return;
+    cancelAnimationFrame(spot);
+    spot=requestAnimationFrame(function(){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      c.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  },{passive:true});
+
   addEventListener('popstate',function(){show(location.pathname,'none');});
   setActive(current);
 })();
