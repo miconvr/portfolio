@@ -37,43 +37,92 @@
     },{once:true});
   }
 
+  var pageCache={};
+  pageCache[current]={
+    title: document.title,
+    html: current==='/' ? main.innerHTML : (main.querySelector('article') ? main.querySelector('article').outerHTML : main.innerHTML),
+    templates: [].slice.call(document.querySelectorAll('template[id^="ov-"]')).map(function(t){
+      return {id:t.id, html:t.innerHTML};
+    })
+  };
+
+  function prefetch(url){
+    url=norm(url);
+    if(pageCache[url])return Promise.resolve(pageCache[url]);
+    return fetch(url,{headers:{Accept:'text/html'}})
+      .then(function(r){return r.ok?r.text():'';})
+      .then(function(html){
+        if(!html)return null;
+        var doc=new DOMParser().parseFromString(html,'text/html');
+        var home=url==='/';
+        var src=home?doc.getElementById('main'):doc.querySelector('main article');
+        if(!src)return null;
+        pageCache[url]={
+          title: doc.title,
+          html: home?src.innerHTML:src.outerHTML,
+          templates: [].slice.call(doc.querySelectorAll('template[id^="ov-"]')).map(function(t){
+            return {id:t.id, html:t.innerHTML};
+          })
+        };
+        return pageCache[url];
+      }).catch(function(){return null;});
+  }
+
+  if('fetch' in window){
+    ['/','/about','/experience'].forEach(function(p){
+      if(p!==current)prefetch(p);
+    });
+  }
+
+  function applyPage(data, path, mode){
+    if(data.templates&&data.templates.length){
+      data.templates.forEach(function(t){
+        if(!document.getElementById(t.id)){
+          var tpl=document.createElement('template');
+          tpl.id=t.id;
+          tpl.innerHTML=t.html;
+          document.body.appendChild(tpl);
+        }
+      });
+    }
+    main.innerHTML=data.html;
+    document.title=data.title;
+    current=path;
+    if(mode==='push')history.pushState({view:path},'',path);
+    setActive(path);
+    window.scrollTo(0,0);
+
+    var home=path==='/';
+    if(home){
+      main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+      if(window.initOverview)window.initOverview();
+      if(window.initCarousel)window.initCarousel();
+      if(window.initCommits)window.initCommits();
+    }
+    animatePanel();
+  }
+
   function show(path,mode){
     path=norm(path);
     if(loading)return;
     if(path===current){window.scrollTo(0,0);return;}
+
+    if(pageCache[path]){
+      applyPage(pageCache[path], path, mode);
+      return;
+    }
+
     loading=true;
     main.setAttribute('aria-busy','true');
-    fetch(path,{headers:{Accept:'text/html'}})
-      .then(function(r){if(!r.ok)throw new Error('bad response');return r.text();})
-      .then(function(html){
-        var doc=new DOMParser().parseFromString(html,'text/html');
-        var home=path==='/';
-        var src=home?doc.getElementById('main'):doc.querySelector('main article');
-        if(!src)throw new Error('no content');
-
-        if(home){
-          [].slice.call(doc.querySelectorAll('template[id^="ov-"]')).forEach(function(t){
-            if(!document.getElementById(t.id))document.body.appendChild(document.importNode(t,true));
-          });
-          main.innerHTML=src.innerHTML;
-          main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
-        }else{
-          main.innerHTML=src.outerHTML;
-        }
-        document.title=doc.title;
-        current=path;
-        if(mode==='push')history.pushState({view:path},'',path);
-        setActive(path);
-        window.scrollTo(0,0);
-        if(home){
-          if(window.initOverview)window.initOverview();
-          if(window.initCarousel)window.initCarousel();
-          if(window.initCommits)window.initCommits();
-        }
-        animatePanel();
-      })
-      .catch(function(e){console.error('SWAP FAILED:',e);window.location.href=path;})
-      .finally(function(){loading=false;main.removeAttribute('aria-busy');});
+    prefetch(path).then(function(data){
+      if(data)applyPage(data, path, mode);
+      else window.location.href=path;
+    }).catch(function(){
+      window.location.href=path;
+    }).finally(function(){
+      loading=false;
+      main.removeAttribute('aria-busy');
+    });
   }
 
   navLinks.forEach(function(link){
