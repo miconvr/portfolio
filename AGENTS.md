@@ -13,12 +13,12 @@ Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.js
 | Path | Purpose |
 |---|---|
 | `index.html` | Home page with the two project cards (Kaltas and CivicGuard) in `.projects-grid` |
-| `projects/kaltas.html`, `projects/civicguard.html` | Project detail pages with facts, outcomes and a screenshot carousel |
+| `projects/kaltas.html`, `projects/civicguard.html` | Project detail pages with a title row (back button, icon, name), a screenshot carousel, facts and outcomes |
 | `about/index.html`, `experience/index.html` | Sub-pages, served as `/about` and `/experience` (`cleanUrls` is on) |
 | `css/styles.css` | All styling. Dark theme only (`color-scheme: dark`), no toggle |
-| `js/home.js` | Page navigation behavior for the sidebar links |
+| `js/home.js` | In-place page navigation. Sidebar links and in-page links (card links, View project, the back arrow) swap `#main` without a reload, so the mascot and commit counts stay put. Prefetches `/`, `/about`, `/experience` and both project pages. Also holds the project card spotlight listener |
 | `js/rail.js` | Scroll rail for the item list |
-| `js/carousel.js` | Screenshot carousels on the project pages, with arrow-key, button and counter support |
+| `js/carousel.js` | Screenshot carousels on the project pages, with arrow-key, button and counter support. Loaded by the project pages, and injected on demand by `home.js` when a project page is opened in place from another page |
 | `js/been-here.js` | "been here" smiley mascot and visitor counter, calls `/api/hi` |
 | `js/commits.js` | Adds a small "(N+ commits)" note beside the github.com/miconvr sidebar link and fills any `[data-repo-commits]` tag. Fed by `/api/commits`. Caches the last response in `localStorage` (key `commits-v3`) and retries the fetch once on failure |
 | `api/hi.js` | Vercel function. `GET` reads and `POST` increments an Upstash Redis counter. Needs `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`) |
@@ -46,6 +46,12 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 - Styling: no inline `style=` attributes. Use classes (for example `.project-lede` for the project page intro paragraph).
 - Project cards: cards on the home page sit in `.projects-grid`, which uses `minmax(min(100%, 320px), 1fr)` so it never forces sideways scrolling on narrow phones. Logos have no outline or box. The card link buttons wrap on narrow screens, so do not add `white-space: nowrap` to them.
 - Button hover: the project card buttons change only their background on hover. The border goes transparent, with no outline or border highlight. Keep the `:focus-visible` outline for keyboard users.
+- Card link and click area: the primary card link reads "View project". The "→" comes from CSS (`.meta li:first-child a::after`), so never type an arrow in the text. The whole card is clickable through a stretched link: the first `.meta` link is `position: static` and its `::before` covers the card (`inset: 0`). The Download and GitHub links stay `position: relative` so they sit above it. Do not wrap the card in another link or nest links.
+- Card hover: a soft spotlight follows the cursor (`--mx` and `--my`, set by one delegated `pointermove` listener in `home.js`, mouse only, throttled with `requestAnimationFrame`). On hover the card rises 4px, the icon scales and tilts with a springy easing, and the status badge and title shift slightly. All hover motion sits behind `@media (hover: hover)` and `prefers-reduced-motion: no-preference`. Touch devices get a small `:active` press-down instead, so no hover state sticks. Prefer `transform` and `opacity` for new card effects, and keep one `.item:hover` transform rule so effects never fight each other. This is separate from the Button hover rule above, which only covers the buttons.
+- Project page header: `.project-title` is one row with the back button (`.back`, 44px tap target), the app icon (`/images/projects/<slug>-icon.png`, the same file the home card uses) and the `<h1>`, in that order. The name can wrap, and sizes shrink below 480px.
+- Project page overview: keep it compact. `.facts` is a two-column grid with Stack on its own full-width row, on mobile too. Outcome bullets all stay visible, with no collapsible "More detail" sections. Section spacing is tightened only on project pages through `.project-title ~ section`, so About and Experience keep their own spacing.
+- In-place navigation: links inside `#main` to `/`, `/about`, `/experience` and `/projects/<slug>` are swapped in place by `home.js`. Modifier clicks, `target="_blank"`, downloads and links with a hash or query string fall through to the browser. `norm()` treats `/projects/kaltas.html` and `/projects/kaltas` as the same page. Project pages must keep `<main id="main"><article>`, because the prefetch reads `main article`. Scripts and `<head>` styles specific to one page do not run on a swap, so keep project page behavior in shared files (`styles.css`, `carousel.js`). To add a project page, add it to the prefetch list in `home.js`. The `inPage` pattern already matches `/projects/<slug>`.
+- Carousel: the arrow buttons are small (2rem, icon .9rem) and hidden on phones. The first screenshot loads eagerly and the rest use `loading="lazy"`.
 - Sidebar: the location line ("San Fernando City, Pampanga, Philippines") has a pin icon and stays on one line on desktop. From 56.01rem up, the base font size is 110%.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - The Experience page lists real roles. Do not remove or rewrite entries without being asked.
@@ -72,4 +78,4 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 
 ## Working with the owner
 
-Pushes from AI chat sessions have been blocked in the past, so the owner often applies changes by copy-pasting terminal commands. When you cannot push, deliver changes as terminal commands or a patch and say how to verify them. When you do have push access, edit the files directly.
+Pushes from AI chat sessions have been blocked in the past, so the owner often applies changes by copy-pasting terminal commands. When you cannot push, deliver changes as terminal commands or a patch and say how to verify them. When you do have push access, edit the files directly. The owner prefers one small commit per change, each pushed on its own, so any change can be reverted separately.
