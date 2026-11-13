@@ -896,3 +896,7 @@ html body .overview-inner{border-left-color:#3A3A3A}
 html body .outcomes li::marker{color:var(--muted)}
 html body a:hover{color:#fff}
 html body ::selection{background:var(--ink);color:#0B0B0B}
+
+/* ---- project descriptions in Geist Mono (same as sidebar email) ---- */
+html body .item p{font-family:var(--mono);font-size:.9rem;line-height:1.8;letter-spacing:0;max-width:40rem}
+html body .item p.team{font-size:.78rem;line-height:1.6}
