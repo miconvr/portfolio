@@ -141,7 +141,7 @@ article h1, article h2, article section h2 {
 /* ---- Projects grid & cards ---- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 2rem;
   margin-top: 2rem;
   align-items: stretch;
