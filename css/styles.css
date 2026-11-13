@@ -841,3 +841,20 @@ hr,.rule{border-color:#222}
 .item .meta li+li a:hover{background:#1A1A1A;border-color:#444}
 .item .meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#000}
 .item .meta li:first-child a:hover{background:#fff;border-color:#fff;color:#000}
+
+/* ---- fonts v3: Geist body, Bryl-style sidebar nav, softer black ---- */
+.item p,.overview-inner .outcomes li,.facts dd,.item .meta a,.overview-toggle{font-family:var(--sans);letter-spacing:-.005em}
+.item p,.overview-inner .outcomes li{color:#B9B9B3}
+
+:root{--bg:#0B0B0B;--surface:#111;--line:#1F1F1F}
+html,body{background:#0B0B0B}
+hr,.rule{border-color:#1F1F1F}
+.side{background:#050505;border-color:#1A1A1A}
+.item .meta a{background:#111;border-color:#262626}
+.item .meta li+li a:hover{background:#1A1A1A;border-color:#444}
+
+.side nav a{font-family:"JetBrains Mono","Geist Mono",ui-monospace,monospace;font-size:.82rem;font-weight:400;color:var(--muted)}
+.side nav a:hover{color:var(--ink)}
+.side nav a[aria-current="true"]{color:var(--ink);font-weight:600}
+.side .lead.loc{font-family:"JetBrains Mono","Geist Mono",ui-monospace,monospace;font-size:.78rem}
+.side-links{border-top:1px solid #1A1A1A;padding-top:clamp(.75rem,2dvh,1.25rem)}
