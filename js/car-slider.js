@@ -69,7 +69,10 @@
 
   function scan() { document.querySelectorAll(".carousel").forEach(build); }
   scan();
-  new MutationObserver(scan).observe(document.getElementById("main") || document.body, { childList: true, subtree: true });
+  new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+  window.addEventListener("load", scan);
+  window.addEventListener("pageshow", scan);
+  setTimeout(scan, 300);
   document.addEventListener("scroll", e => {
     const t = e.target;
     if (t && t.classList && t.classList.contains("slides")) {
