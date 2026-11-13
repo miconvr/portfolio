@@ -28,10 +28,25 @@
     });
   }
 
+  let latestData = null;
+
   function render(d) {
+    if (!d) return;
+    latestData = d;
     show(Number(d.commits));
     showRepos(d);
   }
+
+  window.initCommits = function() {
+    if (latestData) {
+      render(latestData);
+    } else {
+      try {
+        const cached = JSON.parse(localStorage.getItem(KEY) || "null");
+        if (cached) render(cached);
+      } catch (e) {}
+    }
+  };
 
   try {
     const cached = JSON.parse(localStorage.getItem(KEY) || "null");
