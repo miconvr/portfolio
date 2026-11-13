@@ -806,3 +806,9 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 @media (max-width: 56rem) {
   .side .side-links .commits-note { display: none }
 }
+
+/* Sidebar location: pin centered above the text (desktop) */
+@media (min-width: 56.01rem) {
+  .side .lead.loc { flex-direction: column; align-items: center; gap: .3rem }
+  .side .lead.loc .ico { width: 1.15rem; height: 1.15rem }
+}
