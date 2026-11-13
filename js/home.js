@@ -48,7 +48,7 @@
         var home=path==='/';
         var src=home?doc.getElementById('main'):doc.querySelector('main article');
         if(!src)throw new Error('no content');
-        if(window.destroyRail)window.destroyRail();
+
         if(home){
           [].slice.call(doc.querySelectorAll('template[id^="ov-"]')).forEach(function(t){
             if(!document.getElementById(t.id))document.body.appendChild(document.importNode(t,true));
@@ -65,7 +65,6 @@
         window.scrollTo(0,0);
         if(home){
           if(window.initOverview)window.initOverview();
-          if(window.initRail)window.initRail();
           if(window.initCarousel)window.initCarousel();
           if(window.initCommits)window.initCommits();
         }else animatePanel();
