@@ -847,3 +847,11 @@ h2 > .org-logo { margin-top: 0 }
   h2:has(> .org-logo) { align-items: flex-start }
   h2 > .org-logo { margin-top: .15em }
 }
+
+/* Experience (mobile): center logo on the first line of the title */
+@media (max-width: 480px) {
+  h2 > .org-logo {
+    margin-top: .35em;
+    margin-top: calc((1lh - 1.05rem) / 2);
+  }
+}
