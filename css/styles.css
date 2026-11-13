@@ -296,6 +296,11 @@ article h1, article h2, article section h2 {
   transform: translateY(-1px);
 }
 
+.projects-grid .item .meta a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
 .filter-bar {
   display: flex;
   gap: .5rem;
@@ -325,22 +330,6 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
 .team-ico { margin-top: .2rem }
 .team-ico { flex: none; color: var(--muted) }
 
-/* ---- Project buttons ---- */
-.item .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .625rem; margin-top: 1.5rem; padding: 0; list-style: none }
-.item .meta a, .overview-toggle {
-  font-family: var(--sans); font-size: .875rem; font-weight: 500; text-transform: capitalize;
-  display: inline-flex; align-items: center;
-  padding: .65rem 1.1rem; border-radius: 10px;
-  background: #141414; border: 1px solid #262626; color: var(--ink);
-  text-decoration: none;
-  transition: background .15s ease, border-color .15s ease, transform .15s ease;
-}
-.item .meta li:first-child a { background: var(--ink); border: 1px solid var(--ink); color: #14110D; font-weight: 600 }
-.item .meta li:first-child a:hover { background: var(--text); border-color: transparent; color: #14110D; transform: translateY(-1px) }
-.item .meta li+li a:hover, .overview-toggle:hover { background: #202020; border-color: transparent; color: var(--ink); transform: translateY(-1px) }
-.item .meta a:focus-visible, .overview-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
-/* remove inherited arrow on overview button */
-.item .meta li a.overview-toggle::after { content: none !important }
 
 /* ---- Bigger hit areas on meta links ---- */
 .meta a, .links a { position: relative; overflow-wrap: anywhere }
