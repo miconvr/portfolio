@@ -134,7 +134,7 @@ article h1, article h2, article section h2 {
 .status.dev::before, .item.dev .status::before { background: var(--dev) }
 .item .dates { margin-top: .35rem; font: 400 .8rem var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem }
 
-/* Body copy: Geist Mono, matching overview font */
+/* Body copy: Geist Mono, matching project page font */
 .item p { font-family: var(--mono); font-size: .95rem; max-width: 38rem; margin: 1.1rem 0 0; line-height: 1.7; color: var(--text) }
 .item p + p { margin-top: 1rem }
 
@@ -357,53 +357,8 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
 .car-count { position: absolute; right: .75rem; bottom: .75rem; z-index: 2; padding: .15rem .65rem; border: 1px solid #3A3A44; border-radius: 999px; background: rgba(12,12,15,.72); color: var(--ink); font: 400 .75rem var(--mono) }
 
 /* ================================================================
-   OVERVIEW PANEL
+   PROJECT PAGE CONTENT
    ================================================================ */
-.overview-toggle { cursor: pointer; gap: .5rem }
-.overview-toggle .ov-chev { flex: none; display: inline-block; transform-origin: center; transition: transform .3s cubic-bezier(.2,.7,.2,1) }
-.overview-toggle[aria-expanded="true"] .ov-chev { transform: rotate(180deg) }
-.overview-toggle.loading { opacity: .7; pointer-events: none }
-
-.overview-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  visibility: hidden;
-  overflow-anchor: none;
-  margin-top: 0;
-  transition: grid-template-rows .28s cubic-bezier(.16, 1, .3, 1) .12s,
-              opacity .18s ease,
-              margin-top .28s cubic-bezier(.16, 1, .3, 1) .12s,
-              visibility .4s step-end;
-}
-.overview-panel.open {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  visibility: visible;
-  margin-top: 1.25rem;
-  transition: grid-template-rows .32s cubic-bezier(.16, 1, .3, 1),
-              opacity .28s ease,
-              margin-top .32s cubic-bezier(.16, 1, .3, 1),
-              visibility 0s;
-}
-.overview-clip { overflow: hidden; min-height: 0; overflow-anchor: none }
-.overview-inner {
-  padding: .5rem 0 .25rem 1.25rem;
-  border-left: 2px solid #2C2C2A;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity .15s ease, transform .18s cubic-bezier(.16, 1, .3, 1);
-}
-.overview-panel.open .overview-inner {
-  opacity: 1;
-  transform: none;
-  transition: opacity .28s ease .04s, transform .3s cubic-bezier(.16, 1, .3, 1) .04s;
-}
-.overview-inner article { max-width: none; margin: 0; padding: 0 }
-.overview-inner article section:first-child { margin-top: 0 }
-
-/* Overview content: Geist Mono (matches sidebar links) */
-.overview-inner .facts { margin-top: 1.25rem }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1.25rem; margin: 2.5rem 0 0; padding: 1.4rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
 .facts dt { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
 .facts dd { margin: .25rem 0 0; font-family: var(--mono); font-weight: 500; font-size: 1rem; color: var(--ink) }
@@ -720,7 +675,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .car-btn::before { content: ""; position: absolute; inset: -.25rem }
   nav a { display: inline-flex; align-items: center; min-height: 2.75rem }
   header.site { padding-top: .5rem }
-  .overview-inner { padding-left: 1rem }
 }
 
 /* ================================================================
@@ -733,7 +687,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .js .sub { opacity: 1; transform: none; transition: none }
   .side nav a::before { transition: none }
   .panel-enter { animation: none }
-  .overview-panel, .overview-inner, .overview-inner .ov-item, .overview-toggle .ov-chev { transition: none }
   .car-btn { transition: none }
   .been .blink { animation: none }
   .been-btn .been-mascot { animation: none !important }
