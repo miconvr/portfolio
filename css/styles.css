@@ -789,3 +789,10 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 @media (max-width: 56rem) {
   body:has(.project-title) .side { display: none }
 }
+
+/* Sidebar: group content, centered, no big gap above the counter */
+@media (min-width: 56.01rem) and (min-height: 52.01rem) {
+  .side { justify-content: center }
+  .side .profile-photo { width: clamp(5.5rem, 15dvh, 8.5rem); height: clamp(5.5rem, 15dvh, 8.5rem) }
+  .side .been { margin-top: clamp(1.5rem, 4dvh, 2.5rem) }
+}
