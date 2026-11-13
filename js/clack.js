@@ -38,8 +38,29 @@
       o.start(t); o.stop(t + len);
     }
   }
-  const down = () => clack(.9, 1800 + Math.random() * 300, 150, .07);
-  const up   = () => clack(.45, 3200 + Math.random() * 400, 0, .035);
+  // Mechanical-key thock: pitched-down sine body + short filtered snap
+  function thock(vol, body, snap, len) {
+    if (!on || !ctx || ctx.state !== "running") return;
+    const t = ctx.currentTime;
+    const o = ctx.createOscillator(), og = ctx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(body, t);
+    o.frequency.exponentialRampToValueAtTime(body * .5, t + len);
+    og.gain.setValueAtTime(.0001, t);
+    og.gain.linearRampToValueAtTime(vol, t + .003);
+    og.gain.exponentialRampToValueAtTime(.0001, t + len);
+    o.connect(og); og.connect(master);
+    o.start(t); o.stop(t + len + .01);
+    const src = ctx.createBufferSource(); src.buffer = noise;
+    const f = ctx.createBiquadFilter(); f.type = "bandpass"; f.frequency.value = snap; f.Q.value = 2.5;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(vol * .5, t);
+    g.gain.exponentialRampToValueAtTime(.0001, t + .03);
+    src.connect(f); f.connect(g); g.connect(master);
+    src.start(t); src.stop(t + .04);
+  }
+  const down = () => thock(.8, 200 + Math.random() * 30, 2600 + Math.random() * 300, .1);
+  const up   = () => thock(.3, 300 + Math.random() * 30, 4200 + Math.random() * 400, .04);
   const tick = () => clack(.16, 4200 + Math.random() * 500, 0, .025);
 
   // Browsers only allow audio after a gesture, so wake the context on the first one.
