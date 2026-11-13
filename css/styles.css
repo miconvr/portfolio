@@ -858,3 +858,20 @@ h2 > .org-logo { margin-top: 0 }
 
 /* Project facts: Activity row spans the full width like Stack */
 .facts > div:has([data-repo-commits]) { grid-column: 1 / -1 }
+
+/* Mascot idle animations (driven by js/mascot-idle.js) */
+.been .body { transform-box: fill-box; transform-origin: 50% 100% }
+.been .body.mi-bounce { animation: mi-bounce .7s ease-out }
+.been .body.mi-tilt { transform-origin: 50% 60%; animation: mi-tilt 1.6s ease-in-out }
+@keyframes mi-bounce {
+  0% { transform: translateY(0) scale(1) }
+  20% { transform: translateY(0) scale(1.06,.92) }
+  50% { transform: translateY(-6px) scale(.97,1.04) }
+  80% { transform: translateY(0) scale(1.04,.95) }
+  100% { transform: translateY(0) scale(1) }
+}
+@keyframes mi-tilt {
+  0%, 100% { transform: rotate(0) }
+  25%, 70% { transform: rotate(-6deg) }
+}
+@media (prefers-reduced-motion: reduce) { .been .body { animation: none !important } }
