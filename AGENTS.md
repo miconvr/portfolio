@@ -19,11 +19,11 @@ Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.js
 | `js/home.js` | In-place page navigation. Sidebar links and in-page links (card links, Slide to open, the back arrow) swap `#main` without a reload, so the mascot and commit counts stay put. Prefetches `/`, `/about`, `/experience` and both project pages. Also holds the project card spotlight listener |
 | `js/rail.js` | Scroll rail for the item list |
 | `js/carousel.js` | Screenshot carousels on the project pages, with arrow-key, button and counter support. Loaded by the project pages, and injected on demand by `home.js` when a project page is opened in place from another page |
-| `js/car-slider.js` | Drag slider under each `.carousel`, built by script (no HTML). Dragging the knob 85% of the way to either end clicks the carousel's existing next or previous button, then the knob springs back to center. The knob shows the counter, and the ‹ › ends are buttons for taps and keyboard. Loaded on every page after `clack.js`. It watches the whole `<body>` with a MutationObserver and also rescans on `load`, `pageshow` and after 300ms, because watching only `#main` missed carousels on a direct page load. Do not narrow the observer back to `#main`. `build()` skips carousels it already handled, so extra scans never create duplicates |
+| `js/car-slider.js` | Two raised mechanical arrow keys (`.cs-key`, previous and next) with a small `.cs-num` counter between them, built by script under each `.carousel` (no HTML). Each key clicks the carousel's existing arrow button. It rescans on load and watches the whole body, so carousels injected by `home.js` get keys too. |
 | `js/been-here.js` | "been here" smiley mascot and visitor counter, calls `/api/hi` |
 | `js/commits.js` | Adds a small "(N+ commits)" note beside the github.com/miconvr sidebar link and fills any `[data-repo-commits]` tag. Fed by `/api/commits`. Caches the last response in `localStorage` (key `commits-v3`) and retries the fetch once on failure. A MutationObserver on `#main` re-fills the `[data-repo-commits]` tags after an in-place page swap |
 | `js/slide-open.js` | Slide-to-open behavior for the project card link on the home page (knob, label and chevrons). Keyboard users can still press Enter on the link to open the project directly |
-| `js/clack.js` | Sound effects: a click thock on press, a light click on release and a dry hover tick on links and buttons, all synthesized with the Web Audio API (no audio files). Also adds the mute toggle. See the Sound effects rule |
+| `js/clack.js` | Sound effects: a click thock on press, a light click on release and a dry hover tick on links and buttons, all synthesized with the Web Audio API (no audio files). Always on, with no mute button or stored preference. See the Sound effects rule |
 | `api/hi.js` | Vercel function. `GET` reads and `POST` increments an Upstash Redis counter. Needs `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`) |
 | `api/commits.js` | Vercel function. Returns total commits across the profile for every year since the account was created (GitHub GraphQL) plus `kaltas` and `civicguard` repo counts, all rounded down to the nearest 10. Cached at the edge for an hour (`s-maxage=3600`). Requires the `GITHUB_TOKEN` env var (fine-grained, public read-only; it expires, so renew it in Vercel when it does) |
 | `images/projects/`, `images/profile/` | Project screenshots, icons and the Kaltas trailer video; portrait photos |
@@ -85,3 +85,8 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 ## Working with the owner
 
 Pushes from AI chat sessions have been blocked in the past, so the owner often applies changes by copy-pasting terminal commands. When you cannot push, deliver changes as terminal commands or a patch and say how to verify them. When you do have push access, edit the files directly. The owner prefers one small commit per change, each pushed on its own, so any change can be reverted separately.
+
+## Update: arrow keys, sound, top gap
+- The old drag slider (`.cs-knob`) is gone. The screenshot keys press down on `:active`, and the clack comes from `clack.js` because they are buttons.
+- The sound mute button is removed. `clack.js` always plays.
+- Project pages: `.home main:has(> article)` has less top padding on phones, and `article h1` has a small top margin, to remove the big gap above the title.
