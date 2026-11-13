@@ -959,3 +959,9 @@ h2 > .org-logo { margin-top: 0 }
 .cs-key:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
 .cs-num { min-width: 3.2rem; text-align: center; font-family: "Geist Mono", ui-monospace, monospace; font-size: .72rem; letter-spacing: .02em; color: var(--muted) }
 @media (prefers-reduced-motion: reduce) { .cs-key { transition: none } }
+
+/* Project pages: remove the big gap at the top */
+article h1 { margin-top: .5rem }
+@media (max-width: 56rem) {
+  .home main:has(> article) { padding-top: .75rem }
+}
