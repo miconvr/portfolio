@@ -951,3 +951,31 @@ h2 > .org-logo { margin-top: 0 }
 }
 .clack-toggle:hover { color: var(--ink); border-color: var(--muted) }
 .clack-toggle:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
+
+/* Screenshot slider under each carousel (js/car-slider.js) replaces the arrow buttons */
+.car-btn, .car-count { display: none }
+.car-slider {
+  --x: 0px;
+  position: relative; display: flex; align-items: center; justify-content: space-between;
+  height: 2.8rem; margin-top: .6rem; padding: 0 .5rem;
+  border-radius: .7rem; background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--muted) 35%, transparent);
+  user-select: none; -webkit-user-select: none;
+}
+.cs-end {
+  all: unset; box-sizing: border-box; cursor: pointer; display: grid; place-items: center;
+  width: 2.2rem; height: 2.2rem; color: var(--muted); border-radius: .5rem;
+  -webkit-tap-highlight-color: transparent; transition: color .2s ease;
+}
+.cs-end:hover { color: var(--ink) }
+.cs-end:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px }
+.cs-knob {
+  position: absolute; top: 4px; bottom: 4px; left: 50%; width: 4rem; margin-left: -2rem;
+  display: grid; place-items: center; cursor: grab; touch-action: pan-y;
+  border-radius: .5rem; background: var(--ink); color: var(--card);
+  transform: translateX(var(--x));
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+.car-slider.drag .cs-knob { transition: none; cursor: grabbing }
+.cs-num { font-family: "Geist Mono", ui-monospace, monospace; font-size: .72rem; letter-spacing: .02em }
+@media (prefers-reduced-motion: reduce) { .cs-knob { transition: none } }
