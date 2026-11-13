@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kaltas – Mico Gerard Navarro</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="home">
+<div class="shell">
+  <aside class="side">
+    <img class="profile-photo" src="/images/profile/mico-400.jpg?v=8" alt="Portrait of Mico Gerard Navarro">
+    <h1>Mico Gerard Navarro</h1>
+    <p class="lead loc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>San Fernando City, Pampanga, Philippines</p>
+    <nav aria-label="Sections"><ul><li><a href="/">projects</a></li><li><a href="/about">about</a></li><li><a href="/experience">experience</a></li></ul></nav>
+    <ul class="side-links"><li><a href="mailto:micogerardnavarro@gmail.com"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2.5h12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Zm.3 1.7.7-.7L8 7.7l5-4.2.7.7L8 9.1Z"/></svg>micogerardnavarro@gmail.com</a></li></ul>
+  </aside>
+  <main id="main">
+    <section class="home-intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">Kaltas</h2>
+    </section>
+    <section>
+      <div class="frame carousel" role="group" aria-roledescription="carousel" aria-label="Kaltas screenshots">
+        <div class="slides" tabindex="0" aria-label="Kaltas screenshots. Use the left and right arrow keys to browse.">
+          <div class="slide"><img src="/images/projects/kaltas-1.png" width="1280" height="800" alt="Kaltas popup on github.com showing the GitHub Student Developer Pack deal with a View offer button."></div>
+          <div class="slide"><img src="/images/projects/kaltas-2.png" width="1280" height="800" loading="lazy" alt="Kaltas popup on a site with no student deal, with the Browse student deals list open."></div>
+          <div class="slide"><img src="/images/projects/kaltas-3.png" width="1280" height="800" loading="lazy" alt="Kaltas popup searching the Browse student deals list for cloud and showing the matching deals."></div>
+        </div>
+        <button class="car-btn prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="car-btn next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        <span class="car-count" aria-live="polite">1 / 3</span>
+      </div>
+      <p>Kaltas is a Chrome extension that finds student deals for the website you’re visiting. When a site has a student discount, free plan, or education perk, the toolbar icon gets a green dot, and one click shows the offer, who qualifies, and a link to the official page. Matching happens on the device, so browsing data never leaves the browser.</p>
+      <div class="tech-chips">
+        <span>JavaScript</span><span>HTML</span><span>CSS</span><span>Manifest V3</span><span>GitHub Actions</span>
+      </div>
+      <ul class="meta">
+        <li><a href="https://ggl.link/kaltas" target="_blank" rel="noopener noreferrer">download</a></li>
+        <li><a href="https://git.new/kaltas" target="_blank" rel="noopener noreferrer">repository</a></li>
+      </ul>
+      <h3>Overview</h3>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>Solo Developer</dd></div>
+        <div><dt>Status</dt><dd>Live</dd></div>
+        <div><dt>Stack</dt><dd>JavaScript, HTML, CSS, Manifest V3, GitHub Actions</dd></div>
+      </dl>
+      <ul class="outcomes">
+        <li>Designed, built and published solo on the Chrome Web Store, including the listing, screenshots, privacy disclosures and packaging.</li>
+        <li>Built on-device domain matching against a curated offer list of global student offers.</li>
+        <li>Added a green toolbar badge using the declarativeContent API, so the badge works without the extension reading tabs or page content.</li>
+        <li>Built a remote offers update: the popup and badge load the list from GitHub with a timeout, validate every entry, and fall back to a saved copy and then a bundled one, so new deals reach users without a store release.</li>
+        <li>Built the popup with dark and light themes, a settings panel and a searchable list of all deals.</li>
+        <li>Kept it private: Manifest V3, two permissions (activeTab and declarativeContent), no host permissions, HTTPS-only links, and no accounts, analytics or browsing history.</li>
+        <li>Wrote an offer data format and a validation script that runs in CI on every push, checked offers against official sources, and automated upkeep with GitHub Actions: a weekly link checker flags broken or moved offer links, and a weekly job collects new deal leads from community lists for manual review. Automation never publishes an offer on its own.</li>
+        <li>Open sourced under the MIT License with a README, privacy policy and a GitHub flow for reporting outdated offers.</li>
+      </ul>
+    </section>
+  </main>
+</div>
+<script src="/js/carousel.js"></script>
+</body>
+</html>
