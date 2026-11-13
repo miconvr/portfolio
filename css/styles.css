@@ -182,12 +182,10 @@ article h1, article h2, article section h2 {
 .projects-grid .project-icon {
   width: 3.75rem;
   height: 3.75rem;
-  border-radius: .85rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   display: block;
   flex: none;
-  object-fit: cover;
-  background: var(--card-2);
+  object-fit: contain;
+  border-radius: 0;
 }
 
 .projects-grid .item-top .status {
