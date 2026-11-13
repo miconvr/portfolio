@@ -73,44 +73,10 @@
           <li><a href="https://github.com/miconvr/civicguard" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>repository</a></li>
         </ul>
       </article>
-    </section>
+    </div></section>
   </main>
 </div>
-<template id="ov-kaltas">
-<dl class="facts">
-          <div><dt>Role</dt><dd>Solo Developer</dd></div>
-          <div><dt>Status</dt><dd>Live</dd></div>
-          <div><dt>Stack</dt><dd>JavaScript, HTML, CSS, Manifest V3, GitHub Actions</dd></div>
-        </dl>
-<ul class="outcomes">
-          <li>Designed, built and published solo on the Chrome Web Store, including the listing, screenshots, privacy disclosures and packaging.</li>
-          <li>Built on-device domain matching against a curated offer list of global student offers.</li>
-          <li>Added a green toolbar badge using the declarativeContent API, so the badge works without the extension reading tabs or page content.</li>
-          <li>Built a remote offers update: the popup and badge load the list from GitHub with a timeout, validate every entry, and fall back to a saved copy and then a bundled one, so new deals reach users without a store release.</li>
-          <li>Built the popup with dark and light themes, a settings panel and a searchable list of all deals.</li>
-          <li>Kept it private: Manifest V3, two permissions (activeTab and declarativeContent), no host permissions, HTTPS-only links, and no accounts, analytics or browsing history.</li>
-          <li>Wrote an offer data format and a validation script that runs in CI on every push, checked offers against official sources, and automated upkeep with GitHub Actions: a weekly link checker flags broken or moved offer links, and a weekly job collects new deal leads from community lists for manual review. Automation never publishes an offer on its own.</li>
-          <li>Open sourced under the MIT License with a README, privacy policy and a GitHub flow for reporting outdated offers.</li>
-        </ul>
-</template>
-<template id="ov-civicguard">
-<dl class="facts">
-          <div><dt>Role</dt><dd>Project Manager and Full-Stack Developer</dd></div>
-          <div><dt>Status</dt><dd>In Development</dd></div>
-          <div><dt>Stack</dt><dd>Laravel 12, MySQL, Tailwind CSS, Alpine.js</dd></div>
-        </dl>
-<ul class="outcomes">
-          <li>Led a four-member team as Project Manager and Full-Stack Developer.</li>
-          <li>Built the resident side: reporting with optional photos and location pins, plus follow-up tracking.</li>
-          <li>Built the staff side: report review, assignment, status updates, residence verification, curfew incident logging and analytics.</li>
-          <li>Integrated AI-assisted report writing and classification using Google Gemini and Groq.</li>
-          <li>Added English and Tagalog support, role-based access control and automated testing with GitHub Actions CI.</li>
-          <li>Deployed on Wasmer.</li>
-        </ul>
-</template>
-<script src="/js/carousel.js"></script>
 <script src="/js/home.js"></script>
-<script src="/js/overview.js"></script>
 <script src="/js/been-here.js" defer></script>
 <script src="/js/commits.js" defer></script>
 </body>
