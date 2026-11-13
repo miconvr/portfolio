@@ -796,3 +796,8 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side .profile-photo { width: clamp(5.5rem, 15dvh, 8.5rem); height: clamp(5.5rem, 15dvh, 8.5rem) }
   .side .been { margin-top: clamp(1.5rem, 4dvh, 2.5rem) }
 }
+
+/* Sidebar location centered under the name (desktop) */
+@media (min-width: 56.01rem) {
+  .side .lead.loc { justify-content: center; text-align: center }
+}
