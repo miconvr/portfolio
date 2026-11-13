@@ -136,12 +136,12 @@ article h1, article h2, article section h2 {
 .status.dev::before, .item.dev .status::before { background: var(--dev) }
 .item .dates { margin-top: .35rem; font: 400 .8rem var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem }
 
-/* Body copy: Geist, warm text */
-.item p { font-family: var(--sans); font-size: 1.0625rem; max-width: 38rem; margin: 1.1rem 0 0; line-height: 1.7; color: var(--text) }
+/* Body copy: Geist Mono, matching overview font */
+.item p { font-family: var(--mono); font-size: .95rem; max-width: 38rem; margin: 1.1rem 0 0; line-height: 1.7; color: var(--text) }
 .item p + p { margin-top: 1rem }
 
 /* Team credit */
-p.team, .item p.team { font-family: var(--sans); font-size: .85rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: center; gap: .5rem }
+p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: center; gap: .5rem }
 .team-ico { flex: none; color: var(--muted) }
 
 /* ---- Project buttons ---- */
