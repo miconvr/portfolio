@@ -1,6 +1,6 @@
 (() => {
   const SEL = ".projects-grid .item .meta li:first-child a";
-  const KNOB = 32, PAD = 4;
+  const PAD = 4;
   let a = null, startX = 0, x = 0, max = 0, dragging = false;
 
   // Block real pointer clicks; keyboard and script clicks (detail 0) pass through.
@@ -9,11 +9,19 @@
     if (l && e.detail > 0) { e.preventDefault(); e.stopImmediatePropagation(); }
   }, true);
 
+  // Stop the browser's native link drag, which would cancel our pointer events.
+  document.addEventListener("dragstart", e => {
+    if (e.target.closest && e.target.closest(SEL)) e.preventDefault();
+  }, true);
+
   document.addEventListener("pointerdown", e => {
     const l = e.target.closest && e.target.closest(SEL);
     if (!l || (e.pointerType === "mouse" && e.button !== 0)) return;
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    const knob = rem * 2.4;
     a = l; startX = e.clientX; x = 0; dragging = false;
-    max = Math.max(0, l.clientWidth - KNOB - PAD * 2);
+    max = Math.max(0, l.clientWidth - knob - PAD * 2);
+    l.setAttribute("draggable", "false");
     try { l.setPointerCapture(e.pointerId); } catch (_) {}
   });
 
