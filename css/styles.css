@@ -825,3 +825,19 @@ p.team{font-size:.875rem;color:var(--muted)}
 .facts dt{font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
 .facts dd{font-family:"Instrument Sans","Geist",system-ui,sans-serif;font-weight:500;font-size:1rem;color:var(--ink);margin:.3rem 0 0}
 .item .meta a,.overview-toggle{font-family:"Instrument Sans","Geist",system-ui,sans-serif}
+
+/* ---- fonts v2 + pure black ---- */
+.item h3{font-family:"Syne","Geist",system-ui,sans-serif;font-weight:800;font-size:clamp(1.75rem,2.8vw,2.2rem);letter-spacing:-.02em;line-height:1.05}
+.item h3 .status{font-family:var(--mono);font-weight:400;letter-spacing:0}
+.item p,.overview-inner .outcomes li,.facts dd,.item .meta a,.overview-toggle{font-family:"Space Grotesk","Geist",system-ui,sans-serif;letter-spacing:0}
+.item p,.overview-inner .outcomes li{color:#B4B4AE}
+.item p.team{color:var(--muted)}
+
+:root{--bg:#000;--surface:#0A0A0A;--line:#222}
+html,body{background:#000}
+hr,.rule{border-color:#222}
+.side{background:#0A0A0A;border-color:#1F1F1F}
+.item .meta a{background:#0E0E0E;border-color:#2A2A2A}
+.item .meta li+li a:hover{background:#1A1A1A;border-color:#444}
+.item .meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#000}
+.item .meta li:first-child a:hover{background:#fff;border-color:#fff;color:#000}
