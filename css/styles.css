@@ -139,109 +139,158 @@ article h1, article h2, article section h2 {
 /* ---- Projects grid & cards ---- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  align-items: stretch;
 }
 
 .projects-grid .item {
+  display: flex;
+  flex-direction: column;
   background: #111;
   border: 1px solid var(--line);
-  border-radius: .6rem;
-  padding: 0;
+  border-radius: .85rem;
+  padding: 1.75rem;
   margin: 0;
   overflow: hidden;
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.projects-grid .item:hover {
+  border-color: #2c2c2c;
+  transform: translateY(-2px);
 }
 
 .projects-grid .item-head {
-  padding: 1.5rem 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  padding: 0;
+  margin: 0;
+}
+
+.projects-grid .item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.projects-grid .project-icon {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: .85rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: block;
+  flex: none;
+  object-fit: cover;
+  background: #181818;
+}
+
+.projects-grid .item-top .status {
+  background: #181818;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .75rem;
+  font-family: var(--mono);
+  padding: .3rem .65rem;
+  border-radius: 999px;
+  line-height: 1;
+}
+
+.projects-grid .title-block {
+  min-width: 0;
 }
 
 .projects-grid .item h3 {
   margin: 0;
-  font-size: clamp(1.5rem,2.5vw,2rem);
-  flex-direction: column;
-  align-items: flex-start;
-  gap: .25rem;
-}
-
-.projects-grid .item h3 .status {
-  background: var(--line);
-  color: var(--muted);
-  font-size: .75rem;
-  font-family: var(--mono);
-  padding: .2rem .5rem;
-  border-radius: .4rem;
-  margin-left: .5rem;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.75rem;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  color: var(--ink);
 }
 
 .projects-grid .item .dates {
   margin-top: .4rem;
+  font: 400 .8rem var(--mono);
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .75rem;
 }
 
 .projects-grid .item p {
-  padding: 0 1.5rem;
-  margin-top: .8rem;
-}
-
-.tech-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem;
-  padding: 0 1.5rem;
-  margin-top: .6rem;
-}
-.tech-chips span {
+  padding: 0;
+  margin: 1.1rem 0 0;
+  max-width: none;
   font-family: var(--mono);
-  font-size: .75rem;
-  background: var(--line);
-  color: var(--muted);
-  padding: .2rem .5rem;
-  border-radius: .4rem;
+  font-size: .9rem;
+  line-height: 1.65;
+  color: var(--text);
+  flex-grow: 1;
 }
 
 .projects-grid .item .meta {
-  padding: 0 1.5rem 1.5rem;
-  margin-top: 1.25rem;
+  padding: 0;
+  margin: 1.75rem 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: .5rem;
+  gap: .6rem;
+  list-style: none;
 }
-.projects-grid .item .meta li { list-style: none }
-.projects-grid .item .meta li:first-child { grid-column: 1 / -1 }
+
+.projects-grid .item .meta li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.projects-grid .item .meta li:first-child {
+  grid-column: 1 / -1;
+}
+
 .projects-grid .item .meta a {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  font-family: var(--mono);
-  font-size: .85rem;
+  font-family: var(--sans);
+  font-size: .875rem;
   font-weight: 500;
   text-transform: capitalize;
-  background: #141414;
-  border: 1px solid #262626;
+  white-space: nowrap;
+  background: #161616;
+  border: 1px solid #282828;
   color: var(--ink);
-  padding: .6rem 1rem;
+  padding: .65rem .6rem;
   border-radius: .6rem;
   text-decoration: none;
   transition: background .15s ease, border-color .15s ease, transform .15s ease;
 }
+
 .projects-grid .item .meta li:first-child a {
   background: var(--ink);
   border-color: var(--ink);
   color: #14110d;
   font-weight: 600;
+  padding: .7rem 1rem;
 }
+
 .projects-grid .item .meta li:first-child a:hover {
   background: var(--text);
   border-color: transparent;
   color: #14110d;
   transform: translateY(-1px);
 }
+
 .projects-grid .item .meta li+li a:hover,
 .projects-grid .item .meta li+li a:focus-visible {
-  background: #202020;
+  background: #222222;
   border-color: transparent;
   transform: translateY(-1px);
 }
