@@ -839,3 +839,11 @@ h2 > .org-logo { flex: none; width: auto; height: 1.25rem; margin-top: .2em }
 @media (max-width: 480px) {
   h2 > .org-logo { height: 1.05rem }
 }
+
+/* Experience: logo sits next to the role title, not at the far edge */
+h2:has(> .org-logo) { justify-content: flex-start; align-items: center; gap: .6rem }
+h2 > .org-logo { margin-top: 0 }
+@media (max-width: 480px) {
+  h2:has(> .org-logo) { align-items: flex-start }
+  h2 > .org-logo { margin-top: .15em }
+}
