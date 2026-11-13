@@ -163,10 +163,7 @@ article h1, article h2, article section h2 {
   transition: border-color .2s ease, transform .2s ease;
 }
 
-.projects-grid .item:hover {
-  border-color: #2c2c2c;
-  transform: translateY(-2px);
-}
+.projects-grid .item:hover { border-color: #2c2c2c }
 
 .projects-grid .item-head {
   display: flex;
@@ -740,3 +737,28 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .project-title ~ section h2 { margin-bottom: .4rem }
 .project-title ~ section p { margin-bottom: .8rem }
 .project-title ~ section .meta { margin-top: .9rem }
+
+/* Project card hover: spotlight, icon lift, layered motion */
+.projects-grid .item { position: relative; isolation: isolate }
+.projects-grid .item::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.06), transparent 70%);
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--ink) 9%, transparent), transparent 70%);
+  transition: opacity .3s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item { transition: border-color .2s ease, transform .25s cubic-bezier(.2,.8,.2,1) }
+  .projects-grid .project-icon { transition: transform .4s cubic-bezier(.34,1.56,.64,1) }
+  .projects-grid .item-top .status { transition: transform .3s ease .04s }
+  .projects-grid .title-block { transition: transform .3s ease .08s }
+  .projects-grid .item:active { transform: scale(.985) }
+}
+@media (hover: hover) {
+  .projects-grid .item:hover::before { opacity: 1 }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover { transform: translateY(-4px) }
+  .projects-grid .item:hover .project-icon { transform: scale(1.08) rotate(-4deg) }
+  .projects-grid .item:hover .item-top .status { transform: translateY(-2px) }
+  .projects-grid .item:hover .title-block { transform: translateX(3px) }
+}
