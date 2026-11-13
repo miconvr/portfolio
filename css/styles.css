@@ -64,7 +64,7 @@ button.theme { display: none }
   border-radius: 18px;
   padding: 2rem 1.5rem;
 }
-.profile-photo { width: 7.5rem; height: 7.5rem; object-fit: cover; border-radius: 50%; margin: 0 0 1.25rem; border: 1px solid var(--line) }
+.profile-photo { width: 8.5rem; height: 8.5rem; object-fit: cover; border-radius: 50%; margin: 0 0 1.25rem; border: 1px solid var(--line); align-self: center }
 .side h1 { font-family: var(--sans); font-weight: 700; font-size: 2.25rem; letter-spacing: -.04em; line-height: 1.05; margin: 0; color: var(--ink); text-wrap: balance }
 
 /* Sidebar description: matches About paragraphs */
@@ -197,10 +197,10 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
   visibility: hidden;
   overflow-anchor: none;
   margin-top: 0;
-  transition: grid-template-rows .32s cubic-bezier(.16, 1, .3, 1),
-              opacity .25s ease,
-              margin-top .32s cubic-bezier(.16, 1, .3, 1),
-              visibility .32s step-end;
+  transition: grid-template-rows .28s cubic-bezier(.16, 1, .3, 1) .12s,
+              opacity .18s ease,
+              margin-top .28s cubic-bezier(.16, 1, .3, 1) .12s,
+              visibility .4s step-end;
 }
 .overview-panel.open {
   grid-template-rows: 1fr;
@@ -218,7 +218,7 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
   border-left: 2px solid #2C2C2A;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity .22s ease, transform .25s cubic-bezier(.16, 1, .3, 1);
+  transition: opacity .15s ease, transform .18s cubic-bezier(.16, 1, .3, 1);
 }
 .overview-panel.open .overview-inner {
   opacity: 1;
@@ -256,7 +256,7 @@ article h1 { font-size: 2.6rem; margin-top: 1.75rem }
 
 article section { padding: 1.75rem 0; border-top: 1px solid var(--line); margin-top: 2rem; max-width: 36rem }
 article h2 { font-weight: 600; font-size: 1.25rem; letter-spacing: -.02em; margin-bottom: .7rem }
-article section p, article section li { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.7; color: var(--text) }
+article section p, article section li { font-family: var(--mono); font-size: .95rem; line-height: 1.7; color: var(--text) }
 article section p { margin: 0 0 1.25rem }
 article section p:last-child { margin-bottom: 0 }
 ul.plain { padding-left: 1.2rem }
@@ -276,7 +276,8 @@ ul.plain { padding-left: 1.2rem }
 /* ---- Experience entries ---- */
 .entry { padding: 1.75rem 0; border-top: 1px solid var(--line); margin-top: 2rem }
 .entry h2 { font-size: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem }
-.entry .when { color: var(--muted); margin: .3rem 0 0 }
+.entry .when { font-family: var(--mono); font-size: .82rem; color: var(--muted); margin: .3rem 0 0 }
+.entry p, .entry li { font-family: var(--mono); font-size: .95rem; line-height: 1.7; color: var(--text) }
 .org-logo { width: auto; height: 1.4rem; border-radius: 0; display: block; flex: none; opacity: .9 }
 
 /* ---- Screenshots ---- */
@@ -561,7 +562,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .js .sub { opacity: 1; transform: none; transition: none }
   .side nav a::before { transition: none }
   .panel-enter { animation: none }
-  .overview-panel, .overview-inner .ov-item, .overview-toggle .ov-chev { transition: none }
+  .overview-panel, .overview-inner, .overview-inner .ov-item, .overview-toggle .ov-chev { transition: none }
   .car-btn { transition: none }
   .been .blink { animation: none }
   .been-btn .been-mascot { animation: none !important }
