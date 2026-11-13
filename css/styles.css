@@ -706,3 +706,8 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   line-height: 1.7;
   color: var(--text);
 }
+
+/* Project page header */
+.project-title { display: flex; align-items: center; gap: 1rem; margin: 1.25rem 0 0 }
+.project-title img { display: block; flex: none; width: 3.5rem; height: 3.5rem; object-fit: contain }
+.project-title h1 { margin: 0 }
