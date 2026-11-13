@@ -66,6 +66,8 @@
         if(home){
           if(window.initOverview)window.initOverview();
           if(window.initRail)window.initRail();
+          if(window.initCarousel)window.initCarousel();
+          if(window.initCommits)window.initCommits();
         }else animatePanel();
       })
       .catch(function(e){console.error('SWAP FAILED:',e);window.location.href=path;})

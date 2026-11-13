@@ -3,7 +3,7 @@ window.initOverview=function(){
   var cache={};
   var chev='<svg class="ov-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>';
   var links=[].slice.call(document.querySelectorAll('.item a')).filter(function(a){
-    return /overview/i.test(a.textContent)&&a.getAttribute('href');
+    return !a.classList.contains('overview-toggle')&&/overview/i.test(a.textContent)&&a.getAttribute('href');
   });
   links.forEach(function(a,n){
     var href=a.href,meta=a.closest('.meta')||a.parentNode;

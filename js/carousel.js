@@ -64,9 +64,13 @@
 
 
 (function(){
-  var cs=document.querySelectorAll('.carousel');
-  for(var i=0;i<cs.length;i++){
-    var s=cs[i].querySelector('.slides'),el=cs[i].querySelector('.car-count');
-    if(s&&el)el.textContent='1 / '+s.children.length;
+  function initCount(){
+    var cs=document.querySelectorAll('.carousel');
+    for(var i=0;i<cs.length;i++){
+      var s=cs[i].querySelector('.slides'),el=cs[i].querySelector('.car-count');
+      if(s&&el)el.textContent='1 / '+s.children.length;
+    }
   }
+  window.initCarousel=initCount;
+  initCount();
 })();

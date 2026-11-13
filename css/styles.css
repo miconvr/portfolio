@@ -243,47 +243,6 @@ article section h2{font-size:1.5rem;line-height:1.25}
 /* ---- Hero headline font ---- */
 .home-intro h2{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:700;letter-spacing:-.035em;line-height:1.02;font-size:clamp(2.75rem,6.5vw,5rem)}
 
-/* ---- Claude dark theme ---- */
-:root{--bg:#262624;--surface:#30302E;--line:#3F3E3B;--ink:#FAF9F5;--muted:#B7B5A9;--accent:#D8CFB8;color-scheme:dark}
-html,body{background:#262624;color:#FAF9F5}
-.item .meta a{border-color:#4A4945}
-.item .meta li:first-child a{background:#FAF9F5;color:#262624;border-color:#FAF9F5}
-.item .meta li+li a:hover{border-color:#FAF9F5}
-hr,.rule{border-color:#3F3E3B}
-a:hover{color:#D8CFB8}
-::selection{background:#D8CFB8;color:#262624}
-
-/* ---- Soft text and avatar ---- */
-:root{--ink:#C2C0B6;--muted:#9C9A92}
-body,p,li,.item p,article p,article section p{color:#C2C0B6}
-h1,h2,h3,strong,.side h1,.item h3,.home-intro h2,article h1,article section h2{color:#FAF9F5}
-.meta,.item .date,time{color:#9C9A92}
-.item .meta a{color:#E8E6DC;border-color:#4A4945}
-.item .meta li:first-child a{background:#D8CFB8;color:#1F1E1D;border-color:#D8CFB8;font-weight:600}
-.item .meta li:first-child a:hover{background:#E6DECA;border-color:#E6DECA}
-
-/* ---- Button restyle ---- */
-.item .meta{gap:.625rem}
-.item .meta a{border-radius:10px;padding:.7rem 1.1rem;background:#30302E;border:1px solid #3F3E3B;color:#E8E6DC;font-weight:500;transition:background .15s,border-color .15s}
-.item .meta li+li a:hover{background:#3A3936;border-color:#5A5954;color:#FAF9F5}
-.item .meta li:first-child a{background:#D8CFB8;color:#262624;border-color:#D8CFB8;font-weight:600}
-.item .meta li:first-child a:hover{background:#E6DECA;border-color:#E6DECA;color:#262624}
-
-/* ---- Title style and side card ---- */
-.side h1,.home-intro h2,.item h3,article h1,.simple h1,.proj h3,article section h2{font-family:"Bricolage Grotesque","Inter",system-ui,sans-serif;font-weight:700;letter-spacing:-.03em;color:#EADFC8}
-.side h1{font-size:2.4rem;line-height:1.05}
-.side-card{margin:2rem 0 1.5rem;max-width:20rem;padding:1rem 1.1rem;background:#30302E;border:1px solid #3F3E3B;border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.35);animation:sideFloat 6s ease-in-out infinite}
-.side-card-status{display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:.9rem;color:#FAF9F5}
-.side-card-dot{width:8px;height:8px;border-radius:50%;background:#8FBF7F;box-shadow:0 0 0 0 rgba(143,191,127,.6);animation:sidePulse 2s infinite}
-.side-card p{margin:.6rem 0 .75rem;font-size:.9rem;line-height:1.5;color:#B7B5A9}
-.side-card p strong{color:#EADFC8;font-weight:600}
-.side-card a{font-size:.875rem;font-weight:600;color:#D8CFB8;text-decoration:none;border-bottom:1px solid #5A5954}
-.side-card a:hover{color:#FAF9F5;border-color:#FAF9F5}
-@keyframes sideFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-@keyframes sidePulse{0%{box-shadow:0 0 0 0 rgba(143,191,127,.6)}70%{box-shadow:0 0 0 8px rgba(143,191,127,0)}100%{box-shadow:0 0 0 0 rgba(143,191,127,0)}}
-@media (max-width:34rem){.side h1{font-size:2.2rem}.side-card{max-width:none;width:100%;margin:1.75rem 0 1.25rem}}
-@media (prefers-reduced-motion:reduce){.side-card,.side-card-dot{animation:none}}
-
 /* ---- Sidebar panel ---- */
 .side-card{display:none !important}
 .side{box-sizing:border-box;background:#1F1E1D;border:1px solid #333230;border-radius:18px;padding:2rem 1.75rem}
@@ -595,10 +554,10 @@ body,p,li,.item p,article p,article section p,.outcomes li{color:var(--text)}
 .home-intro-copy.dim,.dim,.dates,.item .dates{color:var(--muted)}
 h1,h2,h3,strong{color:var(--ink)}
 a{color:var(--ink)}
-a:hover{color:#fff}
+a:hover{color:var(--ink)}
 .item .meta a{color:var(--ink)}
 .item .meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#1F1F1E}
-.item .meta li:first-child a:hover{background:#fff;border-color:#fff;color:#1F1F1E}
+.item .meta li:first-child a:hover{background:var(--text);border-color:transparent;color:#1F1F1E}
 .overview-inner{border-left-color:var(--muted)}
 .outcomes li::marker{color:var(--muted)}
 .skip{background:var(--ink)}
@@ -668,10 +627,6 @@ a:hover{color:#fff}
 @keyframes been-blink{0%,88%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
 .been .blink{animation:been-blink 1s infinite}
 .been-btn.been-pop .been-mascot{will-change:transform}
-
-/* ---- mascot: blink every 2 seconds ---- */
-@keyframes been-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
-.been .blink{animation:been-blink 2s infinite}
 
 /* ---- credit line under the counter ---- */
 .been-credit{display:block;margin-top:.35rem;font:400 .7rem var(--mono);opacity:.5}
@@ -814,113 +769,140 @@ a:hover{color:var(--ink)}
 /* Team credit under a project description: smaller and muted so it reads as a credit */
 p.team{font-size:.875rem;color:var(--muted)}
 
-/* ---- project card type pass ---- */
-.item h3{font-family:"Bricolage Grotesque","Geist",system-ui,sans-serif;font-weight:700;font-size:clamp(1.9rem,3vw,2.4rem);letter-spacing:-.03em;line-height:1.05}
-.item h3 .status{font-family:var(--mono);font-weight:400;letter-spacing:0}
-.item p,.overview-inner .outcomes li{font-family:"Instrument Sans","Geist",system-ui,sans-serif;font-size:1rem;line-height:1.7;letter-spacing:-.005em;color:#B9B9B3}
-.item p{max-width:34rem}
-.item p.team{font-size:.85rem;line-height:1.5;color:var(--muted);margin-top:.9rem}
-.overview-inner .outcomes{max-width:36rem}
-.overview-inner .outcomes li{font-size:.97rem;margin-bottom:.8rem}
-.facts dt{font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-.facts dd{font-family:"Instrument Sans","Geist",system-ui,sans-serif;font-weight:500;font-size:1rem;color:var(--ink);margin:.3rem 0 0}
-.item .meta a,.overview-toggle{font-family:"Instrument Sans","Geist",system-ui,sans-serif}
-
-/* ---- fonts v2 + pure black ---- */
-.item h3{font-family:"Syne","Geist",system-ui,sans-serif;font-weight:800;font-size:clamp(1.75rem,2.8vw,2.2rem);letter-spacing:-.02em;line-height:1.05}
-.item h3 .status{font-family:var(--mono);font-weight:400;letter-spacing:0}
-.item p,.overview-inner .outcomes li,.facts dd,.item .meta a,.overview-toggle{font-family:"Space Grotesk","Geist",system-ui,sans-serif;letter-spacing:0}
-.item p,.overview-inner .outcomes li{color:#B4B4AE}
-.item p.team{color:var(--muted)}
-
-:root{--bg:#000;--surface:#0A0A0A;--line:#222}
-html,body{background:#000}
-hr,.rule{border-color:#222}
-.side{background:#0A0A0A;border-color:#1F1F1F}
-.item .meta a{background:#0E0E0E;border-color:#2A2A2A}
-.item .meta li+li a:hover{background:#1A1A1A;border-color:#444}
-.item .meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#000}
-.item .meta li:first-child a:hover{background:#fff;border-color:#fff;color:#000}
-
-/* ---- fonts v3: Geist body, Bryl-style sidebar nav, softer black ---- */
-.item p,.overview-inner .outcomes li,.facts dd,.item .meta a,.overview-toggle{font-family:var(--sans);letter-spacing:-.005em}
-.item p,.overview-inner .outcomes li{color:#B9B9B3}
-
-:root{--bg:#0B0B0B;--surface:#111;--line:#1F1F1F}
-html,body{background:#0B0B0B}
-hr,.rule{border-color:#1F1F1F}
-.side{background:#050505;border-color:#1A1A1A}
-.item .meta a{background:#111;border-color:#262626}
-.item .meta li+li a:hover{background:#1A1A1A;border-color:#444}
-
-.side nav a{font-family:"JetBrains Mono","Geist Mono",ui-monospace,monospace;font-size:.82rem;font-weight:400;color:var(--muted)}
-.side nav a:hover{color:var(--ink)}
-.side nav a[aria-current="true"]{color:var(--ink);font-weight:600}
-.side .lead.loc{font-family:"JetBrains Mono","Geist Mono",ui-monospace,monospace;font-size:.78rem}
-.side-links{border-top:1px solid #1A1A1A;padding-top:clamp(.75rem,2dvh,1.25rem)}
-
-/* ---- final: Geist everywhere, neutral colors, no cream ---- */
+/* ---- typography & warm cream palette (Geist + Geist Mono) ---- */
 :root{
   --sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --display:var(--sans);--serif:var(--sans);
+  --display:var(--sans);
+  --serif:var(--sans);
   --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --ink:#F2F2F2;--text:#BDBDBD;--muted:#8C8C8C;--accent:#F2F2F2;--line:#1F1F1F;
+  --bg:#0B0B0B;
+  --surface:#121212;
+  --line:#1F1F1F;
+  --ink:#F3E9D2;
+  --text:#E4DAC3;
+  --muted:#8C8C8C;
+  --accent:#F3E9D2;
+  --live:#7ACB8D;
+  --dev:#D8A95C;
+  color-scheme:dark;
 }
-html body{font-family:var(--sans);color:var(--text)}
-html body button,html body input,html body textarea{font-family:var(--sans)}
+html,body{background:var(--bg);color:var(--text);font-family:var(--sans)}
+hr,.rule{border-color:var(--line)}
+.side{background:#050505;border-color:#1A1A1A}
 
-/* headings: one font, no display face */
-html body .side h1,html body .home-intro h2,html body .item h3,html body .proj h3,html body .simple h1,
-html body article h1,html body article h2,html body article section h2{font-family:var(--sans);font-weight:600;letter-spacing:-.03em;color:var(--ink)}
-html body .item h3{font-size:clamp(1.75rem,2.6vw,2.1rem);line-height:1.1}
-html body .item h3 .status{font-family:var(--mono);font-weight:400;letter-spacing:0}
+/* Headings: Geist, warm cream */
+h1,h2,h3,strong,
+.side h1,.home-intro h2,.item h3,.proj h3,.simple h1,
+article h1,article h2,article section h2{
+  font-family:var(--sans);
+  font-weight:600;
+  letter-spacing:-.03em;
+  color:var(--ink);
+}
+.item h3{font-size:clamp(1.75rem,2.6vw,2.1rem);line-height:1.1}
+.item h3 .status{font-family:var(--mono);font-weight:400;letter-spacing:0}
 
-/* body copy everywhere */
-html body .item p,html body .proj p,html body article section p,html body article section li,
-html body .overview-inner .outcomes li,html body .facts dd,html body .item .meta a,html body .overview-toggle{font-family:var(--sans);letter-spacing:-.005em;color:var(--text)}
-html body .facts dd{color:var(--ink)}
-html body .item p.team{color:var(--muted)}
-html body .meta,html body .item .date,html body time,html body .dim,html body .dates{color:var(--muted)}
+/* Body copy: Geist, warm cream text */
+.item p,.proj p,article section p,article section li,
+.overview-inner p,.overview-inner li,.outcomes li{
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.7;
+  letter-spacing:-.005em;
+  color:var(--text);
+}
+.item p{max-width:38rem}
 
-/* sidebar nav + location back to the site's mono */
-html body .side nav a,html body .side .lead.loc{font-family:var(--mono);font-size:.82rem}
-html body .side nav a[aria-current="true"]{color:var(--ink);font-weight:600}
+/* Team credit under project description */
+p.team,.item p.team{
+  font-family:var(--sans);
+  font-size:.85rem;
+  line-height:1.5;
+  color:var(--muted);
+  margin-top:.9rem;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+.team-ico{flex:none;color:var(--muted)}
 
-/* neutral buttons, no cream */
-html body .item ul.meta li:first-child a{background:var(--ink);border-color:var(--ink);color:#0B0B0B;font-weight:600}
-html body .item ul.meta li:first-child a:hover{background:#fff;border-color:#fff;color:#0B0B0B}
-html body .item ul.meta li+li a{background:#111;border-color:#262626;color:var(--ink)}
-html body .item ul.meta li+li a:hover{background:#1A1A1A;border-color:#444}
-html body .item .meta a:focus-visible,html body .overview-toggle:focus-visible{outline-color:var(--ink)}
-html body .overview-inner{border-left-color:#3A3A3A}
-html body .outcomes li::marker{color:var(--muted)}
-html body a:hover{color:#fff}
-html body ::selection{background:var(--ink);color:#0B0B0B}
+/* Monospace labels and small details */
+.meta,.item .date,time,.dim,.dates,.item .dates,.status,.facts dt{
+  color:var(--muted);
+  font-family:var(--mono);
+}
+.side nav a,.side .lead.loc{font-family:var(--mono);font-size:.82rem}
+.side nav a[aria-current="true"]{color:var(--ink);font-weight:600}
+@media (min-width:56.01rem){
+  .side .lead.loc{white-space:nowrap}
+}
 
-/* ---- project descriptions in Geist Mono (same as sidebar email) ---- */
-html body .item p{font-family:var(--mono);font-size:.9rem;line-height:1.8;letter-spacing:0;max-width:40rem}
-html body .item p.team{font-size:.78rem;line-height:1.6}
+/* Project card buttons: change only background on hover, border goes transparent */
+.item .meta{display:flex;flex-wrap:wrap;align-items:center;gap:.625rem;margin-top:1.5rem;padding:0;list-style:none}
+.item .meta a,.overview-toggle{
+  font-family:var(--sans);
+  font-size:.875rem;
+  font-weight:500;
+  text-transform:capitalize;
+  display:inline-flex;
+  align-items:center;
+  padding:.65rem 1.1rem;
+  border-radius:10px;
+  background:#141414;
+  border:1px solid #262626;
+  color:var(--ink);
+  text-decoration:none;
+  transition:background .15s ease,border-color .15s ease,transform .15s ease;
+}
+.item .meta li:first-child a{
+  background:var(--ink);
+  border:1px solid var(--ink);
+  color:#14110D;
+  font-weight:600;
+}
+.item .meta li:first-child a:hover{
+  background:var(--text);
+  border-color:transparent !important;
+  color:#14110D;
+  transform:translateY(-1px);
+}
+.item .meta li+li a:hover,.overview-toggle:hover{
+  background:#202020;
+  border-color:transparent !important;
+  color:var(--ink);
+  transform:translateY(-1px);
+}
+.item .meta a:focus-visible,.overview-toggle:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:3px;
+}
 
-/* ---- team icon on the "Built with" line ---- */
-html body .item p.team{display:flex;align-items:center;gap:.6rem}
-html body .item p.team .team-ico{flex:none;color:var(--muted)}
+/* Overview panel */
+.overview-inner{border-left:2px solid #2C2C2A;padding-left:1.25rem}
+.overview-inner .outcomes{max-width:38rem;margin:1.25rem 0 0;padding-left:1.2rem}
+.overview-inner .outcomes li{
+  font-family:var(--sans);
+  font-size:.95rem;
+  line-height:1.7;
+  margin-bottom:.75rem;
+  color:var(--text);
+}
+.overview-inner .outcomes li::marker{color:var(--muted)}
+.facts dd{
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:1rem;
+  color:var(--ink);
+  margin:.25rem 0 0;
+}
+.facts dt{
+  font:500 .72rem var(--mono);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
 
-/* ---- overview in Geist Mono, pure white text ---- */
-:root{--ink:#FFFFFF;--text:#FFFFFF;--accent:#FFFFFF}
-html body .overview-inner,
-html body .overview-inner p,
-html body .overview-inner li,
-html body .overview-inner .outcomes li{font-family:var(--mono);font-size:.9rem;line-height:1.8;letter-spacing:0;color:#FFFFFF}
-html body .item p,html body .item p.team{color:#FFFFFF}
-html body .overview-inner .outcomes li::marker{color:#FFFFFF}
-html body .facts dd,html body .side h1,html body .home-intro h2,html body .item h3{color:#FFFFFF}
+/* Links and selection */
+a:hover{color:var(--ink);text-decoration-color:var(--ink)}
+::selection{background:var(--ink);color:#14110D}
 
-/* ---- cream palette restored ---- */
-:root{--ink:#FAF9F5;--text:#EADFC8;--muted:#D8CFB8;--accent:#FAF9F5}
-html body .overview-inner,
-html body .overview-inner p,
-html body .overview-inner li,
-html body .overview-inner .outcomes li,
-html body .item p,html body .item p.team{color:var(--text)}
-html body .overview-inner .outcomes li::marker{color:var(--muted)}
-html body .facts dd,html body .side h1,html body .home-intro h2,html body .item h3{color:var(--ink)}
