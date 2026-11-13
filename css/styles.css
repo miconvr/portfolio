@@ -935,3 +935,6 @@ h2 > .org-logo { margin-top: 0 }
   .projects-grid .item .meta li:first-child a::before { animation: slide-hint 2.8s linear infinite }
 }
 @keyframes slide-hint { from { background-position: 100% 0 } to { background-position: 0 0 } }
+
+/* Slider label: keep sentence case */
+.projects-grid .item .meta li:first-child a { text-transform: none; letter-spacing: .01em }
