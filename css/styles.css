@@ -114,7 +114,7 @@ article h1, article h2, article section h2 {
 .home-intro { padding: 1.25rem 0 4.5rem; border-top: 1px solid var(--line) }
 .home-kicker { margin: 0 0 1.4rem; color: var(--muted); font: 400 .75rem var(--mono); letter-spacing: .06em; text-transform: lowercase }
 .home-intro h2 { max-width: none; font-family: var(--sans); font-weight: 600; font-size: clamp(3rem, 5.4vw, 5rem); letter-spacing: -.03em; line-height: 1.02; text-wrap: balance; color: var(--ink) }
-.home-intro-copy { max-width: 34rem; margin: 1.75rem 0 0; color: var(--muted); font-family: var(--sans); font-size: 1.15rem; line-height: 1.6 }
+.home-intro-copy { max-width: 34rem; margin: 1.75rem 0 0; color: var(--muted); font-family: var(--mono); font-size: .95rem; line-height: 1.7 }
 .home h2.label { font: 400 .8rem var(--mono); text-transform: lowercase; color: var(--muted); margin: 0 0 2.5rem; padding-bottom: .9rem; border-bottom: 1px solid var(--line) }
 
 /* ---- Project cards ---- */
@@ -257,9 +257,11 @@ article h1 { font-size: 2.6rem; margin-top: 1.75rem }
 
 .summary { font-family: var(--sans); font-size: 1.3rem; color: var(--text); margin: 0; max-width: 34rem; line-height: 1.55 }
 
-article section { margin-top: 3rem; max-width: 36rem }
+article section { padding: 1.75rem 0; border-top: 1px solid var(--line); margin-top: 2rem; max-width: 36rem }
 article h2 { font-weight: 600; font-size: 1.25rem; letter-spacing: -.02em; margin-bottom: .7rem }
 article section p, article section li { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.7; color: var(--text) }
+article section p { margin: 0 0 1.25rem }
+article section p:last-child { margin-bottom: 0 }
 ul.plain { padding-left: 1.2rem }
 
 /* Project sub-pages */
