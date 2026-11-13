@@ -813,3 +813,15 @@ a:hover{color:var(--ink)}
 
 /* Team credit under a project description: smaller and muted so it reads as a credit */
 p.team{font-size:.875rem;color:var(--muted)}
+
+/* ---- project card type pass ---- */
+.item h3{font-family:"Bricolage Grotesque","Geist",system-ui,sans-serif;font-weight:700;font-size:clamp(1.9rem,3vw,2.4rem);letter-spacing:-.03em;line-height:1.05}
+.item h3 .status{font-family:var(--mono);font-weight:400;letter-spacing:0}
+.item p,.overview-inner .outcomes li{font-family:"Instrument Sans","Geist",system-ui,sans-serif;font-size:1rem;line-height:1.7;letter-spacing:-.005em;color:#B9B9B3}
+.item p{max-width:34rem}
+.item p.team{font-size:.85rem;line-height:1.5;color:var(--muted);margin-top:.9rem}
+.overview-inner .outcomes{max-width:36rem}
+.overview-inner .outcomes li{font-size:.97rem;margin-bottom:.8rem}
+.facts dt{font:500 .7rem var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.facts dd{font-family:"Instrument Sans","Geist",system-ui,sans-serif;font-weight:500;font-size:1rem;color:var(--ink);margin:.3rem 0 0}
+.item .meta a,.overview-toggle{font-family:"Instrument Sans","Geist",system-ui,sans-serif}
