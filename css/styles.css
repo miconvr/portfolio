@@ -812,3 +812,10 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side .lead.loc { flex-direction: column; align-items: center; gap: .3rem }
   .side .lead.loc .ico { width: 1.15rem; height: 1.15rem }
 }
+
+/* Mobile home cards: show the full description */
+@media (max-width: 640px) {
+  .projects-grid .item p {
+    display: block; -webkit-line-clamp: unset; line-clamp: unset; overflow: visible
+  }
+}
