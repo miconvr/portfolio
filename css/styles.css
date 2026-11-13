@@ -762,3 +762,21 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .projects-grid .item:hover .item-top .status { transform: translateY(-2px) }
   .projects-grid .item:hover .title-block { transform: translateX(3px) }
 }
+
+/* Compact home project cards */
+.projects-grid { gap: .9rem }
+.projects-grid .item { padding-block: 1.1rem; margin-bottom: .9rem }
+.projects-grid .item-head { margin: 0; gap: .75rem }
+.projects-grid .project-icon { width: 2.5rem; height: 2.5rem }
+.projects-grid .item h3 { font-size: clamp(1.4rem, 2.2vw, 1.7rem) }
+.projects-grid .item .dates { margin-top: .2rem; font-size: .75rem }
+.projects-grid .item p { margin-top: .7rem; font-size: .88rem; line-height: 1.55 }
+.projects-grid .item .meta { margin-top: .7rem }
+@media (max-width: 640px) {
+  .projects-grid .item { padding-block: .9rem }
+  .projects-grid .project-icon { width: 2.25rem; height: 2.25rem }
+  .projects-grid .item p {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+    font-size: .85rem
+  }
+}
