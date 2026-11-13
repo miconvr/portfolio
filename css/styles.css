@@ -188,20 +188,48 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
    OVERVIEW PANEL
    ================================================================ */
 .overview-toggle { cursor: pointer; gap: .5rem }
-.overview-toggle .ov-chev { flex: none; transition: transform .3s cubic-bezier(.2,.7,.2,1) }
+.overview-toggle .ov-chev { flex: none; display: inline-block; transform-origin: center; transition: transform .3s cubic-bezier(.2,.7,.2,1) }
 .overview-toggle[aria-expanded="true"] .ov-chev { transform: rotate(180deg) }
 .overview-toggle.loading { opacity: .7; pointer-events: none }
 
-.overview-panel { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .5s cubic-bezier(.2,.8,.2,1), opacity .35s ease, margin .5s cubic-bezier(.2,.8,.2,1); margin-top: 0 }
-.overview-panel.open { grid-template-rows: 1fr; opacity: 1; margin-top: 1.25rem }
+.overview-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 0;
+  transition: grid-template-rows .45s cubic-bezier(.2,.8,.2,1),
+              opacity .3s ease,
+              margin-top .45s cubic-bezier(.2,.8,.2,1),
+              visibility .45s step-end;
+}
+.overview-panel.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  margin-top: 1.25rem;
+  transition: grid-template-rows .45s cubic-bezier(.2,.8,.2,1),
+              opacity .35s ease,
+              margin-top .45s cubic-bezier(.2,.8,.2,1),
+              visibility 0s;
+}
 .overview-clip { overflow: hidden; min-height: 0 }
 .overview-inner { padding: .5rem 0 .25rem 1.25rem; border-left: 2px solid #2C2C2A }
 .overview-inner article { max-width: none; margin: 0; padding: 0 }
 .overview-inner article section:first-child { margin-top: 0 }
 
 /* Overview staggered entrance */
-.overview-inner .ov-item { opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1) }
-.overview-panel.open .ov-item { opacity: 1; transform: none; transition-delay: calc(var(--i,0) * 45ms + 120ms) }
+.overview-inner .ov-item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.overview-panel.open .ov-item {
+  opacity: 1;
+  transform: none;
+  transition: opacity .4s ease, transform .4s cubic-bezier(.2,.8,.2,1);
+  transition-delay: calc(var(--i, 0) * 40ms + 100ms);
+}
 
 /* Overview content: Geist Mono (matches sidebar links) */
 .overview-inner .facts { margin-top: 1.25rem }
