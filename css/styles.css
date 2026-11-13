@@ -734,3 +734,9 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .facts dd { margin-top: .15rem; font-size: .9rem; line-height: 1.4 }
 .outcomes { margin: .9rem 0 0; padding-left: 1.1rem; gap: .35rem }
 .outcomes li { margin: 0; font-size: .85rem; line-height: 1.55 }
+
+/* Tighter section rhythm on project pages */
+.project-title ~ section { margin-top: 1.1rem; padding: 1.1rem 0 }
+.project-title ~ section h2 { margin-bottom: .4rem }
+.project-title ~ section p { margin-bottom: .8rem }
+.project-title ~ section .meta { margin-top: .9rem }
