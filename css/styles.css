@@ -247,7 +247,8 @@ article h1, article h2, article section h2 {
 
 
 /* Team credit */
-p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: center; gap: .5rem }
+p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: flex-start; gap: .5rem }
+.team-ico { margin-top: .2rem }
 .team-ico { flex: none; color: var(--muted) }
 
 /* ---- Project buttons ---- */
