@@ -914,3 +914,13 @@ html body .overview-inner .outcomes li{font-family:var(--mono);font-size:.9rem;l
 html body .item p,html body .item p.team{color:#FFFFFF}
 html body .overview-inner .outcomes li::marker{color:#FFFFFF}
 html body .facts dd,html body .side h1,html body .home-intro h2,html body .item h3{color:#FFFFFF}
+
+/* ---- cream palette restored ---- */
+:root{--ink:#FAF9F5;--text:#EADFC8;--muted:#D8CFB8;--accent:#FAF9F5}
+html body .overview-inner,
+html body .overview-inner p,
+html body .overview-inner li,
+html body .overview-inner .outcomes li,
+html body .item p,html body .item p.team{color:var(--text)}
+html body .overview-inner .outcomes li::marker{color:var(--muted)}
+html body .facts dd,html body .side h1,html body .home-intro h2,html body .item h3{color:var(--ink)}
