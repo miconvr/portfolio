@@ -263,7 +263,8 @@ article h1, article h2, article section h2 {
   font-size: .875rem;
   font-weight: 500;
   text-transform: capitalize;
-  white-space: nowrap;
+  text-align: center;
+  overflow-wrap: anywhere;
   background: #161616;
   border: 1px solid #282828;
   color: var(--ink);
