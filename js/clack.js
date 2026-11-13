@@ -61,7 +61,7 @@
   }
   const down = () => thock(.3, 140 + Math.random() * 20, 2200 + Math.random() * 300, .11);
   const up   = () => thock(.12, 230 + Math.random() * 20, 3600 + Math.random() * 400, .04);
-  // Hover tick: deeper blip, one voice at a time (new tick cuts off the old one)
+  // Hover tick: original noise tick, one voice at a time (new tick cuts off the old one)
   let tickG = null;
   function tick() {
     if (!on || !ctx || ctx.state !== "running") return;
@@ -74,21 +74,14 @@
       } catch (e) {}
     }
     const g = ctx.createGain(); tickG = g;
-    g.gain.setValueAtTime(.0001, t);
-    g.gain.linearRampToValueAtTime(.22, t + .002);
-    g.gain.exponentialRampToValueAtTime(.0001, t + .05);
+    g.gain.setValueAtTime(.16, t);
+    g.gain.exponentialRampToValueAtTime(.0001, t + .025);
     g.connect(master);
-    const o = ctx.createOscillator();
-    o.type = "sine";
-    const f0 = 420 + Math.random() * 40;
-    o.frequency.setValueAtTime(f0, t);
-    o.frequency.exponentialRampToValueAtTime(f0 * .5, t + .05);
-    o.connect(g); o.start(t); o.stop(t + .06);
     const src = ctx.createBufferSource(); src.buffer = noise;
-    const bp = ctx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 2400; bp.Q.value = 1.5;
-    const ng = ctx.createGain(); ng.gain.value = .35;
-    src.connect(bp); bp.connect(ng); ng.connect(g);
-    src.start(t); src.stop(t + .05);
+    const f = ctx.createBiquadFilter(); f.type = "bandpass";
+    f.frequency.value = 4200 + Math.random() * 500; f.Q.value = 1.1;
+    src.connect(f); f.connect(g);
+    src.start(t); src.stop(t + .03);
   }
 
   // Browsers only allow audio after a gesture, so wake the context on the first one.
