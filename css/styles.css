@@ -801,3 +801,8 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 @media (min-width: 56.01rem) {
   .side .lead.loc { justify-content: center; text-align: center }
 }
+
+/* Phones and tablets: hide total commits note (per-repo counts are on the cards and project pages) */
+@media (max-width: 56rem) {
+  .side .side-links .commits-note { display: none }
+}
