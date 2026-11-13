@@ -59,8 +59,8 @@
     src.connect(f); f.connect(g); g.connect(master);
     src.start(t); src.stop(t + .04);
   }
-  const down = () => thock(.8, 200 + Math.random() * 30, 2600 + Math.random() * 300, .1);
-  const up   = () => thock(.3, 300 + Math.random() * 30, 4200 + Math.random() * 400, .04);
+  const down = () => thock(.3, 140 + Math.random() * 20, 2200 + Math.random() * 300, .11);
+  const up   = () => thock(.12, 230 + Math.random() * 20, 3600 + Math.random() * 400, .04);
   // Hover tick: deeper blip, one voice at a time (new tick cuts off the old one)
   let tickG = null;
   function tick() {
