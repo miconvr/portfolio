@@ -12,13 +12,13 @@ Plain HTML, CSS and vanilla JavaScript. No framework, no bundler, no `package.js
 
 | Path | Purpose |
 |---|---|
-| `index.html` | Home page with the project list (Kaltas, CivicGuard, and others) |
+| `index.html` | Home page with the two project cards (Kaltas and CivicGuard) in `.projects-grid` |
+| `projects/kaltas.html`, `projects/civicguard.html` | Project detail pages with facts, outcomes and a screenshot carousel |
 | `about/index.html`, `experience/index.html` | Sub-pages, served as `/about` and `/experience` (`cleanUrls` is on) |
 | `css/styles.css` | All styling. Dark theme only (`color-scheme: dark`), no toggle |
 | `js/home.js` | Page navigation behavior for the sidebar links |
 | `js/rail.js` | Scroll rail for the item list |
-| `js/overview.js` | Expandable "overview" panels on project items (`window.initOverview`) |
-| `js/carousel.js` | Screenshot carousels with arrow-key, button and counter support |
+| `js/carousel.js` | Screenshot carousels on the project pages, with arrow-key, button and counter support |
 | `js/been-here.js` | "been here" smiley mascot and visitor counter, calls `/api/hi` |
 | `js/commits.js` | Adds a small "(N+ commits)" note beside the github.com/miconvr sidebar link and fills any `[data-repo-commits]` tag. Fed by `/api/commits`. Caches the last response in `localStorage` (key `commits-v3`) and retries the fetch once on failure |
 | `api/hi.js` | Vercel function. `GET` reads and `POST` increments an Upstash Redis counter. Needs `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`) |
@@ -34,7 +34,7 @@ There is no build step.
 python3 -m http.server 8000        # or: npx serve   (then open http://localhost:8000)
 ```
 
-`api/hi.js` only works on Vercel (or `vercel dev`) with the Redis env vars set; without them it returns a 500 and the page hides the counter gracefully. Check a change by loading `/`, `/about` and `/experience`, at mobile width, and with reduced motion on.
+`api/hi.js` only works on Vercel (or `vercel dev`) with the Redis env vars set; without them it returns a 500 and the page hides the counter gracefully. Check a change by loading `/`, `/about`, `/experience`, `/projects/kaltas` and `/projects/civicguard`, at mobile width, and with reduced motion on.
 
 ## Design and content rules
 
@@ -42,12 +42,15 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 - Type and color: Geist for text and Geist Mono for small labels. Headings are near-white, body text is soft gray and secondary text is gray. Do not bring back the old mixed fonts.
 - Text color: primary text is a warm cream to match the yellow mascot, `--ink` `#F3E9D2` for headings and `--text` `#E4DAC3` for body and links. Secondary text stays gray (`--muted`). Do not go back to pure or cool white. This overrides the "near-white" wording above.
 - No hardcoded whites: use `var(--ink)` and `var(--text)` for light text, hovers and filled buttons. Never write `#fff` or `#FAF9F5` for text or hover states, or the cool white comes back.
-- Button hover: the project buttons (Overview, Live Site, Repository) change only their background on hover. The border goes transparent, with no outline or border highlight. Keep the `:focus-visible` outline for keyboard users.
+- Colors: use the `var(--...)` variables from `:root` in `css/styles.css` (for example `--card` and `--card-2` for project card backgrounds). Do not hardcode hex colors in new rules; add a variable if one is missing.
+- Styling: no inline `style=` attributes. Use classes (for example `.project-lede` for the project page intro paragraph).
+- Project cards: cards on the home page sit in `.projects-grid`, which uses `minmax(min(100%, 320px), 1fr)` so it never forces sideways scrolling on narrow phones. Logos have no outline or box. The card link buttons wrap on narrow screens, so do not add `white-space: nowrap` to them.
+- Button hover: the project card buttons change only their background on hover. The border goes transparent, with no outline or border highlight. Keep the `:focus-visible` outline for keyboard users.
 - Sidebar: the location line ("San Fernando City, Pampanga, Philippines") has a pin icon and stays on one line on desktop. From 56.01rem up, the base font size is 110%.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - The Experience page lists real roles. Do not remove or rewrite entries without being asked.
 - Team credit: the "Built with ..." line under a project description uses `<p class="team">` (smaller, `--muted`). Keep it visually secondary to the description.
-- Project copy: the Kaltas and CivicGuard card text and overview bullets mirror the owner's LinkedIn descriptions. Keep the facts in sync (role, stack, status) and change both together. Kaltas is live on the Chrome Web Store, so say "published", not "submitted". Do not claim a human reviews offers beyond what the overview states (automation only collects leads, and offers are reviewed manually before they are published).
+- Project copy: the Kaltas and CivicGuard card text and project page content mirror the owner's LinkedIn descriptions. Keep the facts in sync (role, stack, status) and change both together. Kaltas is live on the Chrome Web Store, so say "published", not "submitted". Do not claim a human reviews offers beyond what the Kaltas page states (automation only collects leads, and offers are reviewed manually before they are published).
 - Mascot: a flat yellow smiley (`#f7bd2e`, outline and features `#14110d`) with a visitor counter. Its smile is the name "mico", drawn as one warped outline path rather than live text, so leave that path alone unless asked. Keep it simple: no arms, no shadow, no idle floating or hover movement. The only animations are the eyes following the pointer (small range, throttled with `requestAnimationFrame`), a blink every second, and one spin-hop on click. The spin always plays in full and clicks during it are ignored, so rapid clicking never restarts it. The yellow "+1" shows only on the first tap, and the count line stays plain text. With reduced motion on, the eyes stay still and there is no blink or spin. Show it on mobile too.
 - Credit lines: under the visitor count, two small static lines in Geist Mono at low opacity ("designed and built by mico" and "inspired by drew house"), class `been-credit`. Keep them as plain text with no animation.
 - Sidebar card (desktop, 56.01rem up): a static full-height panel, flush to the top and bottom of the window with square corners and no top or bottom border (`position:sticky;top:0;height:100dvh;border-radius:0`). No inner scroll, and all content is always visible. Photo size and gaps use `clamp()` with `dvh` so they scale with the window, and the mascot block is pinned to the bottom with `margin-top:auto`. On windows shorter than 52rem it becomes static with `height:auto` and flows with the page. Do not give it a fixed pixel height or `overflow:auto`.
@@ -62,7 +65,7 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 
 ## Conventions
 
-- Match the existing code style: small IIFEs, no globals except `window.initOverview`, two-space indentation, double quotes in the newer files.
+- Match the existing code style: small IIFEs, no globals, two-space indentation, double quotes in the newer files.
 - Commit messages: Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`), lowercase, imperative, no trailing period.
 - Keep changes focused: one request is one scope. Do not rewrite unrelated sections.
 - Never commit secrets or tokens.
