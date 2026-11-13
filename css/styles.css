@@ -718,9 +718,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .item { padding-bottom: 3.5rem; margin-bottom: 2.5rem }
   .item h3 { font-size: 1.75rem }
   .item-head { gap: .85rem }
-  .item .meta { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem }
-  .item .meta li:first-child { grid-column: 1 / -1 }
-  .item .meta li a { display: flex; width: 100%; box-sizing: border-box; justify-content: center; align-items: center; text-align: center }
   .simple h1 { font-size: 2.5rem }
   article h1 { font-size: 2rem }
   .proj { grid-template-columns: 1fr; gap: 1.25rem 0 }
