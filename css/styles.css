@@ -784,3 +784,8 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 /* Commit count row in project facts */
 .facts > div:last-child { grid-column: 1 / -1 }
 .facts > div:has([data-repo-commits][hidden]) { display: none }
+
+/* Phones and tablets: no sidebar or top nav on project pages (back arrow is in the title row) */
+@media (max-width: 56rem) {
+  body:has(.project-title) .side { display: none }
+}
