@@ -1,8 +1,6 @@
 (() => {
-  const KEY = "clack-v1";
   const SEL = "a[href], button, summary, [role=button]";
   let on = true;
-  try { on = localStorage.getItem(KEY) !== "0"; } catch (e) {}
 
   let ctx = null, master = null, noise = null;
   function init() {
@@ -109,22 +107,4 @@
     down();
   }, true);
   document.addEventListener("pointerup", () => up(), true);
-
-  // Mute toggle
-  const b = document.createElement("button");
-  b.type = "button"; b.className = "clack-toggle";
-  const ICON_ON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
-  const ICON_OFF = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>';
-  function paint() {
-    b.innerHTML = on ? ICON_ON : ICON_OFF;
-    b.setAttribute("aria-label", on ? "Mute sound effects" : "Turn on sound effects");
-    b.setAttribute("aria-pressed", String(on));
-  }
-  b.addEventListener("click", () => {
-    on = !on;
-    try { localStorage.setItem(KEY, on ? "1" : "0"); } catch (e) {}
-    paint();
-  });
-  paint();
-  document.body.appendChild(b);
 })();
