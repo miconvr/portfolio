@@ -105,6 +105,7 @@
     if(!home){
       main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
       ensureCarousel();
+      if(window.initCommits)window.initCommits();
     }
     if(home){
       main.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
