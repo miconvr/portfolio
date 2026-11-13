@@ -2,7 +2,7 @@
 
 Guidance for any AI coding agent working in this repository (Codex, Copilot, Cursor, Gemini, and others). Human contributors can read it too.
 
-This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernando City, Pampanga). Live site: https://miconvr.vercel.app. Repo: `miconvr/portfolio`.
+This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernando City, Pampanga). Live site: https://miconavarro.vercel.app. Repo: `miconvr/portfolio`.
 
 ## Stack
 
@@ -54,7 +54,7 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 - Commit count: `js/commits.js` shows two things, both rounded down to 10 and hidden if the API fails. (1) A small grayed "(N+ commits)" note beside the github.com/miconvr sidebar link, the total across all years and repos on the profile. On mobile, where sidebar links are icon-only, it drops onto its own "GitHub (N+ commits)" line under the icons. (2) A tag with the GitHub logo and "N+ commits" on the date line of each project (`<span class="repo-commits" data-repo-commits="kaltas|civicguard" hidden>`). To add a project, add its repo to `PROJECTS` in `api/commits.js` and use the same `data-repo-commits` attribute.
 - Sidebar details: the contact links have no underline at rest and get one on hover and keyboard focus, along with the brighter `--ink` color. On desktop the mascot block has a 1px `#333230` hairline above it (`.side .been{border-top}`) so it reads as a footer. Keep both.
 - Sidebar description: on desktop the sidebar description (`.side .lead`, not the location line) uses the same type as the About paragraphs, Geist 1.125rem (18px) with a 1.7 line height. Keep them matched.
-- No custom domain for now; keep `miconvr.vercel.app` as the canonical URL.
+- No custom domain for now; keep `miconavarro.vercel.app` as the canonical URL.
 - The Ronda repo was deleted; do not link to it. Do not link a license for CivicGuard (it has none).
 - Keep accessibility: skip link, labelled controls, alt text on images, `aria-live` on the counter, keyboard-usable carousels, and `prefers-reduced-motion` support. Never make content depend on animation or JavaScript where it can be avoided.
 - Use `localStorage` inside try/catch, as the existing scripts do.
