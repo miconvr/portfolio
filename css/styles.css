@@ -727,10 +727,10 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .facts dd { font-size: .9rem; line-height: 1.45 }
 .outcomes { margin-top: 1rem; gap: .5rem; padding-left: 1.1rem }
 .outcomes li { font-size: .85rem; line-height: 1.6; margin-bottom: 0 }
-.more { max-width: 38rem; margin-top: .5rem }
-.more summary { display: flex; align-items: center; min-height: 2.75rem; cursor: pointer; font: 500 .8rem var(--mono); color: var(--muted); list-style: none }
-.more summary::-webkit-details-marker { display: none }
-.more summary::before { content: "+"; display: inline-block; width: 1.1rem }
-.more[open] summary::before { content: "\2212" }
-.more summary:hover { color: var(--ink) }
-.more .outcomes { margin-top: .25rem }
+
+/* Tighter overview spacing */
+.facts { grid-template-columns: repeat(2, 1fr); gap: .6rem 1.25rem; margin: 1rem 0 0; padding: .8rem 0 }
+.facts > div:last-child:nth-child(odd) { grid-column: 1 / -1 }
+.facts dd { margin-top: .15rem; font-size: .9rem; line-height: 1.4 }
+.outcomes { margin: .9rem 0 0; padding-left: 1.1rem; gap: .35rem }
+.outcomes li { margin: 0; font-size: .85rem; line-height: 1.55 }
