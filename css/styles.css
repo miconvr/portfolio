@@ -907,3 +907,31 @@ h2 > .org-logo { margin-top: 0 }
 .projects-grid .item .meta li:first-child a:hover,
 .projects-grid .item .meta li:first-child a:focus-visible { background: #0b0b0c; color: var(--ink) }
 .projects-grid .item .meta li:first-child a { width: 100%; max-width: 20rem }
+
+/* Slider v2: --x must inherit so the knob sees it; rectangular knob; slow chevron hint */
+@property --x { syntax: "<length>"; inherits: true; initial-value: 0px }
+
+.projects-grid .item .meta li:first-child a {
+  border-radius: .6rem; padding: 0 2.6rem 0 3.2rem;
+  -webkit-touch-callout: none; -webkit-user-drag: none;
+}
+.projects-grid .item .meta li:first-child a::after,
+.projects-grid .item .meta li:first-child a:hover::after,
+.projects-grid .item .meta li:first-child a:focus-visible::after {
+  top: 4px; bottom: 4px; left: 4px; width: 2.4rem; height: auto;
+  border-radius: .4rem; transform: translateX(var(--x));
+}
+.projects-grid .item .meta li:first-child a::before {
+  content: "\203A\203A\203A"; position: absolute; inset: auto; right: .9rem; top: 50%;
+  transform: translateY(-54%); font-size: 1.3rem; line-height: 1; letter-spacing: .04em;
+  pointer-events: none; transition: opacity .2s ease;
+  background: linear-gradient(90deg, #5b5b66 0%, #5b5b66 35%, var(--ink) 50%, #5b5b66 65%, #5b5b66 100%);
+  background-size: 300% 100%; background-position: 100% 0;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+.projects-grid .item .meta li:first-child a.drag::before { opacity: 0 }
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .meta li:first-child a::before { animation: slide-hint 2.8s linear infinite }
+}
+@keyframes slide-hint { from { background-position: 100% 0 } to { background-position: 0 0 } }
