@@ -136,6 +136,116 @@ article h1, article h2, article section h2 {
 .item p { font-family: var(--mono); font-size: .95rem; max-width: 38rem; margin: 1.1rem 0 0; line-height: 1.7; color: var(--text) }
 .item p + p { margin-top: 1rem }
 
+/* ---- Projects grid & cards ---- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.projects-grid .item {
+  background: #111;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.projects-grid .item-head {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.projects-grid .item h3 {
+  margin: 0;
+  font-size: clamp(1.5rem,2.5vw,2rem);
+}
+
+.projects-grid .item h3 .status {
+  background: var(--line);
+  color: var(--muted);
+  font-size: .75rem;
+  font-family: var(--mono);
+  padding: .2rem .5rem;
+  border-radius: .4rem;
+  margin-left: .5rem;
+}
+
+.projects-grid .item .dates {
+  margin-top: .4rem;
+}
+
+.projects-grid .item p {
+  padding: 0 1.5rem;
+  margin-top: .8rem;
+}
+
+.tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  padding: 0 1.5rem;
+  margin-top: .6rem;
+}
+.tech-chips span {
+  font-family: var(--mono);
+  font-size: .75rem;
+  background: var(--line);
+  color: var(--muted);
+  padding: .2rem .5rem;
+  border-radius: .4rem;
+}
+
+.projects-grid .item .meta a {
+  font-family: var(--mono);
+  font-size: .875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  background: #141414;
+  border: 1px solid #262626;
+  color: var(--ink);
+  padding: .6rem 1rem;
+  border-radius: .6rem;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.projects-grid .item .meta li:first-child a {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #14110d;
+  font-weight: 600;
+}
+.projects-grid .item .meta a:hover,
+.projects-grid .item .meta a:focus-visible {
+  background: #202020;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.filter-bar {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin: 0 1.5rem 1rem;
+}
+.filter-bar button {
+  font-family: var(--mono);
+  font-size: .85rem;
+  background: var(--line);
+  color: var(--muted);
+  border: none;
+  padding: .4rem .8rem;
+  border-radius: .4rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+.filter-bar button.active,
+.filter-bar button:hover {
+  background: var(--ink);
+  color: #14110d;
+}
+
+
 /* Team credit */
 p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: center; gap: .5rem }
 .team-ico { flex: none; color: var(--muted) }
