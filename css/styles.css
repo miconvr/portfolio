@@ -1193,3 +1193,13 @@ article h1 { margin-top: .5rem }
 @media (min-width: 30.0625rem) {
   .projects-grid .item .date-text { display: none }
 }
+
+/* Card-date styling for the date line (embossed, uppercase, monospace) */
+.projects-grid .item .meta::before {
+  text-transform: uppercase;
+  font: 600 .78rem/1 "OCR A Std", "OCR-A", "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .14em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow);
+}
