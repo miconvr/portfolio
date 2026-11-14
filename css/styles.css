@@ -1974,3 +1974,12 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .meta li+li a { transition: none }
   .projects-grid .item .meta li+li a:hover, .projects-grid .item .meta li+li a:focus-visible { transform: none }
 }
+
+/* Cards v6: big number sits higher, beside the title, clear of the description */
+.projects-grid .item::after {
+  top: 3.6rem; bottom: auto; right: 1.4rem;
+  opacity: .8; pointer-events: none;
+}
+@media (max-width: 30rem) {
+  .projects-grid .item::after { top: 3.2rem; bottom: auto }
+}
