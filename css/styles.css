@@ -1539,3 +1539,8 @@ article h1 { margin-top: .5rem }
 @media (max-width: 40rem) {
   .side .been { justify-content: center }
 }
+
+/* Phone: same gap above the page heading on Projects, About and Experience (72px) */
+@media (max-width: 30rem) {
+  .home main { padding-top: .5rem }
+}
