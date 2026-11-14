@@ -1842,3 +1842,32 @@ article h1 { margin-top: .5rem }
   .overview .facts { animation-delay: .76s }
   .overview .outcomes { animation-delay: .82s }
 }
+
+/* Receipt printed from the reader's bottom slot */
+.projects-grid .item .reader .r-slot {
+  position: absolute; left: .7rem; right: .7rem; bottom: -.2rem; height: .45rem; border-radius: .3rem; z-index: 2;
+  background: #050506; box-shadow: 0 1px 0 #2c2c33;
+}
+.projects-grid .item .reader .r-paper {
+  position: absolute; top: calc(100% - .1rem); left: .35rem; right: .35rem; overflow: hidden; z-index: 1; pointer-events: none;
+}
+.projects-grid .item .reader .r-sheet {
+  display: grid; gap: .3rem; padding: .7rem .6rem 0; text-align: center;
+  background: #f3f0e6; color: #1b1b1b; font: 500 .55rem/1.3 var(--mono); letter-spacing: .06em;
+  box-shadow: 0 10px 18px -8px rgba(0, 0, 0, .5);
+  transform: translateY(-100%); animation: r-feed .8s steps(12, end) forwards;
+}
+.projects-grid .item .reader .r-sheet b { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; overflow-wrap: anywhere }
+.projects-grid .item .reader .r-sheet em { font-style: normal; font-weight: 700; padding: .2rem 0; border-block: 1px dashed #1b1b1b66 }
+.projects-grid .item .reader .r-bars {
+  display: block; height: 1.4rem; margin: .2rem .2rem 0;
+  background: repeating-linear-gradient(90deg, #1b1b1b 0 1px, transparent 1px 3px, #1b1b1b 3px 5px, transparent 5px 6px, #1b1b1b 6px 7px, transparent 7px 10px);
+}
+.projects-grid .item .reader .r-tear {
+  display: block; height: .5rem; margin: .4rem -.6rem 0;
+  background: linear-gradient(135deg, #f3f0e6 25%, transparent 25%) -.25rem 0 / .5rem .5rem,
+              linear-gradient(225deg, #f3f0e6 25%, transparent 25%) -.25rem 0 / .5rem .5rem;
+}
+@keyframes r-feed { to { transform: none } }
+@media (prefers-reduced-motion: reduce) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
+@media (max-width: 39.99rem), (pointer: coarse) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
