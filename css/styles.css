@@ -1921,7 +1921,6 @@ article h1 { margin-top: .5rem }
 /* Cards v2: card number line, cardholder name, network mark, per-project accent */
 .projects-grid .item { --accent: #e2763f }
 .projects-grid .item[data-index="01"] { --accent: #c2284a }
-.projects-grid .item::after { content: none }
 
 .projects-grid .item .cardno {
   margin: .7rem 0 0; font: 500 .8rem/1 var(--mono); letter-spacing: .16em;
