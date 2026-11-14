@@ -99,7 +99,7 @@
   document.addEventListener("reader-approved", approve);
 
   // Browsers only allow audio after a gesture, so wake the context on the first one.
-  ["pointerdown", "keydown", "touchstart"].forEach(n =>
+  ["pointerup", "keydown", "touchend", "click"].forEach(n =>
     window.addEventListener(n, init, { passive: true }));
 
   let lastHover = 0, lastEl = null;
