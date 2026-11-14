@@ -1504,8 +1504,7 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .chip-btn { position: relative }
 }
 @media (prefers-reduced-motion: no-preference) and ((max-width: 39.99rem) or (pointer: coarse)) {
-  .projects-grid .item .chip-btn::after { animation: chip-ring 6s ease-out 1.5s infinite }
-  .projects-grid .item:nth-child(2) .chip-btn::after { animation-delay: 4.5s }
+  .projects-grid .item .chip-btn::after { animation: chip-ring 6s ease-out var(--idle, 1.5s) infinite }
   .projects-grid .item.dip .chip-btn::after { animation: none }
 }
 
@@ -1557,20 +1556,15 @@ article h1 { margin-top: .5rem }
 @media (min-width: 40.01rem) { .side h1 { font-size: 2.4rem } }
 @media (max-width: 40rem) { .side h1 { font-size: 2rem } }
 
-/* Idle float: the project cards drift up and down on their own. --float feeds the translate property,
-   so it adds to the drag slide and never touches transform (hover tilt). Paused on hover and while dragging. */
-@property --float { syntax: "<length>"; inherits: false; initial-value: 0px }
-@keyframes card-float { 0%, 100% { --float: 0px } 50% { --float: -6px } }
-.projects-grid .item { translate: 0 var(--float) }
-.projects-grid .item.pulling,
-.projects-grid .item.pulling:hover { translate: calc(var(--pull, 0) * var(--reader-travel)) var(--float) }
-.projects-grid .item.spring { translate: 0 var(--float) }
+/* Idle sheen: a faint diagonal glint sweeps across every project card. The .sheen layer and the random
+   --idle offset (negative seconds, so cards never sync) are added by js/slide-open.js, so it works for any number of cards. */
+.projects-grid .item .sheen { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; z-index: 1 }
+.projects-grid .item .sheen::before {
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 40%;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--ink) 9%, transparent), transparent);
+  transform: skewX(-18deg); translate: -150% 0;
+}
 @media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item { animation: card-float 7s ease-in-out infinite }
-  .projects-grid .item:nth-child(2) { animation-delay: -3.5s }
-  .projects-grid .item:hover, .projects-grid .item.pulling, .projects-grid .item.dip { animation-play-state: paused }
+  .projects-grid .item .sheen::before { animation: card-sheen 9s ease-in-out var(--idle, 0s) infinite }
 }
-@media (prefers-reduced-motion: reduce) {
-  .projects-grid .item, .projects-grid .item.spring { translate: none }
-  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { translate: none }
-}
+@keyframes card-sheen { 0% { translate: -150% 0 } 30%, 100% { translate: 400% 0 } }
