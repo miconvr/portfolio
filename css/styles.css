@@ -1552,3 +1552,9 @@ article h1 { margin-top: .5rem }
   }
   .home main .home-intro h2, .home main h1.page-title { margin-top: 2rem }
 }
+
+/* Sidebar name: static warp, no hover motion */
+.side h1, .side h1:hover {
+  transform: perspective(500px) rotateX(16deg) scaleY(1.08) skewX(-3deg);
+  transition: none;
+}
