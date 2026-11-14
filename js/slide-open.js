@@ -49,6 +49,29 @@
     }
   }
 
+  function printReceipt(c) {
+    const r = c.querySelector(".reader");
+    if (!r || r.querySelector(".r-paper")) return false;
+    const mk = (tag, cls, txt) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (txt) n.textContent = txt;
+      return n;
+    };
+    const name = ((c.querySelector("h3") || {}).textContent || "Project").trim();
+    const num = (c.textContent.match(/\b0\d\b/) || [""])[0];
+    const date = new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
+    const wrap = mk("div", "r-paper");
+    wrap.setAttribute("aria-hidden", "true");
+    const sheet = mk("div", "r-sheet");
+    sheet.append(mk("b", "", name), mk("span", "", num ? "No. " + num : "Project"),
+                 mk("em", "", "APPROVED"), mk("span", "", date), mk("i", "r-bars"), mk("i", "r-tear"));
+    wrap.appendChild(sheet);
+    r.append(mk("span", "r-slot"), wrap);
+    document.dispatchEvent(new CustomEvent("reader-receipt"));
+    return true;
+  }
+
   function release(c, l) {
     l.classList.remove("drag");
     c.classList.remove("pulling");
@@ -96,10 +119,11 @@
       busy = true;
       l.classList.remove("drag");
       c.style.setProperty("--pull", "1");
+      const receipt = !still() && printReceipt(c);
       setTimeout(() => {
         l.click();
         setTimeout(() => { busy = false; release(c, l); }, 500);
-      }, still() ? 0 : 260);
+      }, still() ? 0 : (receipt ? 1100 : 260));
     } else if (was) {
       release(c, l);
     }
