@@ -886,30 +886,16 @@ h2 > .org-logo { margin-top: 0 }
 @media (prefers-reduced-motion: reduce) { .been .body { animation: none !important } }
 
 /* View project: black slide-to-open button (driven by js/slide-open.js) */
-@property --x { syntax: "<length>"; inherits: false; initial-value: 0px }
 .projects-grid .item .meta li:first-child a {
-  --x: 0px;
   display: inline-flex; align-items: center; justify-content: center;
   position: relative; min-width: 11.5rem; height: 2.6rem; padding: 0 1.1rem 0 3rem;
   background: #0b0b0c; color: var(--ink); border: 1px solid #3A3A44; border-radius: 999px;
   text-decoration: none; touch-action: pan-y; user-select: none; -webkit-user-select: none;
-  transition: --x .35s cubic-bezier(.2,.8,.2,1), border-color .2s ease;
+  transition: border-color .2s ease;
 }
 .projects-grid .item .meta li:first-child a.drag { transition: none }
 .projects-grid .item .meta li:first-child a:hover { border-color: var(--muted); color: var(--ink) }
 .projects-grid .item .meta li:first-child a:active { transform: none }
-.projects-grid .item .meta li:first-child a::after,
-.projects-grid .item .meta li:first-child a:hover::after,
-.projects-grid .item .meta li:first-child a:focus-visible::after {
-  content: "\2192"; position: absolute; left: 4px; top: 4px; margin: 0;
-  width: 2rem; height: 2rem; display: grid; place-items: center;
-  background: var(--ink); color: #0b0b0c; border-radius: 50%; font-size: 1rem; line-height: 1;
-  transform: translateX(var(--x)); transition: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .meta li:first-child a.nudge { animation: slide-nudge .6s ease-in-out }
-}
-@keyframes slide-nudge { 0%, 100% { --x: 0px } 40% { --x: 16px } 65% { --x: 6px } }
 
 /* Slider: stay black in every state, and cap the track width on wide cards */
 .projects-grid .item .meta li:first-child a,
@@ -917,18 +903,10 @@ h2 > .org-logo { margin-top: 0 }
 .projects-grid .item .meta li:first-child a:focus-visible { background: #0b0b0c; color: var(--ink) }
 .projects-grid .item .meta li:first-child a { width: 100%; max-width: 20rem }
 
-/* Slider v2: --x must inherit so the knob sees it; rectangular knob; slow chevron hint */
-@property --x { syntax: "<length>"; inherits: true; initial-value: 0px }
-
+/* Chevron hint on the stripe (slow shimmer toward the reader) */
 .projects-grid .item .meta li:first-child a {
   border-radius: .6rem; padding: 0 2.6rem 0 3.2rem;
   -webkit-touch-callout: none; -webkit-user-drag: none;
-}
-.projects-grid .item .meta li:first-child a::after,
-.projects-grid .item .meta li:first-child a:hover::after,
-.projects-grid .item .meta li:first-child a:focus-visible::after {
-  top: 4px; bottom: 4px; left: 4px; width: 2.4rem; height: auto;
-  border-radius: .4rem; transform: translateX(var(--x));
 }
 .projects-grid .item .meta li:first-child a::before {
   content: "\203A\203A\203A"; position: absolute; inset: auto; right: .9rem; top: 50%;
