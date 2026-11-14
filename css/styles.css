@@ -2563,3 +2563,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .reader.ready::before {
   box-shadow: inset 0 0 6px #000, 0 0 0 1px #2a2a30;
 }
+
+/* Machine v5c: no glow or flash on the keypad; the dots still light up with the pull */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader.ready:not(.thanks) .r-keys::after { animation: none }
+}
+.projects-grid .item .r-keys::after { filter: none }
