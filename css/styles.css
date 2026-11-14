@@ -48,7 +48,6 @@ img { max-width: 100% }
 .skip:focus { top: 1rem }
 
 /* ---- Utility ---- */
-.dim { color: var(--muted) }
 button.theme { display: none }
 .ico { width: 1em; height: 1em; vertical-align: -.125em; margin-right: .4em; fill: currentColor }
 
@@ -114,8 +113,13 @@ button.theme { display: none }
 h1, h2, h3 { font-family: var(--sans); color: var(--ink); margin: 0 }
 
 /* Headings: Geist 600, warm cream */
-.side h1, .home-intro h2, .item h3, .proj h3, .simple h1,
-article h1, article h2, article section h2 {
+.side h1,
+.home-intro h2,
+.item h3,
+.proj h3,
+article h1,
+article h2,
+article section h2 {
   font-family: var(--sans);
   font-weight: 600;
   letter-spacing: -.03em;
@@ -127,7 +131,6 @@ article h1, article h2, article section h2 {
    ================================================================ */
 .home main { padding: 4.5rem 0 2rem }
 .home-intro { padding: 1.25rem 0 3.25rem; border-top: 1px solid var(--line) }
-.home-kicker { margin: 0 0 1.4rem; color: var(--muted); font: 400 .75rem var(--mono); letter-spacing: .06em; text-transform: lowercase }
 .home-intro h2 { max-width: none; font-family: var(--sans); font-weight: 600; font-size: clamp(3rem, 5.4vw, 5rem); letter-spacing: -.03em; line-height: 1.02; text-wrap: balance; color: var(--ink); margin: 0 }
 
 /* ---- Project cards ---- */
@@ -311,29 +314,6 @@ article h1, article h2, article section h2 {
   outline-offset: 3px;
 }
 
-.filter-bar {
-  display: flex;
-  gap: .5rem;
-  flex-wrap: wrap;
-  margin: 0 1.5rem 1rem;
-}
-.filter-bar button {
-  font-family: var(--mono);
-  font-size: .85rem;
-  background: var(--line);
-  color: var(--muted);
-  border: none;
-  padding: .4rem .8rem;
-  border-radius: .4rem;
-  cursor: pointer;
-  transition: background .15s;
-}
-.filter-bar button.active,
-.filter-bar button:hover {
-  background: var(--ink);
-  color: var(--on-ink);
-}
-
 
 /* Team credit */
 p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: flex-start; gap: .5rem }
@@ -356,8 +336,6 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
 .slide img { width: 100%; height: 100% }
 .slide img.contain { object-fit: contain; object-position: center }
 .slide video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; background: #111 }
-.slide iframe.kaltas-yt { display: block; width: 100%; height: 100%; border: 0; background: var(--card); pointer-events: none }
-.slide a.slide-link { display: block; width: 100%; height: 100% }
 .car-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 2rem; height: 2rem; padding: 0; border: 1px solid #3A3A44; border-radius: 50%; background: rgba(12,12,15,.72); color: var(--ink); cursor: pointer; backdrop-filter: blur(6px); transition: background .2s ease, border-color .2s ease, transform .15s ease }
 .car-btn:hover { background: rgba(12,12,15,.92); border-color: var(--ink) }
 .car-btn:active { transform: translateY(-50%) scale(.94) }
@@ -384,12 +362,8 @@ header.site { display: flex; justify-content: flex-start; padding: 1.75rem 0 0 }
 nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; list-style: none; margin: 0; padding: 0 }
 nav a { font: 400 .8rem var(--mono); text-transform: lowercase; color: var(--muted); text-decoration: none; padding: .3rem 0 }
 nav a:hover, nav a[aria-current="page"] { color: var(--ink) }
-
-.simple h1, article h1 { font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05 }
-.simple h1 { font-size: 3.1rem; margin: 4rem 0 1rem }
+article h1 { font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05 }
 article h1 { font-size: 2.6rem; margin-top: 1.75rem }
-.simple .lead { color: var(--muted); margin: 0 }
-.simple h2 { font: 400 .8rem var(--mono); text-transform: lowercase; color: var(--muted); margin: 5rem 0 0; padding-bottom: .9rem; border-bottom: 1px solid var(--line) }
 
 .summary { font-family: var(--sans); font-size: 1.3rem; color: var(--text); margin: 0; max-width: 34rem; line-height: 1.55 }
 
@@ -672,7 +646,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .item { padding-bottom: 3.5rem; margin-bottom: 2.5rem }
   .item h3 { font-size: 1.75rem }
   .item-head { gap: .85rem }
-  .simple h1 { font-size: 2.5rem }
   article h1 { font-size: 2rem }
   .proj { grid-template-columns: 1fr; gap: 1.25rem 0 }
   .meta, .links { font-size: .875rem; gap: .5rem 1.25rem }
@@ -1219,8 +1192,6 @@ article h1 { margin-top: .5rem }
   filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .45));
   transform-origin: 50% 100%;
 }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-}
 
 /* Sidebar name: flat cream fill, no gradient (keeps the hover warp) */
 .side h1 {
@@ -1309,14 +1280,9 @@ article h1 { margin-top: .5rem }
   transform-origin: 50% 100%;
   animation: vt-recede .45s cubic-bezier(.4, 0, .2, 1) both;
 }
-::view-transition-new(page) { animation: vt-rise .5s .15s cubic-bezier(.2, .8, .2, 1) both }
 @keyframes vt-recede {
   from { transform: perspective(900px) rotateX(0) scale(1); filter: brightness(1); opacity: 1 }
   to { transform: perspective(900px) translateZ(-260px) rotateX(32deg) scale(.86); filter: brightness(.3); opacity: 0 }
-}
-@keyframes vt-rise {
-  from { transform: translateY(36px) scale(.97); opacity: 0 }
-  to { transform: none; opacity: 1 }
 }
 @media (prefers-reduced-motion: reduce) {
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; filter: none }
@@ -1632,9 +1598,6 @@ article h1 { margin-top: .5rem }
   }
   .overview:hover::after { opacity: 1 }
 }
-@media (prefers-reduced-motion: no-preference) {
-  }
-@media (prefers-reduced-motion: reduce) {  }
 
 /* Overview: compact back button, top right */
 .overview .back-top {
@@ -1859,10 +1822,6 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item .reader .r-sheet b { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; overflow-wrap: anywhere }
 .projects-grid .item .reader .r-sheet em { font-style: normal; font-weight: 700; padding: .2rem 0; border-block: 1px dashed #1b1b1b66 }
-.projects-grid .item .reader .r-bars {
-  display: block; height: 1.4rem; margin: .2rem .2rem 0;
-  background: repeating-linear-gradient(90deg, #1b1b1b 0 1px, transparent 1px 3px, #1b1b1b 3px 5px, transparent 5px 6px, #1b1b1b 6px 7px, transparent 7px 10px);
-}
 .projects-grid .item .reader .r-tear {
   display: block; height: .5rem; margin: .4rem -.6rem 0;
   background: linear-gradient(135deg, #f3f0e6 25%, transparent 25%) -.25rem 0 / .5rem .5rem,
