@@ -1228,3 +1228,10 @@ article h1 { margin-top: .5rem }
 @media (max-width: 30rem) {
   .home-intro h2 { font-size: 3.1rem }
 }
+
+/* Home heading: looser serif, italic muted second line */
+.home-intro h2 { letter-spacing: 0; line-height: 1.04 }
+.home-intro h2 em { display: block; font-style: italic; color: var(--muted) }
+@media (min-width: 30.0625rem) {
+  .home-intro h2 { font-size: clamp(2.6rem, min(5vw, 7.5dvh), 4.2rem) }
+}
