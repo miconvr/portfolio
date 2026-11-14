@@ -2468,3 +2468,13 @@ html.vt-exit::view-transition-old(page) {
   z-index: 2; transform-origin: 50% 0;
   animation: vt-exit .75s both;
 }
+
+/* Overview exit v9: the page rolls up from the bottom until it is gone, header last. No strip move, no fade. Replaces v8. */
+@keyframes vt-exit {
+  from { clip-path: inset(0 0 0 0) }
+  to { clip-path: inset(0 0 100% 0) }
+}
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 50% 0;
+  animation: vt-exit .6s cubic-bezier(.45, 0, .55, 1) both;
+}
