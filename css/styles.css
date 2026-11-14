@@ -2457,3 +2457,14 @@ html.vt-exit::view-transition-old(page) {
   z-index: 2; transform-origin: 50% 50%;
   animation: vt-exit .5s cubic-bezier(.5, 0, .75, 0) both;
 }
+
+/* Overview exit v8: receipt retracts into the machine. The page rolls up to the header strip, then the strip leaves through the top. */
+@keyframes vt-exit {
+  0% { clip-path: inset(0 0 0 0); transform: none; animation-timing-function: cubic-bezier(.4, 0, .2, 1) }
+  62% { clip-path: inset(0 0 calc(100% - 14rem) 0); transform: none; animation-timing-function: cubic-bezier(.5, 0, .75, 0) }
+  100% { clip-path: inset(0 0 calc(100% - 14rem) 0); transform: translateY(-15rem) }
+}
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 50% 0;
+  animation: vt-exit .75s both;
+}
