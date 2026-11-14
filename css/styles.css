@@ -1983,3 +1983,22 @@ article h1 { margin-top: .5rem }
 @media (max-width: 30rem) {
   .projects-grid .item::after { top: 3.2rem; bottom: auto }
 }
+
+/* Cards v7: dates first, then plain text links, no pills */
+.projects-grid .item .meta { gap: .45rem 1.1rem; margin: .9rem 0 0 }
+.projects-grid .item .meta::before { order: 0; margin: 0 0 .1rem }
+.projects-grid .item .meta li+li { order: 1 }
+.projects-grid .item .meta li:first-child { order: 4 }
+.projects-grid .item .meta li+li a {
+  display: inline-flex; align-items: center; gap: .4rem; width: auto;
+  padding: 0; border: 0; border-radius: 0; background: none;
+  font: 400 .75rem/1.2 var(--mono);
+  color: color-mix(in srgb, var(--ink) 85%, transparent);
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  background: none; border: 0; transform: none; color: var(--ink);
+  text-decoration-color: color-mix(in srgb, var(--ink) 60%, transparent);
+}
