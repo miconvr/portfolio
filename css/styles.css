@@ -1939,10 +1939,15 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .net {
   flex: none; fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; opacity: .7;
 }
-@media (hover: hover) and (pointer: fine) {
-  .projects-grid .item:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)) }
-}
 @media (max-width: 30rem) {
   .projects-grid .item .cardno { letter-spacing: .12em }
   .projects-grid .item .meta li.holder { padding-right: 0 }
+}
+
+/* Cards v3: neutral cream instead of per-project colors */
+.projects-grid .item, .projects-grid .item[data-index="01"] { --accent: var(--ink) }
+.projects-grid .item .net { stroke: var(--ink); opacity: .45 }
+.projects-grid .item .hname {
+  text-transform: uppercase; font-size: .65rem; letter-spacing: .18em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
 }
