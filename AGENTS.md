@@ -96,3 +96,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - Favicon: `images/favicon.svg` (flat yellow smiley without the "mico" smile path). Every page's `<head>` uses `<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">`. Do not go back to the inline data URI, and add the tag to every new page.
 - 404 page: `404.html` in the repo root, styled by the `.nf` rules at the end of `css/styles.css` (`.nf`, `.nf-icon`, `.nf-kicker`, `.nf-text`, `.nf-back`). It uses absolute asset paths, loads only `clack.js`, and has `noindex`. Vercel serves it for unknown URLs.
 - The FlyRank wordmark on Experience is self-hosted at `images/flyrank-wordmark.svg`. Do not hot-link internship.flyrank.ai.
+- Every page has its own `<meta name="description">` and `og:description`. When page content changes, update both, and keep them under about 160 characters.
