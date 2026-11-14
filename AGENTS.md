@@ -97,3 +97,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - 404 page: `404.html` in the repo root, styled by the `.nf` rules at the end of `css/styles.css` (`.nf`, `.nf-icon`, `.nf-kicker`, `.nf-text`, `.nf-back`). It uses absolute asset paths, loads only `clack.js`, and has `noindex`. Vercel serves it for unknown URLs.
 - The FlyRank wordmark on Experience is self-hosted at `images/flyrank-wordmark.svg`. Do not hot-link internship.flyrank.ai.
 - Every page has its own `<meta name="description">` and `og:description`. When page content changes, update both, and keep them under about 160 characters.
+- Every page has `og:url` and `<link rel="canonical">` pointing at its clean URL on `https://miconavarro.vercel.app` (no `.html`, no trailing slash except the home page). A new page needs both, and its URL goes in `sitemap.xml`.
