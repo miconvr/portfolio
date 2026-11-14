@@ -125,8 +125,7 @@
     if(!ok){applyPage(data,path,mode);return;}
     main.style.viewTransitionName='page';
     if(!card)document.documentElement.classList.add("vt-leave");
-    var t=document.startViewTransition(function(){applyPage(data,path,mode);});
-    if(leaving&&!card&&path==="/")t.updateCallbackDone.then(function(){setTimeout(function(){if(window.retractReceipt)window.retractReceipt(from);},150);});
+    var t=document.startViewTransition(function(){applyPage(data,path,mode);if(leaving&&!card&&path==="/"&&window.retractReceipt)window.retractReceipt(from);});
     t.finished.finally(function(){main.style.viewTransitionName="";document.documentElement.classList.remove("vt-leave");});
   }
 

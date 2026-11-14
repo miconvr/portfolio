@@ -70,17 +70,22 @@
     return true;
   }
 
-  // Leaving an overview: rebuild the reader on the card you came from, then feed the receipt back into the slot.
+  // Leaving an overview: the card is already pulled in with the reader and receipt out, then the receipt feeds back and the card springs free.
   window.retractReceipt = function (path) {
     if (!desktop() || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const want = path.replace(/\/+$/, "");
     const a = Array.from(document.querySelectorAll(".projects-grid .item a")).find(x => (x.getAttribute("href") || "").replace(/\/+$/, "") === want);
     const c = a && a.closest(".projects-grid .item");
-    if (!c || c.querySelector(".r-paper")) return;
+    if (!c || c.querySelector(".reader")) return;
     document.addEventListener("reader-receipt", e => e.stopImmediatePropagation(), { capture: true, once: true });
-    showReader(c);
-    const rd = c.querySelector(".reader");
+    const rd = document.createElement("div");
+    rd.className = "reader in ready";
+    rd.setAttribute("aria-hidden", "true");
     rd.style.transition = "none";
+    rd.innerHTML = '<span class="r-screen"></span><span class="r-keys"></span>';
+    c.classList.add("pulling");
+    c.style.setProperty("--pull", "1");
+    c.appendChild(rd);
     if (!printReceipt(c)) return;
     const s = c.querySelector(".r-sheet");
     if (!s) return;
@@ -89,7 +94,13 @@
     setTimeout(() => {
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
-      an.onfinish = () => hideReader(c);
+      an.onfinish = () => {
+        c.classList.remove("pulling");
+        c.classList.add("spring");
+        c.style.setProperty("--pull", "0");
+        hideReader(c);
+        setTimeout(() => c.classList.remove("spring"), 650);
+      };
     }, 450);
   };
 
