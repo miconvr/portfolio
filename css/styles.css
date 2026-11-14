@@ -1871,3 +1871,36 @@ article h1 { margin-top: .5rem }
 @keyframes r-feed { to { transform: none } }
 @media (prefers-reduced-motion: reduce) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
 @media (max-width: 39.99rem), (pointer: coarse) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
+
+/* Receipt v2: feeds out of the reader's right edge, smiley instead of a date */
+.projects-grid .item .reader .r-slot {
+  left: auto; right: -.2rem; top: 1rem; bottom: 1rem; width: .45rem; height: auto;
+}
+.projects-grid .item .reader .r-paper {
+  top: 1rem; bottom: 1rem; left: calc(100% - .1rem); right: auto; width: 6.5rem;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .45));
+}
+.projects-grid .item .reader .r-sheet {
+  position: relative; height: 100%; align-content: center; gap: .55rem;
+  padding: .7rem .95rem .7rem .6rem; box-shadow: none;
+  background: linear-gradient(#f3f0e6, #f3f0e6) 0 0 / calc(100% - .5rem) 100% no-repeat;
+  transform: translateX(-100%); animation: r-feed-x .8s steps(12, end) forwards;
+}
+.projects-grid .item .reader .r-tear {
+  position: absolute; top: 0; bottom: 0; right: 0; width: .5rem; height: auto; margin: 0;
+  background:
+    linear-gradient(135deg, #f3f0e6 25%, transparent 25%) 0 -.25rem / .5rem .5rem,
+    linear-gradient(45deg, #f3f0e6 25%, transparent 25%) 0 -.25rem / .5rem .5rem;
+}
+.projects-grid .item .reader .r-smile {
+  display: block; position: relative; width: 2.1rem; height: 2.1rem; margin: .1rem auto;
+  border: 2px solid #1b1b1b; border-radius: 50%;
+  background:
+    radial-gradient(circle, #1b1b1b 0 .09rem, transparent .1rem) .5rem .55rem / .3rem .3rem no-repeat,
+    radial-gradient(circle, #1b1b1b 0 .09rem, transparent .1rem) 1.05rem .55rem / .3rem .3rem no-repeat;
+}
+.projects-grid .item .reader .r-smile::after {
+  content: ""; position: absolute; left: 50%; top: 52%; width: 1.1rem; height: .55rem; translate: -50% 0;
+  border: 2px solid #1b1b1b; border-top: 0; border-radius: 0 0 1rem 1rem;
+}
+@keyframes r-feed-x { to { transform: none } }
