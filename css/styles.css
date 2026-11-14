@@ -2350,3 +2350,6 @@ article h1 { margin-top: .5rem }
     0 2px 0 #0e0e11,
     0 5px 8px -4px rgba(0, 0, 0, .7);
 }
+
+/* Projects layout v1: tighter shell so the card + reader slot sit closer to centered */
+.home .shell:has(.projects-grid) { max-width: 64rem }
