@@ -2389,3 +2389,6 @@ article h1 { margin-top: .5rem }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(side) { animation: none }
 }
+
+/* Leaving an overview: no page animation, the sidebar still glides */
+html.vt-leave::view-transition-old(page), html.vt-leave::view-transition-new(page) { animation: none }
