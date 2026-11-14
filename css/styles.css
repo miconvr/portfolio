@@ -1207,3 +1207,7 @@ article h1 { margin-top: .5rem }
 /* Card date line: month - present (no year) */
 .projects-grid .item[data-index="02"] .meta::before { content: "NOV - PRESENT" }
 .projects-grid .item[data-index="01"] .meta::before { content: "SEP - PRESENT" }
+
+/* Card date line: full month, zeros in place of the letter O */
+.projects-grid .item[data-index="02"] .meta::before { content: "N0VEMBER T0 PRESENT 2026" }
+.projects-grid .item[data-index="01"] .meta::before { content: "SEPTEMBER T0 PRESENT 2026" }
