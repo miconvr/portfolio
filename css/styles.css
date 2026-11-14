@@ -1917,3 +1917,32 @@ article h1 { margin-top: .5rem }
 
 /* Sidebar location line: cream to match */
 .side .loc, .side .loc span { color: color-mix(in srgb, var(--ink) 85%, transparent) }
+
+/* Cards v2: card number line, cardholder name, network mark, per-project accent */
+.projects-grid .item { --accent: #e2763f }
+.projects-grid .item[data-index="01"] { --accent: #c2284a }
+.projects-grid .item::after { content: none }
+
+.projects-grid .item .cardno {
+  margin: .7rem 0 0; font: 500 .8rem/1 var(--mono); letter-spacing: .16em;
+  color: color-mix(in srgb, var(--accent) 38%, transparent);
+  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 10%, transparent), 0 1px 0 var(--shadow);
+}
+.projects-grid .item .meta li.holder {
+  order: 1; flex: 0 0 100%; display: flex; align-items: center; justify-content: space-between;
+  padding-right: 3.6rem; margin-top: .15rem;
+}
+.projects-grid .item .hname {
+  font: 500 .6rem/1 var(--mono); letter-spacing: .16em; white-space: nowrap;
+  color: color-mix(in srgb, var(--ink) 40%, transparent);
+}
+.projects-grid .item .net {
+  flex: none; fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; opacity: .7;
+}
+@media (hover: hover) and (pointer: fine) {
+  .projects-grid .item:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)) }
+}
+@media (max-width: 30rem) {
+  .projects-grid .item .cardno { letter-spacing: .12em }
+  .projects-grid .item .meta li.holder { padding-right: 0 }
+}
