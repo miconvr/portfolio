@@ -91,3 +91,8 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - The sound mute button is removed. `clack.js` always plays.
 - Project pages: `.home main:has(> article)` has less top padding on phones, and `article h1` has a small top margin, to remove the big gap above the title.
 - The `.cs-key` buttons are styled as cream mechanical keycaps (side wall, dished top face via `::before`, highlight via `::after`). The left legend is brown and the right is terracotta. The pressed state moves the key down 7px and collapses the base shadow. The `.car-slider` bottom padding (12px) leaves room for that travel, so keep the two in sync.
+
+## Update: favicon, 404, share previews
+- Favicon: `images/favicon.svg` (flat yellow smiley without the "mico" smile path). Every page's `<head>` uses `<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">`. Do not go back to the inline data URI, and add the tag to every new page.
+- 404 page: `404.html` in the repo root, styled by the `.nf` rules at the end of `css/styles.css` (`.nf`, `.nf-icon`, `.nf-kicker`, `.nf-text`, `.nf-back`). It uses absolute asset paths, loads only `clack.js`, and has `noindex`. Vercel serves it for unknown URLs.
+- The FlyRank wordmark on Experience is self-hosted at `images/flyrank-wordmark.svg`. Do not hot-link internship.flyrank.ai.
