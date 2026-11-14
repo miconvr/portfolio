@@ -2078,3 +2078,20 @@ article h1 { margin-top: .5rem }
 
 /* Gold chip: line up with icon row (desktop) */
 .projects-grid .item .meta::after { bottom: calc(3.2rem + 12px) }
+
+/* Cards v11: inlaid chips (flush with the card, shallow recess, no dark hole) */
+.projects-grid .item .meta li+li a {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, #000 5%, var(--card)),
+    color-mix(in srgb, #fff 2%, var(--card)));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ink) 7%, transparent),
+    inset 0 1px 2px rgba(0, 0, 0, .22),
+    0 1px 0 color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, #000 2%, var(--card)),
+    color-mix(in srgb, #fff 5%, var(--card)));
+}
