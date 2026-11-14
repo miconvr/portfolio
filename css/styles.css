@@ -1907,3 +1907,10 @@ article h1 { margin-top: .5rem }
     linear-gradient(135deg, #f3f0e6 25%, transparent 25%) 0 -.1rem / .2rem .2rem,
     linear-gradient(45deg, #f3f0e6 25%, transparent 25%) 0 -.1rem / .2rem .2rem;
 }
+
+/* Sidebar footer: cream to match the rest of the sidebar */
+.been-text, .been-line { color: var(--ink) }
+.been-count { color: color-mix(in srgb, var(--ink) 80%, transparent) }
+
+/* Commits pill inside the overview Activity tile */
+.overview .facts dd .repo-commits { margin: .1rem 0 0 }
