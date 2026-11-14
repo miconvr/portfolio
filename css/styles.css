@@ -2417,3 +2417,10 @@ html.vt-exit::view-transition-old(page) {
   animation: vt-exit .4s cubic-bezier(.5, 0, .75, 0) both;
 }
 html.vt-exit::view-transition-new(page) { z-index: 1; animation: none }
+
+/* Overview exit v4: slide down and off the screen, no fade (replaces the v3 sideways slide) */
+@keyframes vt-exit { to { transform: translateY(100vh) } }
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 50% 100%;
+  animation: vt-exit .4s cubic-bezier(.5, 0, .75, 0) both;
+}
