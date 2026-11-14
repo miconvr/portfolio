@@ -198,3 +198,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - Cards v9: the icon links are small embedded chips (2.2rem rounded squares): recessed dark face, inner top shadow, faint bottom lip highlight, icon with a tiny drop shadow. Hover lifts 1px with a soft outer shadow, active sinks back in. Overrides the v8 icon-link rules.
 - Cards v10: icon-link chips use a lighter face (16% to 6% black over `--card`), a softer inner shadow, and 1.2rem icons.
 - Gold chip alignment: on touch or 30.06-39.99rem widths, `.projects-grid .item .chip-btn` sits at `bottom: calc(3.2rem + 11px)` to line up with the icon row. Desktop uses `.item-top::after` in the header row and is unaffected.
+- Gold chip (desktop, fine pointer): drawn by `.projects-grid .item .meta::after`, raised to `bottom: calc(3.2rem + 12px)` so it centers on the icon chip row. This supersedes the earlier note about `.item-top::after`, which is not the visible desktop chip.
