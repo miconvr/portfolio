@@ -2144,3 +2144,10 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .meta li+li a .ico {
   display: block; flex: none; width: 1.05rem; height: 1.05rem; margin: 0; vertical-align: middle;
 }
+
+/* Cards v16: smaller icon + label links, "repository" label, no arrows */
+.projects-grid .item .meta li+li a::before,
+.projects-grid .item .meta li+li a[aria-label="download"]::before { content: none; display: none }
+.projects-grid .item .meta li+li a[aria-label="repository"]::after { content: "repository" }
+.projects-grid .item .meta li+li a { font-size: .72rem; gap: .4rem }
+.projects-grid .item .meta li+li a .ico { width: .9rem; height: .9rem }
