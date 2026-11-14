@@ -1038,3 +1038,17 @@ article h1 { margin-top: .5rem }
   font: 500 .7rem/1 var(--mono); letter-spacing: .08em; color: var(--muted);
   pointer-events: none;
 }
+
+/* Landscape project cards: one column, layout follows the container width */
+.projects-grid { grid-template-columns: minmax(0, 1fr); container-type: inline-size }
+@container (min-width: 34rem) {
+  .projects-grid .item { padding: 1.7rem 2.2rem 1.4rem }
+  .projects-grid .item-head { flex-direction: row; align-items: center; gap: .9rem }
+  .projects-grid .item-top { display: contents }
+  .projects-grid .item-top .status { order: 2; margin-left: auto }
+  .projects-grid .title-block { order: 1; flex: 1 1 0 }
+  .projects-grid .item p { max-width: 46rem; flex-grow: 0 }
+  .projects-grid .item .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 1rem }
+  .projects-grid .item .meta li:first-child { flex: 0 1 20rem; min-width: 0 }
+  .projects-grid .item .meta li:nth-child(2) { margin-left: auto }
+}
