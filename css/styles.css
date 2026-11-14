@@ -1568,3 +1568,51 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .sheen::before { animation: card-sheen 9s ease-in-out var(--idle, 0s) infinite }
 }
 @keyframes card-sheen { 0% { translate: -150% 0 } 30%, 100% { translate: 400% 0 } }
+
+/* Project overview as one big card, matching the home project cards */
+.overview {
+  position: relative; max-width: 44rem; margin: 2rem 0 0; padding: 1.5rem 1.5rem 2rem;
+  border: 1px solid var(--line); border-radius: 1rem;
+  background-color: var(--card); background-image: linear-gradient(145deg, var(--card-2), var(--card) 55%);
+  box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow);
+}
+.overview .project-title { margin: 0 0 1.25rem }
+.overview .project-title h1 { font-size: 2.6rem }
+.overview section .frame.carousel { max-width: 100%; border-radius: .6rem; box-shadow: 0 14px 24px -16px var(--shadow) }
+.overview .facts { max-width: none }
+.overview section + section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--line) }
+@media (max-width: 30rem) {
+  .overview { margin-top: 1.25rem; padding: 1rem 1rem 1.5rem }
+  .overview .project-title { margin: 0 0 1rem }
+  .overview .project-title h1 { font-size: 2rem }
+}
+
+/* Page swap: the overview card does its own pop, so the incoming page only fades */
+::view-transition-new(page) { animation: vt-fade .2s ease .12s both }
+@keyframes vt-fade { from { opacity: 0 } to { opacity: 1 } }
+
+/* Overview entrance: the card pops in with a spring, one sheen sweeps across it, then its parts stagger in.
+   Delays are by role (not nth-child), so new sections and new projects need no extra rules. */
+@keyframes ov-pop { from { opacity: 0; transform: translateY(28px) scale(.94) } to { opacity: 1; transform: none } }
+@keyframes ov-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes ov-sheen { from { background-position: 100% 0 } to { background-position: 0 0 } }
+@media (prefers-reduced-motion: no-preference) {
+  .overview { animation: ov-pop .65s cubic-bezier(.34, 1.56, .64, 1) .15s backwards }
+  .overview::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+    background: linear-gradient(100deg, transparent 35%, color-mix(in srgb, var(--ink) 9%, transparent) 50%, transparent 65%) no-repeat;
+    background-size: 300% 100%; background-position: 100% 0;
+    animation: ov-sheen 1.2s ease-out .6s both;
+  }
+  .overview .project-title, .overview section .frame, .overview .project-lede, .overview .meta,
+  .overview section > h2, .overview .facts, .overview .outcomes {
+    animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) backwards;
+  }
+  .overview .project-title { animation-delay: .3s }
+  .overview section .frame { animation-delay: .36s }
+  .overview .project-lede { animation-delay: .42s }
+  .overview .meta { animation-delay: .48s }
+  .overview section > h2 { animation-delay: .52s }
+  .overview .facts { animation-delay: .58s }
+  .overview .outcomes { animation-delay: .64s }
+}
