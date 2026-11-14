@@ -1664,3 +1664,11 @@ article h1 { margin-top: .5rem }
   .overview .back-top { animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) .3s backwards }
 }
 @media (prefers-reduced-motion: reduce) { .overview .back-top { transition: none } }
+
+/* Overview: card number now sits beside the title as a small label */
+.overview .project-title .ov-num {
+  position: static; align-self: center; margin-left: .9rem; padding: .25rem .55rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  font: 500 .75rem/1 var(--mono); letter-spacing: .12em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
