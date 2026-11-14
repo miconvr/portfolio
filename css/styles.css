@@ -1158,3 +1158,6 @@ article h1 { margin-top: .5rem }
 
 /* Two cards across on narrower desktop windows */
 .projects-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)) }
+
+/* Remove holo sticker */
+.projects-grid .item .meta::after { display: none }
