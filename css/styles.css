@@ -1326,3 +1326,23 @@ article h1 { margin-top: .5rem }
   transform-origin: 50% 100%;
   transition: transform .55s cubic-bezier(.34, 1.56, .64, 1), filter .4s ease;
 }
+
+/* Card-to-overview transition (js/home.js wraps the page swap in a View Transition) */
+::view-transition-old(page), ::view-transition-new(page) { mix-blend-mode: normal }
+::view-transition-old(page) {
+  transform-origin: 50% 100%;
+  animation: vt-recede .45s cubic-bezier(.4, 0, .2, 1) both;
+}
+::view-transition-new(page) { animation: vt-rise .5s .15s cubic-bezier(.2, .8, .2, 1) both }
+@keyframes vt-recede {
+  from { transform: perspective(900px) rotateX(0) scale(1); filter: brightness(1); opacity: 1 }
+  to { transform: perspective(900px) translateZ(-260px) rotateX(32deg) scale(.86); filter: brightness(.3); opacity: 0 }
+}
+@keyframes vt-rise {
+  from { transform: translateY(36px) scale(.97); opacity: 0 }
+  to { transform: none; opacity: 1 }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; filter: none }
+  .projects-grid .item.spring { transition: none }
+}
