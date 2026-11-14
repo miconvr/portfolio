@@ -1616,3 +1616,32 @@ article h1 { margin-top: .5rem }
   .overview .facts { animation-delay: .58s }
   .overview .outcomes { animation-delay: .64s }
 }
+
+/* Overview: card number, cursor spotlight, bottom back stripe */
+.overview .ov-num {
+  position: absolute; top: .9rem; right: 1.25rem; z-index: 0; pointer-events: none; user-select: none;
+  font: 700 4.5rem/1 var(--mono); letter-spacing: -.04em;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.overview .project-title, .overview section { position: relative; z-index: 1 }
+@media (hover: hover) and (pointer: fine) {
+  .overview::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--ink) 7%, transparent), transparent 70%);
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .overview:hover::after { opacity: 1 }
+}
+.overview .back-stripe { position: relative; z-index: 1; margin: 1.75rem 0 0 }
+.overview .back-stripe a {
+  display: flex; align-items: center; gap: .6rem; padding: .85rem 1.1rem; border-radius: .5rem;
+  background: linear-gradient(180deg, #1b1b20, #0e0e11); border: 1px solid #2c2c33;
+  box-shadow: inset 0 1px 0 var(--card-edge);
+  font: 500 .75rem var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; transition: border-color .2s ease, transform .2s ease;
+}
+.overview .back-stripe a:hover, .overview .back-stripe a:focus-visible { border-color: var(--live); transform: translateX(-3px) }
+@media (prefers-reduced-motion: no-preference) {
+  .overview .back-stripe { animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) .7s backwards }
+}
+@media (prefers-reduced-motion: reduce) { .overview .back-stripe a { transition: none } }
