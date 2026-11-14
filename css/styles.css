@@ -2177,3 +2177,25 @@ article h1 { margin-top: .5rem }
   max-width: 34rem; margin: .5rem 0 1.8rem;
   font: 400 .85rem/1.6 var(--mono); letter-spacing: .02em; color: var(--muted);
 }
+
+/* Overview v18: outlined icon + text links, no green, no arrows or underline, scale-up hover */
+.overview .meta li a,
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .3rem .65rem; border: 1px solid var(--line); border-radius: .4rem;
+  background: none; box-shadow: none; text-decoration: none; text-transform: none;
+  font: 500 .72rem/1.2 var(--mono); letter-spacing: .04em; white-space: nowrap;
+  color: var(--muted); transform-origin: center;
+  transition: transform .18s ease, color .15s, border-color .15s;
+}
+.overview .meta li a::before,
+.overview .meta li a::after { content: none; display: none }
+.overview .meta li a .ico { display: block; flex: none; width: .9rem; height: .9rem; margin: 0; vertical-align: middle }
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible {
+  color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)); transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview .meta li a:hover, .overview .meta li a:focus-visible { transform: none }
+}
