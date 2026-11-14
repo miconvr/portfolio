@@ -118,8 +118,18 @@
       t.appendChild(b);
     });
   }
-  ensureChips();
-  new MutationObserver(ensureChips).observe(document.documentElement, { childList: true, subtree: true });
+  function ensureSheen() {
+    document.querySelectorAll(CARD).forEach(c => {
+      if (c.querySelector(".sheen")) return;
+      const sh = document.createElement("span");
+      sh.className = "sheen"; sh.setAttribute("aria-hidden", "true");
+      c.appendChild(sh);
+      c.style.setProperty("--idle", (-Math.random() * 9).toFixed(2) + "s");
+    });
+  }
+  function ensureAll() { ensureChips(); ensureSheen(); }
+  ensureAll();
+  new MutationObserver(ensureAll).observe(document.documentElement, { childList: true, subtree: true });
 
   document.addEventListener("click", e => {
     const b = e.target.closest && e.target.closest(".chip-btn");
