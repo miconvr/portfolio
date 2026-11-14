@@ -1,6 +1,7 @@
 (() => {
   const SEL = ".projects-grid .item .meta li:first-child a";
   const PAD = 4;
+  const cardOf = l => l.closest(".item");
   let a = null, startX = 0, x = 0, max = 0, dragging = false;
 
   // Block real pointer clicks; keyboard and script clicks (detail 0) pass through.
@@ -28,14 +29,19 @@
   document.addEventListener("pointermove", e => {
     if (!a) return;
     const dx = e.clientX - startX;
-    if (!dragging && Math.abs(dx) > 4) { dragging = true; a.classList.add("drag"); }
+    if (!dragging && Math.abs(dx) > 4) { dragging = true; a.classList.add("drag"); cardOf(a).classList.add("pulling"); }
     if (!dragging) return;
     x = Math.min(max, Math.max(0, dx));
     a.style.setProperty("--x", x + "px");
+    cardOf(a).style.setProperty("--pull", max ? (x / max).toFixed(3) : "0");
   });
 
   function reset(l) {
     l.classList.remove("drag", "nudge");
+    const c = cardOf(l);
+    c.classList.remove("pulling"); c.classList.add("spring");
+    c.style.setProperty("--pull", "0");
+    setTimeout(() => c.classList.remove("spring"), 600);
     l.style.setProperty("--x", "0px");
   }
 
@@ -46,6 +52,7 @@
     if (dragging && max && x >= max * .85) {
       l.classList.remove("drag");
       l.style.setProperty("--x", max + "px");
+      cardOf(l).style.setProperty("--pull", "1");
       setTimeout(() => { l.click(); setTimeout(() => reset(l), 500); }, 120);
     } else if (dragging) {
       reset(l);
