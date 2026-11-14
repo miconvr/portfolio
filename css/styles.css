@@ -2455,3 +2455,11 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1), opacity .2s ease-out;
   }
 }
+
+/* Reader v3f: exit only fades (no slide left). The translate resets after the fade, when it is already invisible. */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader,
+  .projects-grid .item.spring .reader {
+    transition: translate 0s linear .25s, scale .25s ease, transform .25s ease, opacity .25s ease-in;
+  }
+}
