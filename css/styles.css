@@ -2215,3 +2215,8 @@ article h1 { margin-top: .5rem }
   padding: .55rem 1.1rem; gap: .55rem; font-size: .85rem; border-radius: .5rem;
 }
 .overview .meta li a .ico { width: 1.05rem; height: 1.05rem }
+
+/* Overview v21: no status pill next to the title, no gold chip */
+.overview .project-title .status,
+.overview .project-title [class*="status"],
+.overview .ov-chip { display: none }
