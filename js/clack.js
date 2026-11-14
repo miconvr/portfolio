@@ -130,7 +130,7 @@
   let lastHover = 0, lastEl = null;
   document.addEventListener("pointerover", e => {
     if (e.pointerType !== "mouse") return;
-    const t = e.target.closest && (e.target.closest(".projects-grid .item") || e.target.closest(SEL));
+    const t = e.target.closest && (e.target.closest(".projects-grid .item .meta li+li a") || e.target.closest(".projects-grid .item") || e.target.closest(SEL));
     if (!t || t === lastEl) return;
     if (e.relatedTarget && t.contains(e.relatedTarget)) return;
     lastEl = t;
