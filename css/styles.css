@@ -2409,3 +2409,11 @@ html.vt-exit::view-transition-old(page) { transform-origin: 100% 50%; animation:
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(side) { animation: none }
 }
+
+/* Overview exit v3: no fade. The card slides fully off to the right over the next page, which is already visible. */
+@keyframes vt-exit { to { transform: translateX(120%) } }
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 100% 50%;
+  animation: vt-exit .4s cubic-bezier(.5, 0, .75, 0) both;
+}
+html.vt-exit::view-transition-new(page) { z-index: 1; animation: none }
