@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#0B0B0B"/>
+<circle cx="260" cy="315" r="150" fill="#f7bd2e"/>
+<circle cx="210" cy="285" r="20" fill="#14110d"/>
+<circle cx="310" cy="285" r="20" fill="#14110d"/>
+<path d="M195 350c16 32 40 45 65 45s49-13 65-45" fill="none" stroke="#14110d" stroke-width="20" stroke-linecap="round"/>
+<text x="500" y="285" fill="#F3E9D2" font-family="Geist, DejaVu Sans, sans-serif" font-size="72" font-weight="700">Mico Gerard</text>
+<text x="500" y="365" fill="#F3E9D2" font-family="Geist, DejaVu Sans, sans-serif" font-size="72" font-weight="700">Navarro</text>
+<text x="500" y="430" fill="#8C8C8C" font-family="Geist, DejaVu Sans, sans-serif" font-size="26">BSIT student in Pampanga, Philippines</text>
+<text x="500" y="560" fill="#8C8C8C" font-family="Geist Mono, DejaVu Sans Mono, monospace" font-size="24">miconavarro.vercel.app</text>
+</svg>
