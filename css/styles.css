@@ -2220,3 +2220,6 @@ article h1 { margin-top: .5rem }
 .overview .project-title .status,
 .overview .project-title [class*="status"],
 .overview .ov-chip { display: none }
+
+/* Overview v22: links row back on the left */
+.overview .meta { justify-content: flex-start }
