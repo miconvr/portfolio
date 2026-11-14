@@ -98,6 +98,31 @@
   }
   document.addEventListener("reader-approved", approve);
 
+  // Receipt printer: one soft tick per paper-feed step (12 steps over .8s), then a faint ding
+  function printer() {
+    if (!on || !ctx || ctx.state !== "running") return;
+    const t = ctx.currentTime;
+    for (let i = 1; i <= 12; i++) {
+      const at = t + i * (.8 / 12);
+      const src = ctx.createBufferSource(); src.buffer = noise;
+      const f = ctx.createBiquadFilter(); f.type = "bandpass";
+      f.frequency.value = 2200 + Math.random() * 900; f.Q.value = 2;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(.07, at);
+      g.gain.exponentialRampToValueAtTime(.0001, at + .016);
+      src.connect(f); f.connect(g); g.connect(master);
+      src.start(at); src.stop(at + .02);
+    }
+    const o = ctx.createOscillator(), og = ctx.createGain(), d = t + .84;
+    o.type = "sine"; o.frequency.value = 2093;
+    og.gain.setValueAtTime(.0001, d);
+    og.gain.linearRampToValueAtTime(.05, d + .006);
+    og.gain.exponentialRampToValueAtTime(.0001, d + .09);
+    o.connect(og); og.connect(master);
+    o.start(d); o.stop(d + .1);
+  }
+  document.addEventListener("reader-receipt", printer);
+
   // Browsers only allow audio after a gesture, so wake the context on the first one.
   ["pointerup", "keydown", "touchend", "click"].forEach(n =>
     window.addEventListener(n, init, { passive: true }));
