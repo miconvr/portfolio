@@ -2412,3 +2412,16 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity .15s ease .15s, transform .3s cubic-bezier(.5, 0, .75, 0);
   }
 }
+
+/* Reader v3b: no fade. Visible immediately on the way out, and removed only after the slide back finishes. */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader {
+    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity 0s linear .3s, transform .3s cubic-bezier(.5, 0, .75, 0);
+  }
+  .projects-grid .item .reader.in {
+    transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, opacity 0s, transform .35s cubic-bezier(.2, .8, .2, 1);
+  }
+  .projects-grid .item.spring .reader {
+    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity 0s linear .3s, transform .3s cubic-bezier(.5, 0, .75, 0);
+  }
+}
