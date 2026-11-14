@@ -1232,3 +1232,16 @@ article h1 { margin-top: .5rem }
 /* Sidebar name: League Gothic, tall condensed caps */
 :root { --condensed: "League Gothic", "Arial Narrow", Impact, sans-serif }
 .side h1 { font-family: var(--condensed); font-weight: 400; font-size: 2.7rem; text-transform: uppercase; letter-spacing: .03em; line-height: 1 }
+
+/* Sidebar name: gradient fill, subtle warp on hover */
+.side h1 {
+  background: linear-gradient(180deg, var(--text) 35%, color-mix(in srgb, var(--text) 50%, transparent));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .45));
+  transform-origin: 50% 100%;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .side h1 { transition: transform .5s cubic-bezier(.2, .8, .2, 1) }
+  .side h1:hover { transform: perspective(500px) rotateX(16deg) scaleY(1.08) skewX(-3deg) }
+}
