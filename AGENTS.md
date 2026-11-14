@@ -2,7 +2,7 @@
 
 Guidance for any AI coding agent working in this repository (Codex, Copilot, Cursor, Gemini, and others). Human contributors can read it too.
 
-This is the personal portfolio of Mico Gerard Navarro (BSIT student, San Fernando City, Pampanga). Live site: https://miconavarro.vercel.app. Repo: `miconvr/portfolio`.
+This is the personal portfolio of Mico Gerard Navarro (BSIT student, Pampanga, Central Luzon). Live site: https://miconavarro.vercel.app. Repo: `miconvr/portfolio`.
 
 ## Stack
 
@@ -57,7 +57,7 @@ python3 -m http.server 8000        # or: npx serve   (then open http://localhost
 - Project page overview: keep it compact. `.facts` is a two-column grid: Role and Status side by side, an Activity row with the repo commit count, and Stack as the last item on its own full-width row, on mobile too. The Activity row hides itself until the count loads and stays hidden if the API fails. Outcome bullets all stay visible, with no collapsible "More detail" sections. Section spacing is tightened only on project pages through `.project-title ~ section`, so About and Experience keep their own spacing.
 - In-place navigation: links inside `#main` to `/`, `/about`, `/experience` and `/projects/<slug>` are swapped in place by `home.js`. Modifier clicks, `target="_blank"`, downloads and links with a hash or query string fall through to the browser. `norm()` treats `/projects/kaltas.html` and `/projects/kaltas` as the same page. Project pages must keep `<main id="main"><article>`, because the prefetch reads `main article`. Scripts and `<head>` styles specific to one page do not run on a swap, so keep project page behavior in shared files (`styles.css`, `carousel.js`). To add a project page, add it to the prefetch list in `home.js`. The `inPage` pattern already matches `/projects/<slug>`.
 - Carousel: the old arrow buttons (`.car-btn`) and `.car-count` are hidden with CSS, and navigation is the `.car-slider` under the image, on phones too. `carousel.js` still owns the scrolling, wrap-around and arrow keys, and the slider drives it by clicking `.car-btn`, so keep those buttons in the markup. The first screenshot loads eagerly and the rest use `loading="lazy"`.
-- Sidebar: the location line ("San Fernando City, Pampanga, Philippines") has a pin icon and sits under the social links on desktop (moved with CSS `order`, no HTML change). It is left-aligned as a row, so a wrapped second line lines up under the first. On phones it stays in the header beside the photo and name. From 56.01rem up, the base font size is 110%.
+- Sidebar: the location line ("Pampanga, Central Luzon, Philippines") has a pin icon and sits under the social links on desktop (moved with CSS `order`, no HTML change). It is left-aligned as a row, so a wrapped second line lines up under the first. On phones it stays in the header beside the photo and name. From 56.01rem up, the base font size is 110%.
 - Navbar: full name "Mico Gerard Navarro", with only Projects, About and Experience sections (home, `/about`, `/experience`). Do not add more nav items without being asked.
 - The Experience page lists real roles. Do not remove or rewrite entries without being asked.
 - Team credit: the "Built with ..." line under a project description uses `<p class="team">` (smaller, `--muted`). Keep it visually secondary to the description.
