@@ -2397,3 +2397,18 @@ html.vt-leave::view-transition-old(page), html.vt-leave::view-transition-new(pag
 html.vt-leave::view-transition-group(page) { animation: none }
 html.vt-leave::view-transition-old(page) { display: none }
 html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
+
+/* Reader v3: slides out and fades in quickly, exits with an ease-in and no scale or bounce */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader {
+    translate: -1.8rem 0; scale: 1;
+    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity .15s ease .15s, transform .3s cubic-bezier(.5, 0, .75, 0);
+  }
+  .projects-grid .item .reader.in {
+    translate: 0 0; scale: 1;
+    transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, opacity .15s ease, transform .35s cubic-bezier(.2, .8, .2, 1);
+  }
+  .projects-grid .item.spring .reader {
+    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity .15s ease .15s, transform .3s cubic-bezier(.5, 0, .75, 0);
+  }
+}
