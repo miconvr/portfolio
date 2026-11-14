@@ -43,7 +43,11 @@
     card.style.setProperty("--pull", pull.toFixed(3));
     link.style.setProperty("--x", (pull * max) + "px");
     const r = card.querySelector(".reader");
-    if (r) r.classList.toggle("ready", pull >= DONE);
+    if (r) {
+      const was = r.classList.contains("ready"), now = pull >= DONE;
+      r.classList.toggle("ready", now);
+      if (now && !was) document.dispatchEvent(new CustomEvent("reader-approved"));
+    }
   }
 
   function release(c, l) {
@@ -134,6 +138,7 @@
     e.preventDefault();
     busy = true;
     c.classList.add("dip");
+    document.dispatchEvent(new CustomEvent("reader-approved"));
     setTimeout(() => {
       l.click();
       setTimeout(() => { busy = false; c.classList.remove("dip"); }, 500);
