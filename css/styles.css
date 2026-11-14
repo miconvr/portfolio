@@ -1228,3 +1228,7 @@ article h1 { margin-top: .5rem }
 /* Sidebar name: condensed display font */
 :root { --condensed: "Barlow Condensed", "Arial Narrow", Impact, sans-serif }
 .side h1 { font-family: var(--condensed); font-weight: 600; font-size: 2.2rem; letter-spacing: .01em; line-height: 1.05 }
+
+/* Sidebar name: League Gothic, tall condensed caps */
+:root { --condensed: "League Gothic", "Arial Narrow", Impact, sans-serif }
+.side h1 { font-family: var(--condensed); font-weight: 400; font-size: 2.7rem; text-transform: uppercase; letter-spacing: .03em; line-height: 1 }
