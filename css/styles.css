@@ -2075,3 +2075,6 @@ article h1 { margin-top: .5rem }
 @media (min-width: 30.0625rem) and ((max-width: 39.99rem) or (pointer: coarse)) {
   .projects-grid .item .chip-btn { bottom: calc(3.2rem + 11px) }
 }
+
+/* Gold chip: line up with icon row (desktop) */
+.projects-grid .item .meta::after { bottom: calc(3.2rem + 12px) }
