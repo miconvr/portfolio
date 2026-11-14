@@ -1490,3 +1490,24 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .l-tap { display: inline }
   .projects-grid .item .meta li:first-child a::before { display: none }
 }
+
+/* Hover tilt and drag coexist: the tilt stays on transform (--rx/--ry from js/home.js),
+   the slide toward the reader uses the separate translate property. The tilt fades out as --pull nears 1. */
+.projects-grid .item.pulling,
+.projects-grid .item.pulling:hover {
+  transform-origin: 50% 50%;
+  transform: perspective(900px) translateY(-4px)
+    rotateX(calc(var(--rx, 0deg) * (1 - var(--pull, 0))))
+    rotateY(calc(var(--ry, 0deg) * (1 - var(--pull, 0))));
+  translate: calc(var(--pull, 0) * var(--reader-travel)) 0;
+  filter: none; transition: none;
+}
+.projects-grid .item.spring {
+  transform-origin: 50% 50%;
+  translate: 0 0;
+  transition: transform .55s cubic-bezier(.34, 1.56, .64, 1), translate .55s cubic-bezier(.34, 1.56, .64, 1), filter .4s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; translate: none }
+  .projects-grid .item.spring { translate: none; transition: none }
+}
