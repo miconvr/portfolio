@@ -1556,3 +1556,21 @@ article h1 { margin-top: .5rem }
 .side h1 { font-family: var(--condensed); font-weight: 700; letter-spacing: .02em; line-height: 1 }
 @media (min-width: 40.01rem) { .side h1 { font-size: 2.4rem } }
 @media (max-width: 40rem) { .side h1 { font-size: 2rem } }
+
+/* Idle float: the project cards drift up and down on their own. --float feeds the translate property,
+   so it adds to the drag slide and never touches transform (hover tilt). Paused on hover and while dragging. */
+@property --float { syntax: "<length>"; inherits: false; initial-value: 0px }
+@keyframes card-float { 0%, 100% { --float: 0px } 50% { --float: -6px } }
+.projects-grid .item { translate: 0 var(--float) }
+.projects-grid .item.pulling,
+.projects-grid .item.pulling:hover { translate: calc(var(--pull, 0) * var(--reader-travel)) var(--float) }
+.projects-grid .item.spring { translate: 0 var(--float) }
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item { animation: card-float 7s ease-in-out infinite }
+  .projects-grid .item:nth-child(2) { animation-delay: -3.5s }
+  .projects-grid .item:hover, .projects-grid .item.pulling, .projects-grid .item.dip { animation-play-state: paused }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item, .projects-grid .item.spring { translate: none }
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { translate: none }
+}
