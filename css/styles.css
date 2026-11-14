@@ -1720,3 +1720,104 @@ article h1 { margin-top: .5rem }
 @media (prefers-reduced-motion: no-preference) {
   .overview { transform-origin: 100% 50% }
 }
+
+/* ===== Overview as a real card ===== */
+.overview { border-radius: 1.25rem; transition: border-color .3s ease, box-shadow .3s ease }
+@media (hover: hover) and (pointer: fine) {
+  .overview:hover {
+    border-color: color-mix(in srgb, var(--live) 30%, var(--line));
+    box-shadow: 0 1px 0 var(--card-edge) inset, 0 28px 46px -24px var(--shadow), 0 0 28px -10px color-mix(in srgb, var(--live) 40%, transparent);
+  }
+}
+
+/* Gold chip (top right, left of the X) */
+.overview .ov-chip {
+  position: absolute; top: 1.05rem; right: 4rem; z-index: 3; width: 2.1rem; height: 1.6rem; border-radius: .3rem;
+  background:
+    linear-gradient(90deg, transparent 32%, var(--chip-line) 32% 34%, transparent 34% 66%, var(--chip-line) 66% 68%, transparent 68%),
+    linear-gradient(0deg, transparent 46%, var(--chip-line) 46% 54%, transparent 54%),
+    linear-gradient(135deg, var(--foil-a), var(--foil-b) 55%, var(--foil-a));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foil-b) 70%, var(--on-ink));
+}
+
+/* Status pill */
+.overview .ov-status {
+  align-self: center; margin-left: .6rem; padding: .25rem .6rem .25rem .5rem; border: 1px solid var(--line); border-radius: 999px;
+  font: 500 .7rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  display: inline-flex; align-items: center; gap: .4rem;
+}
+.overview .ov-status::before { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--muted) }
+.overview .ov-status.live { color: var(--live) }
+.overview .ov-status.live::before { background: var(--live); box-shadow: 0 0 8px var(--live) }
+
+/* Section label like card printing */
+.overview section > h2 {
+  display: flex; align-items: center; gap: .9rem;
+  font: 500 .72rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+}
+.overview section > h2::after { content: ""; flex: 1; height: 1px; background: var(--line) }
+
+/* Fact tiles + stack pills */
+.overview .facts { gap: .75rem; border-top: 0; padding: 1rem 0 0; margin-top: 1rem }
+.overview .facts > div {
+  padding: .8rem .95rem; border: 1px solid var(--line); border-radius: .7rem;
+  background: color-mix(in srgb, var(--ink) 3%, transparent);
+}
+.overview .facts dd.pills { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem }
+.overview .facts dd.pills span {
+  padding: .25rem .6rem; border: 1px solid var(--line); border-radius: 999px;
+  font: 500 .75rem/1.2 var(--mono); color: var(--text);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+/* Links as a magnetic stripe band */
+.overview .meta {
+  list-style: none; display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin: 1.4rem 0 0; padding: .85rem 1.1rem;
+  background: linear-gradient(180deg, #1b1b20, #0e0e11); border: 1px solid #2c2c33; border-radius: .5rem;
+  box-shadow: inset 0 1px 0 var(--card-edge);
+}
+.overview .meta li { margin: 0; padding: 0 }
+.overview .meta a {
+  display: inline-flex; align-items: center; gap: .45rem; font: 500 .75rem var(--mono); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none; transition: color .2s ease;
+}
+.overview .meta a:hover, .overview .meta a:focus-visible { color: var(--live) }
+
+@media (max-width: 30rem) {
+  .overview .ov-chip, .overview .ov-status { display: none }
+  .overview .facts > div { padding: .65rem .75rem }
+}
+
+/* ===== Scan finished: home card lifts toward you ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:has(.reader.ready) {
+    translate: 0 -12px; scale: 1.05; z-index: 5;
+    transition: translate .3s cubic-bezier(.2, .8, .2, 1), scale .3s cubic-bezier(.2, .8, .2, 1);
+  }
+}
+
+/* ===== The slap: overview flies in big from the right, hits, shakes, rings ===== */
+@keyframes ov-slap {
+  0%   { opacity: 0; transform: translateX(90px) scale(1.55) rotate(2deg); filter: blur(5px);
+         box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow), 0 0 0 0 transparent }
+  50%  { opacity: 1; transform: translateX(0) scale(.97) rotate(0); filter: blur(0);
+         animation-timing-function: ease-out;
+         box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow), 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent) }
+  62%  { transform: translate(-4px, 2px) scale(1.015) }
+  74%  { transform: translate(3px, -2px) scale(.995) }
+  86%  { transform: translate(-1px, 1px) scale(1.003) }
+  100% { opacity: 1; transform: none;
+         box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow), 0 0 0 24px transparent }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .overview { animation: ov-slap .85s ease-in .15s backwards; transform-origin: 100% 50% }
+  .overview::before { animation-delay: .62s }
+  .overview .back-top { animation-delay: .65s }
+  .overview .project-title { animation-delay: .65s }
+  .overview section .frame { animation-delay: .71s }
+  .overview .project-lede { animation-delay: .77s }
+  .overview .meta { animation-delay: .83s }
+  .overview section > h2 { animation-delay: .87s }
+  .overview .facts { animation-delay: .93s }
+  .overview .outcomes { animation-delay: .99s }
+}
