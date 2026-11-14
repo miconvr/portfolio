@@ -79,12 +79,15 @@
     if (!c || c.querySelector(".r-paper")) return;
     document.addEventListener("reader-receipt", e => e.stopImmediatePropagation(), { capture: true, once: true });
     showReader(c);
+    const rd = c.querySelector(".reader");
+    rd.style.transition = "none";
     if (!printReceipt(c)) return;
     const s = c.querySelector(".r-sheet");
     if (!s) return;
     s.style.animation = "none";
     s.style.transform = "none";
     setTimeout(() => {
+      rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
       an.onfinish = () => hideReader(c);
     }, 450);
