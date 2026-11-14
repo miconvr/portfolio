@@ -1392,3 +1392,72 @@ article h1 { margin-top: .5rem }
 /* Slim card-reader slot: the card only slides under its empty right padding, so nothing is covered */
 .projects-grid .item { --reader-w: 1.7rem; --reader-gap: .5rem }
 .projects-grid .item .reader::after { right: .6rem; top: .8rem }
+
+/* Card reader v2: bigger terminal with screen and keypad, slides out when the drag starts */
+.projects-grid .item { --reader-w: 7rem; --reader-gap: .7rem; --reader-insert: 1.1rem; --reader-travel: calc(var(--reader-gap) + var(--reader-insert)) }
+.projects-grid .item .reader {
+  top: -.9rem; bottom: -.9rem; width: var(--reader-w); left: calc(100% + var(--reader-gap));
+  border-radius: 1.1rem;
+  background: linear-gradient(165deg, #222227, #0b0b0d 70%);
+  border: 1px solid #2c2c33;
+  box-shadow: 0 22px 34px -16px var(--shadow), inset 0 1px 0 var(--card-edge), inset 0 -10px 18px rgba(0, 0, 0, .4);
+  opacity: 0; translate: -1.4rem 0; scale: .9; transform-origin: 0 50%;
+  transform: translateX(calc(var(--pull, 0) * var(--reader-travel) * -1));
+  transition: translate .55s cubic-bezier(.34, 1.56, .64, 1), scale .55s cubic-bezier(.34, 1.56, .64, 1), opacity .25s ease;
+}
+.projects-grid .item .reader.in { opacity: 1; translate: 0 0; scale: 1 }
+.projects-grid .item.spring .reader {
+  transition: transform .55s cubic-bezier(.34, 1.56, .64, 1), translate .45s ease, scale .45s ease, opacity .3s ease;
+}
+.projects-grid .item .reader::before { top: 1.5rem; bottom: 1.5rem }
+.projects-grid .item .reader::after { top: .8rem; right: 1rem }
+.projects-grid .item .r-screen {
+  position: absolute; left: 1.1rem; right: .9rem; top: 1.8rem; height: 2.2rem; border-radius: .35rem;
+  display: flex; align-items: center; justify-content: center;
+  background: #08100c; box-shadow: inset 0 0 0 1px #1d2a22;
+  font: 500 .55rem var(--mono); letter-spacing: .12em; color: #4d6b58;
+  transition: color .2s ease, box-shadow .2s ease;
+}
+.projects-grid .item .r-screen::before { content: "READY" }
+.projects-grid .item .reader.ready .r-screen {
+  color: var(--live); box-shadow: inset 0 0 0 1px #1d2a22, 0 0 14px color-mix(in srgb, var(--live) 35%, transparent);
+}
+.projects-grid .item .reader.ready .r-screen::before { content: "APPROVED" }
+.projects-grid .item .r-keys {
+  position: absolute; left: 1.1rem; right: .9rem; bottom: 1.7rem; height: 5.6rem;
+  background: radial-gradient(circle at center, #34343b 0 .26rem, transparent .3rem) 0 0 / 33.333% 25%;
+}
+
+/* Desktop with a mouse: grab the card anywhere to drag it into the reader */
+@media (min-width: 40rem) and (pointer: fine) {
+  .projects-grid .item { user-select: none; cursor: grab }
+  .projects-grid .item.pulling { cursor: grabbing }
+  .projects-grid .item a { cursor: pointer }
+}
+
+/* Touch or narrow: no reader, the chip becomes the tap target */
+.projects-grid .item .chip-btn {
+  display: none; width: 2.1rem; height: 1.6rem; padding: 0; border: 0; border-radius: .3rem; cursor: pointer;
+  background:
+    linear-gradient(90deg, transparent 32%, var(--chip-line) 32% 34%, transparent 34% 66%, var(--chip-line) 66% 68%, transparent 68%),
+    linear-gradient(0deg, transparent 46%, var(--chip-line) 46% 54%, transparent 54%),
+    linear-gradient(135deg, var(--foil-a), var(--foil-b) 55%, var(--foil-a));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foil-b) 70%, var(--on-ink));
+}
+.projects-grid .item .chip-btn:active { transform: scale(.94) }
+@media (max-width: 39.99rem), (pointer: coarse) {
+  .projects-grid .item .reader { display: none }
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
+  .projects-grid .item-top::after { display: none }
+  .projects-grid .item .chip-btn { display: block; order: 1; flex: none; margin-left: .8rem }
+}
+@media (min-width: 30.0625rem) and ((max-width: 39.99rem) or (pointer: coarse)) {
+  .projects-grid .item .chip-btn { position: absolute; right: 1.3rem; bottom: 3.2rem; margin-left: 0; order: 0 }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item.dip { transform: translateY(8px) scale(.965); filter: brightness(.8); transition: transform .3s cubic-bezier(.2, .8, .2, 1), filter .3s ease }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover, .projects-grid .item.dip { transform: none }
+  .projects-grid .item .reader { transition: none }
+}
