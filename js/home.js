@@ -119,11 +119,13 @@
   var openCard=null;
   function run(data,path,mode){
     var card=openCard; openCard=null;
-    var ok=card&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var leaving=current.indexOf("/projects/")===0;
+    var ok=(card||leaving)&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!ok){applyPage(data,path,mode);return;}
     main.style.viewTransitionName='page';
+    if(!card)document.documentElement.classList.add("vt-exit");
     var t=document.startViewTransition(function(){applyPage(data,path,mode);});
-    t.finished.finally(function(){main.style.viewTransitionName='';});
+    t.finished.finally(function(){main.style.viewTransitionName="";document.documentElement.classList.remove("vt-exit");});
   }
 
   function show(path,mode){
