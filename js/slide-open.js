@@ -84,6 +84,7 @@
     rd.style.transition = "none";
     rd.innerHTML = '<span class="r-screen"></span><span class="r-keys"></span>';
     c.classList.add("pulling");
+    c.classList.add("retract-hold");
     c.style.setProperty("--pull", "1");
     c.appendChild(rd);
     if (!printReceipt(c)) return;
@@ -95,7 +96,7 @@
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
-      an.onfinish = () => setTimeout(() => hideReader(c), 200);
+      an.onfinish = () => setTimeout(() => { hideReader(c); setTimeout(() => c.classList.remove("retract-hold"), 700); }, 200);
     };
     setTimeout(() => {
       const t0 = performance.now(), D = 800;

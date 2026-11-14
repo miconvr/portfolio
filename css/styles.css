@@ -2493,3 +2493,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   }
   .projects-grid .item .reader.in { clip-path: none }
 }
+
+/* Leaving an overview: the card keeps one height for the whole return, so removing .pulling causes no vertical shift */
+.projects-grid .item.retract-hold, .projects-grid .item.retract-hold:hover { transform: none !important; transition: none !important }
