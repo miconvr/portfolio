@@ -2598,3 +2598,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-intro .pi-tap { display: inline }
   .projects-intro .pi-arrows { display: none }
 }
+
+/* Mini chip shown inline in the mobile intro text */
+.projects-intro .pi-chip { display: inline-block; width: 1.3em; height: .75em; border-radius: 999px; background: #d4a73a; vertical-align: -.05em; margin: 0 .1em }
