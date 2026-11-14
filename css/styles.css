@@ -2424,3 +2424,14 @@ html.vt-exit::view-transition-old(page) {
   z-index: 2; transform-origin: 50% 100%;
   animation: vt-exit .4s cubic-bezier(.5, 0, .75, 0) both;
 }
+
+/* Overview exit v5: small lift, then a fast drop off the screen (no fade) */
+@keyframes vt-exit {
+  0% { transform: none }
+  20% { transform: translateY(-10px) scale(1.01); animation-timing-function: cubic-bezier(.55, 0, .9, .4) }
+  100% { transform: translateY(100vh) scale(1) }
+}
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 50% 100%;
+  animation: vt-exit .45s ease-out both;
+}
