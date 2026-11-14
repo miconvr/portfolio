@@ -120,11 +120,13 @@
   function run(data,path,mode){
     var card=openCard; openCard=null;
     var leaving=current.indexOf("/projects/")===0;
+    var from=current;
     var ok=(card||leaving)&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!ok){applyPage(data,path,mode);return;}
     main.style.viewTransitionName='page';
     if(!card)document.documentElement.classList.add("vt-exit");
     var t=document.startViewTransition(function(){applyPage(data,path,mode);});
+    if(leaving&&!card&&path==="/")t.updateCallbackDone.then(function(){setTimeout(function(){if(window.retractReceipt)window.retractReceipt(from);},250);});
     t.finished.finally(function(){main.style.viewTransitionName="";document.documentElement.classList.remove("vt-exit");});
   }
 

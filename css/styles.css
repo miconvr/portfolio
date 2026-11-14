@@ -2478,3 +2478,6 @@ html.vt-exit::view-transition-old(page) {
   z-index: 2; transform-origin: 50% 0;
   animation: vt-exit .6s cubic-bezier(.45, 0, .55, 1) both;
 }
+
+/* Receipt retract: when returning to Projects, the paper feeds back into the reader slot (r-feed-x in reverse, same 12 steps) */
+.projects-grid .item .reader.retract .r-sheet { animation: r-feed-x .8s steps(12, end) .45s reverse both }
