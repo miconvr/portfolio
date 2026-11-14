@@ -2446,3 +2446,14 @@ html.vt-exit::view-transition-old(page) {
   z-index: 2; transform-origin: 50% 0;
   animation: vt-exit .55s cubic-bezier(.5, 0, .75, 0) both;
 }
+
+/* Overview exit v7: reverse of the opening. A small dip, then the card flies up and off the top (no fade). Replaces the v6 tilt. */
+@keyframes vt-exit {
+  0% { transform: none }
+  18% { transform: translateY(10px) }
+  100% { transform: translateY(-110vh) }
+}
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 50% 50%;
+  animation: vt-exit .5s cubic-bezier(.5, 0, .75, 0) both;
+}
