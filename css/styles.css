@@ -2499,3 +2499,8 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Leaving an overview: the machine screen says THANK YOU instead of APPROVED */
 .projects-grid .item .reader.thanks.ready .r-screen::before { content: "THANK YOU" }
+
+/* Machine screen: INSERT CARD until the card is fully in, then APPROVED; THANK YOU when leaving an overview */
+.projects-grid .item .reader .r-screen::before { content: "INSERT CARD"; letter-spacing: .06em }
+.projects-grid .item .reader.ready .r-screen::before { content: "APPROVED" }
+.projects-grid .item .reader.thanks.ready .r-screen::before { content: "THANK YOU" }

@@ -151,7 +151,7 @@
       card.classList.add("pulling");
       showReader(card);
     }
-    pull = Math.min(1, Math.max(0, dx / DIST));
+    pull = Math.min(1, Math.max(0, dx / (DIST * 1.5)));
     apply();
   });
 
