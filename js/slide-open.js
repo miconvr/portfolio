@@ -45,6 +45,7 @@
     card.style.setProperty("--pull", pull.toFixed(3));
     const r = card.querySelector(".reader");
     if (r) {
+      r.classList.toggle("in", pull > 0.02);
       const was = r.classList.contains("ready"), now = pull >= DONE;
       r.classList.toggle("ready", now);
       if (now && !was) document.dispatchEvent(new CustomEvent("reader-approved"));
@@ -135,16 +136,16 @@
     if (e.target.closest("a, button") && !e.target.closest(LINK)) return;
     const l = linkOf(c);
     if (!l) return;
-    card = c; link = l; startX = e.clientX; pull = 0; dragging = false;
+    card = c; link = l; startX = e.clientX; pull = 0; dragging = false; c._sy = e.clientY;
     l.setAttribute("draggable", "false");
     try { c.setPointerCapture(e.pointerId); } catch (_) {}
   });
 
   document.addEventListener("pointermove", e => {
     if (!card) return;
-    const dx = e.clientX - startX;
+    const dx = e.clientX - startX, dy = e.clientY - (card._sy || 0);
     if (!dragging) {
-      if (Math.abs(dx) < 6) return;
+      if (dx < 6 || Math.abs(dy) > dx) return;
       dragging = true;
       link.classList.add("drag");
       card.classList.add("pulling");
