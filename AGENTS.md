@@ -196,3 +196,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - Cards v7: the link pills are gone. Order in `.meta` is now dates (`::before`, order 0), then the download and repository links as plain cream text with a hover underline (order 1), then the stripe (order 4). The v4 pill rules are overridden and can go in the next cleanup.
 - Cards v8: the home card links are icon-only (no text, no arrows). The label lives in `aria-label` and `title` on each `<a>`. New projects: keep the `<svg class="ico">` and add the label attributes, with no visible text.
 - Cards v9: the icon links are small embedded chips (2.2rem rounded squares): recessed dark face, inner top shadow, faint bottom lip highlight, icon with a tiny drop shadow. Hover lifts 1px with a soft outer shadow, active sinks back in. Overrides the v8 icon-link rules.
+- Cards v10: icon-link chips use a lighter face (16% to 6% black over `--card`), a softer inner shadow, and 1.2rem icons.

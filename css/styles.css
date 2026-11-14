@@ -2051,3 +2051,21 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .meta li+li a { transition: none }
   .projects-grid .item .meta li+li a:hover, .projects-grid .item .meta li+li a:focus-visible { transform: none }
 }
+
+/* Cards v10: lighter embedded chips, slightly bigger icons */
+.projects-grid .item .meta li+li a {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, #000 16%, var(--card)),
+    color-mix(in srgb, #000 6%, var(--card)));
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, .38),
+    inset 0 -1px 0 color-mix(in srgb, var(--ink) 9%, transparent),
+    0 1px 0 color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.projects-grid .item .meta li+li a .ico { width: 1.2rem; height: 1.2rem }
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, #000 10%, var(--card)),
+    color-mix(in srgb, #000 2%, var(--card)));
+}
