@@ -2103,3 +2103,24 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .meta li+li a .ico {
   display: block; flex: none; margin: 0; vertical-align: middle;
 }
+
+/* Cards v13: mono text links replace the icon chips */
+.projects-grid .item .meta li+li a,
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  display: inline-flex; align-items: center; gap: .45rem;
+  width: auto; height: auto; min-width: 0; padding: .2rem 0; border: 0; border-radius: 0;
+  background: none; box-shadow: none;
+  font: 500 .8rem/1.2 var(--mono); letter-spacing: .04em; text-decoration: none;
+  color: var(--muted); transition: color .15s;
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  color: var(--ink); text-decoration: underline; text-underline-offset: .25em;
+}
+.projects-grid .item .meta li+li a .ico { display: none }
+.projects-grid .item .meta li+li a::before { content: "\2197"; opacity: .8 }
+.projects-grid .item .meta li+li a[aria-label="download"]::before { content: "\2193" }
+.projects-grid .item .meta li+li a::after { content: attr(aria-label) }
+.projects-grid .item .meta li+li a[aria-label="download"]::after { content: "get extension" }
+.projects-grid .item .meta li+li a[aria-label="repository"]::after { content: "source" }
