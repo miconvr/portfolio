@@ -1534,3 +1534,8 @@ article h1 { margin-top: .5rem }
     top: auto; bottom: .5rem; right: 1.3rem; font-size: 1.5rem; line-height: 1; pointer-events: none;
   }
 }
+
+/* Phone: center the "welcome back" block under the contact icons, like the rest of the header */
+@media (max-width: 40rem) {
+  .side .been { justify-content: center }
+}
