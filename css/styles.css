@@ -1175,3 +1175,12 @@ article h1 { margin-top: .5rem }
 @media (min-width: 30.0625rem) {
   .projects-grid .item p.tagline { max-width: 100% }
 }
+
+/* Stack project cards: Kaltas on top, CivicGuard below, same width, left-aligned */
+.projects-grid {
+  grid-template-columns: minmax(0, 26rem);
+  justify-content: start;
+  align-items: start;
+  gap: 1.25rem;
+}
+.projects-grid .item { width: 100%; max-width: 26rem }
