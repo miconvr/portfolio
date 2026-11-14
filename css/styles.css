@@ -1052,3 +1052,6 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .meta li:first-child { flex: 0 1 20rem; min-width: 0 }
   .projects-grid .item .meta li:nth-child(2) { margin-left: auto }
 }
+
+/* Slide-to-open track matches the card frame */
+.projects-grid .item .meta li:first-child a { border-color: var(--btn-line) }
