@@ -70,6 +70,26 @@
     return true;
   }
 
+  // Leaving an overview: rebuild the reader on the card you came from, then feed the receipt back into the slot.
+  window.retractReceipt = function (path) {
+    if (!desktop() || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const want = path.replace(/\/+$/, "");
+    const a = Array.from(document.querySelectorAll(".projects-grid .item a")).find(x => (x.getAttribute("href") || "").replace(/\/+$/, "") === want);
+    const c = a && a.closest(".projects-grid .item");
+    if (!c || c.querySelector(".r-paper")) return;
+    document.addEventListener("reader-receipt", e => e.stopImmediatePropagation(), { capture: true, once: true });
+    showReader(c);
+    if (!printReceipt(c)) return;
+    const s = c.querySelector(".r-sheet");
+    if (!s) return;
+    s.style.animation = "none";
+    s.style.transform = "none";
+    setTimeout(() => {
+      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
+      an.onfinish = () => hideReader(c);
+    }, 450);
+  };
+
   function release(c, l) {
     l.classList.remove("drag");
     c.classList.remove("pulling");
