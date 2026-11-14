@@ -1184,3 +1184,7 @@ article h1 { margin-top: .5rem }
   gap: 1.25rem;
 }
 .projects-grid .item { width: 100%; max-width: 26rem }
+
+/* Card-number line shows the project dates instead of dots */
+.projects-grid .item[data-index="02"] .meta::before { content: "NOV TO PRESENT 2026" }
+.projects-grid .item[data-index="01"] .meta::before { content: "SEP TO PRESENT 2026" }
