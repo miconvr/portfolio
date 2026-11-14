@@ -2582,3 +2582,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (prefers-reduced-motion: no-preference) {
   .projects-grid .item .reader.ready:not(.thanks) .r-screen { animation: none }
 }
+
+/* Machine v5e: screen text is green again, still no glow or pulse */
+.projects-grid .item .reader.ready .r-screen { color: var(--live) }
