@@ -60,12 +60,11 @@
     };
     const name = ((c.querySelector("h3") || {}).textContent || "Project").trim();
     const num = (c.textContent.match(/\b0\d\b/) || [""])[0];
-    const date = new Date().toLocaleDateString(undefined, { day: "2-digit", month: "short", year: "numeric" });
     const wrap = mk("div", "r-paper");
     wrap.setAttribute("aria-hidden", "true");
     const sheet = mk("div", "r-sheet");
     sheet.append(mk("b", "", name), mk("span", "", num ? "No. " + num : "Project"),
-                 mk("em", "", "APPROVED"), mk("span", "", date), mk("i", "r-bars"), mk("i", "r-tear"));
+                 mk("em", "", "APPROVED"), mk("i", "r-smile"), mk("i", "r-bars"), mk("i", "r-tear"));
     wrap.appendChild(sheet);
     r.append(mk("span", "r-slot"), wrap);
     document.dispatchEvent(new CustomEvent("reader-receipt"));
