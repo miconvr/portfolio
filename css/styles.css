@@ -2199,3 +2199,9 @@ article h1 { margin-top: .5rem }
 @media (prefers-reduced-motion: reduce) {
   .overview .meta li a:hover, .overview .meta li a:focus-visible { transform: none }
 }
+
+/* Overview v19: remove the stripe band behind the links, keep the outlined link boxes */
+.overview .meta {
+  background: none; border: 0; border-radius: 0; box-shadow: none; padding: 0;
+  margin: 1.2rem 0 0;
+}
