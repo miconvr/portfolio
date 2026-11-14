@@ -436,7 +436,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   margin-left: -.8rem;
   position: relative; overflow: visible;
   -webkit-tap-highlight-color: transparent;
-  /* no hover transforms, no idle movement */
+  /* no hover transforms; idle moves come from js/mascot-idle.js */
 }
 .been-btn:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
 .been-mascot { width: 100%; height: 100%; display: block; overflow: visible }
