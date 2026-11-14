@@ -1218,3 +1218,13 @@ article h1 { margin-top: .5rem }
   .home-intro { border-top: 0; padding: 0 0 1.5rem }
   .home-intro h2 { font-size: clamp(2.25rem, min(4.2vw, 6.5dvh), 3.5rem) }
 }
+
+/* Home heading: editorial serif display font */
+:root { --display: "Instrument Serif", "Iowan Old Style", Georgia, serif }
+.home-intro h2 { font-family: var(--display); font-weight: 400; letter-spacing: -.01em; line-height: 1 }
+@media (min-width: 30.0625rem) {
+  .home-intro h2 { font-size: clamp(2.5rem, min(4.6vw, 7dvh), 3.9rem) }
+}
+@media (max-width: 30rem) {
+  .home-intro h2 { font-size: 3.1rem }
+}
