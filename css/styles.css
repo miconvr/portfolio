@@ -1544,3 +1544,11 @@ article h1 { margin-top: .5rem }
 @media (max-width: 30rem) {
   .home main { padding-top: .5rem }
 }
+
+/* Phone: divider line under the header on Projects, About and Experience, with a tighter gap below it */
+@media (max-width: 30rem) {
+  .home main, .home main:has(> article) {
+    margin-top: 1.25rem; padding-top: .5rem; border-top: 1px solid var(--line);
+  }
+  .home main .home-intro h2, .home main h1.page-title { margin-top: 2rem }
+}
