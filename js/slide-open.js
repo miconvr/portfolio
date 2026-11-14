@@ -82,7 +82,7 @@
     if (!c || c.querySelector(".reader")) return;
     document.addEventListener("reader-receipt", e => e.stopImmediatePropagation(), { capture: true, once: true });
     const rd = document.createElement("div");
-    rd.className = "reader in ready";
+    rd.className = "reader in ready thanks";
     rd.setAttribute("aria-hidden", "true");
     rd.style.transition = "none";
     rd.innerHTML = '<span class="r-screen"></span><span class="r-keys"></span>';
