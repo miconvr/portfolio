@@ -2590,3 +2590,11 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .reader .r-screen::after { display: none; animation: none }
 .projects-grid .item .reader .r-screen::before { margin-right: -.06em }
 .projects-grid .item .reader.ready .r-screen::before { margin-right: -.12em }
+
+/* Projects intro: tap wording and no chevrons on phones and touch screens */
+.projects-intro .pi-tap { display: none }
+@media (max-width: 39.99rem), (pointer: coarse) {
+  .projects-intro .pi-swipe { display: none }
+  .projects-intro .pi-tap { display: inline }
+  .projects-intro .pi-arrows { display: none }
+}
