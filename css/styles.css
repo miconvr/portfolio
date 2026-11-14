@@ -1904,3 +1904,20 @@ article h1 { margin-top: .5rem }
   border: 2px solid #1b1b1b; border-top: 0; border-radius: 0 0 1rem 1rem;
 }
 @keyframes r-feed-x { to { transform: none } }
+
+/* Receipt v3: no barcode, THANK YOU line, smaller and cleaner torn edge */
+.projects-grid .item .reader .r-thanks {
+  display: block; padding-top: .5rem; border-top: 1px dashed #1b1b1b66;
+  font: 500 .5rem/1 var(--mono); letter-spacing: .18em; color: #1b1b1bb3;
+}
+.projects-grid .item .reader .r-paper { filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .3)) }
+.projects-grid .item .reader .r-sheet {
+  padding-right: .75rem;
+  background: linear-gradient(#f3f0e6, #f3f0e6) 0 0 / calc(100% - .3rem) 100% no-repeat;
+}
+.projects-grid .item .reader .r-tear {
+  width: .3rem;
+  background:
+    linear-gradient(135deg, #f3f0e6 25%, transparent 25%) 0 -.15rem / .3rem .3rem,
+    linear-gradient(45deg, #f3f0e6 25%, transparent 25%) 0 -.15rem / .3rem .3rem;
+}

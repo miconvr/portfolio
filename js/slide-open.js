@@ -64,7 +64,7 @@
     wrap.setAttribute("aria-hidden", "true");
     const sheet = mk("div", "r-sheet");
     sheet.append(mk("b", "", name), mk("span", "", num ? "No. " + num : "Project"),
-                 mk("em", "", "APPROVED"), mk("i", "r-smile"), mk("i", "r-bars"), mk("i", "r-tear"));
+                 mk("em", "", "APPROVED"), mk("i", "r-smile"), mk("span", "r-thanks", "THANK YOU"), mk("i", "r-tear"));
     wrap.appendChild(sheet);
     r.append(mk("span", "r-slot"), wrap);
     document.dispatchEvent(new CustomEvent("reader-receipt"));
