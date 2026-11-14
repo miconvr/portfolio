@@ -82,6 +82,22 @@
     src.start(t); src.stop(t + .02);
   }
 
+  // Payment-terminal approval: two short rising tones
+  function approve() {
+    if (!on || !ctx || ctx.state !== "running") return;
+    const t = ctx.currentTime;
+    [[1046, 0, .09], [1568, .1, .16]].forEach(([hz, at, len]) => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = "sine"; o.frequency.value = hz;
+      g.gain.setValueAtTime(.0001, t + at);
+      g.gain.linearRampToValueAtTime(.2, t + at + .008);
+      g.gain.exponentialRampToValueAtTime(.0001, t + at + len);
+      o.connect(g); g.connect(master);
+      o.start(t + at); o.stop(t + at + len + .01);
+    });
+  }
+  document.addEventListener("reader-approved", approve);
+
   // Browsers only allow audio after a gesture, so wake the context on the first one.
   ["pointerdown", "keydown", "touchstart"].forEach(n =>
     window.addEventListener(n, init, { passive: true }));
