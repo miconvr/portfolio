@@ -108,7 +108,7 @@
       const f = ctx.createBiquadFilter(); f.type = "bandpass";
       f.frequency.value = 2200 + Math.random() * 900; f.Q.value = 2;
       const g = ctx.createGain();
-      g.gain.setValueAtTime(.07, at);
+      g.gain.setValueAtTime(.16, at);
       g.gain.exponentialRampToValueAtTime(.0001, at + .016);
       src.connect(f); f.connect(g); g.connect(master);
       src.start(at); src.stop(at + .02);
@@ -116,7 +116,7 @@
     const o = ctx.createOscillator(), og = ctx.createGain(), d = t + .84;
     o.type = "sine"; o.frequency.value = 2093;
     og.gain.setValueAtTime(.0001, d);
-    og.gain.linearRampToValueAtTime(.05, d + .006);
+    og.gain.linearRampToValueAtTime(.11, d + .006);
     og.gain.exponentialRampToValueAtTime(.0001, d + .09);
     o.connect(og); og.connect(master);
     o.start(d); o.stop(d + .1);
