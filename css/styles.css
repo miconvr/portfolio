@@ -1936,3 +1936,15 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item .reader .r-sheet b { font-size: .6rem; letter-spacing: .1em }
 .projects-grid .item .reader .r-thanks { border-top: 0; padding-top: 0; margin-top: .2rem }
+
+/* Receipt v6: flat cream sheet with a tiny, clean torn edge on the right */
+.projects-grid .item .reader .r-sheet {
+  padding-right: .8rem;
+  background: linear-gradient(#f3f0e6, #f3f0e6) 0 0 / calc(100% - .2rem) 100% no-repeat;
+}
+.projects-grid .item .reader .r-tear {
+  display: block; position: absolute; top: 0; bottom: 0; right: 0; width: .2rem; height: auto; margin: 0;
+  background:
+    linear-gradient(135deg, #f3f0e6 25%, transparent 25%) 0 -.1rem / .2rem .2rem,
+    linear-gradient(45deg, #f3f0e6 25%, transparent 25%) 0 -.1rem / .2rem .2rem;
+}
