@@ -2,6 +2,7 @@
   const SEL = ".projects-grid .item .meta li:first-child a";
   const PAD = 4;
   const cardOf = l => l.closest(".item");
+  const addReader = c => { if (c.querySelector(".reader")) return; const r = document.createElement("div"); r.className = "reader"; r.setAttribute("aria-hidden", "true"); c.appendChild(r); };
   let a = null, startX = 0, x = 0, max = 0, dragging = false;
 
   // Block real pointer clicks; keyboard and script clicks (detail 0) pass through.
@@ -29,11 +30,12 @@
   document.addEventListener("pointermove", e => {
     if (!a) return;
     const dx = e.clientX - startX;
-    if (!dragging && Math.abs(dx) > 4) { dragging = true; a.classList.add("drag"); cardOf(a).classList.add("pulling"); }
+    if (!dragging && Math.abs(dx) > 4) { dragging = true; a.classList.add("drag"); cardOf(a).classList.add("pulling"); addReader(cardOf(a)); }
     if (!dragging) return;
     x = Math.min(max, Math.max(0, dx));
     a.style.setProperty("--x", x + "px");
     cardOf(a).style.setProperty("--pull", max ? (x / max).toFixed(3) : "0");
+    const rd = cardOf(a).querySelector(".reader"); if (rd) rd.classList.toggle("ready", x >= max * .85);
   });
 
   function reset(l) {
@@ -41,7 +43,7 @@
     const c = cardOf(l);
     c.classList.remove("pulling"); c.classList.add("spring");
     c.style.setProperty("--pull", "0");
-    setTimeout(() => c.classList.remove("spring"), 600);
+    setTimeout(() => { c.classList.remove("spring"); const r = c.querySelector(".reader"); if (r) r.remove(); }, 600);
     l.style.setProperty("--x", "0px");
   }
 
