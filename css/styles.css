@@ -2382,3 +2382,8 @@ article h1 { margin-top: .5rem }
   0%, 100% { opacity: .25; transform: translateX(0) rotate(45deg) }
   40% { opacity: .95; transform: translateX(4px) rotate(45deg) }
 }
+
+/* Overview exit v1: mirror of the ov-pop opening. The card drops down and fades, then the next page fades in. */
+@keyframes vt-exit { to { opacity: 0; transform: translateY(28px) scale(.94) } }
+html.vt-exit::view-transition-old(page) { transform-origin: 50% 50%; animation: vt-exit .38s cubic-bezier(.5, 0, .75, 0) both }
+html.vt-exit::view-transition-new(page) { animation: vt-fade .25s ease .15s both }
