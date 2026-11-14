@@ -99,7 +99,7 @@
       setTimeout(() => {
         l.click();
         setTimeout(() => { busy = false; release(c, l); }, 500);
-      }, still() ? 0 : 260);
+      }, still() ? 0 : 420);
     } else if (was) {
       release(c, l);
     }
