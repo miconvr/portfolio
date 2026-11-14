@@ -70,7 +70,7 @@
     return true;
   }
 
-  // Leaving an overview: the card is already pulled in with the reader and receipt out, then the receipt feeds back and the card springs free.
+  // Leaving an overview: card starts pulled in with the paper out, slides back to its spot, then the machine retrieves the paper.
   window.retractReceipt = function (path) {
     if (!desktop() || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const want = path.replace(/\/+$/, "");
@@ -83,18 +83,31 @@
     rd.setAttribute("aria-hidden", "true");
     rd.style.transition = "none";
     rd.innerHTML = '<span class="r-screen"></span><span class="r-keys"></span>';
-    rd.style.transform = "translateX(calc(var(--reader-travel) * -1))";
+    c.classList.add("pulling");
+    c.style.setProperty("--pull", "1");
     c.appendChild(rd);
     if (!printReceipt(c)) return;
     const s = c.querySelector(".r-sheet");
     if (!s) return;
     s.style.animation = "none";
     s.style.transform = "none";
-    setTimeout(() => {
+    const feed = () => {
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
       an.onfinish = () => setTimeout(() => hideReader(c), 200);
+    };
+    setTimeout(() => {
+      const t0 = performance.now(), D = 450;
+      const step = now => {
+        const t = Math.min(1, (now - t0) / D), k = t - 1;
+        c.style.setProperty("--pull", (1 - (1 + 2.2 * k * k * k + 1.2 * k * k)).toFixed(3));
+        if (t < 1) { requestAnimationFrame(step); return; }
+        c.classList.remove("pulling");
+        c.style.setProperty("--pull", "0");
+        setTimeout(feed, 150);
+      };
+      requestAnimationFrame(step);
     }, 300);
   };
 
