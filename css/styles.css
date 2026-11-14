@@ -2572,3 +2572,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Machine v5e: screen text is green again, still no glow or pulse */
 .projects-grid .item .reader.ready .r-screen { color: var(--live) }
+
+/* Machine v5d: no green anywhere. Keypad stays gray, screen text is neutral, no glow or pulse. */
+.projects-grid .item .r-keys::after { display: none }
+.projects-grid .item .reader.ready .r-screen {
+  color: #cfcfd4; box-shadow: inset 0 0 0 1px #1d2a22; animation: none;
+}
+.projects-grid .item .reader.ready::after { background: #55555d; box-shadow: none }
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader.ready:not(.thanks) .r-screen { animation: none }
+}
