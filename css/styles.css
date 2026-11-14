@@ -2095,3 +2095,11 @@ article h1 { margin-top: .5rem }
     color-mix(in srgb, #000 2%, var(--card)),
     color-mix(in srgb, #fff 5%, var(--card)));
 }
+
+/* Cards v12: center icons in chips (cancel inline-icon margin and baseline offset) */
+.projects-grid .item .meta li+li a {
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.projects-grid .item .meta li+li a .ico {
+  display: block; flex: none; margin: 0; vertical-align: middle;
+}
