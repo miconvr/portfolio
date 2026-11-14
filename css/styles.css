@@ -2435,3 +2435,12 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1);
   }
 }
+
+/* Reader v3d: exit is the pop-up slide in reverse (same distance and duration, mirrored easing), then it disappears */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader,
+  .projects-grid .item.spring .reader {
+    opacity: 0;
+    transition: translate .35s cubic-bezier(.8, .2, .8, 1), scale .35s ease, transform .35s cubic-bezier(.8, .2, .8, 1), opacity 0s linear .35s;
+  }
+}
