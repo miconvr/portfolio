@@ -2124,3 +2124,14 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .meta li+li a::after { content: attr(aria-label) }
 .projects-grid .item .meta li+li a[aria-label="download"]::after { content: "get extension" }
 .projects-grid .item .meta li+li a[aria-label="repository"]::after { content: "source" }
+
+/* Cards v14: keep link arrows inline with their labels */
+.projects-grid .item .meta li+li a {
+  flex-direction: row; flex-wrap: nowrap; align-items: baseline; white-space: nowrap;
+}
+.projects-grid .item .meta li+li a::before,
+.projects-grid .item .meta li+li a::after {
+  position: static; inset: auto; transform: none; display: inline; width: auto; height: auto;
+  margin: 0; padding: 0; border: 0; background: none; box-shadow: none; font: inherit; letter-spacing: inherit;
+}
+.projects-grid .item .meta li+li a::before { margin-right: .35rem }
