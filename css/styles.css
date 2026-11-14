@@ -1218,3 +1218,6 @@ article h1 { margin-top: .5rem }
   .home-intro { border-top: 0; padding: 0 0 1.5rem }
   .home-intro h2 { font-size: clamp(2.25rem, min(4.2vw, 6.5dvh), 3.5rem) }
 }
+
+/* Sidebar name: same font, weight and tracking as the home heading (Geist) */
+.side h1 { font-family: var(--sans); font-weight: 600; letter-spacing: -.03em }
