@@ -1645,3 +1645,22 @@ article h1 { margin-top: .5rem }
   .overview .back-stripe { animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) .7s backwards }
 }
 @media (prefers-reduced-motion: reduce) { .overview .back-stripe a { transition: none } }
+
+/* Overview: compact back button, top right */
+.overview .back-top {
+  position: absolute; top: 1rem; right: 1.1rem; z-index: 3;
+  display: inline-flex; align-items: center; gap: .45rem; padding: .45rem .8rem; border-radius: 999px;
+  background: linear-gradient(180deg, #1b1b20, #0e0e11); border: 1px solid #2c2c33;
+  box-shadow: inset 0 1px 0 var(--card-edge);
+  font: 500 .7rem var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; transition: border-color .2s ease, transform .2s ease;
+}
+.overview .back-top:hover, .overview .back-top:focus-visible { border-color: var(--live); transform: translateX(-2px) }
+@media (max-width: 30rem) {
+  .overview .back-top { top: .8rem; right: .8rem; padding: .5rem }
+  .overview .back-top span { display: none }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .overview .back-top { animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) .3s backwards }
+}
+@media (prefers-reduced-motion: reduce) { .overview .back-top { transition: none } }
