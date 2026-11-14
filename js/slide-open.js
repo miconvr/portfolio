@@ -70,18 +70,6 @@
     return true;
   }
 
-  // Leaving an overview: the card you came from re-creates its reader, and the receipt feeds back into the slot.
-  window.retractReceipt = function (path) {
-    if (!desktop() || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const link = document.querySelector(".projects-grid .item .meta li:first-child a[href=\"" + path + "\"]");
-    const c = link && link.closest(".projects-grid .item");
-    if (!c) return;
-    showReader(c);
-    if (!printReceipt(c)) return;
-    c.querySelector(".reader").classList.add("retract");
-    setTimeout(() => hideReader(c), 1500);
-  };
-
   function release(c, l) {
     l.classList.remove("drag");
     c.classList.remove("pulling");
