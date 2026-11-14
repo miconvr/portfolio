@@ -1388,3 +1388,7 @@ article h1 { margin-top: .5rem }
 /* Page swap after the swipe: quick fade out, then the overview rises (no tilt) */
 ::view-transition-old(page) { transform-origin: 50% 50%; animation: vt-out .3s ease both }
 @keyframes vt-out { to { opacity: 0; transform: scale(.985) } }
+
+/* Slim card-reader slot: the card only slides under its empty right padding, so nothing is covered */
+.projects-grid .item { --reader-w: 1.7rem; --reader-gap: .5rem }
+.projects-grid .item .reader::after { right: .6rem; top: .8rem }
