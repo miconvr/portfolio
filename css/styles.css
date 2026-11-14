@@ -1224,3 +1224,7 @@ article h1 { margin-top: .5rem }
 
 /* Sidebar name: Geist Mono, same as the sidebar links and card text */
 .side h1 { font-family: var(--mono); font-weight: 500; letter-spacing: -.02em; font-size: 1.5rem; line-height: 1.2 }
+
+/* Sidebar name: condensed display font */
+:root { --condensed: "Barlow Condensed", "Arial Narrow", Impact, sans-serif }
+.side h1 { font-family: var(--condensed); font-weight: 600; font-size: 2.2rem; letter-spacing: .01em; line-height: 1.05 }
