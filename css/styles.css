@@ -2205,3 +2205,13 @@ article h1 { margin-top: .5rem }
   background: none; border: 0; border-radius: 0; box-shadow: none; padding: 0;
   margin: 1.2rem 0 0;
 }
+
+/* Overview v20: no number or status pill in the header, bigger centered links */
+.ov-num, .ov-status { display: none }
+.overview .meta { justify-content: center; margin: 1.5rem 0 1.5rem }
+.overview .meta li a,
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible {
+  padding: .55rem 1.1rem; gap: .55rem; font-size: .85rem; border-radius: .5rem;
+}
+.overview .meta li a .ico { width: 1.05rem; height: 1.05rem }
