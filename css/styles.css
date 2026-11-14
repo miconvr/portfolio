@@ -2383,98 +2383,9 @@ article h1 { margin-top: .5rem }
   40% { opacity: .95; transform: translateX(4px) rotate(45deg) }
 }
 
-/* Overview exit v1: mirror of the ov-pop opening. The card drops down and fades, then the next page fades in. */
-@keyframes vt-exit { to { opacity: 0; transform: translateY(28px) scale(.94) } }
-html.vt-exit::view-transition-old(page) { transform-origin: 50% 50%; animation: vt-exit .38s cubic-bezier(.5, 0, .75, 0) both }
-html.vt-exit::view-transition-new(page) { animation: vt-fade .25s ease .15s both }
-
-/* Overview exit v2: slide out to the right (mirrors the old right-slide opening) + sidebar glide */
-@keyframes vt-exit { to { opacity: 0; transform: translateX(72px) scale(.95) } }
-html.vt-exit::view-transition-old(page) { transform-origin: 100% 50%; animation: vt-exit .38s cubic-bezier(.5, 0, .75, 0) both }
-
 /* Sidebar: its own transition layer, so it glides when the shell width changes between pages */
 .side { view-transition-name: side }
 ::view-transition-group(side) { animation-duration: .45s; animation-timing-function: cubic-bezier(.4, 0, .2, 1) }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(side) { animation: none }
-}
-
-/* Overview exit v2: slide out to the right (mirrors the old right-slide opening) + sidebar glide */
-@keyframes vt-exit { to { opacity: 0; transform: translateX(72px) scale(.95) } }
-html.vt-exit::view-transition-old(page) { transform-origin: 100% 50%; animation: vt-exit .38s cubic-bezier(.5, 0, .75, 0) both }
-
-/* Sidebar: its own transition layer, so it glides when the shell width changes between pages */
-.side { view-transition-name: side }
-::view-transition-group(side) { animation-duration: .45s; animation-timing-function: cubic-bezier(.4, 0, .2, 1) }
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(side) { animation: none }
-}
-
-/* Overview exit v3: no fade. The card slides fully off to the right over the next page, which is already visible. */
-@keyframes vt-exit { to { transform: translateX(120%) } }
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 100% 50%;
-  animation: vt-exit .4s cubic-bezier(.5, 0, .75, 0) both;
-}
-html.vt-exit::view-transition-new(page) { z-index: 1; animation: none }
-
-/* Overview exit v4: slide down and off the screen, no fade (replaces the v3 sideways slide) */
-@keyframes vt-exit { to { transform: translateY(100vh) } }
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 50% 100%;
-  animation: vt-exit .4s cubic-bezier(.5, 0, .75, 0) both;
-}
-
-/* Overview exit v5: small lift, then a fast drop off the screen (no fade) */
-@keyframes vt-exit {
-  0% { transform: none }
-  20% { transform: translateY(-10px) scale(1.01); animation-timing-function: cubic-bezier(.55, 0, .9, .4) }
-  100% { transform: translateY(100vh) scale(1) }
-}
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 50% 100%;
-  animation: vt-exit .45s ease-out both;
-}
-
-/* Overview exit v6: tilt away, then drop (replaces v5 lift) */
-@keyframes vt-exit {
-  0% { transform: perspective(900px) rotateX(0) translateY(0) }
-  35% { transform: perspective(900px) rotateX(14deg) translateY(10px) }
-  100% { transform: perspective(900px) rotateX(38deg) translateY(110vh) }
-}
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 50% 0;
-  animation: vt-exit .55s cubic-bezier(.5, 0, .75, 0) both;
-}
-
-/* Overview exit v7: reverse of the opening. A small dip, then the card flies up and off the top (no fade). Replaces the v6 tilt. */
-@keyframes vt-exit {
-  0% { transform: none }
-  18% { transform: translateY(10px) }
-  100% { transform: translateY(-110vh) }
-}
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 50% 50%;
-  animation: vt-exit .5s cubic-bezier(.5, 0, .75, 0) both;
-}
-
-/* Overview exit v8: receipt retracts into the machine. The page rolls up to the header strip, then the strip leaves through the top. */
-@keyframes vt-exit {
-  0% { clip-path: inset(0 0 0 0); transform: none; animation-timing-function: cubic-bezier(.4, 0, .2, 1) }
-  62% { clip-path: inset(0 0 calc(100% - 14rem) 0); transform: none; animation-timing-function: cubic-bezier(.5, 0, .75, 0) }
-  100% { clip-path: inset(0 0 calc(100% - 14rem) 0); transform: translateY(-15rem) }
-}
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 50% 0;
-  animation: vt-exit .75s both;
-}
-
-/* Overview exit v9: the page rolls up from the bottom until it is gone, header last. No strip move, no fade. Replaces v8. */
-@keyframes vt-exit {
-  from { clip-path: inset(0 0 0 0) }
-  to { clip-path: inset(0 0 100% 0) }
-}
-html.vt-exit::view-transition-old(page) {
-  z-index: 2; transform-origin: 50% 0;
-  animation: vt-exit .6s cubic-bezier(.45, 0, .55, 1) both;
 }
