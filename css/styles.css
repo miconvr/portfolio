@@ -1024,3 +1024,17 @@ article h1 { margin-top: .5rem }
 @media (hover: hover) {
   .nf-back:hover { background: var(--btn-hover); color: var(--ink); transform: translateY(-1px) }
 }
+
+/* Playing-card project cards: inset frame and corner index (home) */
+.projects-grid .item {
+  padding: 1.7rem 1.4rem 1.1rem;
+  border-radius: 1rem;
+  outline: 1px solid var(--btn-line);
+  outline-offset: -.45rem;
+}
+.projects-grid .item::after {
+  content: attr(data-index);
+  position: absolute; top: .8rem; left: 1.1rem;
+  font: 500 .7rem/1 var(--mono); letter-spacing: .08em; color: var(--muted);
+  pointer-events: none;
+}
