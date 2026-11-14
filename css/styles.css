@@ -1272,3 +1272,13 @@ article h1 { margin-top: .5rem }
 /* About and Experience: no line under the heading (dividers between sections stay) */
 .page-title + section,
 .page-title + .entry { border-top: 0; padding-top: 0 }
+
+/* Matte project cards: flat tone + fine grain, no gloss */
+.projects-grid .item {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background:
+    var(--grain),
+    color-mix(in srgb, var(--card) 90%, #fff);
+  background-size: 160px 160px, auto;
+}
+.projects-grid .item:hover::before { opacity: .55 }
