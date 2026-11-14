@@ -1161,3 +1161,11 @@ article h1 { margin-top: .5rem }
 
 /* Remove holo sticker */
 .projects-grid .item .meta::after { display: none }
+
+/* Remove holo sticker, move the chip to its spot (desktop only) */
+.projects-grid .item .meta::after { display: none }
+@media (min-width: 30.0625rem) {
+  .projects-grid .item-top::after {
+    position: absolute; right: 1.3rem; bottom: 3.2rem; margin-left: 0; order: 0;
+  }
+}
