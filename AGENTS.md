@@ -172,3 +172,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - Overview back button is now a round X (`.back-top`, icon only) at the card's top right. The bottom `.back-stripe` was removed from the HTML and CSS.
 - Overview readability: lede, outcomes and fact values use the body font (labels `dt` stay mono). `.overview .outcomes` is a spaced list (1.1rem gap, 1rem text, 1.7 line height, 62ch max) with a custom small dot (`li::before`) instead of the native marker.
 - Overview typography: lede, outcomes and fact values use `var(--mono)` (Geist Mono) at about .9 to .95rem with a 1.75+ line height. This overrides the earlier body-font readability rule. The spaced list and custom dots are unchanged.
+- Overview entrance now comes from the right: `ov-pop` is translateX(72px) scale(.95) to none, and `ov-in` (the stagger) is translateX(18px). These redefine the earlier bottom-rise keyframes, which sit earlier in the file and are overridden.
