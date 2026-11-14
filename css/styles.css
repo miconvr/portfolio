@@ -2526,3 +2526,34 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item .reader:not(.ready) .r-screen::after { animation: r-blink 1s steps(1, end) infinite }
   .projects-grid .item .reader.ready:not(.thanks) .r-screen { animation: r-approve .6s ease-out }
 }
+
+/* Machine v5: keypad lights up row by row with the pull, pulses on approval; gloss and label on the body */
+.projects-grid .item .r-keys::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at center, var(--live) 0 .26rem, transparent .3rem) 0 0 / 33.333% 25%;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--pull, 0) * 100%), transparent 0);
+  mask-image: linear-gradient(to bottom, #000 calc(var(--pull, 0) * 100%), transparent 0);
+}
+@supports (width: calc(round(down, 2.5, 1) * 1px)) {
+  .projects-grid .item .r-keys::after {
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(round(down, var(--pull, 0) * 4, 1) * 25%), transparent 0);
+    mask-image: linear-gradient(to bottom, #000 calc(round(down, var(--pull, 0) * 4, 1) * 25%), transparent 0);
+  }
+}
+.projects-grid .item .reader.ready .r-keys::after { -webkit-mask-image: none; mask-image: none }
+@keyframes r-keys-flash {
+  0% { filter: brightness(2.4) drop-shadow(0 0 5px var(--live)) }
+  100% { filter: none }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader.ready:not(.thanks) .r-keys::after { animation: r-keys-flash .6s ease-out }
+}
+.projects-grid .item .reader {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .06), transparent 16%),
+    linear-gradient(165deg, #222227, #0b0b0d 70%);
+}
+.projects-grid .item .r-keys::before {
+  content: "MICO PAY"; position: absolute; left: 0; right: 0; bottom: -1.15rem; text-align: center;
+  font: 500 .4rem var(--mono); letter-spacing: .22em; color: #4a4a52;
+}
