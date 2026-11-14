@@ -83,8 +83,7 @@
     rd.setAttribute("aria-hidden", "true");
     rd.style.transition = "none";
     rd.innerHTML = '<span class="r-screen"></span><span class="r-keys"></span>';
-    c.classList.add("pulling");
-    c.style.setProperty("--pull", "1");
+    rd.style.transform = "translateX(calc(var(--reader-travel) * -1))";
     c.appendChild(rd);
     if (!printReceipt(c)) return;
     const s = c.querySelector(".r-sheet");
@@ -95,13 +94,7 @@
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
-      an.onfinish = () => setTimeout(() => {
-        c.classList.remove("pulling");
-        c.classList.add("spring");
-        c.style.setProperty("--pull", "0");
-        hideReader(c);
-        setTimeout(() => c.classList.remove("spring"), 650);
-      }, 200);
+      an.onfinish = () => setTimeout(() => hideReader(c), 200);
     }, 300);
   };
 
