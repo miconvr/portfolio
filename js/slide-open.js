@@ -21,6 +21,7 @@
 
   function showReader(c) {
     let r = c.querySelector(".reader");
+    if (r) clearTimeout(r._rm);
     if (!r) {
       r = document.createElement("div");
       r.className = "reader";
@@ -36,7 +37,8 @@
     const r = c.querySelector(".reader");
     if (!r) return;
     r.classList.remove("in", "ready");
-    setTimeout(() => r.remove(), 650);
+    clearTimeout(r._rm);
+    r._rm = setTimeout(() => { if (!r.classList.contains("in")) r.remove(); }, 650);
   }
 
   function apply() {
@@ -92,15 +94,17 @@
     if (!s) return;
     s.style.animation = "none";
     s.style.transform = "none";
+    window.__retracting = true; setTimeout(() => { window.__retracting = false; }, 3000);
     const feed = () => {
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
-      an.onfinish = () => setTimeout(() => { hideReader(c); setTimeout(() => c.classList.remove("retract-hold"), 700); }, 200);
+      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 200);
     };
     setTimeout(() => {
       const t0 = performance.now(), D = 800;
       const step = now => {
+        if (!c.isConnected) return;
         const t = Math.min(1, (now - t0) / D), k = t - 1;
         c.style.setProperty("--pull", (1 - (1 + 2.8 * k * k * k + 1.8 * k * k)).toFixed(3));
         if (t < 1) { requestAnimationFrame(step); return; }
@@ -122,7 +126,7 @@
   }
 
   document.addEventListener("pointerdown", e => {
-    if (busy || !e.target.closest) return;
+    if (busy || window.__retracting || !e.target.closest) return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
     if (!desktop()) return;
     const c = e.target.closest(CARD);
