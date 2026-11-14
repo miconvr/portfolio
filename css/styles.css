@@ -1914,3 +1914,6 @@ article h1 { margin-top: .5rem }
 
 /* Commits pill inside the overview Activity tile */
 .overview .facts dd .repo-commits { margin: .1rem 0 0 }
+
+/* Sidebar location line: cream to match */
+.side .loc, .side .loc span { color: color-mix(in srgb, var(--ink) 85%, transparent) }
