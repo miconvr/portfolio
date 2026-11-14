@@ -2002,3 +2002,12 @@ article h1 { margin-top: .5rem }
   background: none; border: 0; transform: none; color: var(--ink);
   text-decoration-color: color-mix(in srgb, var(--ink) 60%, transparent);
 }
+
+/* Cards v8: icon-only links */
+.projects-grid .item .meta { gap: .45rem .9rem }
+.projects-grid .item .meta li+li a { gap: 0; padding: .25rem; margin: -.25rem; border-radius: .4rem }
+.projects-grid .item .meta li+li a::after { content: none }
+.projects-grid .item .meta li+li a .ico { width: 1.15rem; height: 1.15rem }
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible { text-decoration: none }
+.projects-grid .item .meta li+li a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px }
