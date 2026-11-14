@@ -22,6 +22,12 @@
   --muted: #8C8C8C;
   --live: #7ACB8D;
   --dev: #D8A95C;
+  --foil-a: #E7D29B;
+  --foil-b: #B88F40;
+  --chip-line: #7A5B22;
+  --stripe: #0B0B0B;
+  --shadow: rgba(0, 0, 0, .55);
+  --card-edge: #2E2C27;
 }
 
 /* ---- Reset & base ---- */
@@ -1025,33 +1031,37 @@ article h1 { margin-top: .5rem }
   .nf-back:hover { background: var(--btn-hover); color: var(--ink); transform: translateY(-1px) }
 }
 
-/* Playing-card project cards: inset frame and corner index (home) */
+
+/* Credit-card project cards (home): shape, edge and shine */
+.projects-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 26rem)); justify-content: start; align-items: start; gap: 1.1rem }
 .projects-grid .item {
-  padding: 1.7rem 1.4rem 1.1rem;
+  aspect-ratio: 1.586;
+  overflow: visible;
+  padding: 1rem 1.4rem 0;
+  margin-bottom: 0;
   border-radius: 1rem;
-  outline: 1px solid var(--btn-line);
-  outline-offset: -.45rem;
+  background: linear-gradient(145deg, var(--card-2), var(--card) 55%);
+  border-top-color: var(--card-edge);
+  box-shadow: 0 1px 0 var(--shadow), 0 14px 22px -14px var(--shadow);
+}
+.projects-grid .item::before {
+  border-radius: inherit;
+  background:
+    radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--foil-a) 16%, transparent), transparent 65%),
+    radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--ink) 9%, transparent), transparent 70%);
 }
 .projects-grid .item::after {
   content: attr(data-index);
-  position: absolute; top: .8rem; left: 1.1rem;
-  font: 500 .7rem/1 var(--mono); letter-spacing: .08em; color: var(--muted);
+  position: absolute; right: 1.3rem; top: 4.4rem;
+  font: 500 3.2rem/1 var(--mono); letter-spacing: -.02em;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 12%, transparent), 0 1px 0 var(--shadow);
   pointer-events: none;
 }
-
-/* Landscape project cards: one column, layout follows the container width */
-.projects-grid { grid-template-columns: minmax(0, 1fr); container-type: inline-size }
-@container (min-width: 34rem) {
-  .projects-grid .item { padding: 1.7rem 2.2rem 1.4rem }
-  .projects-grid .item-head { flex-direction: row; align-items: center; gap: .9rem }
-  .projects-grid .item-top { display: contents }
-  .projects-grid .item-top .status { order: 2; margin-left: auto }
-  .projects-grid .title-block { order: 1; flex: 1 1 0 }
-  .projects-grid .item p { max-width: 46rem; flex-grow: 0 }
-  .projects-grid .item .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 1rem }
-  .projects-grid .item .meta li:first-child { flex: 0 1 20rem; min-width: 0 }
-  .projects-grid .item .meta li:nth-child(2) { margin-left: auto }
+.projects-grid .item h3 { text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow) }
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item { transition: border-color .2s ease, transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease }
 }
-
-/* Slide-to-open track matches the card frame */
-.projects-grid .item .meta li:first-child a { border-color: var(--btn-line) }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover { box-shadow: 0 1px 0 var(--shadow), 0 22px 28px -14px var(--shadow) }
+}
