@@ -2392,3 +2392,8 @@ article h1 { margin-top: .5rem }
 
 /* Leaving an overview: no page animation, the sidebar still glides */
 html.vt-leave::view-transition-old(page), html.vt-leave::view-transition-new(page) { animation: none }
+
+/* Leaving an overview: drop the old page instantly, no overlap; only the sidebar glides */
+html.vt-leave::view-transition-group(page) { animation: none }
+html.vt-leave::view-transition-old(page) { display: none }
+html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
