@@ -2151,3 +2151,23 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .meta li+li a[aria-label="repository"]::after { content: "repository" }
 .projects-grid .item .meta li+li a { font-size: .72rem; gap: .4rem }
 .projects-grid .item .meta li+li a .ico { width: .9rem; height: .9rem }
+
+/* Cards v17: outlined link boxes, "download" label, scale-up hover (no underline) */
+.projects-grid .item .meta li+li a[aria-label="download"]::after { content: "download" }
+.projects-grid .item .meta li+li a,
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  padding: .3rem .65rem; border: 1px solid var(--line); border-radius: .4rem;
+  text-decoration: none; transform-origin: center;
+  transition: transform .18s ease, color .15s, border-color .15s;
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  color: var(--ink); text-decoration: none;
+  border-color: color-mix(in srgb, var(--ink) 35%, var(--line));
+  transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item .meta li+li a:hover,
+  .projects-grid .item .meta li+li a:focus-visible { transform: none }
+}
