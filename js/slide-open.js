@@ -98,10 +98,10 @@
       an.onfinish = () => setTimeout(() => hideReader(c), 200);
     };
     setTimeout(() => {
-      const t0 = performance.now(), D = 450;
+      const t0 = performance.now(), D = 800;
       const step = now => {
         const t = Math.min(1, (now - t0) / D), k = t - 1;
-        c.style.setProperty("--pull", (1 - (1 + 2.2 * k * k * k + 1.2 * k * k)).toFixed(3));
+        c.style.setProperty("--pull", (1 - (1 + 2.8 * k * k * k + 1.8 * k * k)).toFixed(3));
         if (t < 1) { requestAnimationFrame(step); return; }
         c.classList.remove("pulling");
         c.style.setProperty("--pull", "0");
