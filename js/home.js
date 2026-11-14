@@ -172,6 +172,8 @@
       var r=c.getBoundingClientRect();
       c.style.setProperty('--mx',(e.clientX-r.left)+'px');
       c.style.setProperty('--my',(e.clientY-r.top)+'px');
+      c.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*10+'deg');
+      c.style.setProperty('--rx',(-((e.clientY-r.top)/r.height-.5)*10)+'deg');
     });
   },{passive:true});
 

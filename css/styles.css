@@ -1096,3 +1096,8 @@ article h1 { margin-top: .5rem }
   color: var(--muted); font: 500 .75rem var(--mono); letter-spacing: .08em;
 }
 .projects-grid .item .meta li:first-child a:hover { color: var(--ink) }
+
+/* Credit-card project cards (home): tilt toward the cursor (--rx and --ry are set by js/home.js) */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover { transform: perspective(900px) translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) }
+}
