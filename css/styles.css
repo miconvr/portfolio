@@ -2477,3 +2477,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1), clip-path 0s;
   }
 }
+
+/* Reader v3h: the open machine must not clip the receipt paper that sticks out past it */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader { clip-path: inset(-50rem 100% -50rem -50rem) }
+  .projects-grid .item .reader.in { clip-path: inset(-50rem -50rem -50rem -50rem) }
+}
