@@ -2398,3 +2398,14 @@ html.vt-exit::view-transition-old(page) { transform-origin: 100% 50%; animation:
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(side) { animation: none }
 }
+
+/* Overview exit v2: slide out to the right (mirrors the old right-slide opening) + sidebar glide */
+@keyframes vt-exit { to { opacity: 0; transform: translateX(72px) scale(.95) } }
+html.vt-exit::view-transition-old(page) { transform-origin: 100% 50%; animation: vt-exit .38s cubic-bezier(.5, 0, .75, 0) both }
+
+/* Sidebar: its own transition layer, so it glides when the shell width changes between pages */
+.side { view-transition-name: side }
+::view-transition-group(side) { animation-duration: .45s; animation-timing-function: cubic-bezier(.4, 0, .2, 1) }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(side) { animation: none }
+}
