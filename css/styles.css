@@ -1245,3 +1245,11 @@ article h1 { margin-top: .5rem }
   .side h1 { transition: transform .5s cubic-bezier(.2, .8, .2, 1) }
   .side h1:hover { transform: perspective(500px) rotateX(16deg) scaleY(1.08) skewX(-3deg) }
 }
+
+/* Sidebar name: flat cream fill, no gradient (keeps the hover warp) */
+.side h1 {
+  background: none;
+  -webkit-background-clip: border-box; background-clip: border-box;
+  color: var(--text); -webkit-text-fill-color: currentColor;
+  filter: none;
+}
