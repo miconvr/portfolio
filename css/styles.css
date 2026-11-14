@@ -2435,3 +2435,14 @@ html.vt-exit::view-transition-old(page) {
   z-index: 2; transform-origin: 50% 100%;
   animation: vt-exit .45s ease-out both;
 }
+
+/* Overview exit v6: tilt away, then drop (replaces v5 lift) */
+@keyframes vt-exit {
+  0% { transform: perspective(900px) rotateX(0) translateY(0) }
+  35% { transform: perspective(900px) rotateX(14deg) translateY(10px) }
+  100% { transform: perspective(900px) rotateX(38deg) translateY(110vh) }
+}
+html.vt-exit::view-transition-old(page) {
+  z-index: 2; transform-origin: 50% 0;
+  animation: vt-exit .55s cubic-bezier(.5, 0, .75, 0) both;
+}
