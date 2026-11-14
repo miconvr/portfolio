@@ -36,7 +36,7 @@
   function hideReader(c) {
     const r = c.querySelector(".reader");
     if (!r) return;
-    r.classList.remove("in", "ready");
+    r.classList.remove("in");
     clearTimeout(r._rm);
     r._rm = setTimeout(() => { if (!r.classList.contains("in")) r.remove(); }, 650);
   }
