@@ -94,14 +94,15 @@
     setTimeout(() => {
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
-      an.onfinish = () => {
+      document.dispatchEvent(new CustomEvent("reader-receipt"));
+      an.onfinish = () => setTimeout(() => {
         c.classList.remove("pulling");
         c.classList.add("spring");
         c.style.setProperty("--pull", "0");
         hideReader(c);
         setTimeout(() => c.classList.remove("spring"), 650);
-      };
-    }, 450);
+      }, 200);
+    }, 300);
   };
 
   function release(c, l) {
