@@ -2425,3 +2425,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity 0s linear .3s, transform .3s cubic-bezier(.5, 0, .75, 0);
   }
 }
+
+/* Reader v3c: slides out when it appears, but exit has no animation (it just disappears in place) */
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .reader,
+  .projects-grid .item.spring .reader { transition: none; opacity: 0 }
+  .projects-grid .item .reader.in {
+    opacity: 1;
+    transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1);
+  }
+}
