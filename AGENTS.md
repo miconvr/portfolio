@@ -170,3 +170,4 @@ Pushes from AI chat sessions have been blocked in the past, so the owner often a
 - Overview back button: besides the bottom `.back-stripe`, each projects/*.html has a compact `.back-top` pill ("Back") at the card's top right, placed right after `.ov-num`. It is icon-only at 30rem and below. New projects need it too.
 - Overview card number: `.ov-num` now sits inside `.project-title` right after the `<h1>` (small outlined label, not a watermark). New projects should place it there.
 - Overview back button is now a round X (`.back-top`, icon only) at the card's top right. The bottom `.back-stripe` was removed from the HTML and CSS.
+- Overview readability: lede, outcomes and fact values use the body font (labels `dt` stay mono). `.overview .outcomes` is a spaced list (1.1rem gap, 1rem text, 1.7 line height, 62ch max) with a custom small dot (`li::before`) instead of the native marker.
