@@ -1101,3 +1101,7 @@ article h1 { margin-top: .5rem }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .projects-grid .item:hover { transform: perspective(900px) translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) }
 }
+
+/* Credit-card project cards (home): title and dates sit on the left edge */
+.projects-grid .item-head { align-items: flex-start }
+.projects-grid .title-block { align-self: flex-start; text-align: left }
