@@ -1220,8 +1220,6 @@ article h1 { margin-top: .5rem }
   transform-origin: 50% 100%;
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .side h1 { transition: transform .5s cubic-bezier(.2, .8, .2, 1) }
-  .side h1:hover { transform: perspective(500px) rotateX(16deg) scaleY(1.08) skewX(-3deg) }
 }
 
 /* Sidebar name: flat cream fill, no gradient (keeps the hover warp) */
@@ -1551,10 +1549,4 @@ article h1 { margin-top: .5rem }
     margin-top: 1.25rem; padding-top: .5rem; border-top: 1px solid var(--line);
   }
   .home main .home-intro h2, .home main h1.page-title { margin-top: 2rem }
-}
-
-/* Sidebar name: static warp, no hover motion */
-.side h1, .side h1:hover {
-  transform: perspective(500px) rotateX(16deg) scaleY(1.08) skewX(-3deg);
-  transition: none;
 }
