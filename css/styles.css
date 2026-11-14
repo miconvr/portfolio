@@ -2353,3 +2353,6 @@ article h1 { margin-top: .5rem }
 
 /* Projects layout v1: tighter shell so the card + reader slot sit closer to centered */
 .home .shell:has(.projects-grid) { max-width: 64rem }
+
+/* Shell width v2: About and Experience match the Projects shell so the sidebar stays put */
+.home .shell:has(.page-title) { max-width: 64rem }
