@@ -2663,12 +2663,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 @media (prefers-reduced-motion: reduce) { .lb, .lb-btn { transition: none } }
 
-/* Enlarge hint: small expand icon on overview carousels (the click itself is js/lightbox.js) */
-.overview .frame.carousel::after {
-  content: ""; position: absolute; top: .75rem; right: .75rem; z-index: 2; width: 2rem; height: 2rem;
-  border: 1px solid #3A3A44; border-radius: 50%; pointer-events: none; opacity: .8;
-  background: rgba(12, 12, 15, .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F3E9D2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center / 1rem no-repeat;
-  backdrop-filter: blur(6px); transition: opacity .2s ease, transform .2s ease;
+/* Enlarge button (injected by js/lightbox.js): minimal, and it only brightens when the pointer is on the button itself */
+.lb-hint {
+  position: absolute; top: .6rem; right: .6rem; z-index: 2; display: grid; place-items: center;
+  width: 1.75rem; height: 1.75rem; padding: 0; border: 0; border-radius: .4rem;
+  background: rgba(12, 12, 15, .5); color: var(--ink); opacity: .55; cursor: pointer;
+  transition: opacity .15s ease, background .15s ease;
 }
-.overview .frame.carousel:hover::after { opacity: 1; transform: scale(1.08) }
-@media (prefers-reduced-motion: reduce) { .overview .frame.carousel::after { transition: none } }
+.lb-hint svg { width: .85rem; height: .85rem }
+.lb-hint:hover, .lb-hint:focus-visible { opacity: 1; background: rgba(12, 12, 15, .85) }
+@media (prefers-reduced-motion: reduce) { .lb-hint { transition: none } }

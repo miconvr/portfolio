@@ -132,4 +132,27 @@
   });
 
   window.addEventListener("popstate", close);
+
+  // Enlarge button: a real button, so it gets its own hover (a pseudo-element can't)
+  function addHints() {
+    document.querySelectorAll(".overview .frame.carousel").forEach(c => {
+      if (c.querySelector(".lb-hint")) return;
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "lb-hint";
+      b.setAttribute("aria-label", "Enlarge");
+      b.innerHTML = ico("M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7");
+      c.appendChild(b);
+    });
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest && e.target.closest(".lb-hint");
+    if (!b || (box && !box.hidden)) return;
+    const s = b.parentElement.querySelector(".slides");
+    const slide = s && s.children[Math.round(s.scrollLeft / s.clientWidth)];
+    const m = slide && slide.querySelector("img, video");
+    if (m) open(m);
+  });
+  addHints();
+  new MutationObserver(addHints).observe(document.body, { childList: true, subtree: true });
 })();
