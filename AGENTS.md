@@ -6,7 +6,7 @@ Personal portfolio of Mico Gerard Navarro (BSIT student, Pampanga). Live: https:
 
 ## Stack
 
-Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted on Vercel, with two serverless functions in `api/`. Fonts from Google Fonts. Keep it dependency-free.
+Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted on Vercel, with two serverless functions in `api/`. Fonts are self-hosted in `fonts/`. Keep it dependency-free.
 
 ## Layout
 
@@ -27,6 +27,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `js/commits.js`, `js/rail.js` | Commit counts, scroll rail |
 | `api/hi.js` | Upstash Redis visitor counter (needs Redis env vars) |
 | `api/commits.js` | GitHub commit totals rounded down to 10, cached 1h (needs `GITHUB_TOKEN`, which expires) |
+| `fonts/` | Self-hosted Geist, Geist Mono, Big Shoulders Display (`@font-face` at the end of `css/styles.css`) |
 | `images/`, `vercel.json`, `sitemap.xml`, `robots.txt` | Assets, `cleanUrls`, redirects, SEO |
 
 ## Run and check
@@ -38,7 +39,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Dark theme only, no toggle.
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors.
 - No inline `style=`. Use classes.
-- Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), loaded by a Google Fonts `<link>` in every HTML head. Never add a transform, hover effect or bold to it.
+- Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), self-hosted in `fonts/` and preloaded in every HTML head. Never add a transform, hover effect or bold to it.
 - Page headings (`.page-title` on About/Experience, the Projects h2): Geist 700, `-.03em`, 3.1rem (2.5rem phones), margin `4rem 0 1rem`. Keep them identical. The first section after has no top border.
 - Under 30rem, `.home main` has a 1px `--line` top border (1.25rem above, heading 2rem below). Keep all three tabs equal.
 - Shell width: `.home .shell` is 64rem for Projects, About and Experience, and 76rem on overview pages. `.side` has `view-transition-name: side` so it glides between widths.
@@ -52,7 +53,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 ## Sidebar and mascot
 
 - Desktop (56.01rem up): static full-height panel (`sticky; top:0; height:100dvh; border-radius:0`), no inner scroll, content centered on tall windows, base font 110%. No `margin-top:auto` on the mascot, no fixed pixel height or `overflow:auto`. Under 52rem tall it flows with `height:auto`.
-- Phones and tablets: sidebar and top nav are hidden on project pages (`body:has(.project-title) .side`). Under 40rem the header is centered (8.5rem photo, name, location, icons, welcome row).
+- Phones and tablets: sidebar and top nav are hidden on project pages (`body:has(.project-title) .side`). Under 40rem the header is centered (7.25rem photo, name, location, icons, welcome row). The phone photo size is set only in the `@media (max-width: 40rem)` phone header rule (`.side .profile-photo`). Desktop uses height-based clamps and tablets a 4.25rem inline layout, so don't change those for a phone tweak.
 - Location line has a pin and sits under the social links on desktop (CSS `order`). Text is 85% `--ink`. Contact links underline on hover/focus only. Desktop mascot block has a 1px `#333230` top border. Description matches About text (18px, 1.7).
 - Mascot: flat yellow smiley (`#f7bd2e`), smile is a warped "mico" path (leave it alone), no arms or shadow, shown on mobile. Eyes follow pointer (rAF-throttled), blink every second, one full spin-hop per click (clicks ignored while spinning), yellow "+1" on first tap only. Idle moves (`mascot-idle.js`, every 5 to 9s: `look`, `.mi-bounce`, `.mi-tilt`) skip when hidden, reduced motion, pointer moved in the last 3s, or another move is playing. Reduced motion: no eyes, blink, spin or idle.
 - Credit lines (`.been-credit`, "designed and built by mico", "inspired by drew house"): plain static mono text at low opacity. Welcome text uses `--ink`, count 80%.
@@ -99,7 +100,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 - `<main id="main"><article class="overview">`, styled as one big card (44rem max, `--card`, 1rem radius). The carousel is the hero (40rem), the lede is .95rem mono with a 36rem line length, and outcomes are a spaced list with custom dots.
 - Markup per project: `.project-title` holds the back/X (`.back-top`, round, icon only), icon and `<h1>`. `.ov-num` and `.ov-status` are in `.project-title` but hidden. `.ov-chip` is hidden. Keep them in the article or the CSS won't match. Stack `dd` is `class="pills"` (one `<span>` per item). `.facts` (Role, Status, Activity) is a 3-column grid (1.5fr 1fr 1fr), Role full-row under 40rem, one column under 26rem. Stack is full width.
-- Links row (`.overview .meta`): left-aligned, no band, muted palette (text 55% `--ink`, outline 22%, hover full `--ink` and 50%), .85rem text, no arrows, no green. Selectors use `.overview .meta li a` and reset `::before`/`::after` to `content: none`.
+- Links row (`.overview .meta`): left-aligned, no band, muted palette (text 55% `--ink`, outline 22%, hover full `--ink` and 50%), .85rem text, no arrows, no green. Selectors use `.overview .meta li a` and reset `::before`/`::after` to `content: none`. Block "Overview links v27" (end of `css/styles.css`, shared by every project overview) makes the buttons even: desktop is a left-aligned flex row, and at `max-width: 40rem` it is a 2-column grid of equal-width buttons where an odd last button (privacy) spans the full row. It overrides the older v19 to v26 `.meta` blocks, so change the buttons there, not in those.
 - Entrance (reduced-motion off only): `ov-print` clip-path reveal top to bottom with a scan line (`.overview::before`, `ov-scan`, .85s), then `ov-in` stagger from .3s by class (never `:nth-child`). Cursor spotlight via `.overview::after` and `--mx/--my`. No tilt on overviews.
 - Exit (leaving a project page): `run()` adds `html.vt-exit`, and the old page rolls up from the bottom (`clip-path: inset(0 0 100% 0)`, .6s, no fade) above the new page, which has `animation: none`. Opening a card uses a short fade (`vt-out`/`vt-fade`). Reduced motion and unsupported browsers get an instant swap.
 - Screenshot keys (`.car-slider > .cs-key`, built by `car-slider.js`): dark keycaps with a 7-step sidewall, dished face and engraved arrow, both keys the same muted legend. Active drops 5px (off for reduced motion), and `.car-slider` has 12px bottom padding for that travel. The old `.car-btn` and `.car-count` stay in the markup, hidden, because the keys click them.
@@ -118,7 +119,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 ## Navigation
 
 - Links in `#main` to `/`, `/about`, `/experience`, `/kaltas`, `/civicguard` swap in place via `home.js`. Modifier clicks, `target="_blank"`, downloads, hashes and queries fall through. `norm()` treats `/projects/x.html` and `/projects/x` the same. Project pages must keep `<main id="main"><article>`.
-- Page-specific scripts and `<head>` styles don't run on a swap, so keep behavior in shared files. New pages need the same script tags and font `<link>`s.
+- Page-specific scripts and `<head>` styles don't run on a swap, so keep behavior in shared files. New pages need the same script tags and font preload `<link>`s.
 
 ## Sound (`js/clack.js`)
 
