@@ -2791,3 +2791,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .js .been.been-wait { opacity: 0; transform: translateY(var(--fr-rise)); filter: blur(var(--fr-blur)) }
   .been-count:not(:empty) { animation: count-in .4s ease backwards }
 }
+
+/* Overview links v27: even button row. Desktop keeps one left-aligned row with equal gaps; phones use a 2-column grid of equal-width buttons, with an odd last button spanning the full row. Shared by every project overview. */
+.overview .meta { gap: .6rem; justify-content: flex-start; align-items: stretch }
+.overview .meta li { display: flex }
+.overview .meta li a { justify-content: center }
+@media (max-width: 40rem) {
+  .overview .meta { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem }
+  .overview .meta li:last-child:nth-child(odd) { grid-column: 1 / -1 }
+  .overview .meta li a { width: 100%; box-sizing: border-box; padding: .65rem .75rem }
+}
