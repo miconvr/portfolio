@@ -2715,3 +2715,14 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .policy section li::marker { color: var(--muted) }
 .policy section code { font: 400 .82em var(--mono); padding: .1em .4em; border: 1px solid var(--line); border-radius: .3rem; background: var(--card); overflow-wrap: anywhere }
 .policy section a { text-underline-offset: .2em }
+
+/* Sidebar intro: first visit in a tab only (.js comes from the head script). Fades the sidebar in by role so late fonts and the photo do not pop in. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .side > * { animation: side-in .55s cubic-bezier(.2, .7, .2, 1) backwards }
+  .js .side > .profile-photo { animation-delay: 0s }
+  .js .side > h1 { animation-delay: .06s }
+  .js .side > .lead { animation-delay: .12s }
+  .js .side > nav { animation-delay: .18s }
+  .js .side > .side-links { animation-delay: .25s }
+}
+@keyframes side-in { from { opacity: 0; transform: translateY(10px) } }
