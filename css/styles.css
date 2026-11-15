@@ -2673,3 +2673,16 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .lb-hint svg { width: .85rem; height: .85rem }
 .lb-hint:hover, .lb-hint:focus-visible { opacity: 1; background: rgba(12, 12, 15, .85) }
 @media (prefers-reduced-motion: reduce) { .lb-hint { transition: none } }
+
+/* Lightbox on small screens: smaller buttons, arrows move below the image beside the counter */
+@media (max-width: 40rem) {
+  .lb { padding: 3rem .5rem 3.75rem }
+  .lb-btn { width: 2rem; height: 2rem }
+  .lb-btn svg { width: .9rem; height: .9rem }
+  .lb-close { top: max(.5rem, env(safe-area-inset-top)); right: .5rem }
+  .lb-nav { top: auto; bottom: max(.6rem, env(safe-area-inset-bottom)); transform: none }
+  .lb-prev { left: calc(50% - 4.6rem) }
+  .lb-next { left: auto; right: calc(50% - 4.6rem) }
+  .lb-count { bottom: max(.75rem, env(safe-area-inset-bottom)) }
+  .lb-stage img, .lb-stage video { max-width: 100%; max-height: calc(100dvh - 6.75rem) }
+}
