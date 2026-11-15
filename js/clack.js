@@ -83,7 +83,11 @@
   }
 
   // Payment-terminal approval: two short rising tones
+  let lastApprove = 0;
   function approve() {
+    const nowMs = performance.now();
+    if (nowMs - lastApprove < 700) return;
+    lastApprove = nowMs;
     if (!on || !ctx || ctx.state !== "running") return;
     const t = ctx.currentTime;
     [[1046, 0, .09], [1568, .1, .16]].forEach(([hz, at, len]) => {
