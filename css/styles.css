@@ -2630,21 +2630,19 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item:hover .hover-pad { pointer-events: auto }
 }
 
-/* Custom cursors v2: sharp PNGs at 1x and 2x (sources are the SVGs in images/cursors/). Fine pointers only. */
+/* Custom cursors v3: dot cursors, sharp PNGs at 1x and 2x (sources are the SVGs in images/cursors/). Fine pointers only. */
 @media (hover: hover) and (pointer: fine) {
   :root {
-    --cur-arrow: image-set(url("/images/cursors/arrow.png") 1x, url("/images/cursors/arrow@2x.png") 2x) 4 3, auto;
-    --cur-pointer: image-set(url("/images/cursors/pointer.png") 1x, url("/images/cursors/pointer@2x.png") 2x) 4 3, pointer;
-    --cur-press: image-set(url("/images/cursors/press.png") 1x, url("/images/cursors/press@2x.png") 2x) 4 3, pointer;
-    --cur-text: image-set(url("/images/cursors/text.png") 1x, url("/images/cursors/text@2x.png") 2x) 12 12, text;
+    --cur-dot: image-set(url("/images/cursors/dot.png") 1x, url("/images/cursors/dot@2x.png") 2x) 12 12, auto;
+    --cur-hover: image-set(url("/images/cursors/hover.png") 1x, url("/images/cursors/hover@2x.png") 2x) 12 12, pointer;
+    --cur-press: image-set(url("/images/cursors/press.png") 1x, url("/images/cursors/press@2x.png") 2x) 12 12, pointer;
     --cur-grab: image-set(url("/images/cursors/grab.png") 1x, url("/images/cursors/grab@2x.png") 2x) 12 12, grab;
     --cur-grabbing: image-set(url("/images/cursors/grabbing.png") 1x, url("/images/cursors/grabbing@2x.png") 2x) 12 12, grabbing;
     --cur-no: image-set(url("/images/cursors/no.png") 1x, url("/images/cursors/no@2x.png") 2x) 12 12, not-allowed;
   }
-  body { cursor: var(--cur-arrow) }
-  a, button, [role="button"], summary, select, label[for], .car-btn, .chip-btn, .been-btn, .cs-key { cursor: var(--cur-pointer) }
+  body { cursor: var(--cur-dot) }
+  a, button, [role="button"], summary, select, label[for], .car-btn, .chip-btn, .been-btn, .cs-key { cursor: var(--cur-hover) }
   a:active, button:active, [role="button"]:active, summary:active, .car-btn:active, .chip-btn:active, .been-btn:active, .cs-key:active { cursor: var(--cur-press) }
-  input, textarea, [contenteditable="true"], .overview :is(p, li, dd) { cursor: var(--cur-text) }
   button:disabled, [aria-disabled="true"] { cursor: var(--cur-no) }
   .projects-grid .item .meta li:first-child a { cursor: var(--cur-grab) }
   .projects-grid .item.pulling, .projects-grid .item.pulling * { cursor: var(--cur-grabbing) !important }
