@@ -2742,3 +2742,8 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* Privacy policy uses the overview card. Its back control is an arrow, so no 90deg spin on hover. */
 .overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: translateX(-2px) }
 @media (prefers-reduced-motion: reduce) { .overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: none } }
+
+/* Self-hosted fonts (Latin subset, files in /fonts, preloaded in every page head) */
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/geist-latin-wght-normal.woff2") format("woff2") }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/geist-mono-latin-wght-normal.woff2") format("woff2") }
+@font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/big-shoulders-display-latin-700-normal.woff2") format("woff2") }
