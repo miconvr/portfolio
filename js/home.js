@@ -125,7 +125,7 @@
   var openCard=null;
   function run(data,path,mode){
     var card=openCard; openCard=null;
-    var leaving=current.indexOf("/projects/")===0;
+    var leaving=current.indexOf("/projects/")===0||current==="/kaltas/privacy-policy";
     var from=current;
     var ok=(card||leaving)&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!ok){applyPage(data,path,mode);return;}
