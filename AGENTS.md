@@ -124,7 +124,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 ## Sound (`js/clack.js`)
 
 - Loaded with `defer` on every page, after `slide-open.js`. Thock on press only (no release sound), dry hover tick (mouse only) on links, buttons and whole cards. The card counts as one target, but `.meta li+li a` ticks separately (checked first). One voice at a time, 130ms cooldown. Adjust loudness with `master.gain.value` only.
-- Always on, no mute button. The AudioContext unlocks on `pointerup`, `keydown`, `touchend` and `click`, so the very first press is silent.
+- Always on, no mute button. The AudioContext unlocks on `pointerup`, `keydown`, `touchend` and `click`, so the very first press is silent. `init` resumes the context from any state except `running` and `closed`, because Safari and iOS use `interrupted` after a tab switch, not just `suspended`. A browser can still keep the first press after returning to a tab silent, and that can't be avoided.
 - Quiet mode: `quiet()` in `clack.js` silences the hover tick, press thock and approval beep while `window.__retracting` is true (set by `retractReceipt`, up to 3s) and for 1.2s after `printer()` starts, so only the receipt sound plays. If the print duration changes, update that 1.2s along with `printer()`. `approve()` has a 700ms cooldown so wiggling around 85% can't stack beeps.
 
 ## Content and SEO
