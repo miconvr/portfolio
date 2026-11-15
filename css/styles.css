@@ -2630,3 +2630,35 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item:hover .hover-pad { pointer-events: auto }
 }
 
+
+/* Lightbox (js/lightbox.js): click an overview image or video to enlarge it */
+.overview .slide img, .overview .slide video { cursor: zoom-in }
+.lb {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  padding: 3.5rem 1rem 3rem; background: rgba(0, 0, 0, .88); overscroll-behavior: contain;
+  opacity: 0; transition: opacity .2s ease;
+}
+.lb[hidden], .lb [hidden] { display: none }
+.lb.open { opacity: 1 }
+.lb-stage { display: grid; place-items: center; max-width: 100%; max-height: 100% }
+.lb-stage img, .lb-stage video {
+  width: auto; height: auto; max-width: min(94vw, 100%); max-height: calc(100vh - 7rem); max-height: calc(100dvh - 7rem);
+  object-fit: contain; border-radius: .5rem; background: var(--card); box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+}
+.lb-btn {
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(12, 12, 15, .72); color: var(--ink); cursor: pointer;
+  backdrop-filter: blur(6px); transition: background .2s ease, border-color .2s ease;
+}
+.lb-btn:hover { background: rgba(12, 12, 15, .92); border-color: var(--ink) }
+.lb-btn svg { width: 1.1rem; height: 1.1rem }
+.lb-close { position: absolute; top: max(.75rem, env(safe-area-inset-top)); right: .75rem }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%) }
+.lb-prev { left: .75rem }
+.lb-next { right: .75rem }
+.lb-count {
+  position: absolute; bottom: max(.9rem, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+  padding: .15rem .65rem; border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(12, 12, 15, .72); color: var(--ink); font: 400 .75rem var(--mono);
+}
+@media (prefers-reduced-motion: reduce) { .lb, .lb-btn { transition: none } }
