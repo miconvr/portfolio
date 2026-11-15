@@ -134,6 +134,32 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Sidebar intro (end of `css/styles.css`): on the first visit in a tab (`.js` set by the head script) the direct children of `.side` fade up in order by role, and anything JS adds to `.side` later fades in on insert. No JS and no base `opacity: 0`, so nothing stays hidden if scripts fail. `index.html` preloads the profile photo; if the photo path or `?v=` changes, update the preload too.
 - Cold-start intro on every page: each HTML page must carry the head script from `index.html` line 19 (sets `.js`, first visit in a tab only). Order is sidebar, then `main > article` (`content-in`), then the mascot wrapper. New pages need the same script or none of it plays.
 
+## Adding a project
+
+Use the newest project (`kaltas/`) as the template. Find every place it is wired in with `grep -rIn -i kaltas . --exclude-dir=.git --exclude-dir=node_modules`. A new project must be added in all of these places, or it breaks in place navigation, the commit count or the sitemap.
+
+1. **Overview page**: copy `kaltas/index.html` to `<slug>/index.html` (served as `/<slug>`, `cleanUrls` is on). Rewrite the content, keep the markup and class names (see "Overview pages"). Keep the head script from `index.html` line 19 that sets `.js`, or no intro animation plays on a cold open. Set a unique `<meta name="description">`, `og:description`, `og:url` and canonical URL.
+2. **Titles**: `<title>` is `Mico Gerard Navarro: <Name>`. Set `og:title` to the same text. Home, About and Experience use just `Mico Gerard Navarro`. The 404 page keeps `Page not found: Mico Gerard Navarro`. `home.js` reads the title from each page, so it needs no title change.
+3. **Images** (`images/projects/`): `<slug>-icon.png` (shown at 60x60), plus screenshots or video named `<slug>-1.png`, `<slug>-2.png` and so on. First screenshot eager, the rest `loading="lazy"`. Bump `?v=` on an image URL when you replace the file.
+4. **Home card** (`index.html`, `.projects-grid`): copy the Kaltas `<li>` card and its links row (open chip and `swipe right` / `tap the chip` link, then keep only the links that apply: download, repository, live site). The new project goes first and takes the next `data-index` (Kaltas is 02, so the next one is 03). Check how the date line (`.meta::before`) is set per `data-index` in `css/styles.css` and add the new date the same way. Keep the digit-zero spelling the dates use (see "Home project cards").
+5. **`js/home.js`**: add the slug in all four places, found with `grep -n kaltas js/home.js`:
+   - the active-nav regex (`aria-current`)
+   - the prefetch list of routes
+   - the `leaving` regex
+   - the `inPage` regex
+   If one is missed, the page works on a hard load but breaks or flashes on in place navigation.
+6. **`api/commits.js`**: add `<slug>: "<repo>"` to the `PROJECTS` map. The overview's commit count (`data-repo-commits`) needs it.
+7. **`sitemap.xml`**: add a `<url><loc>https://miconavarro.vercel.app/<slug></loc></url>` entry.
+8. **Copy that lists projects**: update the home `<meta name="description">` and `og:description` in `index.html`, the route lists in this file (Run and check, Navigation) and the card order note under "Home project cards".
+9. **Verify**: serve with `python3 -m http.server 8000` and check `/`, `/<slug>`, About and Experience at about 380px and with reduced motion. Then click from home into the project and back without reloading and confirm the tab title, the sidebar highlight and no flash. Open `/<slug>` in a fresh incognito window and confirm the sidebar, overview and mascot intro plays.
+
+Pitfalls:
+- Kaltas has extras a new project should not inherit: the privacy policy page (`kaltas/privacy-policy`, its route in `home.js` and its sitemap entry), the Chrome Web Store users pill, the demo video and poster, and the store-related copy. Copy them only if the new project truly needs them.
+- Never give `.overview` an animation from a `main > article` rule. The overview has its own intro (`ov-print`, `ov-scan`, staggered `ov-in`), and a broader selector overrides it. The generic content fade is `.js main > article:not(.overview)`.
+- Every HTML page needs the head script from `index.html` line 19. Order on a cold open is sidebar, then content, then the mascot.
+- The mascot wrapper is created by `js/been-here.js`. Don't add mascot markup to pages.
+- Don't reuse the `.js` card reveal rules for new page types without reading the `.js` rules near the top of `css/styles.css`.
+
 ## Conventions
 
 - Small IIFEs, two-space indent, double quotes in newer files. Only three `window` globals exist: `initCarousel` (carousel.js), `retractReceipt` and `__retracting` (slide-open.js, read by clack.js). Don't add more.
