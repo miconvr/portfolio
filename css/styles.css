@@ -2701,6 +2701,3 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Privacy policy page */
 .policy .project-title h1 { font-size: 2rem }
-
-/* No pop-in when returning from the Kaltas privacy page */
-.no-ov-anim .overview { animation: none !important }

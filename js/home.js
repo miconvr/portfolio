@@ -90,8 +90,6 @@
   }
 
   function applyPage(data, path, mode){
-    var quiet=current==='/kaltas/privacy-policy'&&path==='/kaltas';
-    root.classList.toggle('no-ov-anim',quiet);
     if(data.templates&&data.templates.length){
       data.templates.forEach(function(t){
         if(!document.getElementById(t.id)){
@@ -121,7 +119,7 @@
       if(window.initCarousel)window.initCarousel();
       if(window.initCommits)window.initCommits();
     }
-    if(!quiet)animatePanel();
+    animatePanel();
   }
 
   var openCard=null;
@@ -129,7 +127,7 @@
     var card=openCard; openCard=null;
     var leaving=/^\/(kaltas|civicguard)(\/|$)/.test(current);
     var from=current;
-    var ok=(card||leaving)&&!(from==='/kaltas/privacy-policy'&&path==='/kaltas')&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ok=(card||leaving)&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!ok){applyPage(data,path,mode);return;}
     main.style.viewTransitionName='page';
     if(!card)document.documentElement.classList.add("vt-leave");
