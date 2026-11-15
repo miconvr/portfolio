@@ -149,6 +149,7 @@
       dragging = true;
       link.classList.add("drag");
       card.classList.add("pulling");
+      card.classList.remove("spring");
       showReader(card);
     }
     pull = Math.min(1, Math.max(0, dx / (DIST * 1.5)));
