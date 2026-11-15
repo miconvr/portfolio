@@ -131,6 +131,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Share image `images/og.png` (1200x630) is rendered from `images/og.svg` (`rsvg-convert -w 1200 -h 630 -o images/og.png images/og.svg`). Edit the SVG, not the PNG. Project pages use their own screenshot.
 - Favicon: `<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">` on every page. No custom domain.
 - Kaltas privacy policy (`/kaltas/privacy-policy`): a copy of the About page shell with its own article. It is the policy URL in the Chrome Web Store dashboard and the Kaltas popup footer, so never rename or remove it. Keep the text in sync with what the extension actually does (permissions, the `offers.json` fetch from GitHub), and update "Last updated" when it changes. Linked from the Kaltas overview links row, not from the nav. A CivicGuard policy would go at `/civicguard/privacy-policy`. Layout: `.policy` rules at the end of `css/styles.css` (40rem column, numbered `h2`s, `.policy-meta` for the date, `.policy-lede` for the summary). New sections are a plain `h2` followed by `p` or `ul`; keep paragraphs short.
+- Sidebar intro (end of `css/styles.css`): on the first visit in a tab (`.js` set by the head script) the direct children of `.side` fade up in order by role, and anything JS adds to `.side` later fades in on insert. No JS and no base `opacity: 0`, so nothing stays hidden if scripts fail. `index.html` preloads the profile photo; if the photo path or `?v=` changes, update the preload too.
 
 ## Conventions
 
