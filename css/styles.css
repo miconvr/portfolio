@@ -2698,3 +2698,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item::before { transition: opacity .6s ease }
   .projects-grid .item:hover::before { transition-duration: .25s }
 }
+
+/* Privacy policy page */
+.policy .project-title h1 { font-size: 2rem }
