@@ -2686,3 +2686,15 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .lb-count { bottom: max(.75rem, env(safe-area-inset-bottom)) }
   .lb-stage img, .lb-stage video { max-width: 100%; max-height: calc(100dvh - 6.75rem) }
 }
+
+/* Card hover-out: settle back slowly; hover-in and press stay quick (drag, spring and dip keep their own transitions) */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item {
+    transition: border-color .5s ease, transform .6s cubic-bezier(.22, .61, .36, 1), box-shadow .6s ease;
+  }
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) {
+    transition: border-color .2s ease, transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease;
+  }
+  .projects-grid .item::before { transition: opacity .6s ease }
+  .projects-grid .item:hover::before { transition-duration: .25s }
+}
