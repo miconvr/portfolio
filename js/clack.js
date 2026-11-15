@@ -1,6 +1,8 @@
 (() => {
   const SEL = "a[href], button, summary, [role=button]";
   let on = true;
+  let quietUntil = 0;
+  const quiet = () => window.__retracting || performance.now() < quietUntil;
 
   let ctx = null, master = null, noise = null;
   function init() {
@@ -38,6 +40,7 @@
   }
   // Mechanical-key thock: pitched-down sine body + short filtered snap
   function thock(vol, body, snap, len) {
+    if (quiet()) return;
     if (!on || !ctx || ctx.state !== "running") return;
     const t = ctx.currentTime;
     const o = ctx.createOscillator(), og = ctx.createGain();
@@ -61,6 +64,7 @@
   // Hover tick: crisp click, no low body, one voice at a time
   let tickG = null;
   function tick() {
+    if (quiet()) return;
     if (!on || !ctx || ctx.state !== "running") return;
     const t = ctx.currentTime;
     if (tickG) {
@@ -84,6 +88,7 @@
   // Payment-terminal approval: two short rising tones
   let lastApprove = 0;
   function approve() {
+    if (quiet()) return;
     const nowMs = performance.now();
     if (nowMs - lastApprove < 700) return;
     lastApprove = nowMs;
@@ -103,6 +108,7 @@
 
   // Receipt printer: one soft tick per paper-feed step (12 steps over .8s), then a faint ding
   function printer() {
+    quietUntil = performance.now() + 1200;
     if (!on || !ctx || ctx.state !== "running") return;
     const t = ctx.currentTime;
     for (let i = 1; i <= 12; i++) {
