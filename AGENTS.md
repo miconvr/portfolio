@@ -21,6 +21,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `js/slide-open.js` | Swipe-to-open, reader, receipt, chip button, idle sheen |
 | `js/clack.js` | Synthesized sound (Web Audio), no audio files |
 | `js/carousel.js`, `js/car-slider.js` | Screenshot carousel and its keycap buttons |
+| `js/lightbox.js` | Click-to-enlarge lightbox for overview images and videos, plus the `.lb-hint` button |
 | `js/been-here.js`, `js/mascot-idle.js` | Mascot, visitor counter, idle moves |
 | `js/commits.js`, `js/rail.js` | Commit counts, scroll rail |
 | `api/hi.js` | Upstash Redis visitor counter (needs Redis env vars) |
@@ -82,11 +83,12 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 - Desktop (40rem+, fine pointer): the whole card drags except links and buttons. `--pull` goes 0 to 1 over 150px, the card moves about 1.8rem via `translate` (the drag never sets `transform`), and `.reader` (7rem terminal, created by `slide-open.js`) slides out beside it. The card goes under it by about 1.1rem, which must stay under the 1.4rem right padding. At 85% the reader goes green (`.ready`) and the project opens after about 260ms, or 1100ms when a receipt prints.
 - Touch or narrow: no reader. Tapping `.chip-btn` dips the card (`.dip`) and opens the project.
-- Events: `reader-approved` (drag crosses 85% once, or chip tap) plays the beep in `clack.js`. `reader-receipt` plays `printer()` (12 ticks over .8s plus a 2093 Hz ding). `slide-open.js` never touches audio. If the feed duration or step count changes, update `printer()`.
+- Events: `reader-approved` (fires each time a drag crosses 85% upward, or on a chip tap; `clack.js` rate-limits the beep to one per 700ms) plays the beep in `clack.js`. `reader-receipt` plays `printer()` (12 ticks over .8s plus a 2093 Hz ding). `slide-open.js` never touches audio. If the feed duration or step count changes, update `printer()`.
 - Receipt (`printReceipt`, desktop drag only): cream `#f3f0e6` sheet feeds out of the reader's right edge (`r-feed-x`, .8s, 12 steps), with smiley, APPROVED, dashed line, project name, THANK YOU and a small `.r-tear`. Skipped for reduced motion and chip taps.
 - Retract (leaving an overview): `retractReceipt(from)` in `slide-open.js`, called from `run()` in `home.js`, rebuilds the reader on the originating card and animates `.r-sheet` back with the Web Animations API (cancels the CSS animation). Print sound is muted. Desktop only, skipped under reduced motion.
 - The retract reader carries `.thanks`. The stripe label turns green only for a real drag (`.item:has(.reader.ready:not(.thanks))`), and the approve flash rules also exclude `.thanks`. Don't drop that `:not(.thanks)`, or the "swipe right" label stays green for the whole ~2.25s exit.
 - Enter on the stripe link opens directly.
+- `release()` adds `.spring` for 650ms so the card and reader bounce back. Starting a new drag removes `.spring` first. Without that, grabbing the card again mid-bounce leaves the reader on its slow spring transition and it lags behind the card.
 
 ## Overview pages
 
@@ -98,7 +100,15 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Screenshot keys (`.car-slider > .cs-key`, built by `car-slider.js`): dark keycaps with a 7-step sidewall, dished face and engraved arrow, both keys the same muted legend. Active drops 5px (off for reduced motion), and `.car-slider` has 12px bottom padding for that travel. The old `.car-btn` and `.car-count` stay in the markup, hidden, because the keys click them.
 - Kaltas carousel video: the first slide is `<video class="contain">` (`images/projects/kaltas-demo.mp4`, H.264, silent, cropped to 1080x1250 to hide baked-in dots, `+faststart`, poster `kaltas-demo-poster.jpg`). Markup is `muted loop playsinline preload="auto"`, with no `autoplay` attribute. `carousel.js` plays it when 60% is visible, pauses it otherwise, and re-scans after `home.js` swaps the page. Under reduced motion it shows controls and never autoplays. `.slide video.contain` fits the portrait video inside the 16:10 frame (dark bars, not cropped). The `.car-count` text in the markup must match the slide count (now `1 / 4`). A new video follows the same pattern and needs a real `aria-label`. The poster must be the exact first frame of the video (`ffmpeg -i video.mp4 -frames:v 1 -update 1 -q:v 3 poster.jpg`, no `-ss`), or the browser flashes a different image before playback starts. The video is the full demo (about 30s), re-encoded with `crop=1080:1250:0:0 -c:v libx264 -crf 20 -an -movflags +faststart`. Its captions are baked into the frames, so do not trim it to hide a scene, and re-crop from the original file, not the repo copy.
 - Phone (30rem and below): 1rem padding, 2rem title. First screenshot eager, the rest `loading="lazy"`.
-- New project needs: `.ov-num`, `.back-top`, `.ov-status`, `.ov-chip`, `.pills`, `repo-commits` span, a home card (with a `.hover-pad` span and a `.chip-btn` in its `.item-top`), a prefetch entry in `home.js`, a `sitemap.xml` entry, and `data-index`.
+- New project needs: `.ov-num`, `.back-top`, `.ov-status`, `.ov-chip`, `.pills`, `repo-commits` span, a home card (with a `.hover-pad` span and a `.chip-btn` in its `.item-top`), a prefetch entry in `home.js`, a `sitemap.xml` entry, `data-index`, and the `lightbox.js` script tag on its page.
+
+## Lightbox (enlarge images and videos)
+
+- `js/lightbox.js` (IIFE, `defer`) plus a block at the end of `css/styles.css`. Clicking an image or video in `.overview .slide` opens it in a fixed `.lb` dialog with prev/next through that carousel, Esc, backdrop click or X to close. Enter on a focused `.slides` opens the current slide. A pointer move of more than 6px between press and release doesn't count as a click, so swiping the carousel never opens it.
+- Videos open at the same playback time, with controls and sound. The source video pauses while the lightbox is open and resumes on close (not under reduced motion). On close the carousel scrolls to the slide you were on and `.slides` gets focus. The back button (`popstate`) closes it. Page scroll is locked with `overflow: hidden` on `<html>` while open.
+- Enlarge button: `.lb-hint` is a real `<button>` injected into every `.overview .frame.carousel` by `lightbox.js` (a MutationObserver re-adds it after `home.js` swaps pages), not markup in the HTML files. It has to stay a real element, because a pseudo-element can't hover separately from the image. Resting opacity .55, brightens only on its own hover or focus.
+- Script tag: `<script src="/js/lightbox.js" defer></script>` is in `index.html` and both project pages. The home page needs it because `home.js` swaps overviews in without running page scripts (it only loads `carousel.js` itself, on demand).
+- Phones (max-width 40rem): 2rem buttons, prev/next move below the image beside the `n / total` counter. Images show at their file size (up to 1280px), with no zoom beyond that. No swipe between slides yet.
 
 ## Navigation
 
@@ -107,8 +117,9 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ## Sound (`js/clack.js`)
 
-- Loaded with `defer` on every page, after `slide-open.js`. Thock on press, lighter click on release, dry hover tick (mouse only) on links, buttons and whole cards. The card counts as one target, but `.meta li+li a` ticks separately (checked first). One voice at a time, 130ms cooldown. Adjust loudness with `master.gain.value` only.
+- Loaded with `defer` on every page, after `slide-open.js`. Thock on press only (no release sound), dry hover tick (mouse only) on links, buttons and whole cards. The card counts as one target, but `.meta li+li a` ticks separately (checked first). One voice at a time, 130ms cooldown. Adjust loudness with `master.gain.value` only.
 - Always on, no mute button. The AudioContext unlocks on `pointerup`, `keydown`, `touchend` and `click`, so the very first press is silent.
+- Quiet mode: `quiet()` in `clack.js` silences the hover tick, press thock and approval beep while `window.__retracting` is true (set by `retractReceipt`, up to 3s) and for 1.2s after `printer()` starts, so only the receipt sound plays. If the print duration changes, update that 1.2s along with `printer()`. `approve()` has a 700ms cooldown so wiggling around 85% can't stack beeps.
 
 ## Content and SEO
 
@@ -119,11 +130,10 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ## Conventions
 
-- Small IIFEs, no globals, two-space indent, double quotes in newer files.
+- Small IIFEs, two-space indent, double quotes in newer files. Only three `window` globals exist: `initCarousel` (carousel.js), `retractReceipt` and `__retracting` (slide-open.js, read by clack.js). Don't add more.
 - Conventional Commits, lowercase, imperative, no trailing period.
 - One request is one scope. Don't rewrite unrelated sections. Never commit secrets.
 
 ## Working with the owner
 
 AI chat pushes have been blocked before, so the owner often pastes terminal commands. When you can't push, deliver commands or a patch and say how to verify. When you can push, edit directly. One small commit per change, pushed on its own, so each can be reverted separately.
-- Lightbox (`js/lightbox.js`, block at the end of `css/styles.css`): clicking an overview image or video (`.overview .slide img, video`) opens it enlarged with prev/next through that carousel, Esc, backdrop click or X to close. Videos reopen at the same playback time, with sound and controls. Enter on the focused `.slides` also opens it. Loaded after `carousel.js` on every page that loads that file. A small enlarge button (`.lb-hint`, injected into each overview carousel by lightbox.js, hovers on its own) hints that slides are clickable.
