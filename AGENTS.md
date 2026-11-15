@@ -35,6 +35,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 - Dark theme only, no toggle.
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors.
+- Custom cursors (end of `css/styles.css`, `(hover: hover) and (pointer: fine)` only): cream arrow `#F3E9D2` on `body`, gold `#f7bd2e` arrow on links, buttons and keys, `grab` on the home card stripe link and `grabbing` while `.pulling`. The hex colors live inside the SVG data URIs, a deliberate exception to the no-hex rule because `var()` cannot reach them. Keep a dark outline so they show on the light screenshots, keep them 32px or smaller, and keep the native fallback (`auto` or `pointer`). No JS cursor followers. Text no longer shows the I-beam because `body` sets the cursor.
 - No inline `style=`. Use classes.
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), loaded by a Google Fonts `<link>` in every HTML head. Never add a transform, hover effect or bold to it.
 - Page headings (`.page-title` on About/Experience, the Projects h2): Geist 700, `-.03em`, 3.1rem (2.5rem phones), margin `4rem 0 1rem`. Keep them identical. The first section after has no top border.
