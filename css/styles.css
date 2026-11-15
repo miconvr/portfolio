@@ -2704,12 +2704,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Privacy policy layout */
 .policy { counter-reset: pol }
-.policy section { max-width: 40rem }
-.policy section p, .policy section li { font-size: .95rem; line-height: 1.75 }
 .policy section .policy-meta { font: 400 .75rem/1.4 var(--mono); color: var(--muted); text-transform: lowercase; margin: 0 0 1rem }
-.policy section .policy-lede { font-size: 1.05rem; line-height: 1.7; color: var(--ink); margin: 0; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line) }
-.policy section h2 { counter-increment: pol; display: flex; align-items: baseline; gap: .75rem; margin: 2rem 0 .6rem; font-size: 1.15rem; line-height: 1.3 }
-.policy section h2::before { content: counter(pol, decimal-leading-zero); font: 400 .75rem var(--mono); color: var(--muted) }
 .policy section ul { margin: .5rem 0 0; padding-left: 1.2rem }
 .policy section li { margin: .4rem 0 }
 .policy section li::marker { color: var(--muted) }
@@ -2747,3 +2742,17 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/geist-latin-wght-normal.woff2") format("woff2") }
 @font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/geist-mono-latin-wght-normal.woff2") format("woff2") }
 @font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/big-shoulders-display-latin-700-normal.woff2") format("woff2") }
+
+/* Privacy policy v2: same type as the overview (sans body, mono labels). Headings must not animate on their own or they arrive after the text. */
+.overview.policy section > h2 { animation: none }
+.policy section h2 { counter-increment: pol; margin: 2.25rem 0 .75rem }
+.policy section h2::before { content: counter(pol, decimal-leading-zero) }
+.policy section p, .policy section li { font-family: inherit; font-size: 1rem; line-height: 1.75; color: var(--text); max-width: 62ch }
+.policy section .policy-lede { font-size: 1.05rem; line-height: 1.7; color: var(--ink); margin: 0 0 .5rem }
+.policy section a { overflow-wrap: anywhere }
+@media (max-width: 30rem) {
+  .policy .project-title h1 { font-size: 1.6rem; padding-right: 2.75rem }
+  .policy section p, .policy section li { font-size: .95rem }
+  .policy section .policy-lede { font-size: 1rem }
+  .policy section h2 { margin-top: 1.75rem }
+}
