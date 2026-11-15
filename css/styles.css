@@ -1420,7 +1420,7 @@ article h1 { margin-top: .5rem }
   color: var(--muted); transition: color .2s ease;
 }
 .projects-grid .item .meta li:first-child a:hover { color: var(--ink) }
-.projects-grid .item:has(.reader.ready) .meta li:first-child a { color: var(--live) }
+.projects-grid .item:has(.reader.ready:not(.thanks)) .meta li:first-child a { color: var(--live) }
 .projects-grid .item .meta li:first-child a:focus-visible { outline: 2px solid var(--live); outline-offset: -2px }
 .projects-grid .item .meta li:first-child a::before { right: 1.4rem }
 .projects-grid .item .l-tap { display: none }
