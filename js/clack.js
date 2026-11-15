@@ -58,7 +58,6 @@
     src.start(t); src.stop(t + .04);
   }
   const down = () => thock(.3, 140 + Math.random() * 20, 2200 + Math.random() * 300, .11);
-  const up   = () => thock(.12, 230 + Math.random() * 20, 3600 + Math.random() * 400, .04);
   // Hover tick: crisp click, no low body, one voice at a time
   let tickG = null;
   function tick() {
@@ -151,5 +150,4 @@
     if (e.pointerType === "mouse" && e.button !== 0) return;
     down();
   }, true);
-  document.addEventListener("pointerup", () => up(), true);
 })();
