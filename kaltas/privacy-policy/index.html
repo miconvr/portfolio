@@ -43,8 +43,8 @@
           <h1>Privacy Policy: Kaltas</h1>
         </div>
         <section>
-          <p>Last updated: November 15, 2026</p>
-          <p>Kaltas does not collect, store, or sell any personal data. To keep its offers list current, it requests one public file from GitHub, which means GitHub can see your IP address, as any website you visit can. See “Offers list” below.</p>
+          <p class="policy-meta">Last updated: November 15, 2026</p>
+          <p class="policy-lede">Kaltas does not collect, store, or sell any personal data. To keep its offers list current, it requests one public file from GitHub, which means GitHub can see your IP address, as any website you visit can. See “Offers list” below.</p>
           <h2>What the extension does</h2>
           <p>When you click the toolbar icon, Kaltas reads the hostname of your current tab (via the <code>activeTab</code> permission) and compares it with a list of student offers. The comparison happens entirely on your device. The hostname and the pages you visit are never sent anywhere.</p>
           <h2>Settings saved on your device</h2>
@@ -52,7 +52,10 @@
           <h2>Toolbar badge</h2>
           <p>Kaltas shows a green dot on its toolbar icon when the site you are on has a student offer. This uses Chrome’s <code>declarativeContent</code> feature: the extension gives Chrome a list of domains from the offers list (see “Offers list” below), and Chrome itself decides whether the current page matches and swaps the icon. Kaltas does not see the pages you visit, does not read your tabs or history, and does not store or send anything about them.</p>
           <h2>Offers list</h2>
-          <p>When you open the popup, and when Chrome starts or the extension updates, Kaltas requests one public file, <code>offers.json</code>, from GitHub (<code>raw.githubusercontent.com/miconvr/kaltas/main/offers.json</code>), so new and corrected offers reach you without waiting for a store update. This is an ordinary web request: GitHub, like any website, can see your IP address and the standard information a browser sends with any request. The request does not include the site you are on, your tabs, your history, or any account or identifier from the extension, and no cookies are sent. If GitHub cannot be reached or the file looks wrong, the extension uses a saved copy or the offers file bundled with the extension. The popup keeps a copy of the last good offers list in local storage on your device. Offer changes are reviewed and merged by the project owner before they appear in that file. The file contains offers only, never code.</p>
+          <p>When you open the popup, and when Chrome starts or the extension updates, Kaltas requests one public file, <code>offers.json</code>, from GitHub (<code>raw.githubusercontent.com/miconvr/kaltas/main/offers.json</code>), so new and corrected offers reach you without waiting for a store update. This is an ordinary web request: GitHub, like any website, can see your IP address and the standard information a browser sends with any request.</p>
+          <p>The request does not include the site you are on, your tabs, your history, or any account or identifier from the extension, and no cookies are sent.</p>
+          <p>If GitHub cannot be reached or the file looks wrong, the extension uses a saved copy or the offers file bundled with the extension. The popup keeps a copy of the last good offers list in local storage on your device.</p>
+          <p>Offer changes are reviewed and merged by the project owner before they appear in that file. The file contains offers only, never code.</p>
           <h2>What we do not do</h2>
           <ul>
             <li>No analytics, tracking, advertising, or accounts.</li>
