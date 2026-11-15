@@ -22,6 +22,8 @@
   function showReader(c) {
     let r = c.querySelector(".reader");
     if (r) clearTimeout(r._rm);
+    if (r && (r.classList.contains("thanks") || r.querySelector(".r-paper"))) { r.remove(); r = null; }
+    c.classList.remove("retract-hold");
     if (!r) {
       r = document.createElement("div");
       r.className = "reader";
