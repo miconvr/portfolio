@@ -2738,3 +2738,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .js main > article:not(.overview) { animation: content-in .5s cubic-bezier(.2, .7, .2, 1) .15s backwards }
 }
 @keyframes content-in { from { opacity: 0; transform: translateY(12px) } }
+
+/* Privacy policy uses the overview card. Its back control is an arrow, so no 90deg spin on hover. */
+.overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: translateX(-2px) }
+@media (prefers-reduced-motion: reduce) { .overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: none } }
