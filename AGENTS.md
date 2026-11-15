@@ -15,6 +15,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `index.html` | Home with the two project cards in `.projects-grid` |
 | `projects/kaltas.html`, `projects/civicguard.html` | Project overview pages |
 | `about/index.html`, `experience/index.html` | Served as `/about`, `/experience` (`cleanUrls` on) |
+| `kaltas/privacy-policy/index.html` | Kaltas privacy policy, served as `/kaltas/privacy-policy`. Not in the nav |
 | `404.html` | Styled by `.nf` rules, absolute paths, `noindex`, loads only `clack.js` |
 | `css/styles.css` | All styling. Dark only |
 | `js/home.js` | In-place navigation, prefetch, card spotlight/tilt, view transitions |
@@ -128,6 +129,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Every page has its own `<meta name="description">` and `og:description` (under about 160 chars), `og:url`, a canonical URL on `https://miconavarro.vercel.app` (clean, no `.html`), and matching `og:image`/`twitter:image`. Keep `og:` tags in sync if the title or image changes. A new page goes in `sitemap.xml`. The 404 page doesn't.
 - Share image `images/og.png` (1200x630) is rendered from `images/og.svg` (`rsvg-convert -w 1200 -h 630 -o images/og.png images/og.svg`). Edit the SVG, not the PNG. Project pages use their own screenshot.
 - Favicon: `<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">` on every page. No custom domain.
+- Kaltas privacy policy (`/kaltas/privacy-policy`): a copy of the About page shell with its own article. It is the policy URL in the Chrome Web Store dashboard and the Kaltas popup footer, so never rename or remove it. Keep the text in sync with what the extension actually does (permissions, the `offers.json` fetch from GitHub), and update "Last updated" when it changes. Linked from the Kaltas overview links row, not from the nav. A CivicGuard policy would go at `/civicguard/privacy-policy`.
 
 ## Conventions
 
