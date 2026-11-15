@@ -2735,6 +2735,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Content intro: cold start only (.js from the head script). Fades the page article up right after the sidebar starts. */
 @media (prefers-reduced-motion: no-preference) {
-  .js main > article { animation: content-in .5s cubic-bezier(.2, .7, .2, 1) .15s backwards }
+  .js main > article:not(.overview) { animation: content-in .5s cubic-bezier(.2, .7, .2, 1) .15s backwards }
 }
 @keyframes content-in { from { opacity: 0; transform: translateY(12px) } }
