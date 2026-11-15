@@ -158,6 +158,7 @@ Pitfalls:
 - Never give `.overview` an animation from a `main > article` rule. The overview has its own intro (`ov-print`, `ov-scan`, staggered `ov-in`), and a broader selector overrides it. The generic content fade is `.js main > article:not(.overview)`.
 - Every HTML page needs the head script from `index.html` line 19. Order on a cold open is sidebar, then content, then the mascot.
 - Fonts are self-hosted in `fonts/` (Geist, Geist Mono, Big Shoulders Display 700, Latin only) with `@font-face` at the end of `css/styles.css`. Every page head carries the same three `rel="preload" as="font"` links in place of Google Fonts, so copy them into new pages and never re-add Google Fonts. `/fonts/*` is cached for a year as immutable in `vercel.json`, so if a font file changes, give it a new file name. The sidebar name uses the last `--condensed` definition (Big Shoulders Display).
+- Mascot cold start: when `.js` is set, `been-here.js` adds `been-wait` (hidden) to the wrapper and removes it after the first `/api/hi` response or 800ms, and the wrapper fades in by transition. `.js .side > .been { animation: none }` stops the sidebar fade from also hitting it. The count text fades in with `.been-count:not(:empty)`. Don't put an `animation` on `.been` itself.
 - The mascot wrapper is created by `js/been-here.js`. Don't add mascot markup to pages.
 - Don't reuse the `.js` card reveal rules for new page types without reading the `.js` rules near the top of `css/styles.css`.
 
