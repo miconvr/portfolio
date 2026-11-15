@@ -84,6 +84,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Events: `reader-approved` (drag crosses 85% once, or chip tap) plays the beep in `clack.js`. `reader-receipt` plays `printer()` (12 ticks over .8s plus a 2093 Hz ding). `slide-open.js` never touches audio. If the feed duration or step count changes, update `printer()`.
 - Receipt (`printReceipt`, desktop drag only): cream `#f3f0e6` sheet feeds out of the reader's right edge (`r-feed-x`, .8s, 12 steps), with smiley, APPROVED, dashed line, project name, THANK YOU and a small `.r-tear`. Skipped for reduced motion and chip taps.
 - Retract (leaving an overview): `retractReceipt(from)` in `slide-open.js`, called from `run()` in `home.js`, rebuilds the reader on the originating card and animates `.r-sheet` back with the Web Animations API (cancels the CSS animation). Print sound is muted. Desktop only, skipped under reduced motion.
+- The retract reader carries `.thanks`. The stripe label turns green only for a real drag (`.item:has(.reader.ready:not(.thanks))`), and the approve flash rules also exclude `.thanks`. Don't drop that `:not(.thanks)`, or the "swipe right" label stays green for the whole ~2.25s exit.
 - Enter on the stripe link opens directly.
 
 ## Overview pages
