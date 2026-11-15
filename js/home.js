@@ -68,9 +68,15 @@
       }).catch(function(){return null;});
   }
 
-  if('fetch' in window){
+  function warm(){
     ['/','/about','/experience','/projects/kaltas','/projects/civicguard'].forEach(function(p){
       if(p!==current)prefetch(p);
+    });
+  }
+  if('fetch' in window){
+    addEventListener('load',function(){
+      if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:3000});
+      else setTimeout(warm,1500);
     });
   }
 

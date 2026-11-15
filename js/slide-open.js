@@ -198,7 +198,9 @@
   }
   function ensureAll() { ensureChips(); ensureSheen(); }
   ensureAll();
-  new MutationObserver(ensureAll).observe(document.documentElement, { childList: true, subtree: true });
+  // Cards only get swapped in through #main (home.js sets main.innerHTML), so watch just that, not the whole document.
+  const main = document.getElementById("main");
+  if (main) new MutationObserver(ensureAll).observe(main, { childList: true });
 
   document.addEventListener("click", e => {
     const b = e.target.closest && e.target.closest(".chip-btn");
