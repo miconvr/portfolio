@@ -5,8 +5,17 @@
   const quiet = () => window.__retracting || performance.now() < quietUntil;
 
   let ctx = null, master = null, noise = null;
+  function wake() {
+    if (!ctx || ctx.state === "running" || ctx.state === "closed") return Promise.resolve();
+    return ctx.resume().then(() => {
+      const s = ctx.createBufferSource();
+      s.buffer = ctx.createBuffer(1, 1, ctx.sampleRate);
+      s.connect(ctx.destination);
+      s.start(0);
+    }).catch(() => {});
+  }
   function init() {
-    if (ctx) { if (ctx.state !== "running" && ctx.state !== "closed") ctx.resume().catch(() => {}); return; }
+    if (ctx) { wake(); return; }
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     ctx = new AC();
@@ -136,6 +145,11 @@
   ["pointerup", "keydown", "touchend", "click"].forEach(n =>
     window.addEventListener(n, init, { passive: true }));
 
+  // Backgrounded tabs suspend the context. Wake it before the next press.
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) wake(); });
+  window.addEventListener("focus", wake);
+  document.addEventListener("pointerover", wake, { passive: true });
+
   let lastHover = 0, lastEl = null;
   document.addEventListener("pointerover", e => {
     if (e.pointerType !== "mouse") return;
@@ -154,6 +168,7 @@
 
   document.addEventListener("pointerdown", e => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
+    if (ctx && ctx.state !== "running") { wake().then(down); return; }
     down();
   }, true);
 })();
