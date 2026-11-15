@@ -13,7 +13,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | Path | Purpose |
 |---|---|
 | `index.html` | Home with the two project cards in `.projects-grid` |
-| `projects/kaltas.html`, `projects/civicguard.html` | Project overview pages |
+| `kaltas/index.html`, `civicguard/index.html` | Project overview pages, served as `/kaltas`, `/civicguard` |
 | `about/index.html`, `experience/index.html` | Served as `/about`, `/experience` (`cleanUrls` on) |
 | `kaltas/privacy-policy/index.html` | Kaltas privacy policy, served as `/kaltas/privacy-policy`. Not in the nav |
 | `404.html` | Styled by `.nf` rules, absolute paths, `noindex`, loads only `clack.js` |
@@ -31,7 +31,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 
 ## Run and check
 
-No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. Check `/`, `/about`, `/experience`, `/projects/kaltas`, `/projects/civicguard` at about 380px width and with reduced motion on.
+No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. Check `/`, `/about`, `/experience`, `/kaltas`, `/civicguard` at about 380px width and with reduced motion on.
 
 ## Global rules
 
@@ -47,7 +47,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Accessibility: skip link, labelled controls, alt text, `aria-live` on counter, keyboard-usable carousels, `prefers-reduced-motion` support. Don't make content depend on animation or JS.
 - `localStorage` only inside try/catch.
 - Media queries: combine conditions with `or`/`and` inside parentheses, never a comma (commas only at top level). A bad one silently never applies.
-- Before deleting CSS, grep `js/`, `index.html`, `about/`, `experience/` and `projects/` for the class or variable.
+- Before deleting CSS, grep `js/`, `index.html`, `about/`, `experience/` and `kaltas/` and `civicguard/` for the class or variable.
 
 ## Sidebar and mascot
 
@@ -98,7 +98,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Markup per project: `.project-title` holds the back/X (`.back-top`, round, icon only), icon and `<h1>`. `.ov-num` and `.ov-status` are in `.project-title` but hidden. `.ov-chip` is hidden. Keep them in the article or the CSS won't match. Stack `dd` is `class="pills"` (one `<span>` per item). `.facts` (Role, Status, Activity) is a 3-column grid (1.5fr 1fr 1fr), Role full-row under 40rem, one column under 26rem. Stack is full width.
 - Links row (`.overview .meta`): left-aligned, no band, muted palette (text 55% `--ink`, outline 22%, hover full `--ink` and 50%), .85rem text, no arrows, no green. Selectors use `.overview .meta li a` and reset `::before`/`::after` to `content: none`.
 - Entrance (reduced-motion off only): `ov-print` clip-path reveal top to bottom with a scan line (`.overview::before`, `ov-scan`, .85s), then `ov-in` stagger from .3s by class (never `:nth-child`). Cursor spotlight via `.overview::after` and `--mx/--my`. No tilt on overviews.
-- Exit (leaving `/projects/...`): `run()` adds `html.vt-exit`, and the old page rolls up from the bottom (`clip-path: inset(0 0 100% 0)`, .6s, no fade) above the new page, which has `animation: none`. Opening a card uses a short fade (`vt-out`/`vt-fade`). Reduced motion and unsupported browsers get an instant swap.
+- Exit (leaving a project page): `run()` adds `html.vt-exit`, and the old page rolls up from the bottom (`clip-path: inset(0 0 100% 0)`, .6s, no fade) above the new page, which has `animation: none`. Opening a card uses a short fade (`vt-out`/`vt-fade`). Reduced motion and unsupported browsers get an instant swap.
 - Screenshot keys (`.car-slider > .cs-key`, built by `car-slider.js`): dark keycaps with a 7-step sidewall, dished face and engraved arrow, both keys the same muted legend. Active drops 5px (off for reduced motion), and `.car-slider` has 12px bottom padding for that travel. The old `.car-btn` and `.car-count` stay in the markup, hidden, because the keys click them.
 - Kaltas carousel video: the first slide is `<video class="contain">` (`images/projects/kaltas-demo.mp4`, H.264, silent, cropped to 1080x1250 to hide baked-in dots, `+faststart`, poster `kaltas-demo-poster.jpg`). Markup is `muted loop playsinline preload="auto"`, with no `autoplay` attribute. `carousel.js` plays it when 60% is visible, pauses it otherwise, and re-scans after `home.js` swaps the page. Under reduced motion it shows controls and never autoplays. `.slide video.contain` fits the portrait video inside the 16:10 frame (dark bars, not cropped). The `.car-count` text in the markup must match the slide count (now `1 / 4`). A new video follows the same pattern and needs a real `aria-label`. The poster must be the exact first frame of the video (`ffmpeg -i video.mp4 -frames:v 1 -update 1 -q:v 3 poster.jpg`, no `-ss`), or the browser flashes a different image before playback starts. The video is the full demo (about 30s), re-encoded with `crop=1080:1250:0:0 -c:v libx264 -crf 20 -an -movflags +faststart`. Its captions are baked into the frames, so do not trim it to hide a scene, and re-crop from the original file, not the repo copy.
 - Phone (30rem and below): 1rem padding, 2rem title. First screenshot eager, the rest `loading="lazy"`.
@@ -114,7 +114,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ## Navigation
 
-- Links in `#main` to `/`, `/about`, `/experience`, `/projects/<slug>` swap in place via `home.js`. Modifier clicks, `target="_blank"`, downloads, hashes and queries fall through. `norm()` treats `/projects/x.html` and `/projects/x` the same. Project pages must keep `<main id="main"><article>`.
+- Links in `#main` to `/`, `/about`, `/experience`, `/kaltas`, `/civicguard` swap in place via `home.js`. Modifier clicks, `target="_blank"`, downloads, hashes and queries fall through. `norm()` treats `/projects/x.html` and `/projects/x` the same. Project pages must keep `<main id="main"><article>`.
 - Page-specific scripts and `<head>` styles don't run on a swap, so keep behavior in shared files. New pages need the same script tags and font `<link>`s.
 
 ## Sound (`js/clack.js`)

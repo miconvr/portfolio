@@ -24,7 +24,7 @@
   function setActive(path){
     navLinks.forEach(function(a){
       a.removeAttribute('aria-current');
-      if(norm(a.getAttribute('href')||'')===(path.indexOf('/projects/')===0||path==='/kaltas/privacy-policy'?'/':path))a.setAttribute('aria-current','true');
+      if(norm(a.getAttribute('href')||'')===(/^\/(kaltas|civicguard)(\/|$)/.test(path)?'/':path))a.setAttribute('aria-current','true');
     });
   }
 
@@ -69,7 +69,7 @@
   }
 
   function warm(){
-    ['/','/about','/experience','/projects/kaltas','/projects/civicguard','/kaltas/privacy-policy'].forEach(function(p){
+    ['/','/about','/experience','/kaltas','/civicguard','/kaltas/privacy-policy'].forEach(function(p){
       if(p!==current)prefetch(p);
     });
   }
@@ -125,7 +125,7 @@
   var openCard=null;
   function run(data,path,mode){
     var card=openCard; openCard=null;
-    var leaving=current.indexOf("/projects/")===0||current==="/kaltas/privacy-policy";
+    var leaving=/^\/(kaltas|civicguard)(\/|$)/.test(current);
     var from=current;
     var ok=(card||leaving)&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!ok){applyPage(data,path,mode);return;}
@@ -168,7 +168,7 @@
     });
   });
 
-  var inPage=/^\/(about|experience|projects\/[\w-]+|kaltas\/privacy-policy)?$/;
+  var inPage=/^\/(about|experience|kaltas|civicguard|kaltas\/privacy-policy)?$/;
   main.addEventListener('click',function(event){
     if(event.defaultPrevented||event.button!==0)return;
     if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;

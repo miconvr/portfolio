@@ -2,7 +2,15 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/kaltas", "destination": "/", "permanent": true },
-    { "source": "/civicguard", "destination": "/", "permanent": true }
+    {
+      "source": "/projects/kaltas",
+      "destination": "/kaltas",
+      "permanent": true
+    },
+    {
+      "source": "/projects/civicguard",
+      "destination": "/civicguard",
+      "permanent": true
+    }
   ]
 }
