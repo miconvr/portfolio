@@ -2759,3 +2759,25 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .policy section .policy-lede { font-size: 1rem }
   .policy section h2 { margin-top: 1.75rem }
 }
+
+/* Card intro v2 (cold start, .js). The card fades in, then title row, tagline and links follow in tight steps; the next card trails by .12s. Opacity only on the shell and .item-head: a transform there re-parents the absolute chip. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .item.reveal:not(.in) { opacity: 0 }
+  .js .item.reveal + .item.reveal { --ro: .12s }
+  .js .item.reveal + .item.reveal + .item.reveal { --ro: .24s }
+  .js .item.reveal:not(:is(:hover, :active)):not(.spring):not(.pulling):not(.dip) { transition: opacity .6s ease var(--ro, 0s) }
+  .js .item .item-head, .js .item p, .js .item .meta { transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1) }
+  .js .item p, .js .item .meta { transform: translateY(8px) }
+  .js .item.in .item-head { transition-delay: calc(.1s + var(--ro, 0s)) }
+  .js .item.in p:nth-of-type(1) { transition-delay: calc(.18s + var(--ro, 0s)) }
+  .js .item.in p:nth-of-type(2) { transition-delay: calc(.24s + var(--ro, 0s)) }
+  .js .item.in p:nth-of-type(3) { transition-delay: calc(.3s + var(--ro, 0s)) }
+  .js .item.in .meta { transition-delay: calc(.26s + var(--ro, 0s)) }
+}
+
+/* Card hover-out under .js: the .js reveal rule sets transition: none, which beat the slow settle above. Not-hovered cards ease back slowly; hover-in and the swipe states keep their own transitions. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .js .item.reveal:not(:is(:hover, :active)):not(.spring):not(.pulling):not(.dip) {
+    transition: opacity .6s ease var(--ro, 0s), border-color .5s ease, transform .6s cubic-bezier(.22, .61, .36, 1), box-shadow .6s ease;
+  }
+}
