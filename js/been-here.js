@@ -5,6 +5,10 @@
 
   const wrap = document.createElement("div");
   wrap.className = "been";
+  // Cold start: stay hidden until the first count arrives (or 800ms), then fade in once, already complete.
+  const cold = document.documentElement.classList.contains("js");
+  const reveal = () => wrap.classList.remove("been-wait");
+  if (cold) { wrap.classList.add("been-wait"); setTimeout(reveal, 800); }
   wrap.innerHTML = `
     <button class="been-btn" type="button" aria-label="Tap if you are here">
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
@@ -44,7 +48,7 @@
     cnt.textContent = n + "" === "0" ? "" : `${fmt(n)} ${n === 1 ? "person has" : "people have"} said hi`;
   }
 
-  call("/").then(render).catch(() => {});
+  call("/").then(render).catch(() => {}).then(reveal);
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let px = 0, py = 0, raf = 0;

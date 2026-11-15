@@ -2722,11 +2722,14 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 @keyframes side-in { from { opacity: 0; transform: translateY(10px) } }
 
-/* Mascot intro (cold start only, .js from the head script). Runs when been-here.js inserts the wrapper, after the sidebar fade. */
+/* Mascot intro (cold start only). been-here.js adds the wait class and removes it after the first count or 800ms, so the whole block fades in once, complete. The sidebar fade is switched off for it. */
 @media (prefers-reduced-motion: no-preference) {
-  .js .been { animation: mascot-in .6s cubic-bezier(.2, .8, .2, 1) .3s backwards }
+  .js .side > .been { animation: none }
+  .js .been { transition: opacity .55s ease, transform .6s cubic-bezier(.2, .8, .2, 1) }
+  .js .been.been-wait { opacity: 0; transform: translateY(8px) scale(.96) }
+  .been-count:not(:empty) { animation: count-in .4s ease backwards }
 }
-@keyframes mascot-in { from { opacity: 0; transform: translateY(8px) scale(.92) } }
+@keyframes count-in { from { opacity: 0 } }
 
 /* Content intro: cold start only (.js from the head script). Fades the page article up right after the sidebar starts. */
 @media (prefers-reduced-motion: no-preference) {
