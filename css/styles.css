@@ -2801,3 +2801,12 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .meta li:last-child:nth-child(odd) { grid-column: 1 / -1 }
   .overview .meta li a { width: 100%; box-sizing: border-box; padding: .65rem .75rem }
 }
+
+/* Calmer title entrance: Projects, About and Experience headings fade in with a tiny lift, no blur */
+@media (prefers-reduced-motion: no-preference) {
+  .js .home-intro h2,
+  .js .projects-intro,
+  .js .page-title {
+    --fr-blur: 0px; --fr-rise: 4px; --fr-dur: .45s; --fr-ease: ease-out;
+  }
+}
