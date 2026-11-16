@@ -172,3 +172,7 @@ Pitfalls:
 ## Working with the owner
 
 AI chat pushes have been blocked before, so the owner often pastes terminal commands. When you can't push, deliver commands or a patch and say how to verify. When you can push, edit directly. One small commit per change, pushed on its own, so each can be reverted separately. Patches are Python scripts that assert each anchor matches exactly once, so a failed match writes nothing. After pushing, run `git status --short` and confirm it is empty.
+
+## Commit messages
+
+Every commit subject is `type: short summary`, under 80 characters, in the imperative ("add", "fix", not "added"). Types: `feat` new behavior, `fix` bug fix, `style` visual or CSS change, `docs` AGENTS.md or README, `refactor` no behavior change, `perf` speed, `chore` tooling or cleanup, `copy` wording, `content` data or text on the site. One change per commit. Do not use `git add -A`; add specific files. Do not bypass the `.githooks/commit-msg` hook with `--no-verify`.
