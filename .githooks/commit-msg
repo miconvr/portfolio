@@ -3,9 +3,9 @@ msg=$(head -n1 "$1")
 case "$msg" in
   Merge\ *|Revert\ *|fixup!\ *|squash!\ *) exit 0 ;;
 esac
-if ! printf '%s' "$msg" | grep -Eq '^(feat|fix|style|docs|refactor|perf|chore|copy|content): .{4,}$'; then
+if ! printf '%s' "$msg" | grep -Eq '^(feat|fix|style|docs|refactor|perf|chore|copy|content|test|build|ci): .{4,}$'; then
   echo "Commit message must look like 'type: short summary'."
-  echo "Types: feat fix style docs refactor perf chore copy content"
+  echo "Types: feat fix style docs refactor perf chore copy content test build ci"
   exit 1
 fi
 if [ "${#msg}" -gt 80 ]; then
