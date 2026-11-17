@@ -24,7 +24,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `js/carousel.js`, `js/car-slider.js` | Screenshot carousel and its keycap buttons |
 | `js/lightbox.js` | Click-to-enlarge lightbox for overview images and videos, plus the `.lb-hint` button |
 | `js/been-here.js`, `js/mascot-idle.js` | Mascot, visitor counter, idle moves |
-| `js/commits.js`, `js/rail.js` | Commit counts, scroll rail |
+| `js/commits.js` | Commit counts |
 | `api/hi.js` | Upstash Redis visitor counter (needs Redis env vars) |
 | `api/commits.js` | GitHub commit totals rounded down to 10, cached 1h (needs `GITHUB_TOKEN`, which expires) |
 | `fonts/` | Self-hosted Geist, Geist Mono, Big Shoulders Display (`@font-face` at the end of `css/styles.css`) |
