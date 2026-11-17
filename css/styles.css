@@ -2817,3 +2817,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     --fr-blur: 0px; --fr-rise: 4px; --fr-dur: .45s; --fr-ease: ease-out; --fr-step: 30ms;
   }
 }
+
+/* tap targets */
+@media (pointer: coarse), (max-width: 39.99rem) {
+  .projects-grid .item .chip-btn::before { content: ""; position: absolute; inset: -.6rem -.35rem }
+  .overview .back-top::before { content: ""; position: absolute; inset: -.4rem }
+}
