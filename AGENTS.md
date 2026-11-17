@@ -119,7 +119,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 ## Navigation
 
 - Links in `#main` to `/`, `/about`, `/experience`, `/kaltas`, `/civicguard` swap in place via `home.js`. Modifier clicks, `target="_blank"`, downloads, hashes and queries fall through. `norm()` treats `/projects/x.html` and `/projects/x` the same. Project pages must keep `<main id="main"><article>`.
-- Page-specific scripts and `<head>` styles don't run on a swap, so keep behavior in shared files. New pages need the same script tags and font preload `<link>`s.
+- Page-specific scripts and `<head>` styles don't run on a swap, so keep behavior in shared files. New pages need the same script tags and font preload `<link>`s. `warm()` in `home.js` skips the idle prefetch of the other pages on Save-Data and 2g connections.
 
 ## Sound (`js/clack.js`)
 

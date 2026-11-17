@@ -69,6 +69,8 @@
   }
 
   function warm(){
+    var c=navigator.connection;
+    if(c&&(c.saveData||/(^|-)2g$/.test(c.effectiveType||'')))return;
     ['/','/about','/experience','/kaltas','/civicguard','/kaltas/privacy-policy'].forEach(function(p){
       if(p!==current)prefetch(p);
     });
