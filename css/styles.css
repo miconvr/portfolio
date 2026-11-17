@@ -1472,7 +1472,7 @@ article h1 { margin-top: .5rem }
   .projects-grid .item .chip-btn { position: relative }
 }
 @media (prefers-reduced-motion: no-preference) and ((max-width: 39.99rem) or (pointer: coarse)) {
-  .projects-grid .item .chip-btn::after { animation: chip-ring 6s ease-out var(--idle, 1.5s) infinite }
+  .projects-grid .item .chip-btn::after { animation: chip-ring 6s ease-out var(--idle, 1.5s) 3 }
   .projects-grid .item.dip .chip-btn::after { animation: none }
 }
 
@@ -2822,4 +2822,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (pointer: coarse), (max-width: 39.99rem) {
   .projects-grid .item .chip-btn::before { content: ""; position: absolute; inset: -.6rem -.35rem }
   .overview .back-top::before { content: ""; position: absolute; inset: -.4rem }
+}
+
+/* phones: no blur in the cold-start focus rise */
+@media (max-width: 40rem), (pointer: coarse) {
+  :root { --fr-blur: 0px }
 }
