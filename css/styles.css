@@ -2816,3 +2816,10 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 40rem), (pointer: coarse) {
   :root { --fr-blur: 0px }
 }
+
+/* phone text floor */
+@media (max-width: 40rem) {
+  .facts dt, .overview .facts dt, .cs-num, .been-text, .been-credit { font-size: .75rem }
+  .projects-grid .item .dates { font-size: .75rem }
+  .projects-grid .item .meta li+li a { font-size: .75rem }
+}

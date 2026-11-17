@@ -78,6 +78,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Idle sheen: `slide-open.js` adds `.sheen` to every card with a random `--idle` delay (`card-sheen`, 9s).
 - Intro (first visit, `.js` class): `.frame` wipes in and `.item-head`, `p` and `.meta` fade in, staggered. Never put `transform`, `filter` or `will-change` on `.item-head` or anything between `.item` and the chip. It becomes the containing block for the absolute chip and the chip jumps when the intro ends. Use opacity, `translate` or `scale` instead.
 - Phone cards (30rem and below): number, tagline and chip rules differ. Check both cards at 380px after any card change.
+- Phone text floor: the last block of `css/styles.css` (`/* phone text floor */`) keeps visible phone text at 12px or more (facts labels, carousel counter, mascot text, card dates and links). Desktop-only reader and receipt text is exempt.
 - Tap targets: on touch or under 40rem, `.chip-btn::before` and `.overview .back-top::before` (last block of `css/styles.css`, `/* tap targets */`) are invisible pseudo-elements that grow the hit area to about 44px. The visual size and chip position do not change. Never give these two elements another `::before`.
 
 ## Projects intro (`.projects-intro`, under the heading)
