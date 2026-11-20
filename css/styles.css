@@ -2843,4 +2843,23 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: .9rem; margin: 0 }
 .entry:has(> h2 > .cert-badge) { padding-bottom: 1.25rem }
 .entry:has(> h2 > .cert-badge) .when { margin: .3rem 0 0 }
-.cert-link { margin: .6rem 0 0 }
+/* Certificates: credential button, same look as the overview links */
+.cert-link { margin: 1rem 0 0 }
+.cert-link a,
+.cert-link a:hover,
+.cert-link a:focus-visible {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .55rem 1.1rem; border: 1px solid var(--line); border-radius: .5rem;
+  background: none; box-shadow: none; text-decoration: none; text-transform: none;
+  font: 500 .85rem/1.2 var(--mono); letter-spacing: .04em; white-space: nowrap;
+  color: var(--muted); transform-origin: center;
+  transition: transform .18s ease, color .15s, border-color .15s;
+}
+.cert-link a .ico { display: block; flex: none; width: 1.05rem; height: 1.05rem; margin: 0 }
+.cert-link a:hover,
+.cert-link a:focus-visible {
+  color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)); transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cert-link a:hover, .cert-link a:focus-visible { transform: none }
+}
