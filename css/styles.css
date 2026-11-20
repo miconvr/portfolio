@@ -2838,3 +2838,8 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* Certificates: badge to the right of the title */
 .cert-badge { display: block; width: auto; height: 3.25rem; flex: none }
 @media (max-width: 480px) { .cert-badge { height: 2.5rem } }
+
+/* Certificates: title row with badge at the far right, plain credential link */
+.entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 1rem }
+.cert-link { margin: .9rem 0 0 }
+.cert-link a { text-decoration: underline; text-underline-offset: .2em }

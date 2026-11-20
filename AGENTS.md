@@ -123,10 +123,10 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ## Certificates page
 
-- `certificates/index.html`, served as `/certificates`, nav item right under Projects. Same shell as Experience: `<article>` with `<h1 class="page-title">Certificates</h1>`, then one `.entry` per certificate. No page-specific CSS: it reuses the Experience `.entry` and `.when` styles, plus `ul.links` for the optional "view credential" link (new tab, `rel="noopener noreferrer"`).
+- `certificates/index.html`, served as `/certificates`, nav item right under Projects. Same shell as Experience: `<article>` with `<h1 class="page-title">Certificates</h1>`, then one `.entry` per certificate. No page-specific CSS: it reuses the Experience `.entry` and `.when` styles, plus `p.cert-link` (a plain paragraph, not a list) for the optional "view credential" link (new tab, `rel="noopener noreferrer"`).
 - Entry: `h2` is the certificate name, `.when` is "Issuer &middot; platform &middot; Issued Mon YYYY" (use the `&middot;` entity), then the credential link if there is one. No description paragraph. List only certificates that are earned and real, newest first. Don't add issuer logos unless they are self-hosted in `images/` like the FlyRank one.
 - Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`, so `setActive` needed no change.
-- Badge: `images/google-it-support-badge.png` sits inside the `h2`, right after the title text, as `<img class="cert-badge">` (3.25rem tall, 2.5rem under 480px, transparent padding trimmed from the PNG, rule at the end of `css/styles.css`). It is not an `.org-logo`, because those rules size small wordmarks inside the `h2`. Use a badge only when it is self-hosted in `images/`.
+- Badge: `images/google-it-support-badge.png` sits inside the `h2` at the far right of the title row (`h2:has(> .cert-badge)` is a nowrap flex row, rule at the end of `css/styles.css`), as `<img class="cert-badge">` (3.25rem tall, 2.5rem under 480px, transparent padding trimmed from the PNG, rule at the end of `css/styles.css`). It is not an `.org-logo`, because those rules size small wordmarks inside the `h2`. Use a badge only when it is self-hosted in `images/`.
 - Adding another certificate: copy the `.entry` block inside the `<article>`. Keep one `<h2>` per entry.
 
 ## Navigation
