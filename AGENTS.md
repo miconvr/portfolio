@@ -15,7 +15,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `index.html` | Home with the two project cards in `.projects-grid` |
 | `kaltas/index.html`, `civicguard/index.html` | Project overview pages, served as `/kaltas`, `/civicguard` |
 | `about/index.html`, `experience/index.html` | Served as `/about`, `/experience` (`cleanUrls` on) |
-| `certificates/index.html` | Certificates page, served as `/certificates`. Entries reuse the Experience `.entry` markup |
+| `certificates/index.html` | Certificates page, served as `/certificates`. Entries reuse the Experience `.entry` markup plus a badge and a credential button (see "Certificates page") |
 | `kaltas/privacy-policy/index.html` | Kaltas privacy policy, served as `/kaltas/privacy-policy`. Not in the nav |
 | `404.html` | Styled by `.nf` rules, absolute paths, `noindex`, loads only `clack.js` |
 | `css/styles.css` | All styling. Dark only |
@@ -33,7 +33,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 
 ## Run and check
 
-No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. Check `/`, `/about`, `/experience`, `/certificates`, `/kaltas`, `/kaltas/privacy-policy`, `/civicguard` and a made-up URL (404) at about 380px width and with reduced motion on. At phone width also check the overview link buttons (download, repository, privacy) and the header photo.
+No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. Check `/`, `/about`, `/experience`, `/certificates`, `/kaltas`, `/kaltas/privacy-policy`, `/civicguard` and a made-up URL (404) at about 380px width and with reduced motion on. At phone width also check the overview link buttons (download, repository, privacy), the certificate badge and credential button, and the header photo.
 
 ## Global rules
 
@@ -43,13 +43,13 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), self-hosted in `fonts/` and preloaded in every HTML head. Never add a transform, hover effect or bold to it.
 - Page headings (`.page-title` on About/Experience/Certificates, the Projects h2): Geist 700, `-.03em`, 3.1rem (2.5rem phones), margin `4rem 0 1rem`. Keep them identical. The first section after has no top border.
 - Under 30rem, `.home main` has a 1px `--line` top border (1.25rem above, heading 2rem below). Keep all four tabs equal.
-- Shell width: `.home .shell` is 64rem for Projects, About and Experience, and 76rem on overview pages. `.side` has `view-transition-name: side` so it glides between widths.
+- Shell width: `.home .shell` is 64rem for Projects, Certificates, About and Experience, and 76rem on overview pages. `.side` has `view-transition-name: side` so it glides between widths.
 - Nav: Projects, Certificates, About, Experience, in that order (Certificates sits right under Projects). Don't add other items. The nav `<ul>` is duplicated in `index.html`, `about/`, `experience/`, `certificates/`, `kaltas/`, `civicguard/` and `kaltas/privacy-policy/`, so change all of them together (the 404 has none).
 - Experience entries are real. Don't remove or rewrite. The FlyRank logo is self-hosted and sits next to the title (`flex-start`, not `space-between`).
 - Accessibility: skip link, labelled controls, alt text, `aria-live` on counter, keyboard-usable carousels, `prefers-reduced-motion` support. Don't make content depend on animation or JS.
 - `localStorage` only inside try/catch.
 - Media queries: combine conditions with `or`/`and` inside parentheses, never a comma (commas only at top level). A bad one silently never applies.
-- Before deleting CSS, grep `js/`, `index.html`, `about/`, `experience/` and `kaltas/` and `civicguard/` for the class or variable.
+- Before deleting CSS, grep `js/`, `index.html`, `about/`, `experience/`, `certificates/`, `kaltas/` and `civicguard/` for the class or variable.
 
 ## Sidebar and mascot
 
@@ -73,11 +73,10 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Gold chip: desktop is `.item-top::after` (absolute, `right: 1.3rem; bottom: 3.2rem`; `.meta::after` is hidden). Touch or under 40rem it is `.chip-btn` (in the `.item-top` markup of each card so nothing shifts after load; `slide-open.js` only adds it if missing; 2.1rem x 1.6rem, foil gradient). `.chip-btn` sits at `bottom: calc(3.2rem + 11px)` on touch and 30.06 to 39.99rem. On phones `.chip-btn::after` is a 1px gold ring (`chip-ring`, 6s, plays 3 times then stops to save battery) offset by the random `--idle` variable, off for reduced motion and while `.dip`. Never offset with `:nth-child`.
 - Hover (fine pointer, no reduced motion): `home.js` sets `--mx --my --rx --ry` (tilt up to 5deg). One `.projects-grid .item:hover` transform rule. Touch gets a `:active` press. Put new effects on a different property than `transform` (`rotate`, `scale`, `translate`).
 - Hover-out: the bare `.item` has a slow transition (.6s transform and shadow, soft ease-out), while `:hover`/`:active` use the quick .25s one, so the card drifts back instead of snapping. Keep `:not(.spring):not(.pulling):not(.dip)` on that quick rule so it never overrides the drag, spring-back and chip-tap transitions.
-- Card intro v2 (end of `css/styles.css`, supersedes the older intro note): under `.js` the card shell fades in by opacity (`.item.reveal:not(.in)` is hidden), then `.item-head` (opacity only), the tagline and `.meta` follow at .1s, .18s and .26s; each later card adds `--ro` (.12s steps). Hover-out under `.js` needs its own slow-transition rule, because `.js .item.reveal { transition: none }` beats the bare `.projects-grid .item` one. Never put a transform on `.item-head`.
+- Card intro v2 (end of `css/styles.css`): under `.js` the card shell fades in by opacity (`.item.reveal:not(.in)` is hidden), then `.item-head` (opacity only), the tagline and `.meta` follow at .1s, .18s and .26s; each later card adds `--ro` (.12s steps). Hover-out under `.js` needs its own slow-transition rule, because `.js .item.reveal { transition: none }` beats the bare `.projects-grid .item` one. Never put `transform`, `filter` or `will-change` on `.item-head` or anything between `.item` and the chip: it becomes the containing block for the absolute chip, and the chip jumps when the intro ends. Use opacity, `translate` or `scale` instead.
 - Cold-start intro, focus rise (end of `css/styles.css`, tokens `--fr-dur`, `--fr-ease`, `--fr-step`, `--fr-rise`, `--fr-blur` on `:root`): on the first load in a tab (`.js` from the head script) the `.side` children, the page heading (`.home-intro h2` or `.page-title`), the page body and the mascot fade in, rise and sharpen with one keyframe (`focus-rise`) and a per-element `--i` step. Home cards and overview/policy cards keep their own intros and are excluded. Blur only goes on elements with no absolutely positioned children (`nav` and `.side-links` set `--fr-blur: 0px`). The mascot wrapper uses the same tokens as a transition, held by `been-wait` until the first `/api/hi` response or 800ms (`been-here.js`). For new page types, set `--i` in that block instead of adding a new animation. `index.html` preloads the profile photo; if its path or `?v=` changes, update the preload too. Focus rise details: the sidebar order is photo (`--i: 0`), name, location, nav, links (`--i` 1 to 4). Body children on About and Experience stagger with `:nth-child` (`--i` 2 to 7, later children stay at 7), which is fine here because the "never `:nth-child`" rule applies to the overview intro only. Pages with no `.page-title` and no `.overview` (the 404) fade as one block (`--i: 1`, no blur). If blur stutters on phones, lower `--fr-blur` on `:root` (3px or 0px). Phones and touch already set it to 0px in the last block of `css/styles.css`.
 - Each home card has `<span class="hover-pad" aria-hidden="true">` as its first child. It extends the hit area 10px below the card, active only while hovered, so the lift and tilt do not push the bottom edge out from under the pointer (flicker loop). New project cards need it too.
 - Idle sheen: `slide-open.js` adds `.sheen` to every card with a random `--idle` delay (`card-sheen`, 9s).
-- Intro (first visit, `.js` class): `.frame` wipes in and `.item-head`, `p` and `.meta` fade in, staggered. Never put `transform`, `filter` or `will-change` on `.item-head` or anything between `.item` and the chip. It becomes the containing block for the absolute chip and the chip jumps when the intro ends. Use opacity, `translate` or `scale` instead.
 - Phone cards (30rem and below): number, tagline and chip rules differ. Check both cards at 380px after any card change.
 - Phone text floor 2 (`/* phone text floor 2 */`, also at the end of `css/styles.css`) covers the card holder name and the card and overview link pills.
 - The looping card sheen (`card-sheen`) is off on touch and under 40rem (last block of `css/styles.css`).
@@ -123,13 +122,24 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ## Certificates page
 
-- `certificates/index.html`, served as `/certificates`, nav item right under Projects. Same shell as Experience: `<article>` with `<h1 class="page-title">Certificates</h1>`, then one `.entry` per certificate. No page-specific CSS: it reuses the Experience `.entry` and `.when` styles, plus `p.cert-link` (a plain paragraph, not a list) for the optional "view credential" link (new tab, `rel="noopener noreferrer"`).
-- Entry: `h2` is the certificate name, `.when` is "Issuer &middot; platform &middot; Issued Mon YYYY" (use the `&middot;` entity), then the credential link if there is one. No description paragraph. List only certificates that are earned and real, newest first. Don't add issuer logos unless they are self-hosted in `images/` like the FlyRank one.
-- Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`, so `setActive` needed no change.
-- Badge: `images/google-it-support-badge.png` sits inside the `h2` right after the title text (`h2:has(> .cert-badge)` is a nowrap flex row, rule at the end of `css/styles.css`), as `<img class="cert-badge">` (4.25rem tall with -1.2rem vertical margins so it doesn't stretch the title row and the gap under the page title matches Experience; 3.25rem and no negative margin under 480px, where the title wraps; transparent padding trimmed from the PNG, rule at the end of `css/styles.css`). It is not an `.org-logo`, because those rules size small wordmarks inside the `h2`. Use a badge only when it is self-hosted in `images/`.
-- Spacing: the first entry must sit the same distance under the `.page-title` as on Experience, so don't override `.entry` margin-top or padding-top for certificates; only the bottom padding is tightened.
-- Credential link: `p.cert-link > a` is an outlined button with an icon, copied from the overview links (`.overview .meta li a`): muted text, `var(--line)` border, scale-up hover, reduced-motion safe. Styled by the `.cert-link` rules at the end of `css/styles.css`; keep it in sync with the overview buttons.
-- Adding another certificate: copy the `.entry` block inside the `<article>`. Keep one `<h2>` per entry.
+- `certificates/index.html`, served as `/certificates`, nav item right under Projects. Same shell as Experience: `<article>` with `<h1 class="page-title">Certificates</h1>`, then one `.entry` per certificate. It reuses the Experience `.entry` and `.when` styles. The page-specific CSS is at the end of `css/styles.css`: `.cert-badge` (with `h2:has(> .cert-badge)` and the tightened bottom padding of an entry that has a badge) and `.cert-link` (the credential button).
+- List only certificates that are earned and real, newest first. Keep the page's `<meta name="description">` and `og:description` accurate when certificates are added or removed.
+- Entry markup (copy the last block, new certificates go on top):
+
+```html
+<div class="entry">
+  <h2>Google IT Support Professional Certificate<img class="cert-badge" src="/images/google-it-support-badge.png" height="68" alt="Google IT Support Certificate badge"></h2>
+  <p class="when">Google &middot; Coursera &middot; Issued Mon YYYY</p>
+  <p class="cert-link"><a href="https://..." target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true">...</svg>view credential</a></p>
+</div>
+```
+
+- `h2` is the certificate name, one per entry. `.when` is "Issuer &middot; platform &middot; Issued Mon YYYY" (use the `&middot;` entity; drop the "Issued" part only if the date is unknown). No description paragraph.
+- Badge (optional): self-hosted in `images/` as `<issuer>-<certificate>-badge.png` (lowercase, hyphens, like `google-it-support-badge.png`), with the transparent padding cropped off (Pillow, `getchannel("A").getbbox()`). Never hotlink a logo. It sits inside the `h2` right after the title text as `<img class="cert-badge">`. It is 4.25rem tall with -1.2rem vertical margins so it doesn't stretch the title row; under 480px it is 3.25rem with no negative margin. Keep the `height` attribute equal to the CSS height in px. It is not an `.org-logo`, because those rules size small wordmarks.
+- Credential button: `p.cert-link > a`, an outlined button with an inline external-link icon and the text "view credential" (new tab, `rel="noopener noreferrer"`). Its look is copied from the v18/v20 overview link rules (`.overview .meta li a`): muted text, `var(--line)` border, .5rem radius, scale-up hover, no transform under reduced motion. It is a standalone copy, not tied to the "Overview links v27" grid, so if the overview buttons are restyled, update `.cert-link` by hand. Leave the paragraph out when there is no public credential link.
+- Spacing: the first entry must sit the same distance under `.page-title` as on Experience, so don't override `.entry` margin-top or padding-top for certificates.
+- Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`.
+- Check at about 380px: the title wraps cleanly beside the badge, the button fits, and the gap under the page title matches `/experience`.
 
 ## Navigation
 
@@ -155,12 +165,24 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Kaltas privacy policy (`/kaltas/privacy-policy`): the same card as the overview pages (`<article class="overview policy">`; the back arrow is a `.back-top` to `/kaltas`; no carousel, facts or status chip). The `.policy` rules in `css/styles.css` (search "Privacy policy") set the numbered headings and reading width. Body text inherits the overview's font (Geist), headings use the overview's mono label style, and the headings keep `animation: none` so they print with the card instead of after the text. It is the policy URL in the Chrome Web Store dashboard and the Kaltas popup footer, so never rename or remove it. Keep the text in sync with what the extension actually does (permissions, the `offers.json` fetch from GitHub), and update "Last updated" when it changes. Linked from the Kaltas overview links row, not from the nav. A CivicGuard policy would go at `/civicguard/privacy-policy`. Layout: `.policy` rules at the end of `css/styles.css` (40rem column, numbered `h2`s, `.policy-meta` for the date, `.policy-lede` for the summary). New sections are a plain `h2` followed by `p` or `ul`; keep paragraphs short.
 - Cold-start intro on every page: each HTML page must carry the head script from `index.html` line 19 (sets `.js`, first visit in a tab only). Cold-start motion is described under "Cold-start intro, focus rise". New pages need the same script or none of it plays.
 
+## Adding a page
+
+For a top-level page in the sidebar nav (Projects, Certificates, About, Experience). Use `certificates/` or `experience/` as the template. Find every place a page is wired in with `grep -rIn -i certificates . --exclude-dir=.git`.
+
+1. **Page**: copy `experience/index.html` to `<slug>/index.html` (served as `/<slug>`, `cleanUrls` is on). Replace the `<article>` content and keep `<main id="main"><article>`, the `.page-title` h1, the head script from `index.html` line 19, the font preloads and the theme-color and color-scheme tags.
+2. **Head**: unique `<meta name="description">`, `og:description`, `og:url` and canonical URL. The `<title>` is `Mico Gerard Navarro`.
+3. **Nav**: add an `<li>` to the nav `<ul>` in every page that has one (the list is under "Global rules"), in the agreed order, and put `aria-current="true"` on the new page's own item. Update the order in the Nav rule and the "Keep all N tabs equal" line.
+4. **`js/home.js`**: add the route to the `warm()` prefetch list and to the `inPage` regex. The active item matches by `href`, so `setActive` needs no change.
+5. **`sitemap.xml`**: add a `<url><loc>https://miconavarro.vercel.app/<slug></loc></url>` entry.
+6. **This file**: update the Layout table, "Run and check", "Navigation", the `.page-title` list and the shell-width line. Add a section if the page has its own markup or CSS.
+7. **Verify**: serve with `python3 -m http.server 8000`. Open the page from home, About and a project page without a reload, confirm the sidebar highlight on each, and check the top bar at about 380px with the new item count.
+
 ## Adding a project
 
 Use the newest project (`kaltas/`) as the template. Find every place it is wired in with `grep -rIn -i kaltas . --exclude-dir=.git --exclude-dir=node_modules`. A new project must be added in all of these places, or it breaks in place navigation, the commit count or the sitemap.
 
 1. **Overview page**: copy `kaltas/index.html` to `<slug>/index.html` (served as `/<slug>`, `cleanUrls` is on). Rewrite the content, keep the markup and class names (see "Overview pages"). Keep the head script from `index.html` line 19 that sets `.js`, or no intro animation plays on a cold open. Set a unique `<meta name="description">`, `og:description`, `og:url` and canonical URL.
-2. **Titles**: `<title>` is `Mico Gerard Navarro: <Name>`. Set `og:title` to the same text. Home, About and Experience use just `Mico Gerard Navarro`. The 404 page keeps `Page not found: Mico Gerard Navarro`. `home.js` reads the title from each page, so it needs no title change.
+2. **Titles**: `<title>` is `Mico Gerard Navarro: <Name>`. Set `og:title` to the same text. Home, About, Experience and Certificates use just `Mico Gerard Navarro`. The 404 page keeps `Page not found: Mico Gerard Navarro`. `home.js` reads the title from each page, so it needs no title change.
 3. **Images** (`images/projects/`): `<slug>-icon.webp` (120x120, shown at 60x60), plus screenshots or video named `<slug>-1.webp`, `<slug>-2.webp` and so on. Images are WebP (quality 82, the portrait 80). Keep the original PNG only where it is the `og:image`, because share crawlers handle PNG best. First screenshot eager, the rest `loading="lazy"`. Bump `?v=` on an image URL when you replace the file.
 4. **Home card** (`index.html`, `.projects-grid`): copy the Kaltas `<li>` card and its links row (open chip and `swipe right` / `tap the chip` link, then keep only the links that apply: download, repository, live site). The new project goes first and takes the next `data-index` (Kaltas is 02, so the next one is 03). Check how the date line (`.meta::before`) is set per `data-index` in `css/styles.css` and add the new date the same way. Keep the digit-zero spelling the dates use (see "Home project cards").
 5. **`js/home.js`**: add the slug in all four places, found with `grep -n kaltas js/home.js`:
@@ -185,7 +207,7 @@ Pitfalls:
 ## Conventions
 
 - Small IIFEs, two-space indent, double quotes in newer files. Only three `window` globals exist: `initCarousel` (carousel.js), `retractReceipt` and `__retracting` (slide-open.js, read by clack.js). Don't add more.
-- Conventional Commits, lowercase, imperative, no trailing period.
+- Commit subjects follow the rules in "Commit messages" at the end of this file.
 - One request is one scope. Don't rewrite unrelated sections. Never commit secrets.
 
 ## Working with the owner
