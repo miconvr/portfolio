@@ -127,6 +127,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Entry: `h2` is the certificate name, `.when` is "Issuer &middot; platform &middot; Issued Mon YYYY" (use the `&middot;` entity), then the credential link if there is one. No description paragraph. List only certificates that are earned and real, newest first. Don't add issuer logos unless they are self-hosted in `images/` like the FlyRank one.
 - Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`, so `setActive` needed no change.
 - Badge: `images/google-it-support-badge.png` sits inside the `h2` right after the title text (`h2:has(> .cert-badge)` is a nowrap flex row, rule at the end of `css/styles.css`), as `<img class="cert-badge">` (4.25rem tall, 3.25rem under 480px, transparent padding trimmed from the PNG, rule at the end of `css/styles.css`). It is not an `.org-logo`, because those rules size small wordmarks inside the `h2`. Use a badge only when it is self-hosted in `images/`.
+- Spacing: the first entry must sit the same distance under the `.page-title` as on Experience, so don't override `.entry` margin-top or padding-top for certificates; only the bottom padding is tightened.
 - Adding another certificate: copy the `.entry` block inside the `<article>`. Keep one `<h2>` per entry.
 
 ## Navigation
