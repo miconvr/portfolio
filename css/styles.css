@@ -2836,5 +2836,5 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 
 /* Certificates: badge to the right of the title */
-.cert-badge { display: block; width: auto; height: 2.5rem; flex: none }
-@media (max-width: 480px) { .cert-badge { height: 2rem } }
+.cert-badge { display: block; width: auto; height: 3.25rem; flex: none }
+@media (max-width: 480px) { .cert-badge { height: 2.5rem } }
