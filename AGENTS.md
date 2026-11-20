@@ -128,6 +128,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`, so `setActive` needed no change.
 - Badge: `images/google-it-support-badge.png` sits inside the `h2` right after the title text (`h2:has(> .cert-badge)` is a nowrap flex row, rule at the end of `css/styles.css`), as `<img class="cert-badge">` (4.25rem tall with -1.2rem vertical margins so it doesn't stretch the title row and the gap under the page title matches Experience; 3.25rem and no negative margin under 480px, where the title wraps; the credential link underline is muted and goes full `var(--text)` on hover/focus; transparent padding trimmed from the PNG, rule at the end of `css/styles.css`). It is not an `.org-logo`, because those rules size small wordmarks inside the `h2`. Use a badge only when it is self-hosted in `images/`.
 - Spacing: the first entry must sit the same distance under the `.page-title` as on Experience, so don't override `.entry` margin-top or padding-top for certificates; only the bottom padding is tightened.
+- Credential link: `p.cert-link` has no link styling of its own. It inherits the global `a` rule (dim `#3A3A44` underline, `var(--ink)` on hover), the same as the About page's inline links. Don't add a `.cert-link a` override.
 - Adding another certificate: copy the `.entry` block inside the `<article>`. Keep one `<h2>` per entry.
 
 ## Navigation

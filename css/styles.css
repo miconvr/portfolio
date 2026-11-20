@@ -2844,5 +2844,3 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .entry:has(> h2 > .cert-badge) { padding-bottom: 1.25rem }
 .entry:has(> h2 > .cert-badge) .when { margin: .3rem 0 0 }
 .cert-link { margin: .6rem 0 0 }
-.cert-link a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .25em; text-decoration-color: var(--muted); transition: text-decoration-color .15s }
-.cert-link a:hover, .cert-link a:focus-visible { text-decoration-color: var(--text) }
