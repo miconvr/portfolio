@@ -15,6 +15,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `index.html` | Home with the two project cards in `.projects-grid` |
 | `kaltas/index.html`, `civicguard/index.html` | Project overview pages, served as `/kaltas`, `/civicguard` |
 | `about/index.html`, `experience/index.html` | Served as `/about`, `/experience` (`cleanUrls` on) |
+| `certificates/index.html` | Certificates page, served as `/certificates`. Entries reuse the Experience `.entry` markup |
 | `kaltas/privacy-policy/index.html` | Kaltas privacy policy, served as `/kaltas/privacy-policy`. Not in the nav |
 | `404.html` | Styled by `.nf` rules, absolute paths, `noindex`, loads only `clack.js` |
 | `css/styles.css` | All styling. Dark only |
@@ -32,7 +33,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 
 ## Run and check
 
-No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. Check `/`, `/about`, `/experience`, `/kaltas`, `/kaltas/privacy-policy`, `/civicguard` and a made-up URL (404) at about 380px width and with reduced motion on. At phone width also check the overview link buttons (download, repository, privacy) and the header photo.
+No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. Check `/`, `/about`, `/experience`, `/certificates`, `/kaltas`, `/kaltas/privacy-policy`, `/civicguard` and a made-up URL (404) at about 380px width and with reduced motion on. At phone width also check the overview link buttons (download, repository, privacy) and the header photo.
 
 ## Global rules
 
@@ -40,10 +41,10 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors.
 - No inline `style=`. Use classes.
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), self-hosted in `fonts/` and preloaded in every HTML head. Never add a transform, hover effect or bold to it.
-- Page headings (`.page-title` on About/Experience, the Projects h2): Geist 700, `-.03em`, 3.1rem (2.5rem phones), margin `4rem 0 1rem`. Keep them identical. The first section after has no top border.
-- Under 30rem, `.home main` has a 1px `--line` top border (1.25rem above, heading 2rem below). Keep all three tabs equal.
+- Page headings (`.page-title` on About/Experience/Certificates, the Projects h2): Geist 700, `-.03em`, 3.1rem (2.5rem phones), margin `4rem 0 1rem`. Keep them identical. The first section after has no top border.
+- Under 30rem, `.home main` has a 1px `--line` top border (1.25rem above, heading 2rem below). Keep all four tabs equal.
 - Shell width: `.home .shell` is 64rem for Projects, About and Experience, and 76rem on overview pages. `.side` has `view-transition-name: side` so it glides between widths.
-- Nav: Projects, About, Experience only. Don't add items.
+- Nav: Projects, Certificates, About, Experience, in that order (Certificates sits right under Projects). Don't add other items. The nav `<ul>` is duplicated in `index.html`, `about/`, `experience/`, `certificates/`, `kaltas/`, `civicguard/` and `kaltas/privacy-policy/`, so change all of them together (the 404 has none).
 - Experience entries are real. Don't remove or rewrite. The FlyRank logo is self-hosted and sits next to the title (`flex-start`, not `space-between`).
 - Accessibility: skip link, labelled controls, alt text, `aria-live` on counter, keyboard-usable carousels, `prefers-reduced-motion` support. Don't make content depend on animation or JS.
 - `localStorage` only inside try/catch.
@@ -120,9 +121,16 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 - Script tag: `<script src="/js/lightbox.js" defer></script>` is in `index.html` and both project pages. The home page needs it because `home.js` swaps overviews in without running page scripts (it only loads `carousel.js` itself, on demand).
 - Phones (max-width 40rem): 2rem buttons, prev/next move below the image beside the `n / total` counter. Images show at their file size (up to 1280px), with no zoom beyond that. No swipe between slides yet.
 
+## Certificates page
+
+- `certificates/index.html`, served as `/certificates`, nav item right under Projects. Same shell as Experience: `<article>` with `<h1 class="page-title">Certificates</h1>`, then one `.entry` per certificate. No page-specific CSS: it reuses the Experience `.entry` and `.when` styles, plus `ul.links` for the optional "view credential" link (new tab, `rel="noopener noreferrer"`).
+- Entry: `h2` is the certificate name, `.when` is "Issuer &middot; platform &middot; Issued Mon YYYY" (use the `&middot;` entity), then one short factual paragraph, then the credential link if there is one. List only certificates that are earned and real, newest first. Don't add issuer logos unless they are self-hosted in `images/` like the FlyRank one.
+- Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`, so `setActive` needed no change.
+- Adding another certificate: copy the `.entry` block inside the `<article>`. Keep one `<h2>` per entry.
+
 ## Navigation
 
-- Links in `#main` to `/`, `/about`, `/experience`, `/kaltas`, `/civicguard` swap in place via `home.js`. Modifier clicks, `target="_blank"`, downloads, hashes and queries fall through. `norm()` treats `/projects/x.html` and `/projects/x` the same. Project pages must keep `<main id="main"><article>`.
+- Links in `#main` to `/`, `/about`, `/experience`, `/certificates`, `/kaltas`, `/civicguard` swap in place via `home.js`. Modifier clicks, `target="_blank"`, downloads, hashes and queries fall through. `norm()` treats `/projects/x.html` and `/projects/x` the same. Project pages must keep `<main id="main"><article>`.
 - Page-specific scripts and `<head>` styles don't run on a swap, so keep behavior in shared files. New pages need the same script tags and font preload `<link>`s. `warm()` in `home.js` skips the idle prefetch of the other pages on Save-Data and 2g connections.
 
 ## Sound (`js/clack.js`)
