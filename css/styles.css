@@ -2836,10 +2836,12 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 
 /* Certificates: badge to the right of the title */
-.cert-badge { display: block; width: auto; height: 3.25rem; flex: none }
-@media (max-width: 480px) { .cert-badge { height: 2.5rem } }
+.cert-badge { display: block; width: auto; height: 4.25rem; flex: none }
+@media (max-width: 480px) { .cert-badge { height: 3.25rem } }
 
-/* Certificates: title row with badge at the far right, plain credential link */
-.entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: space-between; align-items: center; gap: 1rem }
-.cert-link { margin: .9rem 0 0 }
+/* Certificates: compact entry, badge right after the title */
+.entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: .9rem; margin: 0 }
+.entry:has(> h2 > .cert-badge) { padding: 1.25rem 0; margin-top: 1.25rem }
+.entry:has(> h2 > .cert-badge) .when { margin: .3rem 0 0 }
+.cert-link { margin: .6rem 0 0 }
 .cert-link a { text-decoration: underline; text-underline-offset: .2em }
