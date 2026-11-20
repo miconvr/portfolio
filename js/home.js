@@ -71,7 +71,7 @@
   function warm(){
     var c=navigator.connection;
     if(c&&(c.saveData||/(^|-)2g$/.test(c.effectiveType||'')))return;
-    ['/','/about','/experience','/kaltas','/civicguard','/kaltas/privacy-policy'].forEach(function(p){
+    ['/','/certificates','/about','/experience','/kaltas','/civicguard','/kaltas/privacy-policy'].forEach(function(p){
       if(p!==current)prefetch(p);
     });
   }
@@ -170,7 +170,7 @@
     });
   });
 
-  var inPage=/^\/(about|experience|kaltas|civicguard|kaltas\/privacy-policy)?$/;
+  var inPage=/^\/(about|certificates|experience|kaltas|civicguard|kaltas\/privacy-policy)?$/;
   main.addEventListener('click',function(event){
     if(event.defaultPrevented||event.button!==0)return;
     if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
