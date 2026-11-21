@@ -2842,10 +2842,10 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: .9rem; margin: 0 }
 .entry:has(> h2 > .cert-badge) { padding-bottom: 1.25rem }
 .entry:has(> h2 > .cert-badge) .when { margin: .3rem 0 0 }
-/* Certificates: on phones the badge stacks above the title (a nowrap title box stays wide and left a gap) */
+/* Certificates: on phones the badge stays right of the title, sized to the title block with a tight line height */
 @media (max-width: 40rem) {
-  .entry h2:has(> .cert-badge) { flex-direction: column; align-items: flex-start; gap: .8rem; line-height: 1.25 }
-  .entry h2:has(> .cert-badge) .cert-badge { order: -1; height: 3.75rem; margin: 0 }
+  .entry h2:has(> .cert-badge) { justify-content: space-between; align-items: center; gap: 1rem; line-height: 1.25 }
+  .entry h2:has(> .cert-badge) .cert-badge { height: 3.5rem; margin: 0 }
 }
 /* Certificates: credential button, same look as the overview links */
 .cert-link { margin: 1rem 0 0 }
