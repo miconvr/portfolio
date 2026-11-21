@@ -2837,12 +2837,16 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Certificates: badge to the right of the title */
 .cert-badge { display: block; width: auto; height: 4.25rem; flex: none; margin: -1.2rem 0 }
-@media (max-width: 480px) { .cert-badge { height: 3.25rem; margin: 0 } }
 
 /* Certificates: compact entry, badge right after the title */
 .entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: .9rem; margin: 0 }
 .entry:has(> h2 > .cert-badge) { padding-bottom: 1.25rem }
 .entry:has(> h2 > .cert-badge) .when { margin: .3rem 0 0 }
+/* Certificates: on phones the badge stacks above the title (a nowrap title box stays wide and left a gap) */
+@media (max-width: 40rem) {
+  .entry h2:has(> .cert-badge) { flex-direction: column; align-items: flex-start; gap: .8rem; line-height: 1.25 }
+  .entry h2:has(> .cert-badge) .cert-badge { order: -1; height: 3.75rem; margin: 0 }
+}
 /* Certificates: credential button, same look as the overview links */
 .cert-link { margin: 1rem 0 0 }
 .cert-link a,
