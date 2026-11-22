@@ -200,6 +200,8 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 
 - Link icons (`/* crisp link icons: whole pixel size */`, end of `css/styles.css`): the card, overview and certificate link icons are exactly 16px, the native size of the 16px icon paths. Fractional sizes (.9rem, 1.05rem) resample the GitHub mark and make it look pixelly. Keep icon sizes in whole pixels.
 
+- GitHub icon: every GitHub link uses the goggles mark (a hand-drawn single-path SVG inside `<g transform="translate(0 1.65) scale(.02572)">` on the 16x16 viewBox), not the Octocat. Copy the markup from an existing link when adding one, and keep icon sizes in whole pixels.
+
 ## Adding a page
 
 For a top-level page in the sidebar nav. Use `certificates/` or `experience/` as the template. Find every place a page is wired in with `grep -rIn -i certificates . --exclude-dir=.git`.
