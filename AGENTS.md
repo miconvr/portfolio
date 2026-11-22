@@ -231,3 +231,10 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - On touch or under 40rem the overview entrance only fades: `ov-print` and `ov-in` are redefined without `transform` or `clip-path` in the `/* phone overview entrance and screenshot edge */` block at the end of `css/styles.css`. The transform animations made the screenshots shift about 1px left when they finished. Desktop keeps the print animation.
 - `.overview .slide` clips its overflow and its `img` is 1px wider than the slide, so a fractional frame width never leaves a light line at the right edge (visible on CivicGuard's dark red screenshots). Videos are not affected.
+
+
+## Card without the stripe bar
+
+- The black stripe bar is gone. The `.meta li:first-child` link is still in the markup (`slide-open.js` clicks it and keyboard users tab to it) but is a 1px clipped, absolutely positioned box with no icon; focus shows an outline on the whole card (`:has(a:focus-visible)`). The card is clickable everywhere by the capture-phase click handler in `slide-open.js`, not by the link's size. The stripe rules earlier in `css/styles.css` (height, border, pull line, `::before` icon, `arrow-ring`) are now dead and the `/* no bar: cream icon and stack pills */` block at the end overrides them.
+- The cream click icon (`#f3f0e6`, inline SVG data URI) is `.item-top::after`, absolute at `right: 1.3rem; bottom: 1.3rem` on every width, 75% opacity, 100% on card hover or focus. `.item-top` must stay un-transformed or the icon will jump (same rule as the old chip). The `02` (`.item::after`) sits above it.
+- Stack pills: `<p class="card-stack">` between the tagline and `.meta` in each home card, 3 or 4 items taken from the overview's Stack row. New projects need one. `.item` has `padding-bottom: 1.3rem` now that no bar sits flush at the bottom.
