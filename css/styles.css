@@ -1500,7 +1500,7 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item .reader .r-sheet {
   position: relative; height: 100%; align-content: center;
-  transform: translateX(-100%); animation: r-feed-x .4s steps(12, end) forwards;
+  transform: translateX(-100%); animation: r-feed-x .4s steps(24, end) forwards;
 }
 .projects-grid .item .reader .r-heart {
   display: block; width: 2.1rem; height: 2.1rem; margin: .1rem auto;
@@ -2521,3 +2521,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .facts { grid-template-columns: minmax(0, 1fr) }
   .overview .facts > div:nth-child(n) { grid-column: 1 / -1 }
 }
+
+/* reader screen: no insert card text */
+.projects-grid .item .reader:not(.ready) .r-screen::before { content: "" }
