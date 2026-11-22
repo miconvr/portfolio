@@ -135,7 +135,38 @@
       c.style.setProperty("--idle", (-Math.random() * 9).toFixed(2) + "s");
     });
   }
-  function ensureAll() { ensureSheen(); }
+  // Stack pills: show every pill in the HTML, but cap the row at two lines. Extra pills hide behind "+N";
+  // the full list stays in the row's tooltip.
+  function fitStacks() {
+    document.querySelectorAll(".projects-grid .card-stack").forEach(p => {
+      p.querySelectorAll(".more").forEach(m => m.remove());
+      const pills = Array.from(p.querySelectorAll("span"));
+      pills.forEach(s => { s.hidden = false; });
+      p.title = pills.map(s => s.textContent).join(", ");
+      const rows = list => new Set(list.map(s => s.offsetTop)).size;
+      if (rows(pills) <= 2) return;
+      const more = document.createElement("span");
+      more.className = "more";
+      more.setAttribute("aria-hidden", "true");
+      p.appendChild(more);
+      let hid = 0;
+      while (hid < pills.length - 1) {
+        pills[pills.length - 1 - hid].hidden = true;
+        hid++;
+        more.textContent = "+" + hid;
+        if (rows(pills.filter(s => !s.hidden).concat(more)) <= 2) break;
+      }
+    });
+  }
+  function clearDip() {
+    if (busy) return;
+    document.querySelectorAll(".projects-grid .item.dip").forEach(c => c.classList.remove("dip"));
+  }
+  let fitTimer = 0;
+  window.addEventListener("resize", () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitStacks, 150); });
+  window.addEventListener("pageshow", e => { if (e.persisted) { busy = false; clearDip(); fitStacks(); } });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitStacks);
+  function ensureAll() { ensureSheen(); clearDip(); fitStacks(); }
   ensureAll();
   // Cards only get swapped in through #main (home.js sets main.innerHTML), so watch just that, not the whole document.
   const main = document.getElementById("main");

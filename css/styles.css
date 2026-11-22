@@ -2938,9 +2938,14 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .meta { padding-right: 3.4rem }
 @media (max-width: 30rem) { .projects-grid .item::after { font-size: 1.6rem } }
 @media (max-width: 39.99rem) { .projects-grid { padding-bottom: 4.5rem } }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .projects-grid .item,
-  .projects-grid .project-icon,
-  .projects-grid .item-top .status,
-  .projects-grid .title-block { will-change: transform }
+
+/* stack pills v2 */
+.projects-grid .item .card-stack span[hidden] { display: none }
+.projects-grid .item .card-stack .more { border-style: dashed; cursor: default }
+@media (max-width: 39.99rem) {
+  .projects-grid .item p.card-stack { gap: .25rem; margin-top: .55rem }
+  .projects-grid .item .card-stack span { padding: .1rem .42rem; font-size: .58rem }
+}
+@media (hover: none), (pointer: coarse) {
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) { transform: none; filter: none }
 }
