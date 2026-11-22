@@ -561,7 +561,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 
 /* Short windows: let sidebar flow with the page */
 @media (min-width: 56.01rem) and (max-height: 52rem) {
-  .side { position: static; height: auto }
+  .side { position: static; height: auto; min-height: 100dvh; align-self: stretch }
   .side .been { margin-top: 1.5rem }
 }
 
