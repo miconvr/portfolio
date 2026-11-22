@@ -14,12 +14,9 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <g class="body">
           <path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/>
-          <ellipse cx="34" cy="63" rx="6" ry="3.6" fill="#ff9aa2" opacity=".75"/>
-          <ellipse cx="86" cy="63" rx="6" ry="3.6" fill="#ff9aa2" opacity=".75"/>
-          <path d="M53.5 67Q60 73.5 66.5 67" fill="none" stroke="#14110d" stroke-width="2.8" stroke-linecap="round"/>
           <g class="eyes">
-            <g class="blink"><ellipse cx="45" cy="50" rx="6.5" ry="7.5" fill="#14110d"/><circle cx="47.3" cy="47.2" r="2.7" fill="#fff"/></g>
-            <g class="blink"><ellipse cx="75" cy="50" rx="6.5" ry="7.5" fill="#14110d"/><circle cx="77.3" cy="47.2" r="2.7" fill="#fff"/></g>
+            <ellipse class="blink" cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/>
+            <ellipse class="blink" cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/>
           </g>
         </g>
       </svg>
@@ -56,8 +53,8 @@
     raf = 0;
     const r = btn.getBoundingClientRect();
     const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
-    const d = Math.hypot(dx, dy) || 1, k = Math.min(1.5, d / 100);
-    eyes.style.transform = `translate(${(dx / d) * k}px, ${(dy / d) * k}px)`;
+    const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 80);
+    eyes.style.transform = `translate(${(dx / d) * k * 3.2}px, ${(dy / d) * k * 2.2}px)`;
   }
   window.addEventListener("pointermove", e => {
     if (reduceMotion.matches) return;
