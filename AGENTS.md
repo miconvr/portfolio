@@ -65,21 +65,18 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 ## Home project cards
 
 - Layout: `.projects-grid` is one column (`minmax(0, 26rem)`), Kaltas (`data-index="02"`) above CivicGuard (`01`). New project goes first and takes the next number. Credit-card style: `aspect-ratio: 1.586` as a minimum (cards grow, never clip), `overflow: visible`, matte `--card` gradient with faint grain (don't lighten), `--card-edge`, `--shadow`.
-- Content: icon, title, left-aligned dates, one tagline (Kaltas: "Chrome extension that finds student deals for the website you're visiting." CivicGuard: "Incident and curfew monitoring website for Barangay Maimpis."), icon links, date line, stripe. No commits pill. No cardholder, card-number or holo-sticker markup.
-- Date line (`.meta::before`, above 30rem): "N0VEMBER T0 PRESENT 2026" / "SEPTEMBER T0 PRESENT 2026", set by `data-index`. The zeros are digits on purpose. Under 30rem it is hidden and `.date-text` under the title shows instead. If a date changes, update both.
-- Big faint number: `.item::after` from `data-index` (top 3.6rem desktop, bottom-right at 2.2rem under 30rem).
+- Content: icon, title, `.dates` line, one tagline (Kaltas: "Chrome extension that finds student deals for the website you're visiting." CivicGuard: "Incident and curfew monitoring website for Barangay Maimpis."), stack pills (`.card-stack`), then the icon links. No commits pill. No cardholder, card-number or holo-sticker markup.
+- Dates: the `.dates` line under the title on every width ("November to Present 2026" / "September to Present 2026", real letters). OCR-style mono, 600, uppercase, .14em spacing, dim cream, .78rem (.7rem on phones). If a date changes, update the card text.
 - Links: icon + label, label from `aria-label` via `::after` ("download", "repository", "live site"), 1px `--line` outline, .4rem radius, .72rem text, 1.05rem icon with `margin: 0`, hover brightens and scales 1.06 (off for reduced motion). Hover/focus selectors must repeat border and padding. New project: keep `<svg class="ico">` plus `aria-label` and `title`, no visible text.
-- Whole card is clickable via the stretched first `.meta` link (`::before inset:0`). Other links stay `position: relative`. No nested links.
-- Stripe (`.meta li:first-child`): flush bottom bar, bottom padding 0. It has no text label (the `aria-label` carries the name), so it keeps a `min-height` of 2.6rem. aria-label is "Open <Project> project". Its `::after` stays hidden, on every width its `::before` is a plain pointing-hand click icon at the right end (an inline SVG data URI, so its colors are hard-coded for the always-dark stripe), dim by default and bright on hover or focus, with no circle and no animation. It is set in the `/* plain click icon, no label */` block at the end of `css/styles.css`, which overrides the older circle, ring (`arrow-ring`, now dead) and phone-hidden rules. During the click scan, a 2px green line fills the top edge by `--pull`. A real click or tap on the card opens it (see "Click to open"), and Enter opens it directly.
-- Gold chip: removed from every width (`.item-top::after { display: none }` at the end of `css/styles.css`). The `.chip-btn`, `chip-ring`, `.pi-chip`, `.pi-arrow`, `pi-swipe-nudge` and `slide-hint` rules were deleted. Still in the file but harmless: the old `.item-top::after` chip rules (overridden by the display none) and `--chip-line` (used by the hidden `.ov-chip`).
+- Whole card is clickable (see "Card details" and "Click to open"). Other links stay `position: relative`. No nested links.
 - Hover (fine pointer, no reduced motion): `home.js` sets `--mx --my --rx --ry` (tilt up to 5deg). One `.projects-grid .item:hover` transform rule. Touch gets a `:active` press. Put new effects on a different property than `transform` (`rotate`, `scale`, `translate`).
 - Hover-out: the bare `.item` has a slow transition (.6s transform and shadow, soft ease-out), while `:hover`/`:active` use the quick .25s one, so the card drifts back instead of snapping. Keep `:not(.spring):not(.pulling):not(.dip)` on that quick rule so it never overrides the drag, spring-back and tap-dip transitions.
 - Card intro v2 (end of `css/styles.css`): under `.js` the card shell fades in by opacity (`.item.reveal:not(.in)` is hidden), then `.item-head` (opacity only), the tagline and `.meta` follow at .1s, .18s and .26s; each later card adds `--ro` (.12s steps). Hover-out under `.js` needs its own slow-transition rule, because `.js .item.reveal { transition: none }` beats the bare `.projects-grid .item` one. Never put `transform`, `filter` or `will-change` on `.item-head` or anything between `.item` and the chip: it becomes the containing block for the absolute chip, and the chip jumps when the intro ends. Use opacity, `translate` or `scale` instead.
 - Cold-start intro, focus rise (end of `css/styles.css`, tokens `--fr-dur`, `--fr-ease`, `--fr-step`, `--fr-rise`, `--fr-blur` on `:root`): on the first load in a tab (`.js` from the head script) the `.side` children, the page heading (`.home-intro h2` or `.page-title`), the page body and the mascot fade in, rise and sharpen with one keyframe (`focus-rise`) and a per-element `--i` step. Home cards and overview/policy cards keep their own intros and are excluded. Blur only goes on elements with no absolutely positioned children (`nav` and `.side-links` set `--fr-blur: 0px`). The mascot wrapper uses the same tokens as a transition, held by `been-wait` until the first `/api/hi` response or 800ms (`been-here.js`). For new page types, set `--i` in that block instead of adding a new animation. `index.html` preloads the profile photo; if its path or `?v=` changes, update the preload too. Focus rise details: the sidebar order is photo (`--i: 0`), name, location, nav, links (`--i` 1 to 4). Body children on About and Experience stagger with `:nth-child` (`--i` 2 to 7, later children stay at 7), which is fine here because the "never `:nth-child`" rule applies to the overview intro only. Pages with no `.page-title` and no `.overview` (the 404) fade as one block (`--i: 1`, no blur). If blur stutters on phones, lower `--fr-blur` on `:root` (3px or 0px). Phones and touch already set it to 0px in the last block of `css/styles.css`.
 - Each home card has `<span class="hover-pad" aria-hidden="true">` as its first child. It extends the hit area 10px below the card, active only while hovered, so the lift and tilt do not push the bottom edge out from under the pointer (flicker loop). New project cards need it too.
 - Idle sheen: `slide-open.js` adds `.sheen` to every card with a random `--idle` delay (`card-sheen`, 9s).
-- Phone cards (30rem and below): number and tagline rules differ. Check both cards at 380px after any card change.
-- Phone text floor 2 (`/* phone text floor 2 */`, also at the end of `css/styles.css`) covers the card holder name and the card and overview link pills.
+- Phone cards (30rem and below): check both cards at 380px after any card change.
+- Phone text floor 2 (`/* phone text floor 2 */`, also at the end of `css/styles.css`) covers the card and overview link pills.
 - The looping card sheen (`card-sheen`) is off on touch and under 40rem (last block of `css/styles.css`).
 - Phone text floor: the last block of `css/styles.css` (`/* phone text floor */`) keeps visible phone text at 12px or more (facts labels, carousel counter, mascot text, card dates and links). Desktop-only reader and receipt text is exempt.
 - Tap targets: on touch or under 40rem, `.overview .back-top::before` (last block of `css/styles.css`, `/* tap targets */`) is an invisible pseudo-element that grows the hit area to about 44px. The visual size does not change. Never give this element another `::before`. Phone tabs: the `.side nav a:active` translateX press nudge is cancelled on touch or narrow (end of `css/styles.css`), because it made the top tabs shift when tapped.
@@ -87,7 +84,6 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 ## Projects intro (`.projects-intro`, under the heading)
 
 - Muted mono text, max 34rem, one wording on every device: "Click a card to see the project's overview." (plain text in `.pi-lead`, no `.pi-swipe` or `.pi-tap` spans any more).
-- Dead CSS left: the `.pi-arrows` rules (and `pi-wave`). The span is hidden and still in `index.html`, so remove all three together.
 
 ## Click to open
 
@@ -187,7 +183,7 @@ Use the newest project (`kaltas/`) as the template. Find every place it is wired
 1. **Overview page**: copy `kaltas/index.html` to `<slug>/index.html` (served as `/<slug>`, `cleanUrls` is on). Rewrite the content, keep the markup and class names (see "Overview pages"). Keep the head script from `index.html` line 19 that sets `.js`, or no intro animation plays on a cold open. Set a unique `<meta name="description">`, `og:description`, `og:url` and canonical URL.
 2. **Titles**: `<title>` is `Mico Gerard Navarro: <Name>`. Set `og:title` to the same text. Home, About, Experience and Certificates use just `Mico Gerard Navarro`. The 404 page keeps `Page not found: Mico Gerard Navarro`. `home.js` reads the title from each page, so it needs no title change.
 3. **Images** (`images/projects/<slug>/`): `<slug>-icon.webp` (120x120, shown at 60x60), plus screenshots or video named `<slug>-1.webp`, `<slug>-2.webp` and so on. Images are WebP (quality 82, the portrait 80). Keep the original PNG only where it is the `og:image`, because share crawlers handle PNG best. First screenshot eager, the rest `loading="lazy"`. Bump `?v=` on an image URL when you replace the file.
-4. **Home card** (`index.html`, `.projects-grid`): copy the Kaltas `<li>` card and its links row (the `click to open` link, then keep only the links that apply: download, repository, live site). The new project goes first and takes the next `data-index` (Kaltas is 02, so the next one is 03). Check how the date line (`.meta::before`) is set per `data-index` in `css/styles.css` and add the new date the same way. Keep the digit-zero spelling the dates use (see "Home project cards").
+4. **Home card** (`index.html`, `.projects-grid`): copy the Kaltas `<li>` card and its links row (the `click to open` link, then keep only the links that apply: download, repository, live site). The new project goes first and takes the next `data-index` (Kaltas is 02, so the next one is 03). Set its `.dates` text (real letters, e.g. "November to Present 2026") and add its stack pills (`<p class="card-stack">`, taken from the overview's Stack row).
 5. **`js/home.js`**: add the slug in all four places, found with `grep -n kaltas js/home.js`:
    - the active-nav regex (`aria-current`)
    - the prefetch list of routes
@@ -221,96 +217,35 @@ AI chat pushes have been blocked before, so the owner often pastes terminal comm
 
 Every commit subject is `type: short summary`, all lowercase (brand names and acronyms too), under 80 characters, in the imperative ("add", "fix", not "added"). Types: `feat` new behavior, `fix` bug fix, `style` visual or css change, `docs` agents.md or readme, `refactor` no behavior change, `perf` speed, `chore` tooling or cleanup, `copy` wording, `content` data or text on the site, `test`, `build`, `ci`. One change per commit. Do not use `git add -A`; add specific files. Do not bypass the `.githooks/commit-msg` hook with `--no-verify`. History was normalized to this format once, so commit hashes from before that rewrite no longer exist.
 
-## Card number and click icon
-
-- The project number (`.item::after`, `content: attr(data-index)`) sits at the bottom right of every card, just above the stripe (`right: 1.3rem; bottom: 3.4rem`; 2.2rem on desktop, 1.8rem at 30rem and below). The override is the `/* click icon, no chip, number above the bar */` block at the end of `css/styles.css`; it replaces the older per-breakpoint number rules, so change it there. Check both cards at 380px and on desktop after any card change.
-- The stripe icon is the plain pointing-hand click icon described under the stripe above (all widths).
-- The reader's slide-in is .22s (last `.reader.in` rule in `css/styles.css`), matching the faster scan.
-
 ## Overview on phones: 1px shift and light edge line
 
 - On touch or under 40rem the overview entrance only fades: `ov-print` and `ov-in` are redefined without `transform` or `clip-path` in the `/* phone overview entrance and screenshot edge */` block at the end of `css/styles.css`. The transform animations made the screenshots shift about 1px left when they finished. Desktop keeps the print animation.
 - `.overview .slide` clips its overflow and its `img` is 1px wider than the slide, so a fractional frame width never leaves a light line at the right edge (visible on CivicGuard's dark red screenshots). Videos are not affected.
 
 
-## Card without the stripe bar
+## Card details (current)
 
-- The black stripe bar is gone. The `.meta li:first-child` link is still in the markup (`slide-open.js` clicks it and keyboard users tab to it) but is a 1px clipped, absolutely positioned box with no icon; focus shows an outline on the whole card (`:has(a:focus-visible)`). The card is clickable everywhere by the capture-phase click handler in `slide-open.js`, not by the link's size. The stripe rules earlier in `css/styles.css` (height, border, pull line, `::before` icon, `arrow-ring`) are now dead and the `/* no bar: cream icon and stack pills */` block at the end overrides them.
-- The cream click icon (`#f3f0e6`, inline SVG data URI) is `.item-top::after`, absolute at `right: 1.3rem; bottom: 1.3rem` on every width, 75% opacity, 100% on card hover or focus. `.item-top` must stay un-transformed or the icon will jump (same rule as the old chip). The `02` (`.item::after`) sits above it.
-- Stack pills: `<p class="card-stack">` between the tagline and `.meta` in each home card, 3 or 4 items taken from the overview's Stack row. New projects need one. `.item` has `padding-bottom: 1.3rem` now that no bar sits flush at the bottom.
+- Number: `01` / `02` is hidden everywhere (`.item::after` is `display: none`). `data-index` stays in the markup for ordering only.
+- Stripe: there is no visible bar. The `.meta li:first-child` link stays in the markup (`slide-open.js` clicks it and keyboard users tab to it) as a 1px clipped, absolutely positioned box with no icon. Focus shows an outline on the whole card (`:has(a:focus-visible)`). The card is clickable everywhere through the capture-phase click handler in `slide-open.js`, not through the link's size.
+- No cursor, hand, chip or icon on the cards. `.item-top::after` is hidden. `.item-top` must stay un-transformed, because the card scan uses `translate`.
+- Padding: `.item` has `padding-bottom: 1.3rem` because no bar sits flush at the bottom.
+- Stack pills: `<p class="card-stack">` between the tagline and `.meta` in each home card. Every tag shows on one `nowrap` row. `js/slide-open.js` sets `--stack-fs` on the row (starts at .66rem, shrinks until it fits, floor 6px) and `/* card stack: one row, font size set by js */` makes the font, padding and gap follow it. Card height never changes. Put the most important tech first and keep the overview's order.
+- Hover tilt: mouse devices only, half the `--rx` / `--ry` angle with `perspective(1400px)` (`/* tilt v2 */`). Text on a rotated surface is resampled, so a little softness at the tilt edges is expected. Never put a fractional scale on a hovered card with text.
+- Layers: `will-change: transform` goes on `.projects-grid .item` only while it is not `.pulling`, `.retract-hold`, `.spring` or `.dip`, on mouse devices with motion allowed (`/* layer only at rest */`). Never add `will-change` or `backface-visibility` to a card without those `:not()` guards: a permanent layer keeps the text rasterized at the size it had during the return replay, so the card stays soft after open, overview and back.
+- Tilt reset: `openCard()` and the return replay in `js/slide-open.js` set `--rx` and `--ry` to `0deg`, and the `pointermove` handler in `js/home.js` skips tilt while the card is `.pulling`, `.retract-hold` or `window.__retracting`. Otherwise the card returns still tilted and blurry.
+- The reader's slide-in is .22s (last `.reader.in` rule in `css/styles.css`), matching the faster scan.
 
-## Sharp hover (no 3d tilt)
+## Workflow and css rules
 
-- Root cause of the card looking blurry while hovered (e.g. after clicking its repo link and coming back, the mouse still rests on it) and of the snap when a hover ended: the `perspective(...) rotateX(var(--rx)) rotateY(var(--ry))` hover transform (about line 1040 of `css/styles.css`) resamples the text on a tilted surface. The last block of `css/styles.css` (`/* sharp hover: no 3d tilt */`) overrides it with `translateY(-4px)` only, whole pixels. The tilt rules and the `--rx` / `--ry` code in JS are now dead; delete them in a cleanup.
-- `will-change: transform` was removed again; it is not needed without the tilt. Never put a rotate, perspective or fractional scale on the hover state of a card with text, or it blurs while hovered.
-
-## Tilt v2 and 3 stack items on phones
-
-- The 3D tilt is back (`/* tilt v2 */`, end of `css/styles.css`), replacing the `/* sharp hover: no 3d tilt */` override: half the `--rx` / `--ry` angle, `perspective(1400px)`, `backface-visibility: hidden`, font smoothing and `will-change: transform` on the card (mouse devices only). Text on a rotated surface is always resampled, so a little softness at the tilt edges is expected. If it is still too blurry, tilt a background-only layer instead, or lower the `.5` factor. This supersedes the "Sharp hover" notes above.
-- Phones show the first 3 stack items like desktop (the phone-only 2-item rules were removed).
-
-## Tilt reset (blurry card after opening a project)
-
-- Cause: `--rx` / `--ry` (set by `js/home.js` on `pointermove`) stayed at their last values after a click. Coming back with the mouse still on the card, it was hovered and still tilted, so its text was resampled (the untouched card stayed sharp).
-- Fix: `openCard()` and the return replay in `js/slide-open.js` set `--rx` and `--ry` to `0deg`, and the `pointermove` handler in `js/home.js` skips tilt while the card is `.pulling`, `.retract-hold` or `window.__retracting`. The tilt resumes on the next mouse move.
-
-## No will-change or backface-visibility on cards (blur after opening a project)
-
-- Real cause of the soft card after open > overview > back: `will-change: transform` and `backface-visibility: hidden` on `.projects-grid .item` keep the card's text rasterized at the scale it had when the layer was made. The return replay scales and pushes the card back (`--pull`), so the text stays stretched after it returns to full size. Both were removed from the `/* tilt v2 */` block. Never add either to a card (or its parent) that animates `scale` or `translateZ`.
-- Trade-off: without a promoted layer the hover end can show a faint one-frame text snap. Accept it; sharp text matters more than that.
-
-## Layer only at rest (hover snap vs blur after return)
-
-- Two bugs pull in opposite directions: with no layer the text snaps when a hover settle ends (the layer is dropped and the text re-rasterized); with a permanent `will-change: transform` the card's raster size is locked while the return replay scales it, so the text is soft afterwards.
-- Fix (`/* layer only at rest */`, end of `css/styles.css`): `will-change: transform` on `.projects-grid .item` only while it is NOT `.pulling`, `.retract-hold`, `.spring` or `.dip`, on mouse devices with motion allowed. The layer is rebuilt at full size after each open or return, and stays during hover, so there is neither blur nor snap. This supersedes the "No will-change" note above; never apply `will-change` or `backface-visibility` to cards without those `:not()` guards.
-
-## Cleanup pass 1
-
-- Removed: the old hover tilt rule (`perspective(900px)`, overridden by `/* tilt v2 */`), the `.more` and `span[hidden]` stack rules (no JS adds them any more) and the `pi-arrows` span in `index.html`. The tilt JS (`--rx` / `--ry` in `js/home.js`) is live and stays.
-- Correction: `.chip-btn`, `.pi-chip`, `.pi-swipe`, `.pi-tap`, `slide-hint`, `l-drag` and `l-tap` no longer exist in the CSS, HTML or JS, so the earlier "dead CSS to delete" notes about them are done.
-- Still dead, to remove in pass 2: `.projects-intro .pi-arrows` rules and the two `pi-wave` keyframes, the `arrow-ring` keyframes, and the old stripe `.meta li:first-child a::before` rules.
-
-## Cleanup pass 2
-
-- Removed from `css/styles.css`: all `.projects-intro .pi-arrows` rules and both `pi-wave` keyframes, the `arrow-ring` keyframes, the old stripe `.meta li:first-child a::before` variants (chevron, circle arrow, hand icon, plain icon, `a.drag::before`). The stripe link is invisible, and the last `a::before { display: none }` rules (end of file, and the touch media rule) stay.
-- Still in the file, not removed because they were not fully inspected: older stripe sizing rules, `.meta::before` date text and `.meta::after` rules, `.pi-click` and the `pi-lead` rule (both live). The `drag` class that `scan()` adds in `slide-open.js` no longer has any CSS and can go in a later JS cleanup.
-
-## One card layout (desktop and phone)
-
-- `/* one card layout */` (end of `css/styles.css`): the `.meta::before` date text ("NOVEMBER TO PRESENT 2026") is hidden on every width, the `.dates` line under the title ("Nov 2026 to Present") shows on every width, at .75rem. Stack text is .62rem everywhere. The older `.meta::before` content rules and the `.date-text { display: none }` rule (around line 1115) are now dead; delete them in a cleanup after checking their media queries.
-
-## Old date font and stack pills (desktop and phone)
-
-- `/* old date font and stack pills */` (end of `css/styles.css`): the `.dates` line under the title uses the old date look (OCR-style mono, 600, uppercase, .14em spacing, dim cream; .78rem, .7rem on phones). The card text is "November to Present 2026" / "September to Present 2026" (real letters, no zero-for-O trick, for screen readers).
-- The card stack is bordered pills again: first 3 on one fixed `nowrap` row, dashed `+N more` pill after. Phones use .58rem pills. This supersedes the "Stack text v4" plain-text look. Keep a project's `<span>`s in the overview's order.
-
-## Lit stack boxes
-
-- `/* lit stack boxes */` (end of `css/styles.css`): the card stack tags are small boxes (`border-radius: .3rem`) with a faint lit gradient and a 1px top highlight. The `+N more` (`::after`) is plain muted text with no box, border or background. No transforms, so it cannot affect the blur fix.
-
-## Stack v5: all tags, fixed two-row height
-
-- `/* stack v5: all tags, fixed two-row height */` (end of `css/styles.css`): every `<span>` in a card's `<p class="card-stack">` shows, wrapping onto a second row. The stack area has a fixed height (3.2rem, 2.65rem under 40rem) that holds exactly two rows, so the card height never changes whatever the tag count. The `+N more` label is turned off. Two rows fit about 6 tags on desktop and 5 on phones; more would be clipped, so shrink the tags or raise both heights together. This supersedes the 3-tag limit in the stack pills v3 and text v4 notes.
-
-## Stack v6: one row that scales
-
-- `/* stack v6: one row that scales */` (end of `css/styles.css`): all tags show on one `nowrap` row. `.card-stack` is a size container (`container-type: inline-size`) and the tag font is `clamp(.5rem, 2.8cqw, .66rem)`, so it shrinks with the card width and the card height never changes. Fits about 5 or 6 short tags; more would clip. This supersedes the fixed two-row height in "Stack v5".
-
-## Stack v7: js fitted one row
-
-- All tags in a card's `<p class="card-stack">` show on one `nowrap` row. `fitStacks()` in `js/slide-open.js` sets `--stack-fs` on each row, starting at .66rem and shrinking by .25px until `scrollWidth <= clientWidth` (floor 6px). It runs from `ensureAll()`, on resize (120ms debounce), after fonts load and on `pageshow`. `/* stack v7: js fitted one row */` (end of `css/styles.css`) makes the tag font, padding (in `em`) and gap follow `--stack-fs`, replacing the `cqw` sizes from v6. Card height never changes. Keep tags in the overview's order; a very long stack will shrink toward the 6px floor and then clip.
-
-## Current state: workflow and css rules
-
-- Workflow: one commit and one push per change, `git pull --ff-only` first. Commit hook: the subject must be all lowercase (no capitals for brand names, acronyms or `+N`) and under 80 characters. Prefixes used so far: `style:`, `fix:`, `feat:`. To undo a commit use `git revert HEAD --no-commit` and commit with your own lowercase subject, because git's default revert subject starts with a capital R and the hook rejects it.
-- `css/styles.css` is a long stack of overrides, and a later rule beats an earlier one on purpose. Add every change as a labeled `/* ... */` block at the end of the file. Do not edit older rules in place, and before deleting an older rule check that nothing later depends on it.
-- `.item-top` must stay un-transformed, because the card scan uses `translate`.
-- Dead css cleanup, batch 1: removed the classes `.theme .proj .contain .shot .sub .cardno .holder .hname .net` (and `.phone`, which only appeared as `.shot.phone`), which no html or js file uses. Audit method: list every class in the css that appears in no html or js file, then delete rules whose selectors only target those classes. Batch 2a: removed the superseded stack blocks (`stack pills v2` to `v6`, `stack text v4`, the card `::after` +more pills) and merged what still applies into `/* card stack: one row, font size set by js */`. Not done yet (these are overridden, not dead, so go in small batches and check the site after each): the stacked older `.meta li+li a` rules, the old `.item::after` number rules and the `data-index` date rules.
+- Workflow: one commit and one push per change, `git pull --ff-only` first. Commit hook: the subject must be all lowercase (no capitals for brand names, acronyms or `+N`) and under 80 characters. To undo a commit use `git revert HEAD --no-commit` and commit with your own lowercase subject, because git's default revert subject starts with a capital R and the hook rejects it.
+- `css/styles.css` is a long stack of overrides, and a later rule beats an earlier one on purpose. Add every change as a labeled `/* ... */` block at the end of the file. Don't edit older rules in place, and before deleting a rule check that nothing later depends on it.
+- CSS cleanup done so far: unused classes (`.theme .proj .contain .shot .sub .cardno .holder .hname .net`), the superseded stack blocks, 135 rules whose every property is redeclared later with the same selector and media query, the dead `.meta::before` / `.meta::after` rules (one `display: none` rule is kept for each), `--accent`, the card number `::after` rules and leftover version labels.
+- Cleanup method: a rule is dead only when every one of its properties is redeclared later with the same selector in the same media query. Parse the file, list those rules, remove them, then assert that the winning value of every (media query, selector, property) is unchanged. Don't remove rules by reading selectors alone.
+- Not done (optional, riskier): about 114 rules where only some declarations are overridden, and older stacked `.meta li+li a` and reader/receipt rules that are overridden through different selectors. Trim them only in small batches and check the site after each.
 
 ## Current state: home cards
 
 - Surface: `.projects-grid .item` has border `#242424` and two background layers (grain plus a gradient from `#1b1b1b` to `#131313`) with `background-size: 160px 160px, auto`. Any override of `background-image` must keep exactly two layers or set `background-size` to match, because a third layer once tiled every 160px (a vertical band and a horizontal split on phones).
-- Hover changes shadow and border only. `will-change: transform` is on the card, `.project-icon`, `.status` and `.title-block` for `(hover: hover) and (pointer: fine)` with motion allowed, to stop the card snapping sharp when a hover ends. It stays off for touch. On touch devices hover and active transforms are off. `.dip` (tap feedback) is cleared by `clearDip()` in `js/slide-open.js` on `pageshow` and when the home content re-renders, unless an open is in progress. If blur returns after opening a project on desktop, check the `perspective` tilt rule first.
 - Spacing (`/* no number, even card spacing */`): the card number `01` / `02` is hidden everywhere. Padding is 1.3rem on every side. Rhythm: title to date .3rem, date to tagline .7rem, tagline to tags .7rem, tags to links .9rem. On phones `.projects-grid` has 4.5rem bottom padding so the floating sound button clears the last card.
 - Stack: bordered pills on one fixed row, so the card height never changes. The rules are in `/* card stack: one row, font size set by js */` (the font size comes from `--stack-fs`, which `js/slide-open.js` sets to fit one row), plus the span look in `/* date font and stack box look */` and `/* lit stack boxes */`. Put the most important tech first in the card's `<p class="card-stack">`. The old v2 to v6 blocks and the `+more` pill are gone.
 - Links (download, repository, live site): back to their original look. The filled link pills and the hover accent were tried and reverted ("style: revert the link button changes"). Do not restyle them unless asked.
@@ -328,3 +263,4 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - The card number `01` / `02`, and every cursor, hand or card icon in the intro text (all `.pi-click` rules and the `cursor-*` keyframes are gone).
 - The v2 `fitStacks()` with `+N` pills and the `+more` pill. The tall role tile (`facts-tall`). The filled card link pills.
+- The stripe bar and every icon on the card (pointing hand, circle, ring, gold chip). The `.meta::before` date text and the `+more` / `+N more` pills. The stack v2 to v6 layouts (3-tag limit, two-row height, `cqw` sizing). The 3D-tilt-free "sharp hover" experiment. Do not bring these back unless asked.
