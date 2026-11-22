@@ -13,10 +13,10 @@
     <button class="been-btn" type="button" aria-label="Tap if you are here">
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <g class="body">
-          <path d="M60 99C27 77 15 55 17 40C19 26 31 19 42 21C51 23 57 29 60 36C63 29 69 23 78 21C89 19 101 26 103 40C105 55 93 77 60 99Z" fill="#e5484d" stroke="#14110d" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M60 86C37 71 28 59 28 48C28 38 35 32 43 32C50 32 56 36 60 43C64 36 70 32 77 32C85 32 92 38 92 48C92 59 83 71 60 86Z" fill="#e5484d"/>
           <g class="eyes">
-            <ellipse class="blink" cx="48" cy="52" rx="4.2" ry="9" fill="#14110d" stroke="#14110d" stroke-width="1"/>
-            <ellipse class="blink" cx="72" cy="52" rx="4.2" ry="9" fill="#14110d" stroke="#14110d" stroke-width="1"/>
+            <ellipse class="blink" cx="51" cy="54" rx="4.6" ry="9" fill="#14110d"/>
+            <ellipse class="blink" cx="69" cy="54" rx="4.6" ry="9" fill="#14110d"/>
           </g>
         </g>
       </svg>
