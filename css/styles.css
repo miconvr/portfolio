@@ -2913,28 +2913,34 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .item-top::after { display: none }
 .projects-grid .item::after { right: 1.3rem; bottom: 1.1rem }
 .projects-grid .item {
-  border-color: #262626;
-  background-image:
-    var(--grain),
-    radial-gradient(120% 90% at 15% 0%, rgba(255, 255, 255, .055), transparent 55%),
-    linear-gradient(145deg, #1c1c1c, var(--card) 60%);
+  border-color: #242424;
+  background-color: var(--card);
+  background-image: var(--grain), linear-gradient(145deg, #1b1b1b, #131313 60%);
+  background-size: 160px 160px, auto;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .09),
-    inset 0 -1px 0 rgba(0, 0, 0, .6),
-    0 1px 2px rgba(0, 0, 0, .7),
-    0 10px 18px -6px rgba(0, 0, 0, .65),
-    0 30px 50px -22px rgba(0, 0, 0, .85);
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 1px 0 rgba(0, 0, 0, .5),
+    0 18px 30px -16px rgba(0, 0, 0, .85);
 }
 .projects-grid .item:hover {
-  border-color: #34322d;
+  border-color: #303030;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .13),
-    inset 0 -1px 0 rgba(0, 0, 0, .6),
-    0 2px 3px rgba(0, 0, 0, .7),
-    0 16px 26px -8px rgba(0, 0, 0, .7),
-    0 40px 64px -24px rgba(0, 0, 0, .9);
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    0 1px 0 rgba(0, 0, 0, .5),
+    0 26px 38px -16px rgba(0, 0, 0, .9);
 }
 .projects-intro .pi-click {
   display: inline-block; width: 1.05em; height: 1.05em; vertical-align: -.18em; background: currentColor;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* card surface v2, spacing and hover pixel fix */
+.projects-grid .item .meta { padding-right: 3.4rem }
+@media (max-width: 30rem) { .projects-grid .item::after { font-size: 1.6rem } }
+@media (max-width: 39.99rem) { .projects-grid { padding-bottom: 4.5rem } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item,
+  .projects-grid .project-icon,
+  .projects-grid .item-top .status,
+  .projects-grid .title-block { will-change: transform }
 }
