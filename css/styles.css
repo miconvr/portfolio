@@ -2863,3 +2863,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (prefers-reduced-motion: reduce) {
   .cert-link a:hover, .cert-link a:focus-visible { transform: none }
 }
+
+/* Certificates: badge hover, same logo motion as the project cards */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cert-badge { transition: transform .4s cubic-bezier(.34,1.56,.64,1); transform-origin: center }
+  .entry:hover .cert-badge, .entry:focus-within .cert-badge { transform: scale(1.08) rotate(-4deg) }
+}
