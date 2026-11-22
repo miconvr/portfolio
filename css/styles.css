@@ -3054,3 +3054,22 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .facts { grid-template-columns: minmax(0, 1fr) }
   .overview .facts > div:nth-child(n) { grid-column: 1 / -1 }
 }
+
+/* overview status and commits pills */
+.overview .facts dd.pills span.fact-status { display: inline-flex; align-items: center; gap: .5em }
+.overview .facts dd.pills span.fact-status::before {
+  content: ""; flex: none; width: .5em; height: .5em; border-radius: 50%;
+  background: var(--live); box-shadow: 0 0 6px color-mix(in srgb, var(--live) 70%, transparent);
+}
+.overview .facts dd.pills span.fact-status[data-status="dev"]::before {
+  background: var(--dev); box-shadow: 0 0 6px color-mix(in srgb, var(--dev) 70%, transparent);
+}
+.overview .facts dd .repo-commits:not([hidden]) {
+  display: inline-flex; align-items: center; gap: .45em; margin: .5rem 0 0; box-sizing: border-box;
+  padding: .2em .7em; border: 1px solid var(--line); border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  font: 500 .85rem/1.5 var(--mono); color: var(--text); white-space: nowrap;
+}
+@media (max-width: 39.99rem) {
+  .overview .facts dd .repo-commits:not([hidden]) { font-size: .78rem; padding: .2em .65em }
+}

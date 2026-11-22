@@ -382,3 +382,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview facts: role row
 
 - Both overviews use the same facts layout (`/* facts: role row */`, end of `css/styles.css`): Role full width on top, Status and Activity side by side, Stack full width. Role is `<dd class="pills">` with one `<span>` per role (CivicGuard: Project Manager, Full-Stack Developer; Kaltas: Solo Developer), so it uses the stack pill style. Keep roles as separate spans, never joined with "and". The `facts-tall` class and its CSS were removed. Under about 360px the tiles stack in one column.
+
+## Overview status and commits pills
+
+- `/* overview status and commits pills */` (end of `css/styles.css`): the overview Status tile is `<dd class="pills"><span class="fact-status" data-status="live|dev">...</span></dd>`, a pill with a colored dot (`live` is `--live` green, `dev` is `--dev` amber, same as the cards). The Activity chip (`.repo-commits`) uses the same pill size, border and font as the Role and Stack pills, and the rule uses `:not([hidden])` so it stays hidden until `js/commits.js` fills it. For a new project, set `data-status` to `live` or `dev`.
