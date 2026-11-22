@@ -402,3 +402,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview commits fit on phones
 
 - `/* overview commits fit on phones */` (end of `css/styles.css`): the Activity pill is capped at the tile width (`max-width: 100%`, ellipsis), and under 40rem the " on GitHub" suffix (`::after`) is dropped so "340+ commits" fits the half-width tile. Desktop still shows "340+ commits on GitHub".
+
+## Overview phone top gap
+
+- `/* overview phone: smaller top gap */` (end of `css/styles.css`): under 40rem, `main:has(> article.overview)` has no top margin, padding or divider line (the "divider line under the header" phone rule near line 1436 matched overview pages too), and `.overview` has a .75rem top margin. Projects, About and Experience keep their divider. Desktop is unchanged.

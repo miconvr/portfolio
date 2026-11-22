@@ -3113,3 +3113,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 39.99rem) {
   .overview .facts dd .repo-commits:not([hidden])::after { content: none }
 }
+
+/* overview phone: smaller top gap */
+@media (max-width: 40rem) {
+  .home main:has(> article.overview) { margin-top: 0; padding-top: 0; border-top: 0 }
+  .overview { margin-top: .75rem }
+}
