@@ -226,3 +226,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 - The project number (`.item::after`, `content: attr(data-index)`) sits at the bottom right of every card, just above the stripe (`right: 1.3rem; bottom: 3.4rem`; 2.2rem on desktop, 1.8rem at 30rem and below). The override is the `/* click icon, no chip, number above the bar */` block at the end of `css/styles.css`; it replaces the older per-breakpoint number rules, so change it there. Check both cards at 380px and on desktop after any card change.
 - The desktop stripe icon is a pointing-hand click icon (inline SVG data URI, dim and bright colors hard-coded) inside the ring-pulse circle, set in the same block.
 - The reader's slide-in is .22s (last `.reader.in` rule in `css/styles.css`), matching the faster scan.
+\n
+## Overview image shift on phones
+
+- Opening an overview moved the screenshots about 1px left on phones only (desktop was fine). `js/car-slider.js` now re-aligns every `.slides` strip once when the `.overview` entrance animation ends (`realign()`, skipped while a finger is on the strip). It uses the real slide width from `getBoundingClientRect()`, not the rounded `clientWidth`. If the shift is still there, the cause is not the strip's scroll position.
