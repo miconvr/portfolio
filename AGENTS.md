@@ -338,3 +338,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Click cursor (intro and card)
 
 - `/* click cursor */` (end of `css/styles.css`): a filled vector cursor (inline SVG mask) with a press and ring animation (`cursor-press`, `cursor-ring`, 2.6s). In the intro it is `.pi-click::before` (cursor) and `::after` (ring); on each card it is `.item::after` (cursor, bottom right, `right/bottom: 1.3rem`) and `.item-top::after` (ring, centered on the cursor tip). Card offsets use `--idle`. Ring and press are off for reduced motion (ring stays hidden). This replaces the card number (`data-index` is unused) and the hand icon. `.item-top` must stay un-transformed or the ring will jump.
+
+## Mac cursor, no card cursors
+
+- `/* mac cursor, still */` (end of `css/styles.css`) supersedes the "Click cursor" section. The intro `.pi-click` is a Mac-style arrow (black fill, white outline, inline SVG background) that never moves or scales. Only the `::after` ring ripples out from the tip (`cursor-ripple`, 2.6s, off for reduced motion). The cursor and ring on the cards (`.item::after`, `.item-top::after`) are hidden. If the ring is off the tip, adjust `left` / `top` on `.pi-click::after`.
