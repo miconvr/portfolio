@@ -293,3 +293,9 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - Two bugs pull in opposite directions: with no layer the text snaps when a hover settle ends (the layer is dropped and the text re-rasterized); with a permanent `will-change: transform` the card's raster size is locked while the return replay scales it, so the text is soft afterwards.
 - Fix (`/* layer only at rest */`, end of `css/styles.css`): `will-change: transform` on `.projects-grid .item` only while it is NOT `.pulling`, `.retract-hold`, `.spring` or `.dip`, on mouse devices with motion allowed. The layer is rebuilt at full size after each open or return, and stays during hover, so there is neither blur nor snap. This supersedes the "No will-change" note above; never apply `will-change` or `backface-visibility` to cards without those `:not()` guards.
+
+## Cleanup pass 1
+
+- Removed: the old hover tilt rule (`perspective(900px)`, overridden by `/* tilt v2 */`), the `.more` and `span[hidden]` stack rules (no JS adds them any more) and the `pi-arrows` span in `index.html`. The tilt JS (`--rx` / `--ry` in `js/home.js`) is live and stays.
+- Correction: `.chip-btn`, `.pi-chip`, `.pi-swipe`, `.pi-tap`, `slide-hint`, `l-drag` and `l-tap` no longer exist in the CSS, HTML or JS, so the earlier "dead CSS to delete" notes about them are done.
+- Still dead, to remove in pass 2: `.projects-intro .pi-arrows` rules and the two `pi-wave` keyframes, the `arrow-ring` keyframes, and the old stripe `.meta li:first-child a::before` rules.

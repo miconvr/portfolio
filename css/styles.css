@@ -1035,10 +1035,6 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item .meta li:first-child a:hover { color: var(--ink) }
 
-/* Credit-card project cards (home): tilt toward the cursor (--rx and --ry are set by js/home.js) */
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .projects-grid .item:hover { transform: perspective(900px) translateY(-4px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) }
-}
 
 /* Credit-card project cards (home): title and dates sit on the left edge */
 .projects-grid .item-head { align-items: flex-start }
@@ -2940,8 +2936,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 39.99rem) { .projects-grid { padding-bottom: 4.5rem } }
 
 /* stack pills v2 */
-.projects-grid .item .card-stack span[hidden] { display: none }
-.projects-grid .item .card-stack .more { border-style: dashed; cursor: default }
 @media (max-width: 39.99rem) {
   .projects-grid .item p.card-stack { gap: .25rem; margin-top: .55rem }
   .projects-grid .item .card-stack span { padding: .1rem .42rem; font-size: .58rem }
