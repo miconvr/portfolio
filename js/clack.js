@@ -1,6 +1,8 @@
 (() => {
   const SEL = "a[href], button, summary, [role=button]";
+  const KEY = "sound-v1";
   let on = true;
+  try { on = localStorage.getItem(KEY) !== "off"; } catch (e) {}
   let quietUntil = 0;
   const quiet = () => window.__retracting || performance.now() < quietUntil;
 
@@ -141,6 +143,28 @@
   }
   document.addEventListener("reader-receipt", printer);
 
+  // Mute button: fixed bottom-right on every page, state remembered in localStorage.
+  const ICON_ON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+  const ICON_OFF = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>';
+  const snd = document.createElement("button");
+  snd.type = "button";
+  snd.className = "snd";
+  function paint() {
+    snd.innerHTML = on ? ICON_ON : ICON_OFF;
+    snd.classList.toggle("off", !on);
+    const label = on ? "Mute sound" : "Unmute sound";
+    snd.setAttribute("aria-label", label);
+    snd.title = label;
+  }
+  paint();
+  snd.addEventListener("click", () => {
+    on = !on;
+    try { localStorage.setItem(KEY, on ? "on" : "off"); } catch (e) {}
+    paint();
+    if (on) wake().then(down); // one thock confirms sound is back
+  });
+  document.body.appendChild(snd);
+
   init(); // Browsers only allow audio after a gesture: build the context now, wake it on the first one.
   ["pointerdown", "keydown", "touchstart", "pointerup", "touchend", "click"].forEach(n =>
     window.addEventListener(n, init, { passive: true, capture: true }));
@@ -168,6 +192,7 @@
 
   document.addEventListener("pointerdown", e => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
+    if (e.target.closest && e.target.closest(".snd")) return; // the mute button makes its own sound
     if (ctx && ctx.state !== "running") { wake().then(down); return; }
     down();
   }, true);

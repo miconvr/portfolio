@@ -2864,3 +2864,24 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .cert-badge { transition: transform .4s cubic-bezier(.34,1.56,.64,1); transform-origin: center }
   .cert-badge:hover { transform: scale(1.08) rotate(-4deg) }
 }
+
+/* sound toggle */
+.snd {
+  position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 40;
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0;
+  border: 1px solid var(--line); border-radius: 999px; appearance: none; cursor: pointer;
+  background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--muted);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: .75; -webkit-tap-highlight-color: transparent;
+  transition: opacity .2s ease, color .2s ease, border-color .2s ease;
+}
+.snd svg { display: block; width: 1.2rem; height: 1.2rem }
+.snd.off { opacity: .5 }
+.snd:active, .snd:focus-visible { opacity: 1; color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)) }
+.snd:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
+@media (hover: hover) {
+  .snd:hover { opacity: 1; color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)) }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snd { transition: none }
+}
