@@ -1840,16 +1840,9 @@ article h1 { margin-top: .5rem }
     linear-gradient(135deg, #f3f0e6 25%, transparent 25%) 0 -.25rem / .5rem .5rem,
     linear-gradient(45deg, #f3f0e6 25%, transparent 25%) 0 -.25rem / .5rem .5rem;
 }
-.projects-grid .item .reader .r-smile {
-  display: block; position: relative; width: 2.1rem; height: 2.1rem; margin: .1rem auto;
-  border: 2px solid #1b1b1b; border-radius: 50%;
-  background:
-    radial-gradient(circle, #1b1b1b 0 .09rem, transparent .1rem) .5rem .55rem / .3rem .3rem no-repeat,
-    radial-gradient(circle, #1b1b1b 0 .09rem, transparent .1rem) 1.05rem .55rem / .3rem .3rem no-repeat;
-}
-.projects-grid .item .reader .r-smile::after {
-  content: ""; position: absolute; left: 50%; top: 52%; width: 1.1rem; height: .55rem; translate: -50% 0;
-  border: 2px solid #1b1b1b; border-top: 0; border-radius: 0 0 1rem 1rem;
+.projects-grid .item .reader .r-heart {
+  display: block; width: 2.1rem; height: 2.1rem; margin: .1rem auto;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%2214%2020%2092%2082%22%3E%3Cdefs%3E%3CradialGradient%20id=%22g%22%20cx=%22.5%22%20cy=%22.45%22%20r=%22.62%22%20fx=%22.4%22%20fy=%22.3%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23ee5f64%22/%3E%3Cstop%20offset=%22.55%22%20stop-color=%22%23e5484d%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23d8434a%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath%20d=%22M60%2097C30%2077%2018%2061%2018%2045C18%2033%2027%2025%2038%2025C48%2025%2056%2031%2060%2040C64%2031%2072%2025%2082%2025C93%2025%20102%2033%20102%2045C102%2061%2090%2077%2060%2097Z%22%20fill=%22url(%23g)%22/%3E%3Cellipse%20cx=%2245%22%20cy=%2250%22%20rx=%224.8%22%20ry=%228.8%22%20fill=%22%231b1b1b%22/%3E%3Cellipse%20cx=%2275%22%20cy=%2250%22%20rx=%224.8%22%20ry=%228.8%22%20fill=%22%231b1b1b%22/%3E%3C/svg%3E") center / contain no-repeat;
 }
 @keyframes r-feed-x { to { transform: none } }
 
