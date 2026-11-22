@@ -869,16 +869,6 @@ h2 > .org-logo { margin-top: 0 }
   border-radius: .6rem; padding: 0 2.6rem 0 3.2rem;
   -webkit-touch-callout: none; -webkit-user-drag: none;
 }
-.projects-grid .item .meta li:first-child a::before {
-  content: "\203A\203A\203A"; position: absolute; inset: auto; right: .9rem; top: 50%;
-  transform: translateY(-54%); font-size: 1.3rem; line-height: 1; letter-spacing: .04em;
-  pointer-events: none; transition: opacity .2s ease;
-  background: linear-gradient(90deg, #5b5b66 0%, #5b5b66 35%, var(--ink) 50%, #5b5b66 65%, #5b5b66 100%);
-  background-size: 300% 100%; background-position: 100% 0;
-  -webkit-background-clip: text; background-clip: text;
-  color: transparent; -webkit-text-fill-color: transparent;
-}
-.projects-grid .item .meta li:first-child a.drag::before { opacity: 0 }
 
 /* Slider label: keep sentence case */
 .projects-grid .item .meta li:first-child a { text-transform: none; letter-spacing: .01em }
@@ -2292,28 +2282,9 @@ article h1 { margin-top: .5rem }
 
 /* Projects intro v2: instruction-first line with an idle chevron wave */
 .projects-intro .pi-lead { color: var(--ink) }
-.projects-intro .pi-arrows { display: inline-flex; gap: .2rem; margin: 0 .5rem; vertical-align: middle; color: var(--ink) }
-.projects-intro .pi-arrows i {
-  width: .42rem; height: .42rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor;
-  transform: rotate(45deg); opacity: .6;
-}
-@keyframes pi-wave {
-  0%, 100% { opacity: .2; transform: translateX(0) rotate(45deg) }
-  40% { opacity: 1; transform: translateX(4px) rotate(45deg) }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .projects-intro .pi-arrows i:nth-child(2) { animation-delay: .18s }
-  .projects-intro .pi-arrows i:nth-child(3) { animation-delay: .36s }
-}
 
-/* Projects intro v3: muted gray text, chevrons at the end of the line */
+/* Projects intro v3: muted gray text */
 .projects-intro .pi-lead { color: var(--muted) }
-.projects-intro .pi-arrows { margin: 0 0 0 .7rem; color: var(--muted) }
-.projects-intro .pi-arrows i { opacity: .5 }
-@keyframes pi-wave {
-  0%, 100% { opacity: .25; transform: translateX(0) rotate(45deg) }
-  40% { opacity: .95; transform: translateX(4px) rotate(45deg) }
-}
 
 /* Sidebar: its own transition layer, so it glides when the shell width changes between pages */
 .side { view-transition-name: side }
@@ -2523,12 +2494,8 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .reader .r-screen::before { margin-right: -.06em }
 .projects-grid .item .reader.ready .r-screen::before { margin-right: -.12em }
 
-/* Projects intro: one wording everywhere, no chevrons */
-.projects-intro .pi-arrows { display: none }
 
 
-/* Intro: the chevrons stay hidden */
-.projects-intro .pi-arrows { display: none !important }
 
 /* Hover hit area: the lifted card keeps :hover over its old bottom edge (no flicker loop) */
 .projects-grid .item .hover-pad { position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none }
@@ -2821,24 +2788,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 39.99rem), (pointer: coarse) {
   .side nav a:active { transform: none }
 }
-@media (min-width: 40rem) and (pointer: fine) {
-  .projects-grid .item .meta li:first-child a::before {
-    content: ""; right: 1.2rem; width: 1.5rem; height: 1.5rem; border-radius: 50%;
-    transform: translateY(-50%); border: 1px solid #3a3a43;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8h9M9 4.5 12.5 8 9 11.5' fill='none' stroke='%238b8b97' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / .85rem no-repeat;
-    animation: none; transition: opacity .2s ease, border-color .2s ease;
-  }
-  .projects-grid .item .meta li:first-child a:hover::before {
-    border-color: #6a6a75; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8h9M9 4.5 12.5 8 9 11.5' fill='none' stroke='%23f2f2f4' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  }
-}
-@keyframes arrow-ring {
-  0% { box-shadow: 0 0 0 0 rgba(160, 160, 175, .35) }
-  70%, 100% { box-shadow: 0 0 0 .4rem rgba(160, 160, 175, 0) }
-}
-@media (min-width: 40rem) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .meta li:first-child a::before { animation: arrow-ring 2.6s ease-out var(--idle, 0s) infinite }
-}
 
 /* click icon, no chip, number above the bar */
 .projects-grid .item-top::after { display: none }
@@ -2848,14 +2797,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 @media (max-width: 30rem) {
   .projects-grid .item::after { top: auto; right: 1.3rem; bottom: 3.4rem; font-size: 1.8rem }
-}
-@media (min-width: 40rem) and (pointer: fine) {
-  .projects-grid .item .meta li:first-child a::before {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b8b97' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E") center / .9rem no-repeat;
-  }
-  .projects-grid .item .meta li:first-child a:hover::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2f2f4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E");
-  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .projects-grid .item .reader.in {
@@ -2871,19 +2812,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .overview .slide { overflow: hidden }
 .overview .slide img { display: block; width: calc(100% + 1px); max-width: none; height: 100%; object-fit: cover }
 
-/* plain click icon, no label */
 .projects-grid .item .meta li:first-child a { min-height: 2.6rem }
-.projects-grid .item .meta li:first-child a::before {
-  display: block; content: ""; position: absolute; inset: auto; right: 1.3rem; top: 50%;
-  width: 1.6rem; height: 1.6rem; transform: translateY(-50%);
-  border: 0; border-radius: 0; box-shadow: none; animation: none; opacity: 1;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b8b97' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E") center / 1.3rem no-repeat;
-  transition: none;
-}
-.projects-grid .item .meta li:first-child a:hover::before,
-.projects-grid .item .meta li:first-child a:focus-visible::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2f2f4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E") center / 1.3rem no-repeat;
-}
 
 /* no bar: cream icon and stack pills */
 .projects-grid .item .meta li:first-child {

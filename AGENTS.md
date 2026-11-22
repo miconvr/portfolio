@@ -299,3 +299,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 - Removed: the old hover tilt rule (`perspective(900px)`, overridden by `/* tilt v2 */`), the `.more` and `span[hidden]` stack rules (no JS adds them any more) and the `pi-arrows` span in `index.html`. The tilt JS (`--rx` / `--ry` in `js/home.js`) is live and stays.
 - Correction: `.chip-btn`, `.pi-chip`, `.pi-swipe`, `.pi-tap`, `slide-hint`, `l-drag` and `l-tap` no longer exist in the CSS, HTML or JS, so the earlier "dead CSS to delete" notes about them are done.
 - Still dead, to remove in pass 2: `.projects-intro .pi-arrows` rules and the two `pi-wave` keyframes, the `arrow-ring` keyframes, and the old stripe `.meta li:first-child a::before` rules.
+
+## Cleanup pass 2
+
+- Removed from `css/styles.css`: all `.projects-intro .pi-arrows` rules and both `pi-wave` keyframes, the `arrow-ring` keyframes, the old stripe `.meta li:first-child a::before` variants (chevron, circle arrow, hand icon, plain icon, `a.drag::before`). The stripe link is invisible, and the last `a::before { display: none }` rules (end of file, and the touch media rule) stay.
+- Still in the file, not removed because they were not fully inspected: older stripe sizing rules, `.meta::before` date text and `.meta::after` rules, `.pi-click` and the `pi-lead` rule (both live). The `drag` class that `scan()` adds in `slide-open.js` no longer has any CSS and can go in a later JS cleanup.
