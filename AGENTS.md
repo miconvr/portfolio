@@ -202,6 +202,8 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 
 - GitHub icon: every GitHub link uses the standard 16px GitHub mark path (copy the markup from an existing link). Link icons are 18px whole pixels with `shape-rendering: geometricPrecision` (`/* smooth link icons: 18px */`, end of `css/styles.css`), because fractional sizes resample the mark and make it look pixelly. Keep icon sizes in whole pixels. The goggles mark was tried and dropped.
 
+- Status dot gap: the dot after Live / In Development sits about 1.1em from the text (`/* overview status dot gap */`, end of `css/styles.css`). Change the `margin-left` there to adjust it.
+
 ## Adding a page
 
 For a top-level page in the sidebar nav. Use `certificates/` or `experience/` as the template. Find every place a page is wired in with `grep -rIn -i certificates . --exclude-dir=.git`.

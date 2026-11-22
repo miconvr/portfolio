@@ -2541,3 +2541,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (min-width: 56.01rem) {
   .side-links .ico { width: 18px; height: 18px; shape-rendering: geometricPrecision }
 }
+
+/* overview status dot gap */
+.overview .facts dd.pills span.fact-status::after { margin-left: .6em }
