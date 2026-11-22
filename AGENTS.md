@@ -394,3 +394,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview commits match stack pills
 
 - `/* overview commits match stack pills */` (end of `css/styles.css`): the overview Activity chip (`.repo-commits`) copies the border, radius, fill and color of `.overview .facts dd.pills span`, so it looks like the Stack and Role pills (not the round pill). The values were read from the stylesheet when the block was written; if the stack pill style changes, update this block too.
+
+## Overview status dot on the right
+
+- `/* overview status dot on the right */` (end of `css/styles.css`): the overview Status dot (`.fact-status`) now sits after the text. `::before` is switched off and the same dot is drawn as `::after` (`live` is `--live` green, `dev` is `--dev` amber). This supersedes the left-side dot in `/* overview status and commits pills */`. The main page cards are unchanged.

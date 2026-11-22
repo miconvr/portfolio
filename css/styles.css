@@ -3095,3 +3095,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 39.99rem) {
   .overview .facts dd .repo-commits:not([hidden]) { font-size: .78rem; padding: .2em .65em }
 }
+
+/* overview status dot on the right */
+.overview .facts dd.pills span.fact-status::before { content: none; display: none }
+.overview .facts dd.pills span.fact-status::after {
+  content: ""; flex: none; width: .5em; height: .5em; border-radius: 50%;
+  background: var(--live); box-shadow: 0 0 6px color-mix(in srgb, var(--live) 70%, transparent);
+}
+.overview .facts dd.pills span.fact-status[data-status="dev"]::after {
+  background: var(--dev); box-shadow: 0 0 6px color-mix(in srgb, var(--dev) 70%, transparent);
+}
