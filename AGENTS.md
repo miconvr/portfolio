@@ -262,3 +262,9 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Stack pills v3
 
 - Replaces the v2 `fitStacks()` / `+N` approach, which changed the card height. The `.more` rule in `/* stack pills v2 */` is dead. Kaltas card order is JavaScript, Manifest V3, GitHub Actions, then HTML and CSS (hidden behind `+more`), so it differs from the overview's order on purpose.
+
+
+## Stack text v4 and the hover snap
+
+- Card stack is plain muted text with dot separators, not pills (`/* stack text v4 */`, end of `css/styles.css`). Desktop shows the first 3 techs, phones the first 2, then a quiet `+N more` (`::after`, computed with `:has(span:nth-child(n))`, supports up to 6 techs). The card is one fixed row, so its height never changes. Put the most important tech first.
+- `will-change: transform` is BACK on the card, icon, status and title, but only for `(hover: hover) and (pointer: fine)` with motion allowed. Without it the card snapped sharp when a hover ended (text re-rasterized in one frame). It stays off for touch, where it was suspected of blurring the card after opening a project. This supersedes the "REMOVED" note in the stack pills v2 section. If the blur returns on desktop, check the `perspective` tilt rule first.
