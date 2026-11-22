@@ -390,3 +390,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview commits text pill
 
 - `/* overview commits text pill */` (end of `css/styles.css`): on the overview only, the Activity chip (`.overview .facts dd .repo-commits`) has no GitHub icon (its `::before` mask is switched off), full opacity, and reads "340+ commits on GitHub" (`::after` adds " on GitHub"; `js/commits.js` still writes only "340+ commits"). The base `.repo-commits` rules and the main page date-line chips are unchanged. For a two-tone number, `commits.js` would need to wrap the number in its own element.
+
+## Overview commits match stack pills
+
+- `/* overview commits match stack pills */` (end of `css/styles.css`): the overview Activity chip (`.repo-commits`) copies the border, radius, fill and color of `.overview .facts dd.pills span`, so it looks like the Stack and Role pills (not the round pill). The values were read from the stylesheet when the block was written; if the stack pill style changes, update this block too.
