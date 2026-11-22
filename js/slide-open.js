@@ -141,8 +141,26 @@
     if (busy) return;
     document.querySelectorAll(".projects-grid .item.dip").forEach(c => c.classList.remove("dip"));
   }
-  window.addEventListener("pageshow", e => { if (e.persisted) { busy = false; clearDip(); } });
-  function ensureAll() { ensureSheen(); clearDip(); }
+  // Stack tags: every tag stays on one row. Start at full size and shrink in small steps until the row fits.
+  function fitStacks() {
+    document.querySelectorAll(".projects-grid .card-stack").forEach(p => {
+      p.style.removeProperty("--stack-fs");
+      if (!p.clientWidth) return;
+      const root = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      let fs = .66 * root;
+      const min = 6;
+      p.style.setProperty("--stack-fs", fs + "px");
+      while (p.scrollWidth > p.clientWidth + .5 && fs > min) {
+        fs -= .25;
+        p.style.setProperty("--stack-fs", fs + "px");
+      }
+    });
+  }
+  let fitTimer = 0;
+  window.addEventListener("resize", () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitStacks, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitStacks);
+  window.addEventListener("pageshow", e => { if (e.persisted) { busy = false; clearDip(); } fitStacks(); });
+  function ensureAll() { ensureSheen(); clearDip(); fitStacks(); }
   ensureAll();
   // Cards only get swapped in through #main (home.js sets main.innerHTML), so watch just that, not the whole document.
   const main = document.getElementById("main");

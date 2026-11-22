@@ -3000,3 +3000,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item .card-stack span,
   .projects-grid .item .card-stack span:nth-child(n+4) { font-size: clamp(.5rem, 2.8cqw, .66rem); padding: .15em .6em }
 }
+
+/* stack v7: js fitted one row */
+.projects-grid .item p.card-stack { gap: calc(var(--stack-fs, .66rem) * .5); margin-top: .7rem }
+.projects-grid .item .card-stack span,
+.projects-grid .item .card-stack span:nth-child(n+4) { font-size: var(--stack-fs, .66rem); padding: .15em .6em }
+@media (max-width: 39.99rem) {
+  .projects-grid .item p.card-stack { gap: calc(var(--stack-fs, .66rem) * .5); margin-top: .55rem }
+  .projects-grid .item .card-stack span,
+  .projects-grid .item .card-stack span:nth-child(n+4) { font-size: var(--stack-fs, .66rem); padding: .15em .6em }
+}

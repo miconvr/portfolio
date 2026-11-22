@@ -325,3 +325,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Stack v6: one row that scales
 
 - `/* stack v6: one row that scales */` (end of `css/styles.css`): all tags show on one `nowrap` row. `.card-stack` is a size container (`container-type: inline-size`) and the tag font is `clamp(.5rem, 2.8cqw, .66rem)`, so it shrinks with the card width and the card height never changes. Fits about 5 or 6 short tags; more would clip. This supersedes the fixed two-row height in "Stack v5".
+
+## Stack v7: js fitted one row
+
+- All tags in a card's `<p class="card-stack">` show on one `nowrap` row. `fitStacks()` in `js/slide-open.js` sets `--stack-fs` on each row, starting at .66rem and shrinking by .25px until `scrollWidth <= clientWidth` (floor 6px). It runs from `ensureAll()`, on resize (120ms debounce), after fonts load and on `pageshow`. `/* stack v7: js fitted one row */` (end of `css/styles.css`) makes the tag font, padding (in `em`) and gap follow `--stack-fs`, replacing the `cqw` sizes from v6. Card height never changes. Keep tags in the overview's order; a very long stack will shrink toward the 6px floor and then clip.
