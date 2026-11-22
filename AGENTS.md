@@ -350,3 +350,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Cream hand, no animation
 
 - `/* cream hand */` (end of `css/styles.css`) supersedes the cursor sections above. The intro `.pi-click` is now the Mac pointing hand as an inline SVG: cream fill (`#f3f0e6`), `#0b0b0b` outline, three straight vertical palm lines. It is 1.15em with no side margin, so it sits in the sentence like an emoji. The ring (`::after`) is hidden and there is no animation. The `cursor-press`, `cursor-ring` and `cursor-ripple` keyframes are unused and can go in a later cleanup.
+
+## Small card icon (final intro icon)
+
+- `/* small card icon */` (end of `css/styles.css`) replaces every cursor and hand block, which were deleted (`click cursor`, `mac cursor, still`, `cream cursor`, `cream hand` and the `cursor-*` keyframes). The intro reads "Click a card (icon) to see the project's overview." The icon is `<span class="pi-click">`, a pure CSS rounded outline (1.05em by .75em) with a thin header line, in `currentColor` so it matches the intro text. No image, no animation. The card-corner cursor and ring are gone too; `.item::after` and `.item-top::after` stay hidden by the older rules.
