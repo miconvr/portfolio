@@ -102,7 +102,7 @@
     p.className = "been-plus";
     const br = btn.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
     p.style.left = (br.left - wr.left + br.width / 2) + "px";
-    p.style.top = (br.top - wr.top + br.height / 2) + "px";
+    p.style.top = (br.top - wr.top + br.height * 0.2) + "px";
     p.textContent = "+1";
     wrap.appendChild(p);
     setTimeout(() => p.remove(), 1200);
