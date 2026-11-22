@@ -419,7 +419,9 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 }
 .been-btn:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
 .been-mascot { width: 100%; height: 100%; display: block; overflow: visible }
-.been .heart { fill: var(--heart); stroke: var(--heart); stroke-opacity: .4; stroke-width: 2.6; stroke-linejoin: round; shape-rendering: geometricPrecision }
+.been .heart { fill: url(#heart-g); stroke: url(#heart-g); stroke-opacity: .4; stroke-width: 2.6; stroke-linejoin: round; shape-rendering: geometricPrecision }
+/* The body follows the eyes a beat later. Plain 2D SVG transforms, so edges stay crisp. */
+.been .turn { transform-box: fill-box; transform-origin: 50% 60%; transition: transform .35s cubic-bezier(.2, .8, .2, 1) }
 
 /* Eyes follow the pointer */
 .been .eyes { transition: transform .12s ease-out }
@@ -844,7 +846,7 @@ h2 > .org-logo { margin-top: 0 }
   0%, 100% { transform: rotate(0) }
   25%, 70% { transform: rotate(-6deg) }
 }
-@media (prefers-reduced-motion: reduce) { .been .body { animation: none !important } }
+@media (prefers-reduced-motion: reduce) { .been .body { animation: none !important } .been .turn { transition: none } }
 
 /* View project: black slide-to-open button (driven by js/slide-open.js) */
 .projects-grid .item .meta li:first-child a {

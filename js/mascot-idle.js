@@ -21,13 +21,15 @@
   }
 
   function lookAround() {
+    const aim = window.beenAim;
+    if (!aim) return;
     busy = true;
-    const x = (Math.random() < .5 ? -1 : 1) * (2 + Math.random() * 1.5);
-    const y = (Math.random() - .5) * 2;
+    const x = (Math.random() < .5 ? -1 : 1) * (.55 + Math.random() * .4);
+    const y = (Math.random() - .5) * .8;
     eyes.style.transition = "transform .3s ease-in-out";
-    eyes.style.transform = `translate(${x}px, ${y}px)`;
+    aim(x, y);
     setTimeout(() => {
-      eyes.style.transform = "translate(0px, 0px)";
+      aim(0, 0);
       setTimeout(() => { eyes.style.transition = ""; busy = false; }, 350);
     }, 1100);
   }
