@@ -374,3 +374,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview stack pills bigger
 
 - `/* overview stack pills bigger */` (end of `css/styles.css`) raises the overview pills from the card size to `.85rem` (`.78rem` on phones) with `.2em .7em` padding, so they match the other fact rows. Card pills are unchanged. Change the size in that block only.
+
+## CivicGuard tall role tile
+
+- `civicguard/index.html` has `<dl class="facts facts-tall">`. `/* civicguard facts: tall role tile */` (end of `css/styles.css`) lays it out as two columns: Role spans two rows on the left, Status and Activity stack on the right, Stack is full width below. A long role can no longer stretch Status and Activity. It beats the older `.overview .facts` grid rules by specificity, so they were not removed. Kaltas keeps the plain three-across row (no `facts-tall` class) because its role is short. Use `facts-tall` only for projects with a long role.

@@ -3043,3 +3043,12 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .facts dd.pills { gap: .35rem }
   .overview .facts dd.pills span { font-size: .78rem; padding: .2em .65em }
 }
+
+/* civicguard facts: tall role tile */
+.overview .facts.facts-tall {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto;
+}
+.overview .facts.facts-tall > div:nth-child(1) { grid-column: 1; grid-row: 1 / span 2 }
+.overview .facts.facts-tall > div:nth-child(2) { grid-column: 2; grid-row: 1 }
+.overview .facts.facts-tall > div:nth-child(3) { grid-column: 2; grid-row: 2 }
+.overview .facts.facts-tall > div:nth-child(4) { grid-column: 1 / -1; grid-row: 3 }
