@@ -2988,7 +2988,5 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item:hover,
   .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) {
     transform: perspective(1400px) translateY(-4px) rotateX(calc(var(--rx, 0deg) * .5)) rotateY(calc(var(--ry, 0deg) * .5));
-    backface-visibility: hidden; -webkit-font-smoothing: antialiased;
   }
-  .projects-grid .item { will-change: transform }
 }

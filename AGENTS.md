@@ -283,3 +283,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - Cause: `--rx` / `--ry` (set by `js/home.js` on `pointermove`) stayed at their last values after a click. Coming back with the mouse still on the card, it was hovered and still tilted, so its text was resampled (the untouched card stayed sharp).
 - Fix: `openCard()` and the return replay in `js/slide-open.js` set `--rx` and `--ry` to `0deg`, and the `pointermove` handler in `js/home.js` skips tilt while the card is `.pulling`, `.retract-hold` or `window.__retracting`. The tilt resumes on the next mouse move.
+
+## No will-change or backface-visibility on cards (blur after opening a project)
+
+- Real cause of the soft card after open > overview > back: `will-change: transform` and `backface-visibility: hidden` on `.projects-grid .item` keep the card's text rasterized at the scale it had when the layer was made. The return replay scales and pushes the card back (`--pull`), so the text stays stretched after it returns to full size. Both were removed from the `/* tilt v2 */` block. Never add either to a card (or its parent) that animates `scale` or `translateZ`.
+- Trade-off: without a promoted layer the hover end can show a faint one-frame text snap. Accept it; sharp text matters more than that.
