@@ -129,14 +129,14 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ```html
 <div class="entry">
-  <h2>Google IT Support Professional Certificate<img class="cert-badge" src="/images/badges/itsupport-badge.png" height="68" alt="Google IT Support Certificate badge"></h2>
+  <h2>Google IT Support Professional Certificate<img class="cert-badge" src="/images/badges/itsupport-badge.webp" width="76" height="68" alt="Google IT Support Certificate badge"></h2>
   <p class="when">Google &middot; Coursera &middot; Issued Mon YYYY</p>
   <p class="cert-link"><a href="https://..." target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true">...</svg>view credential</a></p>
 </div>
 ```
 
 - `h2` is the certificate name, one per entry. `.when` is "Issuer &middot; platform &middot; Issued Mon YYYY" (use the `&middot;` entity; drop the "Issued" part only if the date is unknown). No description paragraph.
-- Badge (optional): self-hosted in `images/badges/` as `<short-name>-badge.png` (lowercase, hyphens, like `itsupport-badge.png`), with the transparent padding cropped off (Pillow, `getchannel("A").getbbox()`). Never hotlink a logo. It sits inside the `h2` right after the title text as `<img class="cert-badge">`. It is 4.25rem tall with -1.2rem vertical margins so it doesn't stretch the title row; under 40rem it stays on the right at 3.5rem tall with no negative margin, and the title gets a 1.25 line height so a two-line title and the badge are about the same height. Keep the `height` attribute equal to the CSS height in px. It is not an `.org-logo`, because those rules size small wordmarks.
+- Badge (optional): self-hosted in `images/badges/` as `<short-name>-badge.webp` (lowercase, hyphens, like `itsupport-badge.webp`), with the transparent padding cropped off (Pillow, `getchannel("A").getbbox()`). Never hotlink a logo. It sits inside the `h2` right after the title text as `<img class="cert-badge">`. It is 4.25rem tall with -1.2rem vertical margins so it doesn't stretch the title row; under 40rem it stays on the right at 3.5rem tall with no negative margin, and the title gets a 1.25 line height so a two-line title and the badge are about the same height. Save it as WebP at 2x its display size (152 x 136 for the 76 x 68 badge) and keep the `width` and `height` attributes equal to the CSS size in px. It is not an `.org-logo`, because those rules size small wordmarks.
 - Credential button: `p.cert-link > a`, an outlined button with an inline external-link icon and the text "view credential" (new tab, `rel="noopener noreferrer"`). Its look is copied from the v18/v20 overview link rules (`.overview .meta li a`): muted text, `var(--line)` border, .5rem radius, scale-up hover, no transform under reduced motion. It is a standalone copy, not tied to the "Overview links v27" grid, so if the overview buttons are restyled, update `.cert-link` by hand. Leave the paragraph out when there is no public credential link.
 - Spacing: the first entry must sit the same distance under `.page-title` as on Experience, so don't override `.entry` margin-top or padding-top for certificates.
 - Wired in `js/home.js` (the `warm()` prefetch list and the `inPage` regex), `sitemap.xml` and the sidebar nav on every page. The active nav item matches by `href`.
