@@ -95,15 +95,15 @@
     if (!s) return;
     s.style.animation = "none";
     s.style.transform = "none";
-    window.__retracting = true; setTimeout(() => { window.__retracting = false; }, 3000);
+    window.__retracting = true; setTimeout(() => { window.__retracting = false; }, 2000);
     const feed = () => {
       rd.style.transition = "";
-      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 800, easing: "steps(12, end)", fill: "forwards" });
+      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 500, easing: "steps(12, end)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
-      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 200);
+      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 100);
     };
     setTimeout(() => {
-      const t0 = performance.now(), D = 800;
+      const t0 = performance.now(), D = 480;
       const step = now => {
         if (!c.isConnected) return;
         const t = Math.min(1, (now - t0) / D), k = t - 1;
@@ -111,10 +111,10 @@
         if (t < 1) { requestAnimationFrame(step); return; }
         c.classList.remove("pulling");
         c.style.setProperty("--pull", "0");
-        setTimeout(feed, 150);
+        setTimeout(feed, 60);
       };
       requestAnimationFrame(step);
-    }, 300);
+    }, 100);
   };
 
   function release(c, l) {
@@ -149,7 +149,7 @@
     c.classList.add("pulling");
     l.classList.add("drag");
     showReader(c);
-    const t0 = performance.now(), D = 380;
+    const t0 = performance.now(), D = 240;
     const finish = () => {
       l.classList.remove("drag");
       c.style.setProperty("--pull", "1");
@@ -157,7 +157,7 @@
       setTimeout(() => {
         l.click();
         setTimeout(() => { busy = false; release(c, l); }, 500);
-      }, receipt ? 1100 : 260);
+      }, receipt ? 700 : 160);
     };
     const step = now => {
       if (!c.isConnected) { busy = false; return; }
@@ -185,6 +185,6 @@
     setTimeout(() => {
       l.click();
       setTimeout(() => { busy = false; c.classList.remove("dip"); }, 500);
-    }, still() ? 0 : 320);
+    }, still() ? 0 : 200);
   }
 })();
