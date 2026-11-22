@@ -537,14 +537,14 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
     position: sticky; top: 0;
     height: 100dvh;
     border-radius: 0; border-top: 0; border-bottom: 0;
-    padding: clamp(1.25rem, 3dvh, 2.25rem) 1.5rem;
+    padding: 1.5rem 1.5rem;
     overflow: visible;
   }
-  .side .profile-photo { width: clamp(4.5rem, 12dvh, 7.5rem); height: clamp(4.5rem, 12dvh, 7.5rem); margin-bottom: clamp(.5rem, 1.2dvh, 1rem) }
-  .side h1 { font-size: clamp(1.85rem, 3.2dvh, 2.35rem); margin-bottom: 0 }
+  .side .profile-photo { width: 7.5rem; height: 7.5rem; margin-bottom: .6rem }
+  .side h1 { font-size: 1.85rem; margin-bottom: 0 }
   .side .lead:not(.loc) { font-size: 1.125rem; line-height: 1.7 }
   .side .lead.loc {
-    margin: clamp(.4rem, 1dvh, .75rem) 0 0;
+    margin: .5rem 0 0;
     font-size: .76rem;
     letter-spacing: -0.015em;
     gap: .4rem;
@@ -552,18 +552,13 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
     overflow: visible;
     text-overflow: clip;
   }
-  .side nav ul { margin-top: clamp(1rem, 3dvh, 2rem); gap: clamp(.5rem, 1.4dvh, .85rem) }
-  .side-links { margin-top: clamp(1rem, 3dvh, 2rem); gap: clamp(.35rem, 1dvh, .55rem); font-size: .82rem }
+  .side nav ul { margin-top: 1.5rem; gap: .7rem }
+  .side-links { margin-top: 1.5rem; gap: .5rem; font-size: .82rem }
 
   /* Mascot pinned to bottom with hairline above */
-  .side .been { margin-top: auto; padding-top: clamp(.75rem, 2dvh, 1.25rem); border-top: 1px solid #333230 }
+  .side .been { margin-top: auto; padding-top: 1rem; border-top: 1px solid #333230 }
 }
 
-/* Short windows: let sidebar flow with the page */
-@media (min-width: 56.01rem) and (max-height: 52rem) {
-  .side { position: static; height: auto; min-height: 100dvh; align-self: stretch }
-  .side .been { margin-top: 1.5rem }
-}
 
 /* ---- Tablet: max 56rem ---- */
 @media (max-width: 56rem) {
@@ -763,10 +758,11 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 }
 
 /* Sidebar: group content, centered, no big gap above the counter */
-@media (min-width: 56.01rem) and (min-height: 52.01rem) {
-  .side { justify-content: center }
-  .side .profile-photo { width: clamp(5.5rem, 15dvh, 8.5rem); height: clamp(5.5rem, 15dvh, 8.5rem) }
-  .side .been { margin-top: clamp(1.5rem, 4dvh, 2.5rem) }
+@media (min-width: 56.01rem) {
+  .side { justify-content: safe center; overflow-x: hidden; overflow-y: auto; scrollbar-width: none }
+  .side::-webkit-scrollbar { display: none }
+  .side .profile-photo { width: 7.5rem; height: 7.5rem }
+  .side .been { margin-top: 2rem }
 }
 
 /* Sidebar location centered under the name (desktop) */
@@ -797,7 +793,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side .lead.loc {
     order: 1;
     flex-direction: row; align-items: flex-start; justify-content: flex-start; text-align: left;
-    gap: .5rem; margin: clamp(.9rem, 2.5dvh, 1.5rem) 0 0;
+    gap: .5rem; margin: 1.3rem 0 0;
   }
   .side .lead.loc .ico { width: 1rem; height: 1rem; margin-top: .1em }
   .side .been { order: 2 }
@@ -1157,7 +1153,7 @@ article h1 { margin-top: .5rem }
 @media (min-width: 30.0625rem) {
   .home main { padding-top: 2rem }
   .home-intro { border-top: 0; padding: 0 0 1.5rem }
-  .home-intro h2 { font-size: clamp(2.25rem, min(4.2vw, 6.5dvh), 3.5rem) }
+  .home-intro h2 { font-size: clamp(2.25rem, 4.2vw, 3.5rem) }
 }
 
 /* Sidebar name: same font, weight and tracking as the home heading (Geist) */
