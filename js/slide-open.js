@@ -100,7 +100,7 @@
     window.__retracting = true; setTimeout(() => { window.__retracting = false; }, 2000);
     const feed = () => {
       rd.style.transition = "";
-      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 400, easing: "steps(12, end)", fill: "forwards" });
+      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 400, easing: "cubic-bezier(.25, .6, .4, 1)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
       an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 80);
     };
