@@ -485,7 +485,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .js .item.in p:nth-of-type(3) { transition-delay: .61s }
 .js .item.in .meta { transition-delay: .7s }
 
-/* Sub-page entrance */
 
 /* View transitions */
 @media (prefers-reduced-motion: no-preference) {
@@ -737,14 +736,12 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side .been { margin-top: 2rem }
 }
 
-/* Sidebar location centered under the name (desktop) */
 
 /* Phones and tablets: hide total commits note (per-repo counts are on the cards and project pages) */
 @media (max-width: 56rem) {
   .side .side-links .commits-note { display: none }
 }
 
-/* Sidebar location: pin centered above the text (desktop) */
 
 /* Mobile home cards: show the full description */
 @media (max-width: 640px) {
@@ -985,28 +982,8 @@ article h1 { margin-top: .5rem }
   mask: var(--contactless) center / contain no-repeat;
 }
 
-/* Credit-card project cards (home): card-number dots */
-.projects-grid .item .meta::before {
-  content: "•••• •••• •••• 2026"; order: -1; flex: 0 0 100%;
-  font: 500 .8rem/1 var(--mono); letter-spacing: .16em;
-  color: color-mix(in srgb, var(--ink) 32%, transparent);
-  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 10%, transparent), 0 1px 0 var(--shadow);
-  margin-bottom: .15rem;
-}
-@media (max-width: 30rem) { .projects-grid .item .meta::before { display: none } }
 
 /* Credit-card project cards (home): holo sticker */
-.projects-grid .item .meta::after {
-  content: ""; position: absolute; right: 1.3rem; bottom: 3.2rem; width: 2.7rem; height: 1.8rem;
-  border-radius: .35rem; pointer-events: none; opacity: .6;
-  background:
-    linear-gradient(135deg, transparent 38%, color-mix(in srgb, var(--ink) 45%, transparent) 50%, transparent 62%),
-    linear-gradient(115deg, var(--holo-a), var(--holo-b), var(--holo-c), var(--holo-a));
-  background-size: 100% 100%, 200% 100%;
-  background-position: 0 0, calc(var(--mx, 0px) * -.6) 0;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 22%, transparent);
-}
-@media (max-width: 30rem) { .projects-grid .item .meta::after { display: none } }
 .projects-grid .item-top::before { margin-right: -.4rem }
 
 /* Credit-card project cards (home): phone layout fixes */
@@ -1019,9 +996,7 @@ article h1 { margin-top: .5rem }
   .projects-grid .item::after { font-size: 2.8rem }
 }
 
-/* Two cards across on narrower desktop windows */
 
-/* Remove holo sticker */
 
 /* Remove holo sticker, move the chip to its spot (desktop only) */
 .projects-grid .item .meta::after { display: none }
@@ -1045,28 +1020,14 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item { width: 100%; max-width: 26rem }
 
-/* Card-number line shows the project dates instead of dots */
 
 /* Desktop: dates live on the card-number line, so hide the text under the title (phones keep it) */
 @media (min-width: 30.0625rem) {
   .projects-grid .item .date-text { display: none }
 }
 
-/* Card-date styling for the date line (embossed, uppercase, monospace) */
-.projects-grid .item .meta::before {
-  text-transform: uppercase;
-  font: 600 .78rem/1 "OCR A Std", "OCR-A", "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: .14em;
-  color: color-mix(in srgb, var(--ink) 55%, transparent);
-  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow);
-}
 
-/* Card date line: month - present (no year) */
 
-/* Card date line: full month, zeros in place of the letter O */
-.projects-grid .item[data-index="02"] .meta::before { content: "N0VEMBER T0 PRESENT 2026" }
-.projects-grid .item[data-index="01"] .meta::before { content: "SEPTEMBER T0 PRESENT 2026" }
 
 /* Home: no top line, tighter top so both project cards show on load (desktop only) */
 @media (min-width: 30.0625rem) {
@@ -1075,11 +1036,8 @@ article h1 { margin-top: .5rem }
   .home-intro h2 { font-size: clamp(2.25rem, 4.2vw, 3.5rem) }
 }
 
-/* Sidebar name: same font, weight and tracking as the home heading (Geist) */
 
-/* Sidebar name: Geist Mono, same as the sidebar links and card text */
 
-/* Sidebar name: condensed display font */
 
 /* Sidebar name: League Gothic, tall condensed caps */
 .side h1 { font-family: var(--condensed); font-weight: 400; font-size: 2.7rem; text-transform: uppercase; letter-spacing: .03em; line-height: 1 }
@@ -1153,7 +1111,6 @@ article h1 { margin-top: .5rem }
 /* Overview: firmer cap on the hero, lede back to its original size */
 .overview section .frame.carousel { width: 100%; max-width: 40rem }
 
-/* Drag to open: the card tips back as the knob is dragged (--pull is 0 to 1, set by js/slide-open.js) */
 
 /* Card-to-overview transition (js/home.js wraps the page swap in a View Transition) */
 ::view-transition-old(page), ::view-transition-new(page) { mix-blend-mode: normal }
@@ -1165,7 +1122,6 @@ article h1 { margin-top: .5rem }
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; filter: none }
 }
 
-/* Softer pull: less tilt, less dimming */
 
 /* Drag to open: the card slides into a card-reader terminal (--pull is 0 to 1) */
 .projects-grid .item .reader {
@@ -1194,7 +1150,6 @@ article h1 { margin-top: .5rem }
 ::view-transition-old(page) { transform-origin: 50% 50%; animation: vt-out .3s ease both }
 @keyframes vt-out { to { opacity: 0; transform: scale(.985) } }
 
-/* Slim card-reader slot: the card only slides under its empty right padding, so nothing is covered */
 
 /* Card reader v2: bigger terminal with screen and keypad, slides out when the drag starts */
 .projects-grid .item { --reader-w: 7rem; --reader-gap: .7rem; --reader-insert: 1.1rem; --reader-travel: calc(var(--reader-gap) + var(--reader-insert)) }
@@ -1673,14 +1628,8 @@ article h1 { margin-top: .5rem }
 /* Sidebar location line: cream to match */
 .side .loc, .side .loc span { color: color-mix(in srgb, var(--ink) 85%, transparent) }
 
-/* Cards v2: card number line, cardholder name, network mark, per-project accent */
-.projects-grid .item { --accent: #e2763f }
-.projects-grid .item[data-index="01"] { --accent: #c2284a }
 
-/* Cards v3: neutral cream instead of per-project colors */
-.projects-grid .item, .projects-grid .item[data-index="01"] { --accent: var(--ink) }
 
-/* Cards v4: link pills under the tagline; number, dates and name sit together at the bottom */
 
 /* Cards v6: big number sits higher, beside the title, clear of the description */
 .projects-grid .item::after {
@@ -1689,7 +1638,6 @@ article h1 { margin-top: .5rem }
 }
 
 /* Cards v7: dates first, then plain text links, no pills */
-.projects-grid .item .meta::before { order: 0; margin: 0 0 .1rem }
 .projects-grid .item .meta li+li { order: 1 }
 .projects-grid .item .meta li:first-child { order: 4 }
 .projects-grid .item .meta li+li a {
@@ -1752,8 +1700,6 @@ article h1 { margin-top: .5rem }
 
 
 
-/* Gold chip: line up with icon row (desktop) */
-.projects-grid .item .meta::after { bottom: calc(3.2rem + 12px) }
 
 /* Cards v11: inlaid chips (flush with the card, shallow recess, no dark hole) */
 .projects-grid .item .meta li+li a {
@@ -1891,7 +1837,6 @@ article h1 { margin-top: .5rem }
 .overview .project-title [class*="status"],
 .overview .ov-chip { display: none }
 
-/* Overview v22: links row back on the left */
 
 /* Overview v23: facts row fills the card width, Role gets extra room, stacks on small screens */
 .overview .facts {
@@ -1906,7 +1851,6 @@ article h1 { margin-top: .5rem }
   .overview .facts { grid-template-columns: 1fr }
 }
 
-/* Overview v24: cream, readable links */
 
 /* Overview v25: back to the muted palette (replaces v24 cream), slightly stronger so the links pop */
 .overview .meta li a {
@@ -2010,7 +1954,6 @@ article h1 { margin-top: .5rem }
 /* Shell width v2: About and Experience match the Projects shell so the sidebar stays put */
 .home .shell:has(.page-title) { max-width: 64rem }
 
-/* Projects intro v2: instruction-first line with an idle chevron wave */
 
 /* Projects intro v3: muted gray text */
 .projects-intro .pi-lead { color: var(--muted) }
@@ -2052,13 +1995,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   }
 }
 
-/* Reader v3c: slides out when it appears, but exit has no animation (it just disappears in place) */
 
-/* Reader v3d: exit is the pop-up slide in reverse (same distance and duration, mirrored easing), then it disappears */
 
-/* Reader v3e: short fade together with the slide, on enter and exit */
 
-/* Reader v3f: exit only fades (no slide left). The translate resets after the fade, when it is already invisible. */
 
 /* Reader v3g: exit is a wipe toward the card edge (no fade, no slide); enter keeps the slide */
 @media (prefers-reduced-motion: no-preference) {
@@ -2087,7 +2026,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* Leaving an overview: the card keeps one height for the whole return, so removing .pulling causes no vertical shift */
 .projects-grid .item.retract-hold, .projects-grid .item.retract-hold:hover { transform: none !important; transition: none !important }
 
-/* Leaving an overview: the machine screen says THANK YOU instead of APPROVED */
 
 /* Machine screen: INSERT CARD until the card is fully in, then APPROVED; THANK YOU when leaving an overview */
 .projects-grid .item .reader .r-screen::before { content: "INSERT CARD"; letter-spacing: .06em }
@@ -2155,7 +2093,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 .projects-grid .item .r-keys::after { filter: none }
 
-/* Machine v5e: screen text is green again, still no glow or pulse */
 
 /* Machine v5d: no green anywhere. Keypad stays gray, screen text is neutral, no glow or pulse. */
 .projects-grid .item .r-keys::after { display: none }
