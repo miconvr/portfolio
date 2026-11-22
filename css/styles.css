@@ -3043,14 +3043,3 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .facts dd.pills { gap: .35rem }
   .overview .facts dd.pills span { font-size: .78rem; padding: .2em .65em }
 }
-
-/* card link hover accent */
-.projects-grid .item .meta li + li a { transition: border-color .2s ease, color .2s ease }
-.projects-grid .item .meta li + li a[aria-label="download"]:hover,
-.projects-grid .item .meta li + li a[aria-label="download"]:focus-visible { border-color: #b9a77d; color: var(--ink) }
-.projects-grid .item .meta li + li a[aria-label="repository"]:hover,
-.projects-grid .item .meta li + li a[aria-label="repository"]:focus-visible { border-color: #8f8f8f; color: #fff }
-.projects-grid .item .meta li + li a:not([aria-label="download"]):not([aria-label="repository"]):hover,
-.projects-grid .item .meta li + li a:not([aria-label="download"]):not([aria-label="repository"]):focus-visible {
-  border-color: var(--live); color: var(--live);
-}
