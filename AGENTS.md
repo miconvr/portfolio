@@ -374,3 +374,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview stack pills bigger
 
 - `/* overview stack pills bigger */` (end of `css/styles.css`) raises the overview pills from the card size to `.85rem` (`.78rem` on phones) with `.2em .7em` padding, so they match the other fact rows. Card pills are unchanged. Change the size in that block only.
+
+## Card link pills
+
+- `/* card link pills */` (end of `css/styles.css`) styles the card's download, repository and live site links (`.projects-grid .item .meta li + li a`) as filled pills: `--card-2` fill, `--text` color, 999px radius, .74rem (.72rem on phones), a faint top highlight. Hover only changes border, fill and text color (no transform): download is warm cream, repository light gray, live site `--live` green (matched by `aria-label`). The first `li` (the invisible open-card link) is untouched. This overrides the many older `.meta li+li a` rules by coming last; change the look in this block only. Stack pills stay muted and flat on purpose, so the two rows differ.
