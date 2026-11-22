@@ -437,8 +437,8 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   100% { transform: rotate(360deg) scale(1) }
 }
 
-/* +1 yellow float */
-.been-plus { position: absolute; left: 1.7rem; top: .1rem; pointer-events: none; font: 600 .85rem var(--mono); color: #f7bd2e; opacity: 0; animation: been-plus 1.1s ease-out forwards }
+/* +1 float */
+.been-plus { position: absolute; left: 1.7rem; top: .1rem; pointer-events: none; font: 600 .85rem var(--mono); color: #e5484d; opacity: 0; animation: been-plus 1.1s ease-out forwards }
 @keyframes been-plus { 0% { opacity: 0; transform: translateY(6px) scale(.8) } 25% { opacity: 1; transform: translateY(0) scale(1.05) } 100% { opacity: 0; transform: translateY(-1.6rem) scale(1) } }
 
 .been-text { margin: 0; font: 400 .78rem var(--mono); color: var(--muted); line-height: 1.5 }
