@@ -100,9 +100,9 @@
   function plusOne() {
     const p = document.createElement("span");
     p.className = "been-plus";
-    const br = btn.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
-    p.style.left = (br.left - wr.left + br.width / 2) + "px";
-    p.style.top = (br.top - wr.top + br.height * 0.2) + "px";
+    const hr = wrap.querySelector(".heart").getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+    p.style.left = (hr.left - wr.left + hr.width / 2) + "px";
+    p.style.top = (hr.top - wr.top + hr.height * 0.1) + "px";
     p.textContent = "+1";
     wrap.appendChild(p);
     setTimeout(() => p.remove(), 1200);
