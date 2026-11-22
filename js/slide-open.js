@@ -8,10 +8,22 @@
   let card = null, link = null, startX = 0, pull = 0;
   let dragging = false, busy = false;
 
-  // Block real pointer clicks on the stripe; keyboard and script clicks (detail 0) pass through.
+  // A real click or tap on a card opens the project, except on its other links and the chip.
+  // The stripe link covers the whole card, so its native click is taken over here: a click that
+  // ends a drag (swiped) is ignored, anything else goes through openCard() like a chip tap.
+  // Keyboard and script clicks (detail 0) pass through untouched.
+  let swiped = false;
   document.addEventListener("click", e => {
-    const l = e.target.closest && e.target.closest(LINK);
-    if (l && e.detail > 0) { e.preventDefault(); e.stopImmediatePropagation(); }
+    if (e.detail === 0 || !e.target.closest) return;
+    const c = e.target.closest(CARD);
+    if (!c) return;
+    if (e.target.closest("a, button") && !e.target.closest(LINK)) return;
+    const l = linkOf(c);
+    if (!l) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (swiped || busy || window.__retracting) return;
+    openCard(c, l);
   }, true);
 
   // Stop the browser's native link drag, which would cancel our pointer events.
@@ -139,6 +151,7 @@
     const l = linkOf(c);
     if (!l) return;
     card = c; link = l; startX = e.clientX; pull = 0; dragging = false; c._sy = e.clientY;
+    swiped = false;
     l.setAttribute("draggable", "false");
     try { c.setPointerCapture(e.pointerId); } catch (_) {}
   });
@@ -149,6 +162,7 @@
     if (!dragging) {
       if (dx < 6 || Math.abs(dy) > dx) return;
       dragging = true;
+      swiped = true;
       link.classList.add("drag");
       card.classList.add("pulling");
       card.classList.remove("spring");
@@ -162,6 +176,7 @@
     if (!card) return;
     const c = card, l = link, was = dragging, done = pull >= DONE;
     card = null; link = null; dragging = false;
+    setTimeout(() => { swiped = false; }, 0); // the click that ends a drag fires right after pointerup
     if (e.type === "pointercancel") { if (was) release(c, l); return; }
     if (was && done) {
       busy = true;
@@ -205,12 +220,8 @@
   const main = document.getElementById("main");
   if (main) new MutationObserver(ensureAll).observe(main, { childList: true });
 
-  document.addEventListener("click", e => {
-    const b = e.target.closest && e.target.closest(".chip-btn");
-    if (!b || busy) return;
-    const c = b.closest(CARD), l = c && linkOf(c);
-    if (!l) return;
-    e.preventDefault();
+  // Chip tap or card click: the card dips, the terminal beeps, then the stripe link opens the project.
+  function openCard(c, l) {
     busy = true;
     c.classList.add("dip");
     document.dispatchEvent(new CustomEvent("reader-approved"));
@@ -218,5 +229,13 @@
       l.click();
       setTimeout(() => { busy = false; c.classList.remove("dip"); }, 500);
     }, still() ? 0 : 320);
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest && e.target.closest(".chip-btn");
+    if (!b || busy) return;
+    const c = b.closest(CARD), l = c && linkOf(c);
+    if (!l) return;
+    e.preventDefault();
+    openCard(c, l);
   });
 })();
