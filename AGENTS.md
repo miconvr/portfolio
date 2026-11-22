@@ -354,3 +354,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Small card icon (final intro icon)
 
 - `/* small card icon */` (end of `css/styles.css`) replaces every cursor and hand block, which were deleted (`click cursor`, `mac cursor, still`, `cream cursor`, `cream hand` and the `cursor-*` keyframes). The intro reads "Click a card (icon) to see the project's overview." The icon is `<span class="pi-click">`, a pure CSS rounded outline (1.05em by .75em) with a thin header line, in `currentColor` so it matches the intro text. No image, no animation. The card-corner cursor and ring are gone too; `.item::after` and `.item-top::after` stay hidden by the older rules.
+
+## Small card icon fix
+
+- The original hand rule (`.projects-intro .pi-click` with a `mask: url(data:...)`, from the "card depth and intro click icon" block) was still in `css/styles.css` and clipped the card icon into a hand. It is now deleted, and `/* small card icon fix */` (end of file) resets `background`, `mask` and `animation` on `.pi-click` and removes its `::after`. The intro icon is only the pure CSS card from `/* small card icon */`. Never add a mask or background to `.pi-click`.
