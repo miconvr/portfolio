@@ -226,3 +226,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 - The project number (`.item::after`, `content: attr(data-index)`) sits at the bottom right of every card, just above the stripe (`right: 1.3rem; bottom: 3.4rem`; 2.2rem on desktop, 1.8rem at 30rem and below). The override is the `/* click icon, no chip, number above the bar */` block at the end of `css/styles.css`; it replaces the older per-breakpoint number rules, so change it there. Check both cards at 380px and on desktop after any card change.
 - The desktop stripe icon is a pointing-hand click icon (inline SVG data URI, dim and bright colors hard-coded) inside the ring-pulse circle, set in the same block.
 - The reader's slide-in is .22s (last `.reader.in` rule in `css/styles.css`), matching the faster scan.
+
+## Overview on phones: 1px shift and light edge line
+
+- On touch or under 40rem the overview entrance only fades: `ov-print` and `ov-in` are redefined without `transform` or `clip-path` in the `/* phone overview entrance and screenshot edge */` block at the end of `css/styles.css`. The transform animations made the screenshots shift about 1px left when they finished. Desktop keeps the print animation.
+- `.overview .slide` clips its overflow and its `img` is 1px wider than the slide, so a fractional frame width never leaves a light line at the right edge (visible on CivicGuard's dark red screenshots). Videos are not affected.
