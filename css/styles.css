@@ -879,10 +879,6 @@ h2 > .org-logo { margin-top: 0 }
   color: transparent; -webkit-text-fill-color: transparent;
 }
 .projects-grid .item .meta li:first-child a.drag::before { opacity: 0 }
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .meta li:first-child a::before { animation: slide-hint 2.8s linear infinite }
-}
-@keyframes slide-hint { from { background-position: 100% 0 } to { background-position: 0 0 } }
 
 /* Slider label: keep sentence case */
 .projects-grid .item .meta li:first-child a { text-transform: none; letter-spacing: .01em }
@@ -1365,24 +1361,11 @@ article h1 { margin-top: .5rem }
   .projects-grid .item a { cursor: pointer }
 }
 
-/* Touch or narrow: no reader, the chip becomes the tap target */
-.projects-grid .item .chip-btn {
-  display: none; width: 2.1rem; height: 1.6rem; padding: 0; border: 0; border-radius: .3rem; cursor: pointer;
-  background:
-    linear-gradient(90deg, transparent 32%, var(--chip-line) 32% 34%, transparent 34% 66%, var(--chip-line) 66% 68%, transparent 68%),
-    linear-gradient(0deg, transparent 46%, var(--chip-line) 46% 54%, transparent 54%),
-    linear-gradient(135deg, var(--foil-a), var(--foil-b) 55%, var(--foil-a));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foil-b) 70%, var(--on-ink));
-}
-.projects-grid .item .chip-btn:active { transform: scale(.94) }
+/* Touch or narrow: no reader */
 @media (max-width: 39.99rem), (pointer: coarse) {
   .projects-grid .item .reader { display: none }
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
   .projects-grid .item-top::after { display: none }
-  .projects-grid .item .chip-btn { display: block; order: 1; flex: none; margin-left: .8rem }
-}
-@media (min-width: 30.0625rem) and ((max-width: 39.99rem) or (pointer: coarse)) {
-  .projects-grid .item .chip-btn { position: absolute; right: 1.3rem; bottom: 3.2rem; margin-left: 0; order: 0 }
 }
 @media (prefers-reduced-motion: no-preference) {
   .projects-grid .item.dip { transform: translateY(8px) scale(.965); filter: brightness(.8); transition: transform .3s cubic-bezier(.2, .8, .2, 1), filter .3s ease }
@@ -1438,25 +1421,6 @@ article h1 { margin-top: .5rem }
   .projects-grid .item.spring { translate: none; transition: none }
 }
 
-/* Chip hint (touch or narrow only): the chip stays still and a thin gold outline of the same shape
-   grows a little and fades, once every 6s. The ring is the chip's ::after, so the chip's own styles
-   and its :active press are untouched. */
-@keyframes chip-ring {
-  0%   { scale: 1;   opacity: .75 }
-  35%  { scale: 1.5; opacity: 0 }
-  100% { scale: 1.5; opacity: 0 }
-}
-.projects-grid .item .chip-btn::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  border: 1px solid color-mix(in srgb, var(--foil-b) 85%, transparent); opacity: 0;
-}
-@media (max-width: 30.06rem) {
-  .projects-grid .item .chip-btn { position: relative }
-}
-@media (prefers-reduced-motion: no-preference) and ((max-width: 39.99rem) or (pointer: coarse)) {
-  .projects-grid .item .chip-btn::after { animation: chip-ring 6s ease-out var(--idle, 1.5s) 3 }
-  .projects-grid .item.dip .chip-btn::after { animation: none }
-}
 
 /* Phone header: copy the desktop layout (big centered photo, name, location, contact icons) */
 @media (max-width: 40rem) {
@@ -2048,10 +2012,6 @@ article h1 { margin-top: .5rem }
 }
 
 
-/* Align gold chip with icon row (touch / narrow) */
-@media (min-width: 30.0625rem) and ((max-width: 39.99rem) or (pointer: coarse)) {
-  .projects-grid .item .chip-btn { bottom: calc(3.2rem + 11px) }
-}
 
 /* Gold chip: line up with icon row (desktop) */
 .projects-grid .item .meta::after { bottom: calc(3.2rem + 12px) }
@@ -2570,28 +2530,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* Projects intro: one wording everywhere, no chevrons */
 .projects-intro .pi-arrows { display: none }
 
-/* Mini chip shown inline in the mobile intro text */
-.projects-intro .pi-chip {
-  display: inline-block; width: 1.25em; height: .95em; border-radius: .2em; vertical-align: -.12em; margin: 0 .1em;
-  background:
-    linear-gradient(90deg, transparent 32%, var(--chip-line) 32% 34%, transparent 34% 66%, var(--chip-line) 66% 68%, transparent 68%),
-    linear-gradient(0deg, transparent 46%, var(--chip-line) 46% 54%, transparent 54%),
-    linear-gradient(135deg, var(--foil-a), var(--foil-b) 55%, var(--foil-a));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foil-b) 70%, var(--on-ink));
-}
 
-/* Desktop intro: one arrow in brackets that slides right and fades, like a swipe */
+/* Intro: the chevrons stay hidden */
 .projects-intro .pi-arrows { display: none !important }
-.projects-intro .pi-arrow { display: inline-block }
-@keyframes pi-swipe-nudge {
-  0%   { transform: translateX(-.25em); opacity: .3 }
-  35%  { transform: translateX(0); opacity: 1 }
-  70%  { transform: translateX(.3em); opacity: 1 }
-  100% { transform: translateX(.3em); opacity: 0 }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .projects-intro .pi-arrow { animation: pi-swipe-nudge 1.8s ease-in-out infinite }
-}
 
 /* Hover hit area: the lifted card keeps :hover over its old bottom edge (no flicker loop) */
 .projects-grid .item .hover-pad { position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none }
@@ -2789,7 +2730,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* tap targets */
 @media (pointer: coarse), (max-width: 39.99rem) {
-  .projects-grid .item .chip-btn::before { content: ""; position: absolute; inset: -.6rem -.35rem }
   .overview .back-top::before { content: ""; position: absolute; inset: -.4rem }
 }
 
