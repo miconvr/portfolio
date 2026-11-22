@@ -100,6 +100,8 @@
   function plusOne() {
     const p = document.createElement("span");
     p.className = "been-plus";
+    p.style.left = (btn.offsetLeft + btn.offsetWidth * 0.5) + "px";
+    p.style.top = (btn.offsetTop + btn.offsetHeight * 0.1) + "px";
     p.textContent = "+1";
     wrap.appendChild(p);
     setTimeout(() => p.remove(), 1200);
