@@ -141,9 +141,9 @@
   }
   document.addEventListener("reader-receipt", printer);
 
-  // Browsers only allow audio after a gesture, so wake the context on the first one.
-  ["pointerup", "keydown", "touchend", "click"].forEach(n =>
-    window.addEventListener(n, init, { passive: true }));
+  init(); // Browsers only allow audio after a gesture: build the context now, wake it on the first one.
+  ["pointerdown", "keydown", "touchstart", "pointerup", "touchend", "click"].forEach(n =>
+    window.addEventListener(n, init, { passive: true, capture: true }));
 
   // Backgrounded tabs suspend the context. Wake it before the next press.
   document.addEventListener("visibilitychange", () => { if (!document.hidden) wake(); });

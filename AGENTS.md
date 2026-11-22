@@ -21,7 +21,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `css/styles.css` | All styling. Dark only |
 | `js/home.js` | In-place navigation, prefetch, card spotlight/tilt, view transitions |
 | `js/slide-open.js` | Swipe-to-open, reader, receipt, chip button, idle sheen |
-| `js/clack.js` | Synthesized sound (Web Audio), no audio files |
+| `js/clack.js` | Synthesized sound (Web Audio), no audio files. Context is built on load and woken by the first pointerdown, keydown or touchstart (browsers block audio before a gesture, so the first press is the earliest sound can play) |
 | `js/carousel.js`, `js/car-slider.js` | Screenshot carousel and its keycap buttons |
 | `js/lightbox.js` | Click-to-enlarge lightbox for overview images and videos, plus the `.lb-hint` button |
 | `js/been-here.js`, `js/mascot-idle.js` | Mascot, visitor counter, idle moves |
