@@ -346,3 +346,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Cream cursor, no parentheses
 
 - `/* cream cursor */` (end of `css/styles.css`) restyles the intro cursor from the "Mac cursor, still" section: cream fill (`#f3f0e6`) with a `#0b0b0b` outline, 1.3em, so it stays visible on the dark page. The ring is a 1px cream line, positioned on the arrow tip (`left: -.18em; top: -.29em`). The parentheses around `<span class="pi-click">` in `index.html` were removed; the span has `.15em` side margin instead. The cursor never moves, only the ring ripples.
+
+## Cream hand, no animation
+
+- `/* cream hand */` (end of `css/styles.css`) supersedes the cursor sections above. The intro `.pi-click` is now the Mac pointing hand as an inline SVG: cream fill (`#f3f0e6`), `#0b0b0b` outline, three straight vertical palm lines. It is 1.15em with no side margin, so it sits in the sentence like an emoji. The ring (`::after`) is hidden and there is no animation. The `cursor-press`, `cursor-ring` and `cursor-ripple` keyframes are unused and can go in a later cleanup.
