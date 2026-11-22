@@ -2524,3 +2524,10 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* reader screen: no insert card text */
 .projects-grid .item .reader:not(.ready) .r-screen::before { content: "" }
+
+/* crisp link icons: whole pixel size */
+.projects-grid .item .meta li+li a .ico,
+.overview .meta li a .ico,
+.cert-link a .ico {
+  width: 16px; height: 16px; flex: none; shape-rendering: geometricPrecision;
+}
