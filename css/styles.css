@@ -2512,3 +2512,12 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .home main:has(> article.overview) { margin-top: 0; padding-top: 0; border-top: 0 }
   .overview { margin-top: .75rem }
 }
+
+/* overview facts: status room on phones */
+@media (min-width: 23.75rem) and (max-width: 39.99rem) {
+  .overview .facts { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) }
+}
+@media (max-width: 23.74rem) {
+  .overview .facts { grid-template-columns: minmax(0, 1fr) }
+  .overview .facts > div:nth-child(n) { grid-column: 1 / -1 }
+}
