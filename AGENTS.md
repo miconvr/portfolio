@@ -378,3 +378,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## CivicGuard tall role tile
 
 - `civicguard/index.html` has `<dl class="facts facts-tall">`. `/* civicguard facts: tall role tile */` (end of `css/styles.css`) lays it out as two columns: Role spans two rows on the left, Status and Activity stack on the right, Stack is full width below. A long role can no longer stretch Status and Activity. It beats the older `.overview .facts` grid rules by specificity, so they were not removed. Kaltas keeps the plain three-across row (no `facts-tall` class) because its role is short. Use `facts-tall` only for projects with a long role.
+
+## Overview facts: role row
+
+- Both overviews use the same facts layout (`/* facts: role row */`, end of `css/styles.css`): Role full width on top, Status and Activity side by side, Stack full width. Role is `<dd class="pills">` with one `<span>` per role (CivicGuard: Project Manager, Full-Stack Developer; Kaltas: Solo Developer), so it uses the stack pill style. Keep roles as separate spans, never joined with "and". The `facts-tall` class and its CSS were removed. Under about 360px the tiles stack in one column.
