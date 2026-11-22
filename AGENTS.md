@@ -378,3 +378,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Card link pills
 
 - `/* card link pills */` (end of `css/styles.css`) styles the card's download, repository and live site links (`.projects-grid .item .meta li + li a`) as filled pills: `--card-2` fill, `--text` color, 999px radius, .74rem (.72rem on phones), a faint top highlight. Hover only changes border, fill and text color (no transform): download is warm cream, repository light gray, live site `--live` green (matched by `aria-label`). The first `li` (the invisible open-card link) is untouched. This overrides the many older `.meta li+li a` rules by coming last; change the look in this block only. Stack pills stay muted and flat on purpose, so the two rows differ.
+
+## Card link hover accent (replaces card link pills)
+
+- The filled `/* card link pills */` block was removed, so the card links are back to the gray boxes. `/* card link hover accent */` (end of `css/styles.css`) only changes border and text color on hover or focus: download warm cream, repository light gray, live site `--live` green (by `aria-label`). No fill, size or transform change at rest or on hover. Do not restyle the resting look unless asked.
