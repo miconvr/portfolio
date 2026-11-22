@@ -2949,3 +2949,15 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (hover: none), (pointer: coarse) {
   .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) { transform: none; filter: none }
 }
+
+/* stack pills v3 */
+.projects-grid .item p.card-stack { flex-wrap: nowrap; overflow: hidden }
+.projects-grid .item .card-stack span { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis }
+.projects-grid .item .card-stack span:nth-child(n+4) { display: none }
+.projects-grid .item .card-stack:has(span:nth-child(4))::after {
+  content: "+more"; flex: none; padding: .15rem .55rem; border: 1px dashed var(--line); border-radius: 999px;
+  font: 400 .66rem/1.4 var(--mono); color: var(--muted); white-space: nowrap;
+}
+@media (max-width: 39.99rem) {
+  .projects-grid .item .card-stack:has(span:nth-child(4))::after { padding: .1rem .42rem; font-size: .58rem }
+}

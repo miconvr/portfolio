@@ -254,7 +254,11 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 ## Stack pills v2 and the blur fix
 
-- Card stack pills: put every tech as a `<span>` in the card's `<p class="card-stack">`, in the same order as the overview's Stack row. `fitStacks()` in `js/slide-open.js` caps the row at two lines: extra pills get `hidden` and a dashed `+N` span (`.more`) is appended; the full list is in the row's `title`. It runs from `ensureAll()`, on resize (150ms debounce), after fonts load and on `pageshow`. Phones use smaller pills (`.58rem`) in the `/* stack pills v2 */` block at the end of `css/styles.css`.
+- Card stack pills (v3): put every tech as a `<span>` in the card's `<p class="card-stack">`, most important first. CSS only (`/* stack pills v3 */`, end of `css/styles.css`): the first 3 show on one fixed row (`nowrap`, so the card height never changes) and a dashed `+more` pill (`::after`) appears when a 4th exists. The full stack lives on the overview page. There is no JS for this any more (`fitStacks` was removed).
 - The `will-change: transform` on cards, icon, status and title was REMOVED (it was blurring the card after opening a project; this supersedes the "Hover pixel shift" note above). If the hover pixel shift returns, check the `perspective` tilt rule (`.projects-grid .item:hover { transform: perspective(900px) ... }`) first.
 - `.dip` (touch tap feedback, with `filter: brightness`) is cleared by `clearDip()` on `pageshow` (back/forward cache) and whenever the home content re-renders, unless an open is in progress (`busy`). On touch devices, hover and active transforms on cards are off (last rules of `css/styles.css`).
 - Commit hook: the subject must be all lowercase (no `+N`, brand names or acronyms in capitals) and under 80 characters.
+
+## Stack pills v3
+
+- Replaces the v2 `fitStacks()` / `+N` approach, which changed the card height. The `.more` rule in `/* stack pills v2 */` is dead. Kaltas card order is JavaScript, Manifest V3, GitHub Actions, then HTML and CSS (hidden behind `+more`), so it differs from the overview's order on purpose.
