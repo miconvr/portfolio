@@ -342,3 +342,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Mac cursor, no card cursors
 
 - `/* mac cursor, still */` (end of `css/styles.css`) supersedes the "Click cursor" section. The intro `.pi-click` is a Mac-style arrow (black fill, white outline, inline SVG background) that never moves or scales. Only the `::after` ring ripples out from the tip (`cursor-ripple`, 2.6s, off for reduced motion). The cursor and ring on the cards (`.item::after`, `.item-top::after`) are hidden. If the ring is off the tip, adjust `left` / `top` on `.pi-click::after`.
+
+## Cream cursor, no parentheses
+
+- `/* cream cursor */` (end of `css/styles.css`) restyles the intro cursor from the "Mac cursor, still" section: cream fill (`#f3f0e6`) with a `#0b0b0b` outline, 1.3em, so it stays visible on the dark page. The ring is a 1px cream line, positioned on the arrow tip (`left: -.18em; top: -.29em`). The parentheses around `<span class="pi-click">` in `index.html` were removed; the span has `.15em` side margin instead. The cursor never moves, only the ring ripples.

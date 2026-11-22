@@ -3098,3 +3098,15 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (prefers-reduced-motion: no-preference) {
   .projects-intro .pi-click::after { animation: cursor-ripple 2.6s ease-out infinite }
 }
+
+/* cream cursor */
+.projects-intro .pi-click {
+  width: 1.3em; height: 1.3em; margin: 0 .15em; vertical-align: -.22em;
+}
+.projects-intro .pi-click::before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 3V18L9 14.2L11.8 20.5L14.4 19.3L11.6 13.2H17Z' fill='%23f3f0e6' stroke='%230b0b0b' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.projects-intro .pi-click::after {
+  left: -.18em; top: -.29em; width: .9em; height: .9em;
+  border: 1px solid rgba(243, 240, 230, .6);
+}
