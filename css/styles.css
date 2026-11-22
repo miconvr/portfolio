@@ -406,7 +406,7 @@ footer.site a { color: var(--text) }
 footer.site .badge a { display: inline; padding: 0; border: 0; background: none; color: var(--muted); text-decoration: none }
 
 /* ================================================================
-   MASCOT — "been here" smiley
+   MASCOT — "been here" heart
    ================================================================ */
 .been { position: relative; display: flex; align-items: center; gap: .35rem; margin-top: 2rem }
 .been-btn {
@@ -1820,7 +1820,7 @@ article h1 { margin-top: .5rem }
 @media (prefers-reduced-motion: reduce) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
 @media (max-width: 39.99rem), (pointer: coarse) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
 
-/* Receipt v2: feeds out of the reader's right edge, smiley instead of a date */
+/* Receipt v2: feeds out of the reader's right edge, heart instead of a date */
 .projects-grid .item .reader .r-slot {
   left: auto; right: -.2rem; top: 1rem; bottom: 1rem; width: .45rem; height: auto;
 }
