@@ -3105,3 +3105,11 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .overview .facts dd.pills span.fact-status[data-status="dev"]::after {
   background: var(--dev); box-shadow: 0 0 6px color-mix(in srgb, var(--dev) 70%, transparent);
 }
+
+/* overview commits fit on phones */
+.overview .facts dd .repo-commits:not([hidden]) {
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;
+}
+@media (max-width: 39.99rem) {
+  .overview .facts dd .repo-commits:not([hidden])::after { content: none }
+}

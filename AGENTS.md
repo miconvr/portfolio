@@ -398,3 +398,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview status dot on the right
 
 - `/* overview status dot on the right */` (end of `css/styles.css`): the overview Status dot (`.fact-status`) now sits after the text. `::before` is switched off and the same dot is drawn as `::after` (`live` is `--live` green, `dev` is `--dev` amber). This supersedes the left-side dot in `/* overview status and commits pills */`. The main page cards are unchanged.
+
+## Overview commits fit on phones
+
+- `/* overview commits fit on phones */` (end of `css/styles.css`): the Activity pill is capped at the tile width (`max-width: 100%`, ellipsis), and under 40rem the " on GitHub" suffix (`::after`) is dropped so "340+ commits" fits the half-width tile. Desktop still shows "340+ commits on GitHub".
