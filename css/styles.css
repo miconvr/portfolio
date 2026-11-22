@@ -450,7 +450,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 
 /* Credit lines */
 .been-credit { display: block; margin-top: .35rem; font: 400 .7rem var(--mono); opacity: .5 }
-.been-credit-sub { margin-top: .1rem }
 
 /* ================================================================
    COMMITS (js/commits.js)
