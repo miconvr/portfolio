@@ -2990,3 +2990,8 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
     transform: perspective(1400px) translateY(-4px) rotateX(calc(var(--rx, 0deg) * .5)) rotateY(calc(var(--ry, 0deg) * .5));
   }
 }
+
+/* layer only at rest */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:not(.pulling):not(.retract-hold):not(.spring):not(.dip) { will-change: transform }
+}
