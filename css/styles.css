@@ -49,7 +49,6 @@ img { max-width: 100% }
 .skip:focus { top: 1rem }
 
 /* ---- Utility ---- */
-button.theme { display: none }
 .ico { width: 1em; height: 1em; vertical-align: -.125em; margin-right: .4em; fill: currentColor }
 
 /* ---- Progress bar ---- */
@@ -117,7 +116,6 @@ h1, h2, h3 { font-family: var(--sans); color: var(--ink); margin: 0 }
 .side h1,
 .home-intro h2,
 .item h3,
-.proj h3,
 article h1,
 article h2,
 article section h2 {
@@ -335,9 +333,7 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
 .slides:focus-visible { outline-offset: -4px }
 .slide { flex: 0 0 100%; height: 100%; scroll-snap-align: start; display: block }
 .slide img { width: 100%; height: 100% }
-.slide img.contain { object-fit: contain; object-position: center }
 .slide video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; background: #111 }
-.slide video.contain { object-fit: contain }
 .car-count { position: absolute; right: .75rem; bottom: .75rem; z-index: 2; padding: .15rem .65rem; border: 1px solid #3A3A44; border-radius: 999px; background: rgba(12,12,15,.72); color: var(--ink); font: 400 .75rem var(--mono) }
 
 /* ================================================================
@@ -371,10 +367,6 @@ article section p:last-child { margin-bottom: 0 }
 ul.plain { padding-left: 1.2rem }
 
 /* Project sub-pages */
-.proj { display: grid; grid-template-columns: 3rem 1fr; gap: 0 1.5rem; padding: 2.25rem 0; border-bottom: 1px solid var(--line) }
-.proj svg, .proj img { width: 3rem; height: 3rem; border-radius: .65rem; display: block }
-.proj h3 { font-weight: 600; font-size: 1.35rem; letter-spacing: -.02em; line-height: 1.2; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem }
-.proj p { font-family: var(--sans); font-size: 1.0625rem; margin: .9rem 0 0; max-width: 34rem; line-height: 1.7; color: var(--text) }
 .meta, .links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; font: 400 .9rem var(--mono); text-transform: lowercase }
 .meta a, .links a { text-decoration: none; color: var(--muted); border-bottom: 1px solid #3A3A44; padding-bottom: 1px }
 .meta a:hover, .links a:hover { color: var(--ink); border-bottom-color: var(--ink) }
@@ -390,9 +382,6 @@ ul.plain { padding-left: 1.2rem }
 .org-logo { width: auto; height: 1.4rem; border-radius: 0; display: block; flex: none; opacity: .9 }
 
 /* ---- Screenshots ---- */
-.shot { display: block; width: 100%; height: auto; margin-top: 1.5rem; border: 1px solid var(--line); border-radius: .6rem; object-fit: cover; object-position: center top }
-.shot.civic { aspect-ratio: 16/10 }
-.shot.phone { width: 100%; max-width: 19rem; object-fit: contain; margin: 3rem auto 0 }
 
 /* ---- Back link ---- */
 .back { margin: 2rem 0 0 }
@@ -505,8 +494,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .js .item.in .meta { transition-delay: .7s }
 
 /* Sub-page entrance */
-.js .sub { opacity: 0; transform: translateY(10px); transition: opacity .55s ease, transform .55s cubic-bezier(.2,.7,.2,1) }
-.js .sub.in { opacity: 1; transform: none }
 
 /* View transitions */
 @media (prefers-reduced-motion: no-preference) {
@@ -640,7 +627,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .item h3 { font-size: 1.75rem }
   .item-head { gap: .85rem }
   article h1 { font-size: 2rem }
-  .proj { grid-template-columns: 1fr; gap: 1.25rem 0 }
   .meta, .links { font-size: .875rem; gap: .5rem 1.25rem }
   .status { font-size: .8125rem }
   footer.site { font-size: .85rem }
@@ -655,7 +641,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .js .reveal, .js .reveal .frame img { opacity: 1; transform: none; transition: none }
   .js .item .frame { clip-path: none; transition: none }
   .js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
-  .js .sub { opacity: 1; transform: none; transition: none }
   .side nav a::before { transition: none }
   .panel-enter { animation: none }
   .been .blink { animation: none }
@@ -1849,34 +1834,8 @@ article h1 { margin-top: .5rem }
 .projects-grid .item { --accent: #e2763f }
 .projects-grid .item[data-index="01"] { --accent: #c2284a }
 
-.projects-grid .item .cardno {
-  margin: .7rem 0 0; font: 500 .8rem/1 var(--mono); letter-spacing: .16em;
-  color: color-mix(in srgb, var(--accent) 38%, transparent);
-  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 10%, transparent), 0 1px 0 var(--shadow);
-}
-.projects-grid .item .meta li.holder {
-  order: 1; flex: 0 0 100%; display: flex; align-items: center; justify-content: space-between;
-  padding-right: 3.6rem; margin-top: .15rem;
-}
-.projects-grid .item .hname {
-  font: 500 .6rem/1 var(--mono); letter-spacing: .16em; white-space: nowrap;
-  color: color-mix(in srgb, var(--ink) 40%, transparent);
-}
-.projects-grid .item .net {
-  flex: none; fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; opacity: .7;
-}
-@media (max-width: 30rem) {
-  .projects-grid .item .cardno { letter-spacing: .12em }
-  .projects-grid .item .meta li.holder { padding-right: 0 }
-}
-
 /* Cards v3: neutral cream instead of per-project colors */
 .projects-grid .item, .projects-grid .item[data-index="01"] { --accent: var(--ink) }
-.projects-grid .item .net { stroke: var(--ink); opacity: .45 }
-.projects-grid .item .hname {
-  text-transform: uppercase; font-size: .65rem; letter-spacing: .18em;
-  color: color-mix(in srgb, var(--ink) 55%, transparent);
-}
 
 /* Cards v4: link pills under the tagline; number, dates and name sit together at the bottom */
 .projects-grid .item .meta { gap: .35rem .5rem; margin: .8rem 0 0 }
@@ -1893,9 +1852,7 @@ article h1 { margin-top: .5rem }
   border-color: color-mix(in srgb, var(--ink) 45%, transparent);
   color: var(--ink); transform: translateY(-1px);
 }
-.projects-grid .item .meta li.cardno { order: 1; flex: 0 0 100%; margin: .8rem 0 0 }
 .projects-grid .item .meta::before { order: 2; margin: 0 }
-.projects-grid .item .meta li.holder { order: 3 }
 .projects-grid .item .meta li:first-child { order: 4 }
 @media (prefers-reduced-motion: reduce) {
   .projects-grid .item .meta li+li a { transition: none }
@@ -2710,7 +2667,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* phone text floor 2 */
 @media (max-width: 40rem) {
-  .projects-grid .item .hname { font-size: .75rem }
   .projects-grid .item .meta li+li a { font-size: .75rem }
   .overview .meta li a, .overview .meta li a:hover, .overview .meta li a:focus-visible { font-size: .75rem }
 }

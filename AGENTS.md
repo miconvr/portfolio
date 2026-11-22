@@ -239,36 +239,6 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 - The cream click icon (`#f3f0e6`, inline SVG data URI) is `.item-top::after`, absolute at `right: 1.3rem; bottom: 1.3rem` on every width, 75% opacity, 100% on card hover or focus. `.item-top` must stay un-transformed or the icon will jump (same rule as the old chip). The `02` (`.item::after`) sits above it.
 - Stack pills: `<p class="card-stack">` between the tagline and `.meta` in each home card, 3 or 4 items taken from the overview's Stack row. New projects need one. `.item` has `padding-bottom: 1.3rem` now that no bar sits flush at the bottom.
 
-## Card depth, and the click icon moved to the intro
-
-- Depth: the `/* card depth and intro click icon */` block at the end of `css/styles.css` sets `.projects-grid .item` border, background (grain + top-left light + lighter gradient) and box-shadow (top highlight, bottom dark line, tight and wide outer shadows), plus a stronger `:hover` shadow. Hover must stay shadow and border only: no transform, because the scan uses `translate` and `.item-top` must stay un-transformed. The `--live` glow rule on the ready state is more specific and still wins.
-- The cream bottom-right icon (`.item-top::after`) is hidden, so the "Card without the stripe bar" notes about it are dead. The `02` (`.item::after`) sits at `right: 1.3rem; bottom: 1.1rem`.
-- The intro reads "Click a card (icon) to see the project's overview." The icon is `<span class="pi-click">`, a currentColor mask of the same hand SVG.
-
-## Card surface v2 and the hover pixel fix
-
-- The earlier depth block tiled the card gradient every 160px (visible as a vertical band and a horizontal split on phones). Cause: `.projects-grid .item` has `background-size: 160px 160px, auto` (grain, gradient) and the override had three `background-image` layers, so the size list repeated. Rule: any override of that `background-image` must keep exactly two layers, or set `background-size` to match.
-- The surface is now the two original layers with a lighter gradient (`#1b1b1b` to `#131313`), a 1px top highlight and two soft shadows (`/* ... */` block before `.projects-intro .pi-click`). Hover changes shadow and border only.
-- `/* card surface v2, spacing and hover pixel fix */` (end of `css/styles.css`): `.meta` reserves 3.4rem on the right so the `02` cannot touch the links; `02` is 1.6rem at 30rem and below; `.projects-grid` has 4.5rem bottom padding on phones so the floating sound button clears the last card.
-- Hover pixel shift: the card, `.project-icon`, `.status` and `.title-block` transform on hover and used to drop off their GPU layer when the hover ended, which snapped text by up to 1px. `will-change: transform` on those four (hover devices, motion allowed) keeps them on their layer. Never add it to `.item-top` (it must stay un-transformed).
-
-## Stack pills v2 and the blur fix
-
-- Card stack pills (v3): put every tech as a `<span>` in the card's `<p class="card-stack">`, most important first. CSS only (`/* stack pills v3 */`, end of `css/styles.css`): the first 3 show on one fixed row (`nowrap`, so the card height never changes) and a dashed `+more` pill (`::after`) appears when a 4th exists. The full stack lives on the overview page. There is no JS for this any more (`fitStacks` was removed).
-- The `will-change: transform` on cards, icon, status and title was REMOVED (it was blurring the card after opening a project; this supersedes the "Hover pixel shift" note above). If the hover pixel shift returns, check the `perspective` tilt rule (`.projects-grid .item:hover { transform: perspective(900px) ... }`) first.
-- `.dip` (touch tap feedback, with `filter: brightness`) is cleared by `clearDip()` on `pageshow` (back/forward cache) and whenever the home content re-renders, unless an open is in progress (`busy`). On touch devices, hover and active transforms on cards are off (last rules of `css/styles.css`).
-- Commit hook: the subject must be all lowercase (no `+N`, brand names or acronyms in capitals) and under 80 characters.
-
-## Stack pills v3
-
-- Replaces the v2 `fitStacks()` / `+N` approach, which changed the card height. The `.more` rule in `/* stack pills v2 */` is dead. Kaltas card order matches the overview (JavaScript, HTML, CSS shown; Manifest V3 and GitHub Actions behind `+2 more`).
-
-
-## Stack text v4 and the hover snap
-
-- Card stack is plain muted text with dot separators, not pills (`/* stack text v4 */`, end of `css/styles.css`). Desktop shows the first 3 techs, phones the first 2, then a quiet `+N more` (`::after`, computed with `:has(span:nth-child(n))`, supports up to 6 techs). The card is one fixed row, so its height never changes. Keep the card's order identical to the overview's Stack row; the card shows its first 3 (2 on phones).
-- `will-change: transform` is BACK on the card, icon, status and title, but only for `(hover: hover) and (pointer: fine)` with motion allowed. Without it the card snapped sharp when a hover ended (text re-rasterized in one frame). It stays off for touch, where it was suspected of blurring the card after opening a project. This supersedes the "REMOVED" note in the stack pills v2 section. If the blur returns on desktop, check the `perspective` tilt rule first.
-
 ## Sharp hover (no 3d tilt)
 
 - Root cause of the card looking blurry while hovered (e.g. after clicking its repo link and coming back, the mouse still rests on it) and of the snap when a hover ended: the `perspective(...) rotateX(var(--rx)) rotateY(var(--ry))` hover transform (about line 1040 of `css/styles.css`) resamples the text on a tilted surface. The last block of `css/styles.css` (`/* sharp hover: no 3d tilt */`) overrides it with `translateY(-4px)` only, whole pixels. The tilt rules and the `--rx` / `--ry` code in JS are now dead; delete them in a cleanup.
@@ -330,79 +300,31 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - All tags in a card's `<p class="card-stack">` show on one `nowrap` row. `fitStacks()` in `js/slide-open.js` sets `--stack-fs` on each row, starting at .66rem and shrinking by .25px until `scrollWidth <= clientWidth` (floor 6px). It runs from `ensureAll()`, on resize (120ms debounce), after fonts load and on `pageshow`. `/* stack v7: js fitted one row */` (end of `css/styles.css`) makes the tag font, padding (in `em`) and gap follow `--stack-fs`, replacing the `cqw` sizes from v6. Card height never changes. Keep tags in the overview's order; a very long stack will shrink toward the 6px floor and then clip.
 
-## No number, even card spacing
+## Current state: workflow and css rules
 
-- `/* no number, even card spacing */` (end of `css/styles.css`): the `01` / `02` (`.item::after`) is hidden on every width, so the older number rules and the `.meta` right padding are dead. The card has 1.3rem padding on every side and a fixed rhythm: title to date .3rem, date to tagline .7rem, tagline to tags .7rem, tags to links .9rem. Change spacing in that block, not in the older rules. `data-index` is still in the markup, and the older number rules can go in a later cleanup.
+- Workflow: one commit and one push per change, `git pull --ff-only` first. Commit hook: the subject must be all lowercase (no capitals for brand names, acronyms or `+N`) and under 80 characters. Prefixes used so far: `style:`, `fix:`, `feat:`. To undo a commit use `git revert HEAD --no-commit` and commit with your own lowercase subject, because git's default revert subject starts with a capital R and the hook rejects it.
+- `css/styles.css` is a long stack of overrides, and a later rule beats an earlier one on purpose. Add every change as a labeled `/* ... */` block at the end of the file. Do not edit older rules in place, and before deleting an older rule check that nothing later depends on it.
+- `.item-top` must stay un-transformed, because the card scan uses `translate`.
+- Dead css cleanup, batch 1: removed the classes `.theme .proj .contain .shot .sub .cardno .holder .hname .net` (and `.phone`, which only appeared as `.shot.phone`), which no html or js file uses. Audit method: list every class in the css that appears in no html or js file, then delete rules whose selectors only target those classes. Not done yet (these are overridden, not dead, so go in small batches and check the site after each): the stacked older `.meta li+li a` rules, the `stack pills v2` to `v6` and `stack text v4` blocks, the old `.item::after` number rules and the `data-index` date rules.
 
+## Current state: home cards
 
-## Click cursor (intro and card)
+- Surface: `.projects-grid .item` has border `#242424` and two background layers (grain plus a gradient from `#1b1b1b` to `#131313`) with `background-size: 160px 160px, auto`. Any override of `background-image` must keep exactly two layers or set `background-size` to match, because a third layer once tiled every 160px (a vertical band and a horizontal split on phones).
+- Hover changes shadow and border only. `will-change: transform` is on the card, `.project-icon`, `.status` and `.title-block` for `(hover: hover) and (pointer: fine)` with motion allowed, to stop the card snapping sharp when a hover ends. It stays off for touch. On touch devices hover and active transforms are off. `.dip` (tap feedback) is cleared by `clearDip()` in `js/slide-open.js` on `pageshow` and when the home content re-renders, unless an open is in progress. If blur returns after opening a project on desktop, check the `perspective` tilt rule first.
+- Spacing (`/* no number, even card spacing */`): the card number `01` / `02` is hidden everywhere. Padding is 1.3rem on every side. Rhythm: title to date .3rem, date to tagline .7rem, tagline to tags .7rem, tags to links .9rem. On phones `.projects-grid` has 4.5rem bottom padding so the floating sound button clears the last card.
+- Stack: bordered pills on one fixed row, so the card height never changes. The final rules are the `stack v7: js fitted one row` block, which reads `--stack-fs`. Put the most important tech first in the card's `<p class="card-stack">`. The older v2 to v6 blocks are superseded.
+- Links (download, repository, live site): back to their original look. The filled link pills and the hover accent were tried and reverted ("style: revert the link button changes"). Do not restyle them unless asked.
+- Intro text is plain: "Click a card to see the project's overview." No icon, no parentheses.
 
-- `/* click cursor */` (end of `css/styles.css`): a filled vector cursor (inline SVG mask) with a press and ring animation (`cursor-press`, `cursor-ring`, 2.6s). In the intro it is `.pi-click::before` (cursor) and `::after` (ring); on each card it is `.item::after` (cursor, bottom right, `right/bottom: 1.3rem`) and `.item-top::after` (ring, centered on the cursor tip). Card offsets use `--idle`. Ring and press are off for reduced motion (ring stays hidden). This replaces the card number (`data-index` is unused) and the hand icon. `.item-top` must stay un-transformed or the ring will jump.
+## Current state: overview pages
 
-## Mac cursor, no card cursors
+- Facts layout (`/* facts: role row */`), same for every project: Role full width on top, Status and Activity side by side, Stack full width. Under 22.5rem it is one column. Role and Stack are `<dd class="pills">` with one `<span>` per item, so write roles as separate spans, never joined with "and".
+- Overview pills (`.overview .facts dd.pills span`): copied from the card pill look, sized `.85rem` (`.78rem` on phones) with `.2em .7em` padding.
+- Status: `<span class="fact-status" data-status="live|dev">`. The dot sits after the text (`::after`): `live` is `--live` green, `dev` is `--dev` amber.
+- Activity: `.repo-commits`, filled by `js/commits.js` from `/api/commits` (cached in localStorage under `commits-v3`), so it updates by itself. It has no icon, reads "340+ commits on GitHub" (` on GitHub` is a `::after`, dropped under 40rem), is capped at the tile width with an ellipsis, and copies the border, radius, fill and color of the stack pills. The base `.repo-commits` rules and the home date-line chips are unchanged.
+- Phone top gap (`/* overview phone: smaller top gap */`): under 40rem, `main:has(> article.overview)` has no top margin, padding or divider line (the "divider line under the header" phone rule matched overview pages too), and `.overview` has a .75rem top margin.
 
-- `/* mac cursor, still */` (end of `css/styles.css`) supersedes the "Click cursor" section. The intro `.pi-click` is a Mac-style arrow (black fill, white outline, inline SVG background) that never moves or scales. Only the `::after` ring ripples out from the tip (`cursor-ripple`, 2.6s, off for reduced motion). The cursor and ring on the cards (`.item::after`, `.item-top::after`) are hidden. If the ring is off the tip, adjust `left` / `top` on `.pi-click::after`.
+## History: removed on purpose (do not bring back unless asked)
 
-## Cream cursor, no parentheses
-
-- `/* cream cursor */` (end of `css/styles.css`) restyles the intro cursor from the "Mac cursor, still" section: cream fill (`#f3f0e6`) with a `#0b0b0b` outline, 1.3em, so it stays visible on the dark page. The ring is a 1px cream line, positioned on the arrow tip (`left: -.18em; top: -.29em`). The parentheses around `<span class="pi-click">` in `index.html` were removed; the span has `.15em` side margin instead. The cursor never moves, only the ring ripples.
-
-## Cream hand, no animation
-
-- `/* cream hand */` (end of `css/styles.css`) supersedes the cursor sections above. The intro `.pi-click` is now the Mac pointing hand as an inline SVG: cream fill (`#f3f0e6`), `#0b0b0b` outline, three straight vertical palm lines. It is 1.15em with no side margin, so it sits in the sentence like an emoji. The ring (`::after`) is hidden and there is no animation. The `cursor-press`, `cursor-ring` and `cursor-ripple` keyframes are unused and can go in a later cleanup.
-
-## Small card icon (final intro icon)
-
-- `/* small card icon */` (end of `css/styles.css`) replaces every cursor and hand block, which were deleted (`click cursor`, `mac cursor, still`, `cream cursor`, `cream hand` and the `cursor-*` keyframes). The intro reads "Click a card (icon) to see the project's overview." The icon is `<span class="pi-click">`, a pure CSS rounded outline (1.05em by .75em) with a thin header line, in `currentColor` so it matches the intro text. No image, no animation. The card-corner cursor and ring are gone too; `.item::after` and `.item-top::after` stay hidden by the older rules.
-
-## Small card icon fix
-
-- The original hand rule (`.projects-intro .pi-click` with a `mask: url(data:...)`, from the "card depth and intro click icon" block) was still in `css/styles.css` and clipped the card icon into a hand. It is now deleted, and `/* small card icon fix */` (end of file) resets `background`, `mask` and `animation` on `.pi-click` and removes its `::after`. The intro icon is only the pure CSS card from `/* small card icon */`. Never add a mask or background to `.pi-click`.
-
-## Card icon v2: box, red dot, lines
-
-- `/* card icon v2: box, red dot, lines */` (end of `css/styles.css`) is the final intro icon and supersedes the outlined card. `.pi-click` is a 1.1em by 1em pure CSS icon: `::before` is a filled box in `currentColor` with a red dot on its left (`#ef4f5a`, a radial-gradient), `::after` is two short lines below (second one 62% wide) standing for the card text. No image, mask or animation. Change the dot color in the `radial-gradient` of `::before`.
-
-## Intro icon removed
-
-- The intro reads plain text: "Click a card to see the project's overview." No icon, no parentheses. Every `.pi-click` rule was deleted from `css/styles.css` and the span from `index.html`, so the older notes about the hand, cursor and card icon (sections above) are dead history. Do not add an icon to the intro again unless asked.
-
-## Overview stack pills match the cards
-
-- `/* overview stack pills */` (end of `css/styles.css`) gives the overview's Stack row (`.overview .facts dd.pills span`) the same pill look as the cards: the border, radius, fill, color and font were copied from the card pill rules (`.projects-grid .item .card-stack span`). Size is .66rem, .62rem on phones, padding `.15em .6em`. The overview shows every tech and wraps; the cards show the fitted one row. If the card pill style changes, update this block too. It overrides the older `.overview .facts dd.pills` rule near line 1663.
-
-## Overview stack pills bigger
-
-- `/* overview stack pills bigger */` (end of `css/styles.css`) raises the overview pills from the card size to `.85rem` (`.78rem` on phones) with `.2em .7em` padding, so they match the other fact rows. Card pills are unchanged. Change the size in that block only.
-
-## CivicGuard tall role tile
-
-- `civicguard/index.html` has `<dl class="facts facts-tall">`. `/* civicguard facts: tall role tile */` (end of `css/styles.css`) lays it out as two columns: Role spans two rows on the left, Status and Activity stack on the right, Stack is full width below. A long role can no longer stretch Status and Activity. It beats the older `.overview .facts` grid rules by specificity, so they were not removed. Kaltas keeps the plain three-across row (no `facts-tall` class) because its role is short. Use `facts-tall` only for projects with a long role.
-
-## Overview facts: role row
-
-- Both overviews use the same facts layout (`/* facts: role row */`, end of `css/styles.css`): Role full width on top, Status and Activity side by side, Stack full width. Role is `<dd class="pills">` with one `<span>` per role (CivicGuard: Project Manager, Full-Stack Developer; Kaltas: Solo Developer), so it uses the stack pill style. Keep roles as separate spans, never joined with "and". The `facts-tall` class and its CSS were removed. Under about 360px the tiles stack in one column.
-
-## Overview status and commits pills
-
-- `/* overview status and commits pills */` (end of `css/styles.css`): the overview Status tile is `<dd class="pills"><span class="fact-status" data-status="live|dev">...</span></dd>`, a pill with a colored dot (`live` is `--live` green, `dev` is `--dev` amber, same as the cards). The Activity chip (`.repo-commits`) uses the same pill size, border and font as the Role and Stack pills, and the rule uses `:not([hidden])` so it stays hidden until `js/commits.js` fills it. For a new project, set `data-status` to `live` or `dev`.
-
-## Overview commits text pill
-
-- `/* overview commits text pill */` (end of `css/styles.css`): on the overview only, the Activity chip (`.overview .facts dd .repo-commits`) has no GitHub icon (its `::before` mask is switched off), full opacity, and reads "340+ commits on GitHub" (`::after` adds " on GitHub"; `js/commits.js` still writes only "340+ commits"). The base `.repo-commits` rules and the main page date-line chips are unchanged. For a two-tone number, `commits.js` would need to wrap the number in its own element.
-
-## Overview commits match stack pills
-
-- `/* overview commits match stack pills */` (end of `css/styles.css`): the overview Activity chip (`.repo-commits`) copies the border, radius, fill and color of `.overview .facts dd.pills span`, so it looks like the Stack and Role pills (not the round pill). The values were read from the stylesheet when the block was written; if the stack pill style changes, update this block too.
-
-## Overview status dot on the right
-
-- `/* overview status dot on the right */` (end of `css/styles.css`): the overview Status dot (`.fact-status`) now sits after the text. `::before` is switched off and the same dot is drawn as `::after` (`live` is `--live` green, `dev` is `--dev` amber). This supersedes the left-side dot in `/* overview status and commits pills */`. The main page cards are unchanged.
-
-## Overview commits fit on phones
-
-- `/* overview commits fit on phones */` (end of `css/styles.css`): the Activity pill is capped at the tile width (`max-width: 100%`, ellipsis), and under 40rem the " on GitHub" suffix (`::after`) is dropped so "340+ commits" fits the half-width tile. Desktop still shows "340+ commits on GitHub".
-
-## Overview phone top gap
-
-- `/* overview phone: smaller top gap */` (end of `css/styles.css`): under 40rem, `main:has(> article.overview)` has no top margin, padding or divider line (the "divider line under the header" phone rule near line 1436 matched overview pages too), and `.overview` has a .75rem top margin. Projects, About and Experience keep their divider. Desktop is unchanged.
+- The card number `01` / `02`, and every cursor, hand or card icon in the intro text (all `.pi-click` rules and the `cursor-*` keyframes are gone).
+- The v2 `fitStacks()` with `+N` pills and the `+more` pill. The tall role tile (`facts-tall`). The filled card link pills.
