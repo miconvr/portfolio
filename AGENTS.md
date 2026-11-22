@@ -333,3 +333,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## No number, even card spacing
 
 - `/* no number, even card spacing */` (end of `css/styles.css`): the `01` / `02` (`.item::after`) is hidden on every width, so the older number rules and the `.meta` right padding are dead. The card has 1.3rem padding on every side and a fixed rhythm: title to date .3rem, date to tagline .7rem, tagline to tags .7rem, tags to links .9rem. Change spacing in that block, not in the older rules. `data-index` is still in the markup, and the older number rules can go in a later cleanup.
+
+
+## Click cursor (intro and card)
+
+- `/* click cursor */` (end of `css/styles.css`): a filled vector cursor (inline SVG mask) with a press and ring animation (`cursor-press`, `cursor-ring`, 2.6s). In the intro it is `.pi-click::before` (cursor) and `::after` (ring); on each card it is `.item::after` (cursor, bottom right, `right/bottom: 1.3rem`) and `.item-top::after` (ring, centered on the cursor tip). Card offsets use `--idle`. Ring and press are off for reduced motion (ring stays hidden). This replaces the card number (`data-index` is unused) and the hand icon. `.item-top` must stay un-transformed or the ring will jump.
