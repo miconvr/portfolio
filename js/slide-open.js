@@ -1,18 +1,15 @@
 (() => {
   const LINK = ".projects-grid .item .meta li:first-child a";
   const CARD = ".projects-grid .item";
-  const DIST = 150, DONE = .85;
+  const DONE = .85;
   const desktop = () => matchMedia("(min-width: 40rem) and (pointer: fine)").matches;
   const still = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   const linkOf = c => c.querySelector(".meta li:first-child a");
-  let card = null, link = null, startX = 0, pull = 0;
-  let dragging = false, busy = false;
+  let busy = false;
 
-  // A real click or tap on a card opens the project, except on its other links and the chip.
-  // The stripe link covers the whole card, so its native click is taken over here: a click that
-  // ends a drag (swiped) is ignored, anything else goes through openCard() like a chip tap.
-  // Keyboard and script clicks (detail 0) pass through untouched.
-  let swiped = false;
+  // A real click or tap on a card opens the project, except on its other links.
+  // The stripe link covers the whole card, so its native click is taken over here and goes
+  // through openCard(). Keyboard and script clicks (detail 0) pass through untouched.
   document.addEventListener("click", e => {
     if (e.detail === 0 || !e.target.closest) return;
     const c = e.target.closest(CARD);
@@ -22,7 +19,7 @@
     if (!l) return;
     e.preventDefault();
     e.stopImmediatePropagation();
-    if (swiped || busy || window.__retracting) return;
+    if (busy || window.__retracting) return;
     openCard(c, l);
   }, true);
 
@@ -53,17 +50,6 @@
     r.classList.remove("in");
     clearTimeout(r._rm);
     r._rm = setTimeout(() => { if (!r.classList.contains("in")) r.remove(); }, 650);
-  }
-
-  function apply() {
-    card.style.setProperty("--pull", pull.toFixed(3));
-    const r = card.querySelector(".reader");
-    if (r) {
-      r.classList.toggle("in", pull > 0.02);
-      const was = r.classList.contains("ready"), now = pull >= DONE;
-      r.classList.toggle("ready", now);
-      if (now && !was) document.dispatchEvent(new CustomEvent("reader-approved"));
-    }
   }
 
   function printReceipt(c) {
@@ -140,71 +126,6 @@
     setTimeout(() => c.classList.remove("spring"), 650);
   }
 
-  document.addEventListener("pointerdown", e => {
-    if (busy || window.__retracting || !e.target.closest) return;
-    if (e.pointerType === "mouse" && e.button !== 0) return;
-    if (!desktop()) return;
-    const c = e.target.closest(CARD);
-    if (!c) return;
-    // Links and buttons keep working, except the stripe, which now starts the card drag.
-    if (e.target.closest("a, button") && !e.target.closest(LINK)) return;
-    const l = linkOf(c);
-    if (!l) return;
-    card = c; link = l; startX = e.clientX; pull = 0; dragging = false; c._sy = e.clientY;
-    swiped = false;
-    l.setAttribute("draggable", "false");
-    try { c.setPointerCapture(e.pointerId); } catch (_) {}
-  });
-
-  document.addEventListener("pointermove", e => {
-    if (!card) return;
-    const dx = e.clientX - startX, dy = e.clientY - (card._sy || 0);
-    if (!dragging) {
-      if (dx < 6 || Math.abs(dy) > dx) return;
-      dragging = true;
-      swiped = true;
-      link.classList.add("drag");
-      card.classList.add("pulling");
-      card.classList.remove("spring");
-      showReader(card);
-    }
-    pull = Math.min(1, Math.max(0, dx / (DIST * 1.5)));
-    apply();
-  });
-
-  function end(e) {
-    if (!card) return;
-    const c = card, l = link, was = dragging, done = pull >= DONE;
-    card = null; link = null; dragging = false;
-    setTimeout(() => { swiped = false; }, 0); // the click that ends a drag fires right after pointerup
-    if (e.type === "pointercancel") { if (was) release(c, l); return; }
-    if (was && done) {
-      busy = true;
-      l.classList.remove("drag");
-      c.style.setProperty("--pull", "1");
-      const receipt = !still() && printReceipt(c);
-      setTimeout(() => {
-        l.click();
-        setTimeout(() => { busy = false; release(c, l); }, 500);
-      }, still() ? 0 : (receipt ? 1100 : 260));
-    } else if (was) {
-      release(c, l);
-    }
-  }
-  document.addEventListener("pointerup", end);
-  document.addEventListener("pointercancel", end);
-
-  // Phones: the gold chip is a real button. Tap it and the card dips, then the project opens.
-  function ensureChips() {
-    document.querySelectorAll(CARD + " .item-top").forEach(t => {
-      if (t.querySelector(".chip-btn")) return;
-      const name = (t.closest(CARD).querySelector("h3") || {}).textContent || "project";
-      const b = document.createElement("button");
-      b.type = "button"; b.className = "chip-btn";
-      b.setAttribute("aria-label", "Open " + name.trim());
-      t.appendChild(b);
-    });
-  }
   function ensureSheen() {
     document.querySelectorAll(CARD).forEach(c => {
       if (c.querySelector(".sheen")) return;
@@ -214,7 +135,7 @@
       c.style.setProperty("--idle", (-Math.random() * 9).toFixed(2) + "s");
     });
   }
-  function ensureAll() { ensureChips(); ensureSheen(); }
+  function ensureAll() { ensureSheen(); }
   ensureAll();
   // Cards only get swapped in through #main (home.js sets main.innerHTML), so watch just that, not the whole document.
   const main = document.getElementById("main");
@@ -254,7 +175,7 @@
     requestAnimationFrame(step);
   }
 
-  // Chip tap or card click. Desktop runs the scanner; touch, narrow and reduced motion get the dip:
+  // Card click or tap. Desktop runs the scanner; touch, narrow and reduced motion get the dip:
   // the card dips, the terminal beeps, then the stripe link opens the project.
   function openCard(c, l) {
     if (desktop() && !still()) { scan(c, l); return; }
@@ -266,12 +187,4 @@
       setTimeout(() => { busy = false; c.classList.remove("dip"); }, 500);
     }, still() ? 0 : 320);
   }
-  document.addEventListener("click", e => {
-    const b = e.target.closest && e.target.closest(".chip-btn");
-    if (!b || busy) return;
-    const c = b.closest(CARD), l = c && linkOf(c);
-    if (!l) return;
-    e.preventDefault();
-    openCard(c, l);
-  });
 })();

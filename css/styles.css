@@ -2885,3 +2885,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (prefers-reduced-motion: reduce) {
   .snd { transition: none }
 }
+
+/* click to open: no swipe any more, so no grabbing cursor during the click scan */
+.projects-grid .item.pulling,
+.projects-grid .item.pulling .meta li:first-child a { cursor: pointer }
