@@ -38,24 +38,6 @@
   }
 
   function scan() { document.querySelectorAll(".carousel").forEach(build); }
-  // Phones: slide widths are often fractional and scrollLeft is a whole number, so the strip can end
-  // up about 1px off when the overview's entrance animation finishes. Re-align it once at that point.
-  let touching = false;
-  document.addEventListener("pointerdown", e => { if (e.target.closest && e.target.closest(".slides")) touching = true; }, true);
-  document.addEventListener("pointerup", () => { touching = false; }, true);
-  document.addEventListener("pointercancel", () => { touching = false; }, true);
-  function realign(s) {
-    const w = s.getBoundingClientRect().width;
-    if (!w || touching) return;
-    const want = Math.round(Math.round(s.scrollLeft / w) * w);
-    if (Math.abs(s.scrollLeft - want) >= 1) s.scrollTo({ left: want, behavior: "auto" });
-  }
-  document.addEventListener("animationend", e => {
-    if (e.target.classList && e.target.classList.contains("overview")) {
-      e.target.querySelectorAll(".slides").forEach(realign);
-    }
-  }, true);
-
   scan();
   new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
   window.addEventListener("load", scan);
