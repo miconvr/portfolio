@@ -86,7 +86,7 @@ No build step: `python3 -m http.server 8000`. `api/hi.js` only works on Vercel. 
 
 ## Projects intro (`.projects-intro`, under the heading)
 
-- Muted mono text, max 34rem. Two spans in `.pi-lead`: `.pi-swipe` ("Swipe a card right (→) to see the project's overview.") on desktop, with one `.pi-arrow` animated by `pi-swipe-nudge`, and `.pi-tap` ("Tap the chip (mini chip) on a card to see the project's overview.") under `(max-width: 39.99rem), (pointer: coarse)`.
+- Muted mono text, max 34rem. Two spans in `.pi-lead`: `.pi-swipe` ("Click a card, or swipe it right (→), to see the project's overview.") on desktop, with one `.pi-arrow` animated by `pi-swipe-nudge`, and `.pi-tap` ("Tap a card, or its chip (mini chip), to see the project's overview.") under `(max-width: 39.99rem), (pointer: coarse)`.
 - `.pi-chip` copies the real chip look in `em`, so update both together. The `.pi-arrows` chevrons are hidden with `!important` and are dead CSS (the `pi-wave` animation was removed).
 
 ## Swipe to open
