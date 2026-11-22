@@ -440,14 +440,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   85% { transform: scale(.99, 1.01) }
   100% { transform: scale(1, 1) }
 }
-@keyframes been-spin {
-  0% { transform: scale(1) }
-  15% { transform: scale(1.14,.8) }
-  50% { transform: translateY(-20px) rotate(360deg) scale(.95,1.08) }
-  72% { transform: translateY(0) rotate(360deg) scale(1.12,.88) }
-  86% { transform: rotate(360deg) scale(.98,1.03) }
-  100% { transform: rotate(360deg) scale(1) }
-}
 
 /* +1 float */
 .been-plus { position: absolute; translate: -50% -50%; pointer-events: none; font: 600 .85rem var(--mono); color: #e5484d; opacity: 0; animation: been-plus 1.1s ease-out forwards }
