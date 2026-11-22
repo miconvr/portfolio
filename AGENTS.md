@@ -321,3 +321,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Stack v5: all tags, fixed two-row height
 
 - `/* stack v5: all tags, fixed two-row height */` (end of `css/styles.css`): every `<span>` in a card's `<p class="card-stack">` shows, wrapping onto a second row. The stack area has a fixed height (3.2rem, 2.65rem under 40rem) that holds exactly two rows, so the card height never changes whatever the tag count. The `+N more` label is turned off. Two rows fit about 6 tags on desktop and 5 on phones; more would be clipped, so shrink the tags or raise both heights together. This supersedes the 3-tag limit in the stack pills v3 and text v4 notes.
+
+## Stack v6: one row that scales
+
+- `/* stack v6: one row that scales */` (end of `css/styles.css`): all tags show on one `nowrap` row. `.card-stack` is a size container (`container-type: inline-size`) and the tag font is `clamp(.5rem, 2.8cqw, .66rem)`, so it shrinks with the card width and the card height never changes. Fits about 5 or 6 short tags; more would clip. This supersedes the fixed two-row height in "Stack v5".
