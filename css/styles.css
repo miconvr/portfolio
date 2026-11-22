@@ -3010,3 +3010,15 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item .card-stack span,
   .projects-grid .item .card-stack span:nth-child(n+4) { font-size: var(--stack-fs, .66rem); padding: .15em .6em }
 }
+
+/* no number, even card spacing */
+.projects-grid .item::after { display: none }
+.projects-grid .item { padding: 1.3rem 1.3rem 1.3rem }
+.projects-grid .item .dates { margin-top: .3rem }
+.projects-grid .item p.tagline { margin: .7rem 0 0 }
+.projects-grid .item p.card-stack { margin-top: .7rem }
+.projects-grid .item .meta { margin: .9rem 0 0; padding-right: 0 }
+@media (max-width: 39.99rem) {
+  .projects-grid .item { padding: 1.3rem 1.3rem 1.3rem }
+  .projects-grid .item p.card-stack { margin-top: .7rem }
+}

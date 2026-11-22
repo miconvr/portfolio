@@ -329,3 +329,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Stack v7: js fitted one row
 
 - All tags in a card's `<p class="card-stack">` show on one `nowrap` row. `fitStacks()` in `js/slide-open.js` sets `--stack-fs` on each row, starting at .66rem and shrinking by .25px until `scrollWidth <= clientWidth` (floor 6px). It runs from `ensureAll()`, on resize (120ms debounce), after fonts load and on `pageshow`. `/* stack v7: js fitted one row */` (end of `css/styles.css`) makes the tag font, padding (in `em`) and gap follow `--stack-fs`, replacing the `cqw` sizes from v6. Card height never changes. Keep tags in the overview's order; a very long stack will shrink toward the 6px floor and then clip.
+
+## No number, even card spacing
+
+- `/* no number, even card spacing */` (end of `css/styles.css`): the `01` / `02` (`.item::after`) is hidden on every width, so the older number rules and the `.meta` right padding are dead. The card has 1.3rem padding on every side and a fixed rhythm: title to date .3rem, date to tagline .7rem, tagline to tags .7rem, tags to links .9rem. Change spacing in that block, not in the older rules. `data-index` is still in the markup, and the older number rules can go in a later cleanup.
