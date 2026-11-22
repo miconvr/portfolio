@@ -273,3 +273,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - Root cause of the card looking blurry while hovered (e.g. after clicking its repo link and coming back, the mouse still rests on it) and of the snap when a hover ended: the `perspective(...) rotateX(var(--rx)) rotateY(var(--ry))` hover transform (about line 1040 of `css/styles.css`) resamples the text on a tilted surface. The last block of `css/styles.css` (`/* sharp hover: no 3d tilt */`) overrides it with `translateY(-4px)` only, whole pixels. The tilt rules and the `--rx` / `--ry` code in JS are now dead; delete them in a cleanup.
 - `will-change: transform` was removed again; it is not needed without the tilt. Never put a rotate, perspective or fractional scale on the hover state of a card with text, or it blurs while hovered.
+
+## Tilt v2 and 3 stack items on phones
+
+- The 3D tilt is back (`/* tilt v2 */`, end of `css/styles.css`), replacing the `/* sharp hover: no 3d tilt */` override: half the `--rx` / `--ry` angle, `perspective(1400px)`, `backface-visibility: hidden`, font smoothing and `will-change: transform` on the card (mouse devices only). Text on a rotated surface is always resampled, so a little softness at the tilt edges is expected. If it is still too blurry, tilt a background-only layer instead, or lower the `.5` factor. This supersedes the "Sharp hover" notes above.
+- Phones show the first 3 stack items like desktop (the phone-only 2-item rules were removed).

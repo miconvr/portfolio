@@ -2980,16 +2980,15 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .projects-grid .item .card-stack span { font-size: .62rem }
   .projects-grid .item .card-stack::after,
   .projects-grid .item .card-stack:has(span:nth-child(4))::after { font-size: .62rem; padding: 0 }
-  .projects-grid .item .card-stack span:nth-child(n+3) { display: none }
-  .projects-grid .item .card-stack:has(span:nth-child(3))::after { content: "+1 more" }
-  .projects-grid .item .card-stack:has(span:nth-child(4))::after { content: "+2 more" }
-  .projects-grid .item .card-stack:has(span:nth-child(5))::after { content: "+3 more" }
-  .projects-grid .item .card-stack:has(span:nth-child(6))::after { content: "+4 more" }
 }
 
 
-/* sharp hover: no 3d tilt */
+/* tilt v2: gentler 3d tilt, sharper text */
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .projects-grid .item:hover,
-  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) { transform: translateY(-4px) }
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) {
+    transform: perspective(1400px) translateY(-4px) rotateX(calc(var(--rx, 0deg) * .5)) rotateY(calc(var(--ry, 0deg) * .5));
+    backface-visibility: hidden; -webkit-font-smoothing: antialiased;
+  }
+  .projects-grid .item { will-change: transform }
 }
