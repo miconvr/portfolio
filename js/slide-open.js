@@ -86,6 +86,8 @@
     rd.setAttribute("aria-hidden", "true");
     rd.style.transition = "none";
     rd.innerHTML = '<span class="r-screen"></span><span class="r-keys"></span>';
+    c.style.setProperty("--rx", "0deg");
+    c.style.setProperty("--ry", "0deg");
     c.classList.add("pulling");
     c.classList.add("retract-hold");
     c.style.setProperty("--pull", "1");
@@ -183,6 +185,8 @@
   // Card click or tap. Desktop runs the scanner; touch, narrow and reduced motion get the dip:
   // the card dips, the terminal beeps, then the stripe link opens the project.
   function openCard(c, l) {
+    c.style.setProperty("--rx", "0deg");
+    c.style.setProperty("--ry", "0deg");
     if (desktop() && !still()) { scan(c, l); return; }
     busy = true;
     c.classList.add("dip");

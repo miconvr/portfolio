@@ -278,3 +278,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - The 3D tilt is back (`/* tilt v2 */`, end of `css/styles.css`), replacing the `/* sharp hover: no 3d tilt */` override: half the `--rx` / `--ry` angle, `perspective(1400px)`, `backface-visibility: hidden`, font smoothing and `will-change: transform` on the card (mouse devices only). Text on a rotated surface is always resampled, so a little softness at the tilt edges is expected. If it is still too blurry, tilt a background-only layer instead, or lower the `.5` factor. This supersedes the "Sharp hover" notes above.
 - Phones show the first 3 stack items like desktop (the phone-only 2-item rules were removed).
+
+## Tilt reset (blurry card after opening a project)
+
+- Cause: `--rx` / `--ry` (set by `js/home.js` on `pointermove`) stayed at their last values after a click. Coming back with the mouse still on the card, it was hovered and still tilted, so its text was resampled (the untouched card stayed sharp).
+- Fix: `openCard()` and the return replay in `js/slide-open.js` set `--rx` and `--ry` to `0deg`, and the `pointermove` handler in `js/home.js` skips tilt while the card is `.pulling`, `.retract-hold` or `window.__retracting`. The tilt resumes on the next mouse move.
