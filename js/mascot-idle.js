@@ -22,7 +22,7 @@
 
   function lookAround() {
     busy = true;
-    const x = (Math.random() < .5 ? -1 : 1) * (1.5 + Math.random() * 1.5);
+    const x = (Math.random() < .5 ? -1 : 1) * (2 + Math.random() * 1.5);
     const y = (Math.random() - .5) * 2;
     eyes.style.transition = "transform .3s ease-in-out";
     eyes.style.transform = `translate(${x}px, ${y}px)`;

@@ -14,11 +14,9 @@
       <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
         <g class="body">
           <path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" class="heart" fill="#e5484d"/>
-          <ellipse class="eye-white blink" cx="45" cy="50" rx="6.6" ry="9.6"/>
-          <ellipse class="eye-white blink" cx="75" cy="50" rx="6.6" ry="9.6"/>
           <g class="eyes">
-            <ellipse class="blink" cx="45" cy="50" rx="3.6" ry="5.6" fill="#14110d"/>
-            <ellipse class="blink" cx="75" cy="50" rx="3.6" ry="5.6" fill="#14110d"/>
+            <ellipse class="blink" cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/>
+            <ellipse class="blink" cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/>
           </g>
         </g>
       </svg>
@@ -56,7 +54,7 @@
     const r = btn.getBoundingClientRect();
     const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
     const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 80);
-    eyes.style.transform = `translate(${(dx / d) * k * 3}px, ${(dy / d) * k * 3.6}px)`;
+    eyes.style.transform = `translate(${(dx / d) * k * 3.2}px, ${(dy / d) * k * 2.2}px)`;
   }
   window.addEventListener("pointermove", e => {
     if (reduceMotion.matches) return;
