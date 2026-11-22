@@ -386,3 +386,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview status and commits pills
 
 - `/* overview status and commits pills */` (end of `css/styles.css`): the overview Status tile is `<dd class="pills"><span class="fact-status" data-status="live|dev">...</span></dd>`, a pill with a colored dot (`live` is `--live` green, `dev` is `--dev` amber, same as the cards). The Activity chip (`.repo-commits`) uses the same pill size, border and font as the Role and Stack pills, and the rule uses `:not([hidden])` so it stays hidden until `js/commits.js` fills it. For a new project, set `data-status` to `live` or `dev`.
+
+## Overview commits text pill
+
+- `/* overview commits text pill */` (end of `css/styles.css`): on the overview only, the Activity chip (`.overview .facts dd .repo-commits`) has no GitHub icon (its `::before` mask is switched off), full opacity, and reads "340+ commits on GitHub" (`::after` adds " on GitHub"; `js/commits.js` still writes only "340+ commits"). The base `.repo-commits` rules and the main page date-line chips are unchanged. For a two-tone number, `commits.js` would need to wrap the number in its own element.

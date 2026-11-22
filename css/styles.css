@@ -3073,3 +3073,12 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 39.99rem) {
   .overview .facts dd .repo-commits:not([hidden]) { font-size: .78rem; padding: .2em .65em }
 }
+
+/* overview commits text pill */
+.overview .facts dd .repo-commits:not([hidden]) {
+  display: inline-block; opacity: 1; margin: .5rem 0 0; vertical-align: top;
+}
+.overview .facts dd .repo-commits:not([hidden])::before {
+  content: none; display: none; -webkit-mask: none; mask: none; background: none;
+}
+.overview .facts dd .repo-commits:not([hidden])::after { content: " on GitHub" }
