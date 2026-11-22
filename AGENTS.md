@@ -308,3 +308,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## One card layout (desktop and phone)
 
 - `/* one card layout */` (end of `css/styles.css`): the `.meta::before` date text ("NOVEMBER TO PRESENT 2026") is hidden on every width, the `.dates` line under the title ("Nov 2026 to Present") shows on every width, at .75rem. Stack text is .62rem everywhere. The older `.meta::before` content rules and the `.date-text { display: none }` rule (around line 1115) are now dead; delete them in a cleanup after checking their media queries.
+
+## Old date font and stack pills (desktop and phone)
+
+- `/* old date font and stack pills */` (end of `css/styles.css`): the `.dates` line under the title uses the old date look (OCR-style mono, 600, uppercase, .14em spacing, dim cream; .78rem, .7rem on phones). The card text is "November to Present 2026" / "September to Present 2026" (real letters, no zero-for-O trick, for screen readers).
+- The card stack is bordered pills again: first 3 on one fixed `nowrap` row, dashed `+N more` pill after. Phones use .58rem pills. This supersedes the "Stack text v4" plain-text look. Keep a project's `<span>`s in the overview's order.
