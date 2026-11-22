@@ -2918,3 +2918,11 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .projects-grid .item:not(.pulling):not(.retract-hold):not(.spring):not(.dip) { will-change: transform }
 }
+
+/* one card layout */
+.projects-grid .item .meta::before { display: none }
+.projects-grid .item .dates { display: flex; margin-top: .2rem; font-size: .75rem }
+.projects-grid .item .date-text { display: inline }
+.projects-grid .item .card-stack span,
+.projects-grid .item .card-stack::after,
+.projects-grid .item .card-stack:has(span:nth-child(4))::after { font-size: .62rem }

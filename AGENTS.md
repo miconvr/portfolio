@@ -304,3 +304,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - Removed from `css/styles.css`: all `.projects-intro .pi-arrows` rules and both `pi-wave` keyframes, the `arrow-ring` keyframes, the old stripe `.meta li:first-child a::before` variants (chevron, circle arrow, hand icon, plain icon, `a.drag::before`). The stripe link is invisible, and the last `a::before { display: none }` rules (end of file, and the touch media rule) stay.
 - Still in the file, not removed because they were not fully inspected: older stripe sizing rules, `.meta::before` date text and `.meta::after` rules, `.pi-click` and the `pi-lead` rule (both live). The `drag` class that `scan()` adds in `slide-open.js` no longer has any CSS and can go in a later JS cleanup.
+
+## One card layout (desktop and phone)
+
+- `/* one card layout */` (end of `css/styles.css`): the `.meta::before` date text ("NOVEMBER TO PRESENT 2026") is hidden on every width, the `.dates` line under the title ("Nov 2026 to Present") shows on every width, at .75rem. Stack text is .62rem everywhere. The older `.meta::before` content rules and the `.date-text { display: none }` rule (around line 1115) are now dead; delete them in a cleanup after checking their media queries.
