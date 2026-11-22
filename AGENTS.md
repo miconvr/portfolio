@@ -202,7 +202,7 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 
 - GitHub icon: every GitHub link uses the standard 16px GitHub mark path (copy the markup from an existing link). Link icons are 18px whole pixels with `shape-rendering: geometricPrecision` (`/* smooth link icons: 18px */`, end of `css/styles.css`), because fractional sizes resample the mark and make it look pixelly. Keep icon sizes in whole pixels. The goggles mark was tried and dropped.
 
-- Status dot gap: the dot after Live / In Development sits about 1.1em from the text (`/* overview status dot gap */`, end of `css/styles.css`). Change the `margin-left` there to adjust it.
+- Status dot gap: the dot after Live / In Development sits about .7em from the text (`/* overview status dot gap */`, end of `css/styles.css`). Change the `margin-left` there to adjust it.
 
 ## Adding a page
 

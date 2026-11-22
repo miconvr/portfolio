@@ -2543,4 +2543,4 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 
 /* overview status dot gap */
-.overview .facts dd.pills span.fact-status::after { margin-left: .6em }
+.overview .facts dd.pills span.fact-status::after { margin-left: .2em }
