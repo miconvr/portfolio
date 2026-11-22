@@ -98,12 +98,12 @@
     window.__retracting = true; setTimeout(() => { window.__retracting = false; }, 2000);
     const feed = () => {
       rd.style.transition = "";
-      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 600, easing: "steps(12, end)", fill: "forwards" });
+      const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 400, easing: "steps(12, end)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
-      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 100);
+      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 80);
     };
     setTimeout(() => {
-      const t0 = performance.now(), D = 480;
+      const t0 = performance.now(), D = 320;
       const step = now => {
         if (!c.isConnected) return;
         const t = Math.min(1, (now - t0) / D), k = t - 1;
@@ -111,10 +111,10 @@
         if (t < 1) { requestAnimationFrame(step); return; }
         c.classList.remove("pulling");
         c.style.setProperty("--pull", "0");
-        setTimeout(feed, 60);
+        setTimeout(feed, 40);
       };
       requestAnimationFrame(step);
-    }, 100);
+    }, 60);
   };
 
   function release(c, l) {
@@ -149,7 +149,7 @@
     c.classList.add("pulling");
     l.classList.add("drag");
     showReader(c);
-    const t0 = performance.now(), D = 240;
+    const t0 = performance.now(), D = 200;
     const finish = () => {
       l.classList.remove("drag");
       c.style.setProperty("--pull", "1");
@@ -157,7 +157,7 @@
       setTimeout(() => {
         l.click();
         setTimeout(() => { busy = false; release(c, l); }, 500);
-      }, receipt ? 800 : 160);
+      }, receipt ? 560 : 120);
     };
     const step = now => {
       if (!c.isConnected) { busy = false; return; }

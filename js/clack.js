@@ -117,13 +117,13 @@
   }
   document.addEventListener("reader-approved", approve);
 
-  // Receipt printer: one soft tick per paper-feed step (12 steps over .6s), then a faint ding
+  // Receipt printer: one soft tick per paper-feed step (12 steps over .4s), then a faint ding
   function printer() {
-    quietUntil = performance.now() + 1000;
+    quietUntil = performance.now() + 800;
     if (!on || !ctx || ctx.state !== "running") return;
     const t = ctx.currentTime;
     for (let i = 1; i <= 12; i++) {
-      const at = t + i * (.6 / 12);
+      const at = t + i * (.4 / 12);
       const src = ctx.createBufferSource(); src.buffer = noise;
       const f = ctx.createBiquadFilter(); f.type = "bandpass";
       f.frequency.value = 2200 + Math.random() * 900; f.Q.value = 2;
@@ -133,7 +133,7 @@
       src.connect(f); f.connect(g); g.connect(master);
       src.start(at); src.stop(at + .02);
     }
-    const o = ctx.createOscillator(), og = ctx.createGain(), d = t + .64;
+    const o = ctx.createOscillator(), og = ctx.createGain(), d = t + .44;
     o.type = "sine"; o.frequency.value = 2093;
     og.gain.setValueAtTime(.0001, d);
     og.gain.linearRampToValueAtTime(.11, d + .006);
