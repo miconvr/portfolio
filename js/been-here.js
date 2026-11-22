@@ -100,9 +100,14 @@
   function plusOne() {
     const p = document.createElement("span");
     p.className = "been-plus";
-    const hr = wrap.querySelector(".heart").getBoundingClientRect(), wr = wrap.getBoundingClientRect();
-    p.style.left = (hr.left - wr.left + hr.width / 2) + "px";
-    p.style.top = (hr.top - wr.top + hr.height * 0.1) + "px";
+    const wr = wrap.getBoundingClientRect();
+    const range = document.createRange();
+    range.selectNodeContents(line);
+    const rects = range.getClientRects();
+    const tr = rects.length ? rects[rects.length - 1] : line.getBoundingClientRect();
+    p.style.left = (tr.right - wr.left + 6) + "px";
+    p.style.top = (tr.top - wr.top + tr.height / 2) + "px";
+    p.style.translate = "0 -50%";
     p.textContent = "+1";
     wrap.appendChild(p);
     setTimeout(() => p.remove(), 1200);
