@@ -2816,47 +2816,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 30rem) { .projects-grid .item::after { font-size: 1.6rem } }
 @media (max-width: 39.99rem) { .projects-grid { padding-bottom: 4.5rem } }
 
-/* stack pills v2 */
-@media (max-width: 39.99rem) {
-  .projects-grid .item p.card-stack { gap: .25rem; margin-top: .55rem }
-  .projects-grid .item .card-stack span { padding: .1rem .42rem; font-size: .58rem }
-}
+/* touch: no sticky card hover or active */
 @media (hover: none), (pointer: coarse) {
   .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) { transform: none; filter: none }
 }
 
-/* stack pills v3 */
-.projects-grid .item p.card-stack { flex-wrap: nowrap; overflow: hidden }
-.projects-grid .item .card-stack span { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis }
-.projects-grid .item .card-stack span:nth-child(n+4) { display: none }
-.projects-grid .item .card-stack:has(span:nth-child(4))::after {
-  content: "+more"; flex: none; padding: .15rem .55rem; border: 1px dashed var(--line); border-radius: 999px;
-  font: 400 .66rem/1.4 var(--mono); color: var(--muted); white-space: nowrap;
-}
-@media (max-width: 39.99rem) {
-  .projects-grid .item .card-stack:has(span:nth-child(4))::after { padding: .1rem .42rem; font-size: .58rem }
-}
-
-/* stack text v4 */
-.projects-grid .item p.card-stack { gap: 0 .45rem; align-items: baseline; margin-top: .6rem }
-.projects-grid .item .card-stack span {
-  padding: 0; border: 0; border-radius: 0; font: 400 .68rem/1.5 var(--mono); color: var(--muted);
-}
-.projects-grid .item .card-stack span + span::before { content: "\00b7"; margin-right: .45rem; opacity: .6 }
-.projects-grid .item .card-stack::after,
-.projects-grid .item .card-stack:has(span:nth-child(4))::after {
-  content: none; padding: 0; border: 0; border-radius: 0; font: 400 .68rem/1.5 var(--mono); color: var(--muted);
-  opacity: .7; flex: none; white-space: nowrap; margin-left: .15rem;
-}
-.projects-grid .item .card-stack:has(span:nth-child(4))::after { content: "+1 more" }
-.projects-grid .item .card-stack:has(span:nth-child(5))::after { content: "+2 more" }
-.projects-grid .item .card-stack:has(span:nth-child(6))::after { content: "+3 more" }
-@media (max-width: 39.99rem) {
-  .projects-grid .item .card-stack span { font-size: .62rem }
-  .projects-grid .item .card-stack::after,
-  .projects-grid .item .card-stack:has(span:nth-child(4))::after { font-size: .62rem; padding: 0 }
-}
-
+/* card stack spans */
+.projects-grid .item .card-stack span { min-width: 0 }
 
 /* tilt v2: gentler 3d tilt, sharper text */
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -2875,34 +2841,20 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .meta::before { display: none }
 .projects-grid .item .dates { display: flex; margin-top: .2rem; font-size: .75rem }
 .projects-grid .item .date-text { display: inline }
-.projects-grid .item .card-stack span,
-.projects-grid .item .card-stack::after,
-.projects-grid .item .card-stack:has(span:nth-child(4))::after { font-size: .62rem }
 
-/* old date font and stack pills */
+/* date font and stack box look */
 .projects-grid .item .dates {
   margin-top: .3rem; text-transform: uppercase; letter-spacing: .14em; font-variant-numeric: tabular-nums;
   font: 600 .78rem/1.2 "OCR A Std", "OCR-A", "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   color: color-mix(in srgb, var(--ink) 55%, transparent);
   text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow);
 }
-.projects-grid .item p.card-stack { gap: .35rem; align-items: center; margin-top: .7rem }
 .projects-grid .item .card-stack span {
   padding: .15rem .55rem; border: 1px solid var(--line); border-radius: 999px;
   font: 400 .66rem/1.4 var(--mono); color: var(--muted);
 }
-.projects-grid .item .card-stack span + span::before { content: none }
-.projects-grid .item .card-stack::after,
-.projects-grid .item .card-stack:has(span:nth-child(4))::after {
-  padding: .15rem .55rem; border: 1px dashed var(--line); border-radius: 999px;
-  font: 400 .66rem/1.4 var(--mono); color: var(--muted); opacity: 1; margin-left: 0;
-}
 @media (max-width: 39.99rem) {
   .projects-grid .item .dates { font-size: .7rem }
-  .projects-grid .item p.card-stack { gap: .25rem; margin-top: .55rem }
-  .projects-grid .item .card-stack span,
-  .projects-grid .item .card-stack::after,
-  .projects-grid .item .card-stack:has(span:nth-child(4))::after { padding: .1rem .42rem; font-size: .58rem }
 }
 
 /* lit stack boxes */
@@ -2912,55 +2864,18 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
 }
 .projects-grid .item:hover .card-stack span { border-color: #34342f }
-.projects-grid .item .card-stack::after,
-.projects-grid .item .card-stack:has(span:nth-child(4))::after {
-  padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
-  font: 400 .66rem/1.4 var(--mono); color: var(--muted); opacity: .8; margin-left: .15rem;
-}
-@media (max-width: 39.99rem) {
-  .projects-grid .item .card-stack::after,
-  .projects-grid .item .card-stack:has(span:nth-child(4))::after { padding: 0; font-size: .58rem }
-}
 
-/* stack v5: all tags, fixed two-row height */
+/* card stack: one row, font size set by js */
 .projects-grid .item p.card-stack {
-  flex-wrap: wrap; align-content: flex-start; align-items: flex-start; overflow: hidden;
-  gap: .35rem; height: 3.2rem;
-}
-.projects-grid .item .card-stack span,
-.projects-grid .item .card-stack span:nth-child(n+4) { display: block; flex: none; overflow: visible; text-overflow: clip; white-space: nowrap }
-.projects-grid .item .card-stack::after,
-.projects-grid .item .card-stack:has(span:nth-child(4))::after,
-.projects-grid .item .card-stack:has(span:nth-child(5))::after,
-.projects-grid .item .card-stack:has(span:nth-child(6))::after { content: none; display: none }
-@media (max-width: 39.99rem) {
-  .projects-grid .item p.card-stack { gap: .25rem; height: 2.65rem }
-}
-
-/* stack v6: one row that scales */
-.projects-grid .item p.card-stack {
-  container-type: inline-size; flex-wrap: nowrap; align-content: normal; align-items: center;
-  overflow: hidden; height: auto; gap: 1.2cqw; margin-top: .7rem;
+  container-type: inline-size; flex-wrap: nowrap; align-items: center; overflow: hidden;
+  gap: calc(var(--stack-fs, .66rem) * .5); margin-top: .7rem;
 }
 .projects-grid .item .card-stack span,
 .projects-grid .item .card-stack span:nth-child(n+4) {
-  display: block; flex: none; white-space: nowrap;
-  font-size: clamp(.5rem, 2.8cqw, .66rem); padding: .15em .6em;
+  display: block; flex: none; white-space: nowrap; font-size: var(--stack-fs, .66rem); padding: .15em .6em;
 }
 @media (max-width: 39.99rem) {
-  .projects-grid .item p.card-stack { height: auto; gap: 1.2cqw; margin-top: .55rem }
-  .projects-grid .item .card-stack span,
-  .projects-grid .item .card-stack span:nth-child(n+4) { font-size: clamp(.5rem, 2.8cqw, .66rem); padding: .15em .6em }
-}
-
-/* stack v7: js fitted one row */
-.projects-grid .item p.card-stack { gap: calc(var(--stack-fs, .66rem) * .5); margin-top: .7rem }
-.projects-grid .item .card-stack span,
-.projects-grid .item .card-stack span:nth-child(n+4) { font-size: var(--stack-fs, .66rem); padding: .15em .6em }
-@media (max-width: 39.99rem) {
-  .projects-grid .item p.card-stack { gap: calc(var(--stack-fs, .66rem) * .5); margin-top: .55rem }
-  .projects-grid .item .card-stack span,
-  .projects-grid .item .card-stack span:nth-child(n+4) { font-size: var(--stack-fs, .66rem); padding: .15em .6em }
+  .projects-grid .item p.card-stack { margin-top: .55rem }
 }
 
 /* no number, even card spacing */
