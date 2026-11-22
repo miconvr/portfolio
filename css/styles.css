@@ -626,7 +626,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .been { margin-top: 1.25rem; gap: .7rem }
   .been-btn { width: 3.5rem; height: 3.5rem; margin-left: -.5rem }
   .been-text { font-size: .72rem }
-  .been-plus { left: .9rem }
+  .been-plus { left: 1.3rem }
 }
 
 /* ---- Narrow: max 34rem ---- */
