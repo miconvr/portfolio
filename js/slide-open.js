@@ -220,8 +220,44 @@
   const main = document.getElementById("main");
   if (main) new MutationObserver(ensureAll).observe(main, { childList: true });
 
-  // Chip tap or card click: the card dips, the terminal beeps, then the stripe link opens the project.
+  // A click on desktop runs the scanner like a finished swipe: the card slides in as --pull eases to 1,
+  // the reader goes green and beeps at 85%, the receipt prints, then the stripe link opens the project.
+  function scan(c, l) {
+    busy = true;
+    c.classList.remove("spring");
+    c.classList.add("pulling");
+    l.classList.add("drag");
+    showReader(c);
+    const t0 = performance.now(), D = 380;
+    const finish = () => {
+      l.classList.remove("drag");
+      c.style.setProperty("--pull", "1");
+      const receipt = printReceipt(c);
+      setTimeout(() => {
+        l.click();
+        setTimeout(() => { busy = false; release(c, l); }, 500);
+      }, receipt ? 1100 : 260);
+    };
+    const step = now => {
+      if (!c.isConnected) { busy = false; return; }
+      const t = Math.min(1, (now - t0) / D), v = 1 - Math.pow(1 - t, 3);
+      c.style.setProperty("--pull", v.toFixed(3));
+      const r = c.querySelector(".reader");
+      if (r) {
+        r.classList.toggle("in", v > 0.02);
+        const was = r.classList.contains("ready"), isReady = v >= DONE;
+        r.classList.toggle("ready", isReady);
+        if (isReady && !was) document.dispatchEvent(new CustomEvent("reader-approved"));
+      }
+      if (t < 1) requestAnimationFrame(step); else finish();
+    };
+    requestAnimationFrame(step);
+  }
+
+  // Chip tap or card click. Desktop runs the scanner; touch, narrow and reduced motion get the dip:
+  // the card dips, the terminal beeps, then the stripe link opens the project.
   function openCard(c, l) {
+    if (desktop() && !still()) { scan(c, l); return; }
     busy = true;
     c.classList.add("dip");
     document.dispatchEvent(new CustomEvent("reader-approved"));
