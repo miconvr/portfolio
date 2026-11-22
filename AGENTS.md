@@ -268,3 +268,8 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - Card stack is plain muted text with dot separators, not pills (`/* stack text v4 */`, end of `css/styles.css`). Desktop shows the first 3 techs, phones the first 2, then a quiet `+N more` (`::after`, computed with `:has(span:nth-child(n))`, supports up to 6 techs). The card is one fixed row, so its height never changes. Keep the card's order identical to the overview's Stack row; the card shows its first 3 (2 on phones).
 - `will-change: transform` is BACK on the card, icon, status and title, but only for `(hover: hover) and (pointer: fine)` with motion allowed. Without it the card snapped sharp when a hover ended (text re-rasterized in one frame). It stays off for touch, where it was suspected of blurring the card after opening a project. This supersedes the "REMOVED" note in the stack pills v2 section. If the blur returns on desktop, check the `perspective` tilt rule first.
+
+## Sharp hover (no 3d tilt)
+
+- Root cause of the card looking blurry while hovered (e.g. after clicking its repo link and coming back, the mouse still rests on it) and of the snap when a hover ended: the `perspective(...) rotateX(var(--rx)) rotateY(var(--ry))` hover transform (about line 1040 of `css/styles.css`) resamples the text on a tilted surface. The last block of `css/styles.css` (`/* sharp hover: no 3d tilt */`) overrides it with `translateY(-4px)` only, whole pixels. The tilt rules and the `--rx` / `--ry` code in JS are now dead; delete them in a cleanup.
+- `will-change: transform` was removed again; it is not needed without the tilt. Never put a rotate, perspective or fractional scale on the hover state of a card with text, or it blurs while hovered.
