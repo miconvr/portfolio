@@ -241,7 +241,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 - `css/styles.css` is a long stack of overrides, and a later rule beats an earlier one on purpose. Add every change as a labeled `/* ... */` block at the end of the file. Don't edit older rules in place, and before deleting a rule check that nothing later depends on it.
 - CSS cleanup done so far: unused classes (`.theme .proj .contain .shot .sub .cardno .holder .hname .net`), the superseded stack blocks, 135 rules whose every property is redeclared later with the same selector and media query, the dead `.meta::before` / `.meta::after` rules (one `display: none` rule is kept for each), `--accent`, the card number `::after` rules and leftover version labels.
 - Cleanup method: a rule is dead only when every one of its properties is redeclared later with the same selector in the same media query. Parse the file, list those rules, remove them, then assert that the winning value of every (media query, selector, property) is unchanged. Don't remove rules by reading selectors alone.
-- Not done (optional, riskier): about 114 rules where only some declarations are overridden, and older stacked `.meta li+li a` and reader/receipt rules that are overridden through different selectors. Trim them only in small batches and check the site after each.
+- Also done: declarations overridden by a later rule with the same selector and media query were trimmed (same method, winning values asserted unchanged). Not done: older stacked `.meta li+li a` and reader/receipt rules that are overridden through different selectors. A script can't prove those dead, so trim them only in small batches and check the site after each.
 
 ## Current state: home cards
 

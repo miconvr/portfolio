@@ -79,7 +79,7 @@ img { max-width: 100% }
   padding: 2rem 1.5rem;
 }
 .profile-photo { width: 8.5rem; height: 8.5rem; object-fit: cover; border-radius: 50%; margin: 0 0 1.25rem; border: 1px solid var(--line); align-self: center }
-.side h1 { font-family: var(--sans); font-weight: 700; font-size: 2.25rem; letter-spacing: -.04em; line-height: 1.05; margin: 0; color: var(--ink); text-wrap: balance; text-align: center }
+.side h1 { margin: 0; text-wrap: balance; text-align: center }
 
 /* Sidebar description: matches About paragraphs */
 .side .lead { color: var(--muted); margin: 0 0 .15rem; font-size: .95rem }
@@ -129,7 +129,7 @@ article section h2 {
    HOME PAGE
    ================================================================ */
 .home main { padding: 4.5rem 0 2rem }
-.home-intro h2 { max-width: none; font-family: var(--sans); font-weight: 600; font-size: clamp(3rem, 5.4vw, 5rem); letter-spacing: -.03em; line-height: 1.02; text-wrap: balance; color: var(--ink); margin: 0 }
+.home-intro h2 { max-width: none; text-wrap: balance;}
 
 /* ---- Project cards ---- */
 .item { padding: 0 0 5.5rem; margin-bottom: 4.5rem; scroll-margin-top: 2rem; overflow-anchor: none }
@@ -155,21 +155,14 @@ article section h2 {
 /* ---- Projects grid & cards ---- */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: 2rem;
   margin-top: 2rem;
-  align-items: stretch;
 }
 
 .projects-grid .item {
   display: flex;
   flex-direction: column;
-  background: var(--card);
   border: 1px solid var(--line);
-  border-radius: .85rem;
-  padding: 1.75rem;
   margin: 0;
-  overflow: hidden;
   transition: border-color .2s ease, transform .2s ease;
 }
 
@@ -177,9 +170,7 @@ article section h2 {
 .projects-grid .item-head {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
   padding: 0;
-  margin: 0;
 }
 
 .projects-grid .item-top {
@@ -190,8 +181,6 @@ article section h2 {
 }
 
 .projects-grid .project-icon {
-  width: 3.75rem;
-  height: 3.75rem;
   display: block;
   flex: none;
   object-fit: contain;
@@ -217,17 +206,12 @@ article section h2 {
   margin: 0;
   font-family: var(--sans);
   font-weight: 700;
-  font-size: 1.75rem;
   letter-spacing: -.03em;
   line-height: 1.15;
   color: var(--ink);
 }
 
 .projects-grid .item .dates {
-  margin-top: .4rem;
-  font: 400 .8rem var(--mono);
-  color: var(--muted);
-  display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: .4rem .75rem;
@@ -238,18 +222,13 @@ article section h2 {
   margin: 1.1rem 0 0;
   max-width: none;
   font-family: var(--mono);
-  font-size: .9rem;
-  line-height: 1.65;
   color: var(--text);
   flex-grow: 1;
 }
 
 .projects-grid .item .meta {
   padding: 0;
-  margin: 1.75rem 0 0;
-  display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: .6rem;
   list-style: none;
 }
 
@@ -285,17 +264,12 @@ article section h2 {
 }
 
 .projects-grid .item .meta li:first-child a {
-  background: var(--ink);
   border-color: var(--ink);
-  color: var(--on-ink);
   font-weight: 600;
-  padding: .7rem 1rem;
 }
 
 .projects-grid .item .meta li:first-child a:hover {
   background: var(--text);
-  border-color: transparent;
-  color: var(--on-ink);
   transform: translateY(-1px);
 }
 
@@ -331,12 +305,12 @@ p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height:
 /* ================================================================
    PROJECT PAGE CONTENT
    ================================================================ */
-.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1.25rem; margin: 2.5rem 0 0; padding: 1.4rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
+.facts { display: grid; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
 .facts dt { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
-.facts dd { margin: .25rem 0 0; font-family: var(--mono); font-weight: 500; font-size: 1rem; color: var(--ink) }
+.facts dd { margin: .25rem 0 0; font-family: var(--mono); font-weight: 500; color: var(--ink) }
 
-.outcomes { max-width: 38rem; margin: 1.25rem 0 0; padding-left: 1.2rem; display: grid; gap: .6rem; line-height: 1.55 }
-.outcomes li { font-family: var(--mono); font-size: .95rem; line-height: 1.7; margin-bottom: .75rem; color: var(--text) }
+.outcomes { max-width: 38rem; display: grid; line-height: 1.55 }
+.outcomes li { font-family: var(--mono); color: var(--text) }
 .outcomes li::marker { color: var(--muted) }
 
 /* ================================================================
@@ -347,7 +321,7 @@ nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; list-style: none; m
 nav a { font: 400 .8rem var(--mono); text-transform: lowercase; color: var(--muted); text-decoration: none; padding: .3rem 0 }
 nav a:hover, nav a[aria-current="page"] { color: var(--ink) }
 article h1 { font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05 }
-article h1 { font-size: 2.6rem; margin-top: 1.75rem }
+article h1 { font-size: 2.6rem;}
 
 .summary { font-family: var(--sans); font-size: 1.3rem; color: var(--text); margin: 0; max-width: 34rem; line-height: 1.55 }
 
@@ -521,14 +495,12 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
     padding: 1.5rem 1.5rem;
     overflow: visible;
   }
-  .side .profile-photo { width: 7.5rem; height: 7.5rem; margin-bottom: .6rem }
+  .side .profile-photo { margin-bottom: .6rem }
   .side h1 { font-size: 1.85rem; margin-bottom: 0 }
   .side .lead:not(.loc) { font-size: 1.125rem; line-height: 1.7 }
   .side .lead.loc {
-    margin: .5rem 0 0;
     font-size: .76rem;
     letter-spacing: -0.015em;
-    gap: .4rem;
     white-space: normal;
     overflow: visible;
     text-overflow: clip;
@@ -537,7 +509,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side-links { margin-top: 1.5rem; gap: .5rem; font-size: .82rem }
 
   /* Mascot pinned to bottom with hairline above */
-  .side .been { margin-top: auto; padding-top: 1rem; border-top: 1px solid #333230 }
+  .side .been { padding-top: 1rem; border-top: 1px solid #333230 }
 }
 
 
@@ -586,7 +558,7 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 
   /* Commit note on mobile */
   .side .side-links li:has(.commits-note) { display: contents }
-  .side .side-links .commits-note { display: block; order: 99; flex-basis: 100%; margin: .5rem 0 0; font-size: .75rem; opacity: .6 }
+  .side .side-links .commits-note { order: 99; flex-basis: 100%; margin: .5rem 0 0; font-size: .75rem; opacity: .6 }
   .side .side-links .commits-note::before { content: "GitHub " }
 
   /* Sidebar commit link with text */
@@ -664,8 +636,8 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 }
 
 /* Compact overview */
-.outcomes { margin-top: 1rem; gap: .5rem; padding-left: 1.1rem }
-.outcomes li { font-size: .85rem; line-height: 1.6; margin-bottom: 0 }
+.outcomes { margin-top: 1rem;}
+.outcomes li { margin-bottom: 0 }
 
 /* Tighter overview spacing */
 .facts { grid-template-columns: repeat(2, 1fr); gap: .6rem 1.25rem; margin: 1rem 0 0; padding: .8rem 0 }
@@ -684,8 +656,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .projects-grid .item { position: relative; isolation: isolate }
 .projects-grid .item::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.06), transparent 70%);
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--ink) 9%, transparent), transparent 70%);
   transition: opacity .3s ease;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -705,16 +675,15 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 }
 
 /* Compact home project cards */
-.projects-grid .item { padding-block: 1.1rem; margin-bottom: .9rem }
-.projects-grid .item-head { margin: 0; gap: .75rem }
+.projects-grid .item { padding-block: 1.1rem;}
+.projects-grid .item-head { margin: 0;}
 .projects-grid .project-icon { width: 2.5rem; height: 2.5rem }
 .projects-grid .item p { margin-top: .7rem; font-size: .88rem; line-height: 1.55 }
 .projects-grid .item .meta { margin-top: .7rem }
 @media (max-width: 640px) {
   .projects-grid .item { padding-block: .9rem }
   .projects-grid .project-icon { width: 2.25rem; height: 2.25rem }
-  .projects-grid .item p {
-    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+  .projects-grid .item p { -webkit-box-orient: vertical;
     font-size: .85rem
   }
 }
@@ -763,9 +732,9 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 
 /* Experience: logo pinned to the right of the role title */
 h2:has(> .org-logo) {
-  display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem;
+  display: flex;
 }
-h2 > .org-logo { flex: none; width: auto; height: 1.25rem; margin-top: .2em }
+h2 > .org-logo { flex: none; width: auto; height: 1.25rem;}
 @media (max-width: 480px) {
   h2 > .org-logo { height: 1.05rem }
 }
@@ -808,13 +777,13 @@ h2 > .org-logo { margin-top: 0 }
 /* View project: black slide-to-open button (driven by js/slide-open.js) */
 .projects-grid .item .meta li:first-child a {
   display: inline-flex; align-items: center; justify-content: center;
-  position: relative; min-width: 11.5rem; height: 2.6rem; padding: 0 1.1rem 0 3rem;
-  background: #0b0b0c; color: var(--ink); border: 1px solid #3A3A44; border-radius: 999px;
+  position: relative; min-width: 11.5rem; height: 2.6rem;
+  background: #0b0b0c; color: var(--ink); border: 1px solid #3A3A44;
   text-decoration: none; touch-action: pan-y; user-select: none; -webkit-user-select: none;
   transition: border-color .2s ease;
 }
 .projects-grid .item .meta li:first-child a.drag { transition: none }
-.projects-grid .item .meta li:first-child a:hover { border-color: var(--muted); color: var(--ink) }
+.projects-grid .item .meta li:first-child a:hover { border-color: var(--muted);}
 .projects-grid .item .meta li:first-child a:active { transform: none }
 
 /* Slider: stay black in every state, and cap the track width on wide cards */
@@ -832,17 +801,12 @@ h2 > .org-logo { margin-top: 0 }
 /* Screenshot keys under each carousel (js/car-slider.js) replace the arrow buttons */
 .car-btn, .car-count { display: none }
 .car-slider {
-  display: flex; align-items: center; justify-content: center; gap: .9rem;
-  margin-top: .8rem; padding-bottom: 5px; user-select: none; -webkit-user-select: none;
+  display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none;
 }
 .cs-key {
-  all: unset; box-sizing: border-box; cursor: pointer; display: grid; place-items: center;
-  width: 3.4rem; height: 2.8rem; border-radius: .6rem; color: var(--ink); background: var(--card);
-  border: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
-  box-shadow: 0 4px 0 color-mix(in srgb, var(--muted) 45%, transparent), 0 6px 8px rgba(0, 0, 0, .35);
-  transition: transform .06s ease, box-shadow .06s ease; -webkit-tap-highlight-color: transparent;
+  all: unset; box-sizing: border-box; cursor: pointer; display: grid; place-items: center; -webkit-tap-highlight-color: transparent;
 }
-.cs-num { min-width: 3.2rem; text-align: center; font-family: "Geist Mono", ui-monospace, monospace; font-size: .72rem; letter-spacing: .02em; color: var(--muted) }
+.cs-num { text-align: center; font-family: "Geist Mono", ui-monospace, monospace; font-size: .72rem; letter-spacing: .02em;}
 @media (prefers-reduced-motion: reduce) { .cs-key { transition: none } }
 
 /* Project pages: remove the big gap at the top */
@@ -913,12 +877,10 @@ article h1 { margin-top: .5rem }
 .projects-grid .item {
   aspect-ratio: 1.586;
   overflow: visible;
-  padding: 1rem 1.4rem 0;
   margin-bottom: 0;
   border-radius: 1rem;
   background: linear-gradient(145deg, var(--card-2), var(--card) 55%);
   border-top-color: var(--card-edge);
-  box-shadow: 0 1px 0 var(--shadow), 0 14px 22px -14px var(--shadow);
 }
 .projects-grid .item::before {
   border-radius: inherit;
@@ -928,11 +890,9 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item::after {
   content: attr(data-index);
-  position: absolute; right: 1.3rem; top: 4.4rem;
   font: 500 3.2rem/1 var(--mono); letter-spacing: -.02em;
   color: color-mix(in srgb, var(--ink) 7%, transparent);
   text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 12%, transparent), 0 1px 0 var(--shadow);
-  pointer-events: none;
 }
 .projects-grid .item h3 { text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow) }
 @media (prefers-reduced-motion: no-preference) {
@@ -944,28 +904,20 @@ article h1 { margin-top: .5rem }
 
 /* Credit-card project cards (home): face layout */
 .projects-grid .item-head { gap: .5rem }
-.projects-grid .item-top::after {
-  content: ""; order: 1; flex: none; width: 2.1rem; height: 1.6rem; margin-left: .8rem; border-radius: .3rem;
-  background:
-    linear-gradient(90deg, transparent 32%, var(--chip-line) 32% 34%, transparent 34% 66%, var(--chip-line) 66% 68%, transparent 68%),
-    linear-gradient(0deg, transparent 46%, var(--chip-line) 46% 54%, transparent 54%),
-    linear-gradient(135deg, var(--foil-a), var(--foil-b) 55%, var(--foil-a));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foil-b) 70%, var(--on-ink));
+.projects-grid .item-top::after { flex: none; margin-left: .8rem;
 }
 .projects-grid .item-top .status { order: 2; margin-left: auto }
 .projects-grid .item h3 { font-size: 1.45rem }
-.projects-grid .item p.tagline { max-width: 72%; margin: .55rem 0 0; font-size: .8rem; line-height: 1.5 }
-.projects-grid .item .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; margin: .5rem 0 0 }
-.projects-grid .item .meta li+li a { width: auto; justify-content: flex-start; background: none; border: 0; padding: 0; font: 400 .72rem var(--mono); color: var(--muted); text-transform: lowercase }
+.projects-grid .item p.tagline { max-width: 72%; font-size: .8rem; line-height: 1.5 }
+.projects-grid .item .meta { display: flex; flex-wrap: wrap; align-items: center;}
+.projects-grid .item .meta li+li a { text-transform: lowercase }
 
 /* Credit-card project cards (home): magnetic stripe slider */
 .projects-grid .item .meta li:first-child a,
 .projects-grid .item .meta li:first-child a:hover,
 .projects-grid .item .meta li:first-child a:focus-visible {
   width: 100%; max-width: none; height: 2.6rem; border: 0;
-  border-radius: 0 0 calc(1rem - 1px) calc(1rem - 1px);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--ink) 6%, var(--stripe)), var(--stripe) 45%);
-  color: var(--muted); font: 500 .75rem var(--mono); letter-spacing: .08em;
+  border-radius: 0 0 calc(1rem - 1px) calc(1rem - 1px); font: 500 .75rem var(--mono); letter-spacing: .08em;
 }
 
 
@@ -1040,14 +992,10 @@ article h1 { margin-top: .5rem }
 
 
 /* Sidebar name: League Gothic, tall condensed caps */
-.side h1 { font-family: var(--condensed); font-weight: 400; font-size: 2.7rem; text-transform: uppercase; letter-spacing: .03em; line-height: 1 }
+.side h1 { font-size: 2.7rem; text-transform: uppercase;}
 
 /* Sidebar name: gradient fill, subtle warp on hover */
 .side h1 {
-  background: linear-gradient(180deg, var(--text) 35%, color-mix(in srgb, var(--text) 50%, transparent));
-  -webkit-background-clip: text; background-clip: text;
-  color: transparent; -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .45));
   transform-origin: 50% 100%;
 }
 
@@ -1081,16 +1029,12 @@ article h1 { margin-top: .5rem }
 /* Matte hint: faint grain over the original black card gradient */
 .projects-grid .item {
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-color: var(--card);
-  background-image: var(--grain), linear-gradient(145deg, var(--card-2), var(--card) 55%);
-  background-size: 160px 160px, auto;
 }
 
 /* Project overview: big hero, compact facts strip, narrow reading column */
 .overview section { max-width: none; border-top: 0; margin-top: 0; padding: 0 }
 .overview .project-title h1 {
-  font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05;
-  font-size: 3.1rem; color: var(--ink);
+  font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; color: var(--ink);
 }
 .overview .frame.carousel {
   max-width: 46rem; border-radius: 1rem;
@@ -1099,9 +1043,7 @@ article h1 { margin-top: .5rem }
 .overview .project-lede { max-width: 38rem; margin: 1.5rem 0 0; font-size: 1.05rem; line-height: 1.65 }
 .overview .meta { margin-top: 1.25rem }
 .overview section + section h2 { margin: 0 0 1rem }
-.overview .facts {
-  max-width: 46rem; margin: 0; padding: 1rem 0; border: 0;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+.overview .facts { margin: 0; border: 0;
   border-bottom: 1px solid var(--line);
 }
 .overview .facts > div { grid-column: auto }
@@ -1109,7 +1051,7 @@ article h1 { margin-top: .5rem }
 .overview .facts > div:has([data-repo-commits]) { grid-column: auto }
 
 /* Overview: firmer cap on the hero, lede back to its original size */
-.overview section .frame.carousel { width: 100%; max-width: 40rem }
+.overview section .frame.carousel { width: 100%;}
 
 
 /* Card-to-overview transition (js/home.js wraps the page swap in a View Transition) */
@@ -1119,26 +1061,21 @@ article h1 { margin-top: .5rem }
   to { transform: perspective(900px) translateZ(-260px) rotateX(32deg) scale(.86); filter: brightness(.3); opacity: 0 }
 }
 @media (prefers-reduced-motion: reduce) {
-  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; filter: none }
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { filter: none }
 }
 
 
 /* Drag to open: the card slides into a card-reader terminal (--pull is 0 to 1) */
 .projects-grid .item .reader {
-  position: absolute; top: -.6rem; bottom: -.6rem; left: calc(100% + var(--reader-gap)); width: var(--reader-w);
-  z-index: 6; pointer-events: none; border-radius: .9rem;
-  background: linear-gradient(160deg, #1c1c20, #0b0b0d);
-  border: 1px solid var(--line);
-  box-shadow: 0 18px 28px -14px var(--shadow), inset 0 1px 0 var(--card-edge);
-  opacity: calc(var(--pull, 0) * 6);
-  transform: translateX(calc(var(--pull, 0) * var(--reader-travel) * -1));
+  position: absolute;
+  z-index: 6; pointer-events: none;
 }
 .projects-grid .item .reader::before {
-  content: ""; position: absolute; left: -1px; top: .5rem; bottom: .5rem; width: 7px; border-radius: 4px;
-  background: #000; box-shadow: inset 0 0 6px #000, 0 0 0 1px #2a2a30;
+  content: ""; position: absolute; left: -1px; width: 7px; border-radius: 4px;
+  background: #000;
 }
 .projects-grid .item .reader::after {
-  content: ""; position: absolute; top: .9rem; right: .9rem; width: .45rem; height: .45rem; border-radius: 50%;
+  content: ""; position: absolute; width: .45rem; height: .45rem; border-radius: 50%;
   background: #55555d; transition: background .2s ease, box-shadow .2s ease;
 }
 @media (max-width: 30rem) {
@@ -1156,7 +1093,6 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .reader {
   top: -.9rem; bottom: -.9rem; width: var(--reader-w); left: calc(100% + var(--reader-gap));
   border-radius: 1.1rem;
-  background: linear-gradient(165deg, #222227, #0b0b0d 70%);
   border: 1px solid #2c2c33;
   box-shadow: 0 22px 34px -16px var(--shadow), inset 0 1px 0 var(--card-edge), inset 0 -10px 18px rgba(0, 0, 0, .4);
   opacity: 0; translate: -1.4rem 0; scale: .9; transform-origin: 0 50%;
@@ -1254,7 +1190,7 @@ article h1 { margin-top: .5rem }
 @media (max-width: 40rem) {
   .side { row-gap: .5rem; padding: 2rem 0 .5rem }
   .side .profile-photo { grid-column: 1 / -1; grid-row: 1; justify-self: center; width: 7.25rem; height: 7.25rem; margin: 0 }
-  .side h1 { grid-column: 1 / -1; grid-row: 2; justify-self: center; text-align: center; font-size: 2.2rem; line-height: 1.05; margin: .4rem 0 0 }
+  .side h1 { grid-column: 1 / -1; grid-row: 2; justify-self: center; text-align: center; line-height: 1.05; margin: .4rem 0 0 }
   .side .lead.loc { grid-row: 3; justify-content: center; text-align: center; margin: .15rem 0 0 }
   .side .side-links { justify-content: center; margin-top: .6rem }
 }
@@ -1268,8 +1204,7 @@ article h1 { margin-top: .5rem }
 
 /* Phone "02": lives in the empty right side of the stripe row, not under the description */
 @media (max-width: 30rem) {
-  .projects-grid .item::after {
-    top: auto; bottom: .5rem; right: 1.3rem; font-size: 1.5rem; line-height: 1; pointer-events: none;
+  .projects-grid .item::after { line-height: 1; pointer-events: none;
   }
 }
 
@@ -1313,7 +1248,7 @@ article h1 { margin-top: .5rem }
 /* Project overview as one big card, matching the home project cards */
 .overview {
   position: relative; max-width: 44rem; margin: 2rem 0 0; padding: 1.5rem 1.5rem 2rem;
-  border: 1px solid var(--line); border-radius: 1rem;
+  border: 1px solid var(--line);
   background-color: var(--card); background-image: linear-gradient(145deg, var(--card-2), var(--card) 55%);
   box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow);
 }
@@ -1339,10 +1274,8 @@ article h1 { margin-top: .5rem }
 @keyframes ov-sheen { from { background-position: 100% 0 } to { background-position: 0 0 } }
 @media (prefers-reduced-motion: no-preference) {
   .overview::before {
-    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
-    background: linear-gradient(100deg, transparent 35%, color-mix(in srgb, var(--ink) 9%, transparent) 50%, transparent 65%) no-repeat;
+    content: ""; position: absolute; pointer-events: none;
     background-size: 300% 100%; background-position: 100% 0;
-    animation: ov-sheen 1.2s ease-out .6s both;
   }
   .overview .project-title, .overview section .frame, .overview .project-lede, .overview .meta,
   .overview section > h2, .overview .facts, .overview .outcomes {
@@ -1369,13 +1302,13 @@ article h1 { margin-top: .5rem }
 /* Overview: compact back button, top right */
 .overview .back-top {
   position: absolute; top: 1rem; right: 1.1rem; z-index: 3;
-  display: inline-flex; align-items: center; gap: .45rem; padding: .45rem .8rem; border-radius: 999px;
+  display: inline-flex; align-items: center; border-radius: 999px;
   background: linear-gradient(180deg, #1b1b20, #0e0e11); border: 1px solid #2c2c33;
   box-shadow: inset 0 1px 0 var(--card-edge);
   font: 500 .7rem var(--mono); letter-spacing: .12em; text-transform: uppercase;
   color: var(--ink); text-decoration: none; transition: border-color .2s ease, transform .2s ease;
 }
-.overview .back-top:hover, .overview .back-top:focus-visible { border-color: var(--live); transform: translateX(-2px) }
+.overview .back-top:hover, .overview .back-top:focus-visible { border-color: var(--live);}
 @media (max-width: 30rem) {
   .overview .back-top { top: .8rem; right: .8rem; padding: .5rem }
   .overview .back-top span { display: none }
@@ -1399,17 +1332,15 @@ article h1 { margin-top: .5rem }
 @media (prefers-reduced-motion: reduce) { .overview .back-top:hover, .overview .back-top:focus-visible { transform: none } }
 
 /* Overview readability: body font for sentences, roomier lists, custom bullets */
-.overview section .project-lede {
-  max-width: 62ch; font-size: 1.05rem; line-height: 1.75; color: var(--text);
+.overview section .project-lede { color: var(--text);
 }
-.overview .facts dd { font-size: 1rem; line-height: 1.5; font-weight: 500 }
+.overview .facts dd { font-weight: 500 }
 .overview .outcomes {
-  list-style: none; padding-left: 0; max-width: 62ch; margin: 1.5rem 0 0;
+  list-style: none; padding-left: 0; margin: 1.5rem 0 0;
   display: grid; gap: 1.1rem;
 }
 .overview .outcomes li {
-  position: relative; margin: 0; padding-left: 1.5rem;
-  font-size: 1rem; line-height: 1.7; color: var(--text);
+  position: relative; margin: 0; padding-left: 1.5rem; color: var(--text);
 }
 .overview .outcomes li::marker { content: "" }
 .overview .outcomes li::before {
@@ -1419,7 +1350,7 @@ article h1 { margin-top: .5rem }
 }
 @media (max-width: 30rem) {
   .overview .outcomes { gap: .95rem }
-  .overview .outcomes li { font-size: .95rem; line-height: 1.65; padding-left: 1.3rem }
+  .overview .outcomes li { padding-left: 1.3rem }
 }
 
 /* Overview: Geist Mono for the description, contributions and facts */
@@ -1473,7 +1404,7 @@ article h1 { margin-top: .5rem }
 .overview section > h2::after { content: ""; flex: 1; height: 1px; background: var(--line) }
 
 /* Fact tiles + stack pills */
-.overview .facts { gap: .75rem; border-top: 0; padding: 1rem 0 0; margin-top: 1rem }
+.overview .facts { border-top: 0; padding: 1rem 0 0; margin-top: 1rem }
 .overview .facts > div {
   padding: .8rem .95rem; border: 1px solid var(--line); border-radius: .7rem;
   background: color-mix(in srgb, var(--ink) 3%, transparent);
@@ -1481,9 +1412,7 @@ article h1 { margin-top: .5rem }
 
 /* Links as a magnetic stripe band */
 .overview .meta {
-  list-style: none; display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin: 1.4rem 0 0; padding: .85rem 1.1rem;
-  background: linear-gradient(180deg, #1b1b20, #0e0e11); border: 1px solid #2c2c33; border-radius: .5rem;
-  box-shadow: inset 0 1px 0 var(--card-edge);
+  list-style: none; display: flex; flex-wrap: wrap;
 }
 .overview .meta li { margin: 0; padding: 0 }
 .overview .meta a {
@@ -1547,20 +1476,17 @@ article h1 { margin-top: .5rem }
 
 /* Receipt printed from the reader's bottom slot */
 .projects-grid .item .reader .r-slot {
-  position: absolute; left: .7rem; right: .7rem; bottom: -.2rem; height: .45rem; border-radius: .3rem; z-index: 2;
+  position: absolute; border-radius: .3rem; z-index: 2;
   background: #050506; box-shadow: 0 1px 0 #2c2c33;
 }
 .projects-grid .item .reader .r-paper {
-  position: absolute; top: calc(100% - .1rem); left: .35rem; right: .35rem; overflow: hidden; z-index: 1; pointer-events: none;
+  position: absolute; overflow: hidden; z-index: 1; pointer-events: none;
 }
 .projects-grid .item .reader .r-sheet {
-  display: grid; gap: .3rem; padding: .7rem .6rem 0; text-align: center;
-  background: #f3f0e6; color: #1b1b1b; font: 500 .55rem/1.3 var(--mono); letter-spacing: .06em;
-  box-shadow: 0 10px 18px -8px rgba(0, 0, 0, .5);
-  transform: translateY(-100%); animation: r-feed .4s steps(12, end) forwards;
+  display: grid; text-align: center; color: #1b1b1b; font: 500 .55rem/1.3 var(--mono); letter-spacing: .06em;
 }
-.projects-grid .item .reader .r-sheet b { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; overflow-wrap: anywhere }
-.projects-grid .item .reader .r-sheet em { font-style: normal; font-weight: 700; padding: .2rem 0; border-block: 1px dashed #1b1b1b66 }
+.projects-grid .item .reader .r-sheet b { text-transform: uppercase; overflow-wrap: anywhere }
+.projects-grid .item .reader .r-sheet em { font-style: normal; font-weight: 700; border-block: 1px dashed #1b1b1b66 }
 @keyframes r-feed { to { transform: none } }
 @media (prefers-reduced-motion: reduce) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
 @media (max-width: 39.99rem), (pointer: coarse) { .projects-grid .item .reader .r-paper, .projects-grid .item .reader .r-slot { display: none } }
@@ -1571,12 +1497,9 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item .reader .r-paper {
   top: 1rem; bottom: 1rem; left: calc(100% - .1rem); right: auto; width: 6.5rem;
-  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .45));
 }
 .projects-grid .item .reader .r-sheet {
-  position: relative; height: 100%; align-content: center; gap: .55rem;
-  padding: .7rem .95rem .7rem .6rem; box-shadow: none;
-  background: linear-gradient(#f3f0e6, #f3f0e6) 0 0 / calc(100% - .5rem) 100% no-repeat;
+  position: relative; height: 100%; align-content: center;
   transform: translateX(-100%); animation: r-feed-x .4s steps(12, end) forwards;
 }
 .projects-grid .item .reader .r-heart {
@@ -1587,15 +1510,14 @@ article h1 { margin-top: .5rem }
 
 /* Receipt v3: no barcode, THANK YOU line, smaller and cleaner torn edge */
 .projects-grid .item .reader .r-thanks {
-  display: block; padding-top: .5rem; border-top: 1px dashed #1b1b1b66;
+  display: block;
   font: 500 .5rem/1 var(--mono); letter-spacing: .18em; color: #1b1b1bb3;
 }
 
 /* Receipt v5: flat clean sheet, no texture */
 .projects-grid .item .reader .r-paper { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .3)) }
 .projects-grid .item .reader .r-sheet {
-  gap: .6rem; padding: .8rem .6rem; border-radius: 1px;
-  background: #f3f0e6; box-shadow: none;
+  gap: .6rem; padding: .8rem .6rem; border-radius: 1px; box-shadow: none;
 }
 .projects-grid .item .reader .r-sheet em {
   border: 0; padding: 0; font-size: .7rem; letter-spacing: .14em;
@@ -1633,24 +1555,18 @@ article h1 { margin-top: .5rem }
 
 /* Cards v6: big number sits higher, beside the title, clear of the description */
 .projects-grid .item::after {
-  top: 3.6rem; bottom: auto; right: 1.4rem;
-  opacity: .8; pointer-events: none;
+  opacity: .8;
 }
 
 /* Cards v7: dates first, then plain text links, no pills */
 .projects-grid .item .meta li+li { order: 1 }
 .projects-grid .item .meta li:first-child { order: 4 }
 .projects-grid .item .meta li+li a {
-  display: inline-flex; align-items: center; gap: .4rem; width: auto;
-  padding: 0; border: 0; border-radius: 0; background: none;
   font: 400 .75rem/1.2 var(--mono);
-  color: color-mix(in srgb, var(--ink) 85%, transparent);
   text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em;
-  transition: color .2s ease, text-decoration-color .2s ease;
 }
 .projects-grid .item .meta li+li a:hover,
-.projects-grid .item .meta li+li a:focus-visible {
-  background: none; border: 0; transform: none; color: var(--ink);
+.projects-grid .item .meta li+li a:focus-visible { border: 0;
   text-decoration-color: color-mix(in srgb, var(--ink) 60%, transparent);
 }
 
@@ -1658,34 +1574,20 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .meta { gap: .45rem .9rem }
 
 /* Cards v9: icon links as small embedded chips */
-.projects-grid .item .meta li+li a {
-  display: inline-grid; place-items: center; width: 2.2rem; height: 2.2rem; padding: 0; margin: 0;
+.projects-grid .item .meta li+li a { place-items: center; width: 2.2rem; height: 2.2rem; padding: 0; margin: 0;
   border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); border-radius: .55rem;
-  background: linear-gradient(180deg,
-    color-mix(in srgb, #000 38%, var(--card)),
-    color-mix(in srgb, #000 18%, var(--card)));
   color: color-mix(in srgb, var(--ink) 80%, transparent);
-  box-shadow:
-    inset 0 2px 3px rgba(0, 0, 0, .55),
-    inset 0 -1px 0 color-mix(in srgb, var(--ink) 9%, transparent),
-    0 1px 0 color-mix(in srgb, var(--ink) 7%, transparent);
   transition: transform .2s ease, box-shadow .2s ease, color .2s ease, border-color .2s ease;
 }
 .projects-grid .item .meta li+li a .ico {
-  width: 1.05rem; height: 1.05rem;
   filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .6));
 }
 .projects-grid .item .meta li+li a:hover,
 .projects-grid .item .meta li+li a:focus-visible {
-  color: var(--ink); background: linear-gradient(180deg,
-    color-mix(in srgb, #000 30%, var(--card)),
-    color-mix(in srgb, #000 12%, var(--card)));
-  border-color: color-mix(in srgb, var(--ink) 18%, transparent);
   box-shadow:
     inset 0 1px 2px rgba(0, 0, 0, .35),
     inset 0 -1px 0 color-mix(in srgb, var(--ink) 12%, transparent),
     0 3px 6px -2px rgba(0, 0, 0, .6);
-  transform: translateY(-1px);
 }
 .projects-grid .item .meta li+li a:active {
   transform: translateY(0);
@@ -1720,7 +1622,7 @@ article h1 { margin-top: .5rem }
 
 /* Cards v12: center icons in chips (cancel inline-icon margin and baseline offset) */
 .projects-grid .item .meta li+li a {
-  display: inline-flex; align-items: center; justify-content: center;
+  display: inline-flex; justify-content: center;
 }
 
 /* Cards v13: mono text links replace the icon chips */
@@ -1728,22 +1630,21 @@ article h1 { margin-top: .5rem }
 .projects-grid .item .meta li+li a:hover,
 .projects-grid .item .meta li+li a:focus-visible {
   display: inline-flex; align-items: center; gap: .45rem;
-  width: auto; height: auto; min-width: 0; padding: .2rem 0; border: 0; border-radius: 0;
+  width: auto; height: auto; min-width: 0;
   background: none; box-shadow: none;
-  font: 500 .8rem/1.2 var(--mono); letter-spacing: .04em; text-decoration: none;
-  color: var(--muted); transition: color .15s;
+  font: 500 .8rem/1.2 var(--mono); letter-spacing: .04em;
+  color: var(--muted);
 }
 .projects-grid .item .meta li+li a:hover,
-.projects-grid .item .meta li+li a:focus-visible {
-  color: var(--ink); text-decoration: underline; text-underline-offset: .25em;
+.projects-grid .item .meta li+li a:focus-visible { text-underline-offset: .25em;
 }
-.projects-grid .item .meta li+li a::before { content: "\2197"; opacity: .8 }
+.projects-grid .item .meta li+li a::before { opacity: .8 }
 .projects-grid .item .meta li+li a[aria-label="download"]::before { content: "\2193" }
 .projects-grid .item .meta li+li a::after { content: attr(aria-label) }
 
 /* Cards v14: keep link arrows inline with their labels */
 .projects-grid .item .meta li+li a {
-  flex-direction: row; flex-wrap: nowrap; align-items: baseline; white-space: nowrap;
+  flex-direction: row; flex-wrap: nowrap; white-space: nowrap;
 }
 .projects-grid .item .meta li+li a::before,
 .projects-grid .item .meta li+li a::after {
@@ -1754,11 +1655,11 @@ article h1 { margin-top: .5rem }
 
 /* Cards v15: icon + label links (no arrows) */
 .projects-grid .item .meta li+li a {
-  align-items: center; gap: .5rem;
+  align-items: center;
 }
 .projects-grid .item .meta li+li a::before { content: none }
 .projects-grid .item .meta li+li a .ico {
-  display: block; flex: none; width: 1.05rem; height: 1.05rem; margin: 0; vertical-align: middle;
+  display: block; flex: none; margin: 0; vertical-align: middle;
 }
 
 /* Cards v16: smaller icon + label links, "repository" label, no arrows */
@@ -1798,8 +1699,7 @@ article h1 { margin-top: .5rem }
 .overview .meta li a,
 .overview .meta li a:hover,
 .overview .meta li a:focus-visible {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .3rem .65rem; border: 1px solid var(--line); border-radius: .4rem;
+  display: inline-flex; align-items: center; border: 1px solid var(--line);
   background: none; box-shadow: none; text-decoration: none; text-transform: none;
   font: 500 .72rem/1.2 var(--mono); letter-spacing: .04em; white-space: nowrap;
   color: var(--muted); transform-origin: center;
@@ -1807,10 +1707,9 @@ article h1 { margin-top: .5rem }
 }
 .overview .meta li a::before,
 .overview .meta li a::after { content: none; display: none }
-.overview .meta li a .ico { display: block; flex: none; width: .9rem; height: .9rem; margin: 0; vertical-align: middle }
+.overview .meta li a .ico { display: block; flex: none; margin: 0; vertical-align: middle }
 .overview .meta li a:hover,
-.overview .meta li a:focus-visible {
-  color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)); transform: scale(1.06);
+.overview .meta li a:focus-visible { transform: scale(1.06);
 }
 @media (prefers-reduced-motion: reduce) {
   .overview .meta li a:hover, .overview .meta li a:focus-visible { transform: none }
@@ -1819,12 +1718,11 @@ article h1 { margin-top: .5rem }
 /* Overview v19: remove the stripe band behind the links, keep the outlined link boxes */
 .overview .meta {
   background: none; border: 0; border-radius: 0; box-shadow: none; padding: 0;
-  margin: 1.2rem 0 0;
 }
 
 /* Overview v20: no number or status pill in the header, bigger centered links */
 .ov-num, .ov-status { display: none }
-.overview .meta { justify-content: center; margin: 1.5rem 0 1.5rem }
+.overview .meta { margin: 1.5rem 0 1.5rem }
 .overview .meta li a,
 .overview .meta li a:hover,
 .overview .meta li a:focus-visible {
@@ -1839,8 +1737,7 @@ article h1 { margin-top: .5rem }
 
 
 /* Overview v23: facts row fills the card width, Role gets extra room, stacks on small screens */
-.overview .facts {
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: .8rem; align-items: stretch;
+.overview .facts { gap: .8rem; align-items: stretch;
 }
 .overview .facts > div { width: auto; min-width: 0; margin: 0 }
 @media (max-width: 40rem) {
@@ -1867,22 +1764,12 @@ article h1 { margin-top: .5rem }
 
 /* Overview v26: dark mechanical keycaps (replaces the cream keys) */
 .car-slider > .cs-key {
-  position: relative; isolation: isolate; border: 0; border-radius: .65rem; cursor: pointer;
-  background: linear-gradient(180deg, #2a2a30, #1a1a1e);
-  color: color-mix(in srgb, var(--ink) 60%, var(--muted));
-  box-shadow:
-    inset 0 0 0 1px #34343b,
-    0 6px 0 #0b0b0d,
-    0 10px 14px -6px rgba(0, 0, 0, .65);
+  position: relative; isolation: isolate; border: 0; cursor: pointer;
   transition: transform .09s ease, box-shadow .09s ease, color .15s;
 }
 /* top face: inset on all four sides, slightly dished, soft highlight along the top edge */
 .car-slider > .cs-key::before {
-  content: ""; position: absolute; inset: .32rem .32rem .5rem; z-index: -1; border-radius: .45rem;
-  background: linear-gradient(180deg, #3a3a42, #2b2b31);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .14),
-    inset 0 -2px 3px rgba(0, 0, 0, .35);
+  content: ""; position: absolute; z-index: -1;
 }
 .car-slider > .cs-key:first-child { color: color-mix(in srgb, var(--ink) 60%, var(--muted)) }
 .car-slider > .cs-key:last-child { color: #c4563a }
@@ -1977,11 +1864,9 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 @media (prefers-reduced-motion: no-preference) {
   .projects-grid .item .reader {
     translate: -1.8rem 0; scale: 1;
-    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity .15s ease .15s, transform .3s cubic-bezier(.5, 0, .75, 0);
   }
   .projects-grid .item .reader.in {
     translate: 0 0; scale: 1;
-    transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, opacity .15s ease, transform .35s cubic-bezier(.2, .8, .2, 1);
   }
 }
 
@@ -2002,9 +1887,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* Reader v3g: exit is a wipe toward the card edge (no fade, no slide); enter keeps the slide */
 @media (prefers-reduced-motion: no-preference) {
   .projects-grid .item .reader.in {
-    clip-path: inset(0 0 0 0);
     opacity: 1;
-    transition: translate .35s cubic-bezier(.2, .8, .2, 1), scale .35s ease, transform .35s cubic-bezier(.2, .8, .2, 1), clip-path 0s;
   }
 }
 
@@ -2096,8 +1979,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Machine v5d: no green anywhere. Keypad stays gray, screen text is neutral, no glow or pulse. */
 .projects-grid .item .r-keys::after { display: none }
-.projects-grid .item .reader.ready .r-screen {
-  color: #cfcfd4; box-shadow: inset 0 0 0 1px #1d2a22; animation: none;
+.projects-grid .item .reader.ready .r-screen { box-shadow: inset 0 0 0 1px #1d2a22; animation: none;
 }
 .projects-grid .item .reader.ready::after { background: #55555d; box-shadow: none }
 @media (prefers-reduced-motion: no-preference) {
@@ -2407,11 +2289,11 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* click icon, no chip, number above the bar */
 .projects-grid .item::after {
-  position: absolute; top: auto; left: auto; right: 1.3rem; bottom: 3.4rem;
+  position: absolute; top: auto; left: auto;
   font-size: 2.2rem; line-height: 1; pointer-events: none;
 }
 @media (max-width: 30rem) {
-  .projects-grid .item::after { top: auto; right: 1.3rem; bottom: 3.4rem; font-size: 1.8rem }
+  .projects-grid .item::after { top: auto; right: 1.3rem; bottom: 3.4rem;}
 }
 @media (prefers-reduced-motion: no-preference) {
   .projects-grid .item .reader.in {
@@ -2436,10 +2318,8 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .meta li:first-child a::before { display: none }
 .projects-grid .item:has(.meta li:first-child a:focus-visible) { outline: 2px solid var(--live); outline-offset: 3px }
 .projects-grid .item { padding-bottom: 1.3rem }
-.projects-grid .item p.card-stack { display: flex; flex-wrap: wrap; gap: .35rem; max-width: 100%; margin: .7rem 0 0 }
-.projects-grid .item .card-stack span {
-  padding: .15rem .55rem; border: 1px solid var(--line); border-radius: 999px;
-  font: 400 .66rem/1.4 var(--mono); color: var(--muted); white-space: nowrap;
+.projects-grid .item p.card-stack { display: flex; max-width: 100%; margin: .7rem 0 0 }
+.projects-grid .item .card-stack span { white-space: nowrap;
 }
 .projects-grid .item-top::after {
   display: block; content: ""; position: absolute; top: auto; left: auto; right: 1.3rem; bottom: 1.3rem; order: 0;
@@ -2497,18 +2377,17 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* one card layout */
 .projects-grid .item .meta::before { display: none }
-.projects-grid .item .dates { display: flex; margin-top: .2rem; font-size: .75rem }
+.projects-grid .item .dates { display: flex; font-size: .75rem }
 .projects-grid .item .date-text { display: inline }
 
 /* date font and stack box look */
-.projects-grid .item .dates {
-  margin-top: .3rem; text-transform: uppercase; letter-spacing: .14em; font-variant-numeric: tabular-nums;
+.projects-grid .item .dates { text-transform: uppercase; letter-spacing: .14em; font-variant-numeric: tabular-nums;
   font: 600 .78rem/1.2 "OCR A Std", "OCR-A", "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   color: color-mix(in srgb, var(--ink) 55%, transparent);
   text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow);
 }
 .projects-grid .item .card-stack span {
-  padding: .15rem .55rem; border: 1px solid var(--line); border-radius: 999px;
+  padding: .15rem .55rem; border: 1px solid var(--line);
   font: 400 .66rem/1.4 var(--mono); color: var(--muted);
 }
 @media (max-width: 39.99rem) {
@@ -2526,7 +2405,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* card stack: one row, font size set by js */
 .projects-grid .item p.card-stack {
   container-type: inline-size; flex-wrap: nowrap; align-items: center; overflow: hidden;
-  gap: calc(var(--stack-fs, .66rem) * .5); margin-top: .7rem;
+  gap: calc(var(--stack-fs, .66rem) * .5);
 }
 .projects-grid .item .card-stack span,
 .projects-grid .item .card-stack span:nth-child(n+4) {
@@ -2546,7 +2425,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 
 /* overview stack pills */
-.overview .facts dd.pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem }
+.overview .facts dd.pills { display: flex; flex-wrap: wrap; margin-top: .5rem }
 .overview .facts dd.pills span {
   display: inline-block; white-space: nowrap;
   border: 1px solid var(--line);
@@ -2555,7 +2434,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   color: var(--muted);
   background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
-  padding: .15em .6em; font-size: .66rem;
 }
 
 /* overview stack pills bigger */
@@ -2579,23 +2457,19 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* overview status and commits pills */
 .overview .facts dd.pills span.fact-status { display: inline-flex; align-items: center; gap: .5em }
-.overview .facts dd.pills span.fact-status::before {
-  content: ""; flex: none; width: .5em; height: .5em; border-radius: 50%;
+.overview .facts dd.pills span.fact-status::before { flex: none; width: .5em; height: .5em; border-radius: 50%;
   background: var(--live); box-shadow: 0 0 6px color-mix(in srgb, var(--live) 70%, transparent);
 }
 .overview .facts dd.pills span.fact-status[data-status="dev"]::before {
   background: var(--dev); box-shadow: 0 0 6px color-mix(in srgb, var(--dev) 70%, transparent);
 }
-.overview .facts dd .repo-commits:not([hidden]) {
-  display: inline-flex; align-items: center; gap: .45em; margin: .5rem 0 0; box-sizing: border-box;
-  padding: .2em .7em; border: 1px solid var(--line); border-radius: 999px;
-  background: color-mix(in srgb, var(--ink) 4%, transparent);
-  font: 500 .85rem/1.5 var(--mono); color: var(--text); white-space: nowrap;
+.overview .facts dd .repo-commits:not([hidden]) { align-items: center; gap: .45em;
+  font: 500 .85rem/1.5 var(--mono); white-space: nowrap;
 }
 
 /* overview commits text pill */
 .overview .facts dd .repo-commits:not([hidden]) {
-  display: inline-block; opacity: 1; margin: .5rem 0 0; vertical-align: top;
+  display: inline-block; margin: .5rem 0 0; vertical-align: top;
 }
 .overview .facts dd .repo-commits:not([hidden])::before {
   content: none; display: none; -webkit-mask: none; mask: none; background: none;
