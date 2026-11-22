@@ -102,7 +102,7 @@
       rd.style.transition = "";
       const an = s.animate([{ transform: "none" }, { transform: "translateX(-100%)" }], { duration: 400, easing: "cubic-bezier(.25, .6, .4, 1)", fill: "forwards" });
       document.dispatchEvent(new CustomEvent("reader-receipt"));
-      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 80);
+      an.onfinish = () => setTimeout(() => { hideReader(c); window.__retracting = false; setTimeout(() => c.classList.remove("retract-hold"), 700); }, 40);
     };
     setTimeout(() => {
       const t0 = performance.now(), D = 320;
@@ -113,7 +113,7 @@
         if (t < 1) { requestAnimationFrame(step); return; }
         c.classList.remove("pulling");
         c.style.setProperty("--pull", "0");
-        setTimeout(feed, 40);
+        feed();
       };
       requestAnimationFrame(step);
     }, 60);
