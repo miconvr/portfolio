@@ -313,3 +313,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 
 - `/* old date font and stack pills */` (end of `css/styles.css`): the `.dates` line under the title uses the old date look (OCR-style mono, 600, uppercase, .14em spacing, dim cream; .78rem, .7rem on phones). The card text is "November to Present 2026" / "September to Present 2026" (real letters, no zero-for-O trick, for screen readers).
 - The card stack is bordered pills again: first 3 on one fixed `nowrap` row, dashed `+N more` pill after. Phones use .58rem pills. This supersedes the "Stack text v4" plain-text look. Keep a project's `<span>`s in the overview's order.
+
+## Lit stack boxes
+
+- `/* lit stack boxes */` (end of `css/styles.css`): the card stack tags are small boxes (`border-radius: .3rem`) with a faint lit gradient and a 1px top highlight. The `+N more` (`::after`) is plain muted text with no box, border or background. No transforms, so it cannot affect the blur fix.
