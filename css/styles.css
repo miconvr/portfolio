@@ -3035,3 +3035,11 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .facts dd.pills { gap: .25rem }
   .overview .facts dd.pills span { font-size: .62rem }
 }
+
+/* overview stack pills bigger */
+.overview .facts dd.pills { gap: .45rem }
+.overview .facts dd.pills span { font-size: .85rem; padding: .2em .7em; line-height: 1.5 }
+@media (max-width: 39.99rem) {
+  .overview .facts dd.pills { gap: .35rem }
+  .overview .facts dd.pills span { font-size: .78rem; padding: .2em .65em }
+}

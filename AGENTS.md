@@ -370,3 +370,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Overview stack pills match the cards
 
 - `/* overview stack pills */` (end of `css/styles.css`) gives the overview's Stack row (`.overview .facts dd.pills span`) the same pill look as the cards: the border, radius, fill, color and font were copied from the card pill rules (`.projects-grid .item .card-stack span`). Size is .66rem, .62rem on phones, padding `.15em .6em`. The overview shows every tech and wraps; the cards show the fitted one row. If the card pill style changes, update this block too. It overrides the older `.overview .facts dd.pills` rule near line 1663.
+
+## Overview stack pills bigger
+
+- `/* overview stack pills bigger */` (end of `css/styles.css`) raises the overview pills from the card size to `.85rem` (`.78rem` on phones) with `.2em .7em` padding, so they match the other fact rows. Card pills are unchanged. Change the size in that block only.
