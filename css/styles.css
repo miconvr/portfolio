@@ -2531,3 +2531,13 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .cert-link a .ico {
   width: 16px; height: 16px; flex: none; shape-rendering: geometricPrecision;
 }
+
+/* smooth link icons: 18px */
+.projects-grid .item .meta li+li a .ico,
+.overview .meta li a .ico,
+.cert-link a .ico {
+  width: 18px; height: 18px; flex: none; shape-rendering: geometricPrecision;
+}
+@media (min-width: 56.01rem) {
+  .side-links .ico { width: 18px; height: 18px; shape-rendering: geometricPrecision }
+}
