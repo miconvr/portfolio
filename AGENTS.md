@@ -358,3 +358,7 @@ Every commit subject is `type: short summary`, all lowercase (brand names and ac
 ## Small card icon fix
 
 - The original hand rule (`.projects-intro .pi-click` with a `mask: url(data:...)`, from the "card depth and intro click icon" block) was still in `css/styles.css` and clipped the card icon into a hand. It is now deleted, and `/* small card icon fix */` (end of file) resets `background`, `mask` and `animation` on `.pi-click` and removes its `::after`. The intro icon is only the pure CSS card from `/* small card icon */`. Never add a mask or background to `.pi-click`.
+
+## Card icon v2: box, red dot, lines
+
+- `/* card icon v2: box, red dot, lines */` (end of `css/styles.css`) is the final intro icon and supersedes the outlined card. `.pi-click` is a 1.1em by 1em pure CSS icon: `::before` is a filled box in `currentColor` with a red dot on its left (`#ef4f5a`, a radial-gradient), `::after` is two short lines below (second one 62% wide) standing for the card text. No image, mask or animation. Change the dot color in the `radial-gradient` of `::before`.
