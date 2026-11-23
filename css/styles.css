@@ -2395,7 +2395,7 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
    LAYOUT: sidebar flush left, page content centered in the space beside it
    --main is the content width; change --frame or --main and everything stays centered
    ================================================================ */
-:root { --main: 34rem; --main-wide: 44rem }
+:root { --main: 38rem; --main-wide: 38rem }
 @media (min-width: 56.01rem) {
   .home .shell { padding-left: 0; padding-right: 0; column-gap: 0 }
   .home .shell > main { justify-self: center; width: min(100% - 3rem, var(--main)) }
@@ -2518,5 +2518,3 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
    ================================================================ */
 .overview::before, .overview::after { animation: none !important }
 .overview::before { background: none !important; box-shadow: none !important }
-html:is(.vt-in, .vt-out, .vt-swap)::view-transition-old(page),
-html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { width: auto; height: auto; max-width: none }
