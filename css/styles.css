@@ -2662,8 +2662,8 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
 .snd { right: var(--edge) }
 .theme-btn { right: calc(var(--edge) + 3.5rem) }
 
-/* light theme: FlyRank wordmark is near-white, so it gets a thin black outline to stay readable */
-:root:not([data-theme="dark"]) .org-logo { opacity: 1; filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000) }
+/* light theme: FlyRank wordmark is near-white, so it sits on a small black pill to stay readable */
+:root:not([data-theme="dark"]) .org-logo { box-sizing: content-box; opacity: 1; padding: .3rem .6rem; background: #0B0B0B; border-radius: .45rem }
 
 /* light theme: the card-reader terminal becomes a cream terminal with a dark LCD */
 :root:not([data-theme="dark"]) .projects-grid .item .reader {
@@ -2678,3 +2678,14 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
 :root:not([data-theme="dark"]) .projects-grid .item .r-keys { background: radial-gradient(circle at center, #A89B80 0 .26rem, transparent .3rem) 0 0 / 33.333% 25% }
 :root:not([data-theme="dark"]) .projects-grid .item .r-keys::before { color: #8E8165 }
 :root:not([data-theme="dark"]) .projects-grid .item .reader.ready .r-screen { color: #7ACB8D }
+
+/* ================================================================
+   LAYOUT: sidebar flush left, page content centered in the space beside it
+   --main is the content width; change --frame or --main and everything stays centered
+   ================================================================ */
+:root { --main: 34rem; --main-wide: 44rem }
+@media (min-width: 56.01rem) {
+  .home .shell { padding-left: 0; padding-right: 0; column-gap: 0 }
+  .home .shell > main { justify-self: center; width: min(100% - 3rem, var(--main)) }
+  .home .shell > main:has(> article.overview) { width: min(100% - 3rem, var(--main-wide)) }
+}
