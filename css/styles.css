@@ -2544,3 +2544,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* overview status dot gap */
 .overview .facts dd.pills span.fact-status::after { margin-left: .2em }
+
+/* outline icons for the sidebar contact links */
+.side-links .ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
