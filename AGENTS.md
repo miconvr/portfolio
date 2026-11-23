@@ -246,3 +246,4 @@ Pitfall: Kaltas has extras a new project should not inherit: the privacy policy 
 
 - The card reader was removed completely: its script and its CSS are deleted. `js/card-link.js` makes project cards clickable.
 - Carousel keycaps (`.cs-key`) are cream in light theme (`CREAM KEYCAPS` block at the end of `css/styles.css`) and black in dark theme.
+- Project card flip: `js/card-link.js` lifts and turns the clicked card, then the overview flips in; leaving flips the card back. The page view transition is disabled for entering (`html:not(.vt-leave)` rules in `css/styles.css`).
