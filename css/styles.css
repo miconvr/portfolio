@@ -2712,37 +2712,34 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 .js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
 
 /* ================================================================
-   CARD LOOK 2: colored cards, the same in light and dark. Each card has a calm gradient in its project's color (--c1 top left, --c2 bottom right) and a very faint dot grid. The logo sits directly on the card, no frame: Kaltas as a cream silhouette, CivicGuard as a screen-blended light shield with the check cut out. Small mono caps status line above a title, beside the logo.
-   Tune: --c1 / --c2 per card (keep white text at 4.5:1 or more, mid point included), the .08 in --dot (dots; set 0 to drop them)
-   A new project needs its own --c1 and --c2 in the :has() rules below, and a logo filter if its icon doesn't read on the gradient. A card without them falls back to dark gray.
+   CARD LOOK 3: black cards, the same in light and dark, so each logo shows in its own colors with no frame or filter. Each project's logo color is its --accent: a faint wash in the top left corner behind the logo, a tinted border and top edge, and the status label.
+   Tune: --accent per card, the 16% (corner wash) and 32% (border) mixes. A new project needs its own --accent in the :has() rules below. A card without one stays plain black.
    ================================================================ */
-.projects-grid .item:has(.meta a[href^="/kaltas"]) { --c1: #6A2B1B; --c2: #9C4A2E }
-.projects-grid .item:has(.meta a[href^="/civicguard"]) { --c1: #4A0E26; --c2: #8E2B4A }
+.projects-grid .item:has(.meta a[href^="/kaltas"]) { --accent: #D07050 }
+.projects-grid .item:has(.meta a[href^="/civicguard"]) { --accent: #C8325E }
 :root:root .projects-grid .item {
   --ink: #FFF6EC; --text: color-mix(in srgb, #FFF6EC 88%, transparent); --muted: color-mix(in srgb, #FFF6EC 78%, transparent);
-  --dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='1' cy='1' r='1' fill='white' fill-opacity='.08'/%3E%3C/svg%3E");
   border-radius: 1.25rem;
-  border-color: rgba(255, 255, 255, .12);
-  background-color: var(--c1, #2a2a2a);
-  background-image: var(--dot), linear-gradient(145deg, var(--c1, #2a2a2a), var(--c2, #1c1c1c));
-  background-size: 14px 14px, auto;
+  border-color: color-mix(in srgb, var(--accent, #3a3a3a) 32%, #252525);
+  background-color: #111;
+  background-image: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--accent, transparent) 16%, transparent), transparent 55%), linear-gradient(145deg, #181818, #0d0d0d);
+  background-size: auto, auto;
   background-position: 0 0, 0 0;
-  background-repeat: repeat, no-repeat;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 18px 32px -20px rgba(0, 0, 0, .5);
+  background-repeat: no-repeat, no-repeat;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--accent, #4a4a4a) 38%, transparent), 0 18px 32px -20px rgba(0, 0, 0, .6);
 }
 :root:root .projects-grid .item:hover {
-  border-color: rgba(255, 255, 255, .2);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 24px 38px -20px rgba(0, 0, 0, .55);
+  border-color: color-mix(in srgb, var(--accent, #4a4a4a) 50%, #252525);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--accent, #4a4a4a) 46%, transparent), 0 24px 38px -20px rgba(0, 0, 0, .7);
 }
 .projects-grid .item-head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .9rem; align-items: center }
 .projects-grid .item-top { display: contents }
 .projects-grid .project-icon { grid-row: 1 / span 2; width: 3.25rem; height: 3.25rem }
-.projects-grid .item:has(.meta a[href^="/kaltas"]) .project-icon { filter: brightness(0) invert(1) sepia(.12) }
-.projects-grid .item:has(.meta a[href^="/civicguard"]) .project-icon { filter: grayscale(1) invert(1) brightness(1.5); mix-blend-mode: screen }
 .projects-grid .item-top .status {
   grid-column: 2; grid-row: 1; order: 0; align-self: end; justify-self: start; margin: 0 0 .1rem;
   background: none; border: 0; padding: 0; border-radius: 0;
-  font: 500 .68rem var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted)
+  font: 500 .68rem var(--mono); letter-spacing: .18em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent, #FFF6EC) 65%, #FFF6EC)
 }
 .projects-grid .title-block { grid-column: 2; grid-row: 2; align-self: start }
 .projects-grid .item h3 { font-size: 1.6rem; line-height: 1.1; text-shadow: none }
