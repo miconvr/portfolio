@@ -2520,8 +2520,10 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
 .overview::before { background: none !important; box-shadow: none !important }
 
 /* ================================================================
-   CARDS CENTERED: cards keep their 26rem width and sit in the middle of the column
+   CONTENT NUDGE: every page's main column shifts slightly right (title, intro, cards, sections move together)
+   Change --nudge to move it more or less. Desktop only.
    ================================================================ */
+:root { --nudge: 1rem }
 @media (min-width: 56.01rem) {
-  .projects-grid { justify-content: center }
+  .home .shell > main { position: relative; left: var(--nudge) }
 }
