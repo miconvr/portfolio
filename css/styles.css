@@ -2475,7 +2475,7 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
 :root:not([data-theme="dark"]) .lb-stage img, :root:not([data-theme="dark"]) .lb-stage video { box-shadow: 0 20px 50px rgba(70, 52, 25, .35) }
 :root:not([data-theme="dark"]) .lb-btn, :root:not([data-theme="dark"]) .lb-hint { background: #E2D8C0; border-color: #C9BC9C; color: #2B2419 }
 :root:not([data-theme="dark"]) .lb-btn:hover, :root:not([data-theme="dark"]) .lb-hint:hover, :root:not([data-theme="dark"]) .lb-hint:focus-visible { background: #D8CDB1; border-color: #766A52; color: #2B2419 }
-:root:not([data-theme="dark"]) .lb-count { color: #483D2C }
+:root:not([data-theme="dark"]) .lb-count { background: #E2D8C0; border-color: #C9BC9C; color: #483D2C }
 :root:not([data-theme="dark"]) .slide video { background: #E2D8C0 }
 
 
