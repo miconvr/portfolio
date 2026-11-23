@@ -2536,3 +2536,25 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
     background: var(--btn-hover); border-color: var(--line); color: var(--ink); opacity: 1
   }
 }
+
+/* ================================================================
+   RAISED SIDEBAR: depth on the sidebar, readable carousel counter, tools at the bottom left
+   ================================================================ */
+:root:not([data-theme="dark"]) .cs-num { color: color-mix(in srgb, var(--ink) 70%, var(--muted)) }
+
+@media (min-width: 56.01rem) {
+  .side {
+    z-index: 2;
+    box-shadow:
+      1px 0 0 rgba(255, 255, 255, .45),
+      10px 0 28px -8px rgba(70, 52, 22, .30),
+      28px 0 48px -20px rgba(70, 52, 22, .18);
+  }
+  :root[data-theme="dark"] .side {
+    box-shadow:
+      1px 0 0 rgba(255, 255, 255, .06),
+      10px 0 28px -8px rgba(0, 0, 0, .6),
+      28px 0 48px -20px rgba(0, 0, 0, .45);
+  }
+  .side .side-tools { order: 99; margin-top: auto; justify-content: flex-start }
+}
