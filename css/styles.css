@@ -2628,3 +2628,11 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   content: none !important; display: none !important;
   -webkit-mask: none !important; mask: none !important; background: none !important
 }
+
+/* ================================================================
+   NO CONTACTLESS MARK: the )) is .item-top::before (mask), so hide that one
+   ================================================================ */
+.projects-grid .item .item-top::before {
+  content: none !important; display: none !important;
+  -webkit-mask: none !important; mask: none !important; background: none !important
+}
