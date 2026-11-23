@@ -2431,14 +2431,14 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
    vt-in = going deeper (turns away left, next page swings in), vt-out = going back (mirrored),
    vt-swap = sideways between sections (short fade and rise). Change --vt-a or the durations to tune.
    ================================================================ */
-html.vt-in { --vt-a: 70deg }
-html.vt-out { --vt-a: -70deg }
-@keyframes vt-turn-out { to { transform: perspective(1400px) rotateY(var(--vt-a)) translateY(-6px) scale(.95); opacity: 0 } }
-@keyframes vt-turn-in { from { transform: perspective(1400px) rotateY(calc(var(--vt-a) * -1)) translateY(8px) scale(.95); opacity: 0 } }
+html.vt-in { --vt-a: 30deg }
+html.vt-out { --vt-a: -30deg }
+@keyframes vt-turn-out { to { transform: perspective(1800px) rotateY(var(--vt-a)) translateY(-4px) scale(.97); opacity: 0 } }
+@keyframes vt-turn-in { from { transform: perspective(1800px) rotateY(calc(var(--vt-a) * -1)) translateY(6px) scale(.97); opacity: 0 } }
 @keyframes vt-swap-out { to { transform: translateY(-6px); opacity: 0 } }
 @keyframes vt-swap-in { from { transform: translateY(10px); opacity: 0 } }
-html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-turn-out .26s cubic-bezier(.4, 0, .8, .4) both }
-html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-turn-in .5s cubic-bezier(.22, 1, .36, 1) .18s both }
+html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-turn-out .34s cubic-bezier(.3, 0, .5, 1) both }
+html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-turn-in .65s cubic-bezier(.32, .72, 0, 1) .1s both }
 html.vt-swap::view-transition-old(page) { animation: vt-swap-out .16s ease both }
 html.vt-swap::view-transition-new(page) { animation: vt-swap-in .3s cubic-bezier(.22, 1, .36, 1) .1s both }
 
