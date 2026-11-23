@@ -2625,5 +2625,8 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
 
 /* rounded corners only: no margins, no height change, page scrolls normally */
 @media (min-width: 66rem) {
-  body { clip-path: inset(0 round 1.5rem) }
+  body { clip-path: inset(0 round .5rem) }
 }
+
+/* cards open the project on click (replaces the removed reader) */
+.projects-grid .item { cursor: pointer }
