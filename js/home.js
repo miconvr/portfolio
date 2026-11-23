@@ -125,16 +125,18 @@
   }
 
   var openCard=null;
+  // page depth: 0 = home and the section pages, 1 = a project overview, 2 = a page inside a project (privacy)
+  function depth(p){p=norm(p);return /^\/(kaltas|civicguard)\/./.test(p)?2:/^\/(kaltas|civicguard)$/.test(p)?1:0}
   function run(data,path,mode){
-    var card=openCard; openCard=null;
-    var leaving=/^\/(kaltas|civicguard)(\/|$)/.test(current);
-    var from=current;
-    var ok=(card||leaving)&&document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!ok){applyPage(data,path,mode);return;}
+    openCard=null;
+    var root=document.documentElement;
+    if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches){applyPage(data,path,mode);return;}
+    var d=depth(path)-depth(current);
+    var dir=d>0?'vt-in':d<0?'vt-out':'vt-swap';
     main.style.viewTransitionName='page';
-    if(!card)document.documentElement.classList.add("vt-leave");
-    var t=document.startViewTransition(function(){applyPage(data,path,mode);if(leaving&&!card&&path==="/"&&window.retractReceipt)window.retractReceipt(from);});
-    t.finished.finally(function(){main.style.viewTransitionName="";document.documentElement.classList.remove("vt-leave");});
+    root.classList.add(dir);
+    var t=document.startViewTransition(function(){applyPage(data,path,mode);main.classList.remove('panel-enter');});
+    t.finished.finally(function(){main.style.viewTransitionName='';root.classList.remove('vt-in','vt-out','vt-swap');});
   }
 
   function show(path,mode){
