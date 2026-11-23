@@ -2436,16 +2436,35 @@ html:not(.vt-leave)::view-transition-old(page) { animation: vt-flip-out .22s cub
 html:not(.vt-leave)::view-transition-new(page) { animation: vt-flip-in .32s cubic-bezier(.2, .7, .2, 1) .2s both }
 
 /* ================================================================
-   CREAM KEYCAPS: light theme carousel buttons (dark theme keeps the black keys)
+   CREAM KEYCAPS: light theme carousel keys (dark theme keeps the black keys)
+   Recolors the key body, the top face (::before), the sheen (::after) and the arrow.
    ================================================================ */
-:root:not([data-theme="dark"]) .car-slider .cs-key {
-  background: linear-gradient(180deg, #F0E8D5, #DDD2B6);
-  border-color: #B9AA86;
-  color: var(--ink);
-  box-shadow: 0 5px 0 #B9AA86, 0 12px 16px -8px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .45);
+:root:not([data-theme="dark"]) .car-slider > .cs-key {
+  background: linear-gradient(180deg, #E9E0C9 0%, #D6CAAC 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .45),
+    inset 0 0 0 1px #B9AA86,
+    0 1px 0 #BFB08C, 0 2px 0 #B9AA86, 0 3px 0 #B3A47F, 0 4px 0 #AD9E79,
+    0 5px 0 #A79873, 0 6px 0 #A1926D, 0 7px 0 #9B8C67,
+    0 14px 16px -6px rgba(70, 52, 25, .45);
 }
-:root:not([data-theme="dark"]) .car-slider .cs-key:hover { background: linear-gradient(180deg, #F4EDDB, #E3D9BF) }
-:root:not([data-theme="dark"]) .car-slider .cs-key:active {
-  transform: translateY(3px);
-  box-shadow: 0 2px 0 #B9AA86, 0 6px 10px -6px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .45);
+:root:not([data-theme="dark"]) .car-slider > .cs-key::before {
+  background: radial-gradient(ellipse 80% 70% at 50% 28%, #F3ECDA 0%, #E7DEC8 55%, #DDD2B6 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .75),
+    inset 0 -3px 5px rgba(90, 70, 40, .18),
+    inset 1px 0 0 rgba(255, 255, 255, .3),
+    inset -1px 0 0 rgba(90, 70, 40, .12),
+    0 1px 1px rgba(70, 52, 25, .25);
+}
+:root:not([data-theme="dark"]) .car-slider > .cs-key::after { background: linear-gradient(180deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, 0)) }
+:root:not([data-theme="dark"]) .car-slider > .cs-key svg { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .55)) }
+:root:not([data-theme="dark"]) .car-slider > .cs-key:first-child, :root:not([data-theme="dark"]) .car-slider > .cs-key:last-child { color: #5A4D38 }
+:root:not([data-theme="dark"]) .car-slider > .cs-key:hover, :root:not([data-theme="dark"]) .car-slider > .cs-key:focus-visible { color: var(--ink) }
+:root:not([data-theme="dark"]) .car-slider > .cs-key:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .4),
+    inset 0 0 0 1px #B9AA86,
+    0 1px 0 #B3A47F, 0 2px 0 #A1926D,
+    0 5px 8px -4px rgba(70, 52, 25, .45);
 }
