@@ -2695,21 +2695,11 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 }
 
 /* ================================================================
-   SIDEBAR SLIDE-IN, NO PAGE ENTRANCES
-   Desktop: the whole sidebar slides in from the left on the first load in a tab (the .js class), its children no longer rise.
-   About, Experience and Certificates: no heading or body entrance, in place swaps and first load alike. Home cards keep their own intro.
-   Phones keep the old sidebar rise. Tune the slide: .5s (length), the cubic-bezier (feel)
+   NO SIDEBAR ENTRANCE: the sidebar and everything in it just appears, no slide, rise or fade (the mascot still fades in once its count loads)
    ================================================================ */
-@keyframes side-slide { from { transform: translateX(-100%) } }
-@media (min-width: 56.01rem) and (prefers-reduced-motion: no-preference) {
-  .js .side { animation: side-slide .5s cubic-bezier(.16, 1, .3, 1) backwards }
-  .js .side > :not(.been) { animation: none }
-  .js .been.been-wait { transform: none; filter: none }
-}
 @media (prefers-reduced-motion: no-preference) {
-  .js .page-title,
-  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > *,
-  .js main > article:not(.overview):not(:has(.page-title)) { animation: none }
+  .js .side, .js .side > :not(.been) { animation: none }
+  .js .been.been-wait { transform: none; filter: none }
 }
 
 /* ================================================================
@@ -2721,4 +2711,16 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .js .page-title,
   .js main > article:has(.page-title):not(.overview) :is(section, .entry) > * { animation: none }
   .js main > article:has(.page-title):not(.overview) { animation: page-slide .4s cubic-bezier(.16, 1, .3, 1) backwards }
+}
+
+/* ================================================================
+   PROJECTS SLIDE-IN: the Projects page (Home) slides in from the left as two blocks (heading and cards), same motion as About, Experience and Certificates
+   The old heading rise and per-card intro are off. Not played for the card flip to or from an overview (vt-in, vt-out). Tune it in the PAGE SLIDE-IN keyframes and the .4s below
+   ================================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .js .home-intro h2, .js .projects-intro { animation: none }
+  .js .item.reveal:not(.in) { opacity: 1 }
+  .js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
+  html.js:not(.vt-in):not(.vt-out) main > .home-intro,
+  html.js:not(.vt-in):not(.vt-out) main > #projects { animation: page-slide .4s cubic-bezier(.16, 1, .3, 1) backwards }
 }
