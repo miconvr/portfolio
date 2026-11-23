@@ -20,7 +20,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 | `404.html` | Styled by `.nf` rules, absolute paths, `noindex`, loads only `clack.js` |
 | `css/styles.css` | All styling. Dark only |
 | `js/home.js` | In-place navigation, prefetch, card spotlight and tilt, view transitions |
-| `js/slide-open.js` | Click-to-open, reader, receipt, idle sheen, stack fitting |
+| `js/slide-open.js` | Click-to-open, reader, idle sheen, stack fitting |
 | `js/clack.js` | Synthesized sound (Web Audio) and the `.snd` mute button. No audio files |
 | `js/carousel.js`, `js/car-slider.js` | Screenshot carousel and its keycap buttons |
 | `js/lightbox.js` | Click-to-enlarge lightbox for overview images and videos, plus the `.lb-hint` button |
@@ -52,6 +52,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 - Two themes: a cream light theme (default) and the original dark theme. Light tokens and overrides are the `LIGHT THEME` blocks at the end of `css/styles.css`, all scoped to `:root:not([data-theme="dark"])`; dark is `data-theme="dark"` on `<html>`. The choice is saved in `localStorage` key `theme-v1`. A new color must work in both themes: use the tokens, not hex values.
 - Centered frame: `body` is capped at `--frame` (64rem, the same width as the page shell, so there is no empty strip beside the sidebar) and centered, `html` is pure black, so wide screens show black sides. Fixed buttons (`.snd`, `.theme-btn`) position from `--edge` so they stay inside the frame. Light theme extras: the FlyRank wordmark (`.org-logo`) sits on a small black pill, and the card-reader terminal has a cream body with a dark LCD.
 - Layout (end of `css/styles.css`): on desktop the sidebar is flush to the frame's left edge, and `main` is centered in the space beside it with width `--main` (34rem, or `--main-wide` 44rem for project overviews). To change widths, edit `--frame`, `--main` or `--main-wide`; nothing else needs moving.
+- Rounded frame: from 66rem up, `body` gets a 1rem top and bottom margin, a 1.5rem radius and `overflow: clip` (clip keeps the sticky sidebar working), so the site reads as one rounded panel on the black.
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors in new rules.
 - No inline `style=`. Use classes.
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), preloaded in every HTML head. Never add a transform, hover effect or bold to it.
@@ -67,7 +68,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 
 ## JS conventions
 
-Small IIFEs, two-space indent, double quotes in newer files. Only three `window` globals exist: `initCarousel` (carousel.js), `retractReceipt` and `__retracting` (slide-open.js, read by clack.js). Don't add more. Page-specific scripts and `<head>` styles don't run on an in-place swap, so keep behavior in shared files.
+Small IIFEs, two-space indent, double quotes in newer files. Only two `window` globals exist: `initCarousel` (carousel.js), `__retracting` (read by clack.js, no longer set). Don't add more. Page-specific scripts and `<head>` styles don't run on an in-place swap, so keep behavior in shared files.
 
 ## CSS rules
 
@@ -117,10 +118,7 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 - The capture-phase click handler takes over the link's stretched click. Keyboard and script clicks (`detail` 0) pass through untouched, so Enter on the link opens directly. `busy` blocks a second open while one runs.
 - Events: `reader-approved` (fires at 85%, or when a tap dips the card; `clack.js` rate-limits the beep to one per 700ms) plays the beep. `reader-receipt` plays `printer()` (12 ticks over .4s plus a 2093 Hz ding). `slide-open.js` never touches audio. If the feed duration or step count changes, update `printer()`. The paper is stepped on purpose; don't smooth it.
 - The reader screen is blank until `.ready` (APPROVED), with no INSERT CARD text (`/* reader screen: no insert card text */`).
-- Receipt (`printReceipt`, desktop click only): cream `#f3f0e6` sheet feeds out of the reader's right edge (`r-feed-x`, .4s, `steps(24, end)`, the ratchet look is intentional; `printer()` still ticks 12 times), with the heart (`.r-heart`, an inline SVG data URI), APPROVED, dashed line, project name, THANK YOU and a small `.r-tear`.
-- Retract (leaving an overview): `retractReceipt(from)` in `slide-open.js`, called from `run()` in `home.js`, rebuilds the reader on the originating card and animates `.r-sheet` back with the Web Animations API (cancels the CSS animation). Print sound is muted. Timings: 60ms wait, 320ms slide back, then the paper retracts at once (400ms, `steps(24, end)`), 40ms before the reader hides (about 0.8s in all). `__retracting` clears after 2s. Desktop only, skipped under reduced motion.
-- The retract reader carries `.thanks`. Keep `:not(.thanks)` on the rules that style a real open scan (`.item:has(.reader.ready:not(.thanks))` and the approve flash), or that styling stays on for the whole ~2.25s exit.
-- A click right after a retract (inside the 650ms `hideReader` window) used to reuse the retract's reader and paper, so no receipt printed. `showReader` now removes a reader that has `.thanks` or an `.r-paper`, builds a fresh one and clears `.retract-hold`. Keep that check if `showReader` changes.
+- The receipt and the leaving-an-overview retract animation were removed. `printer()` and its `reader-receipt` listener in `clack.js` are now unused, and the leftover `.retract-hold` and `:not(.thanks)` CSS is harmless. Leaving an overview has no special animation.
 - `release()` adds `.spring` for 650ms so the card and reader bounce back. Starting a new press removes `.spring` first, or the reader stays on its slow spring transition and lags behind the card.
 - `.dip` is cleared by `clearDip()` on `pageshow` and when the home content re-renders, unless an open is in progress.
 
