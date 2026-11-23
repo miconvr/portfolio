@@ -2619,3 +2619,12 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 .projects-grid .item .tagline { margin-bottom: 0 !important }
 .projects-grid .item .meta { margin-top: var(--card-meta-gap) !important; margin-bottom: 0 !important }
 .projects-grid .item .item-head { margin-bottom: .5rem !important }
+
+/* ================================================================
+   FLAT CARDS: drop the credit-card aspect ratio so cards size to their content; hide the contactless mark
+   ================================================================ */
+.projects-grid .item { aspect-ratio: auto !important }
+.projects-grid .item::after {
+  content: none !important; display: none !important;
+  -webkit-mask: none !important; mask: none !important; background: none !important
+}
