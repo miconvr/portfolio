@@ -181,6 +181,8 @@ Small IIFEs, two-space indent, double quotes in newer files. `window` globals: `
 - Phone text floor (`/* phone text floor */` and `/* phone text floor 2 */`, end of `css/styles.css`): visible phone text stays at 12px or more (facts labels, carousel counter, mascot text, card dates and links, card and overview link pills). Desktop-only reader and receipt text is exempt.
 - Tap targets (`/* tap targets */`): on touch or under 40rem, `.overview .back-top::before` is an invisible pseudo-element that grows the hit area to about 44px without changing the visual size. Never give this element another `::before`. The `.side nav a:active` translateX press nudge is cancelled on touch or narrow, because it made the top tabs shift when tapped.
 
+- Sidebar slide-in and no page entrances (`SIDEBAR SLIDE-IN, NO PAGE ENTRANCES`, end of `css/styles.css`): on desktop (56.01rem up) `.js .side` slides in from the left (`side-slide`, .5s) on the first load in a tab, and its children no longer rise. About, Experience and Certificates have no heading or body entrance at all, including on in-place swaps. Home cards keep their intro, phones keep the old sidebar rise. The `focus-rise` rules above are still the base for phones and Home.
+
 ## Sound (`js/clack.js`)
 
 - Loaded with `defer` on every page. Thock on press only (no release sound), dry hover tick (mouse only) on links, buttons and whole cards. The card counts as one target, but `.meta li+li a` ticks separately (checked first). One voice at a time, 130ms cooldown between ticks. Adjust loudness with `master.gain.value` only.
