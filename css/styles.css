@@ -2427,20 +2427,18 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
 .projects-grid .item { cursor: pointer }
 
 /* ================================================================
-   PAGE TRANSITIONS: one motion family for every page change (driven by run() in js/home.js)
-   vt-in = going deeper (turns away left, next page swings in), vt-out = going back (mirrored),
-   vt-swap = sideways between sections (short fade and rise). Change --vt-a or the durations to tune.
+   PAGE TRANSITIONS: a full card flip with no fades (driven by run() in js/home.js)
+   vt-in = going deeper, vt-out = going back (mirrored), vt-swap = sideways between sections.
+   The old page turns edge-on (invisible), the new one turns in from the other edge and lands flat.
+   Tune: --vt-a (angle), the two durations, perspective.
    ================================================================ */
-html.vt-in { --vt-a: 30deg }
-html.vt-out { --vt-a: -30deg }
-@keyframes vt-turn-out { to { transform: perspective(1800px) rotateY(var(--vt-a)) translateY(-4px) scale(.97); opacity: 0 } }
-@keyframes vt-turn-in { from { transform: perspective(1800px) rotateY(calc(var(--vt-a) * -1)) translateY(6px) scale(.97); opacity: 0 } }
-@keyframes vt-swap-out { to { transform: translateY(-6px); opacity: 0 } }
-@keyframes vt-swap-in { from { transform: translateY(10px); opacity: 0 } }
-html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-turn-out .34s cubic-bezier(.3, 0, .5, 1) both }
-html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-turn-in .65s cubic-bezier(.32, .72, 0, 1) .1s both }
-html.vt-swap::view-transition-old(page) { animation: vt-swap-out .16s ease both }
-html.vt-swap::view-transition-new(page) { animation: vt-swap-in .3s cubic-bezier(.22, 1, .36, 1) .1s both }
+html.vt-in, html.vt-swap { --vt-a: 88deg }
+html.vt-out { --vt-a: -88deg }
+@keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)) scale(.94) } }
+@keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)) scale(.94) } }
+html:is(.vt-in, .vt-out, .vt-swap)::view-transition-group(page) { animation: none }
+html:is(.vt-in, .vt-out, .vt-swap)::view-transition-old(page) { animation: vt-turn-out .3s cubic-bezier(.5, 0, .9, .5) both }
+html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-turn-in .55s cubic-bezier(.2, .9, .25, 1) .3s both }
 
 /* overview pages sit a little higher on desktop */
 :root { --overview-lift: 0rem }
@@ -2508,3 +2506,23 @@ html.vt-swap::view-transition-new(page) { animation: vt-swap-in .3s cubic-bezier
 
 /* name uses the same ink color as the active nav link */
 .side h1 { color: var(--ink); background: none; -webkit-text-fill-color: currentColor; text-shadow: none }
+
+/* ================================================================
+   OVERVIEW: HARD STOP on entrance motion; the page flip is the only animation
+   ================================================================ */
+.panel-enter { animation: none !important }
+.overview, .overview *, .overview *::before, .overview *::after { animation: none !important }
+.overview.reveal, .overview .reveal, .overview .reveal .frame, .overview .reveal .frame img { opacity: 1 !important; transform: none !important; transition: none !important; clip-path: none !important; filter: none !important }
+
+/* ================================================================
+   SIDEBAR TOOLS (restyled): a row under a divider, same pill look as the other buttons
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side-tools { display: flex; gap: .6rem; justify-content: flex-start; margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px solid var(--line) }
+  .side-tools .snd, .side-tools .theme-btn {
+    position: static; inset: auto; margin: 0; width: 2.75rem; height: 2.75rem; display: grid; place-items: center;
+    border: 1px solid var(--btn-line); border-radius: .6rem; background: var(--btn); color: var(--ink); opacity: 1; box-shadow: none; cursor: pointer;
+  }
+  .side-tools .snd.off { opacity: .55 }
+  .side-tools .snd:hover, .side-tools .theme-btn:hover, .side-tools .snd:focus-visible, .side-tools .theme-btn:focus-visible { border-color: var(--muted); background: var(--btn-hover); opacity: 1 }
+}
