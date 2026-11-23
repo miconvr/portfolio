@@ -49,7 +49,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 
 ## Global rules
 
-- Dark theme only, no toggle.
+- Two themes: a cream light theme (default) and the original dark theme. Light tokens and overrides are the `LIGHT THEME` blocks at the end of `css/styles.css`, all scoped to `:root:not([data-theme="dark"])`; dark is `data-theme="dark"` on `<html>`. The choice is saved in `localStorage` key `theme-v1`. A new color must work in both themes: use the tokens, not hex values.
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors in new rules.
 - No inline `style=`. Use classes.
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), preloaded in every HTML head. Never add a transform, hover effect or bold to it.
@@ -61,7 +61,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 - Accessibility: skip link, labelled controls, alt text, `aria-live` on the counter, keyboard-usable carousels, `prefers-reduced-motion` support. Don't make content depend on animation or JS.
 - `localStorage` only inside try/catch.
 - Media queries: combine conditions with `or` / `and` inside parentheses, never a comma (commas only at top level). A bad one silently never applies.
-- Every HTML page carries the head script from `index.html` line 19 (sets `.js`, first visit in a tab only), the three font preload links, `<meta name="theme-color" content="#0B0B0B">` and `<meta name="color-scheme" content="dark">` right after the viewport tag. Without the script no cold-start motion plays.
+- Every HTML page carries the head script from `index.html` line 19 (sets `.js`, first visit in a tab only), the three font preload links, `<meta name="theme-color" content="#F6F0E3">`, `<meta name="color-scheme" content="light dark">` and the one-line theme script (sets `data-theme` before paint) right after the viewport tag, and `<script src="/js/theme.js" defer>` after `clack.js`. Without the script no cold-start motion plays.
 
 ## JS conventions
 
@@ -196,7 +196,8 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 - Favicon: `<link rel="icon" type="image/svg+xml" href="/images/site/favicon.svg?v=2">` on every page (the heart). Bump `?v=` when it changes, because browsers cache favicons hard. No custom domain.
 - Overview pages preload their first visible image with `fetchpriority="high"` (see each page's head for the current file). If that image changes, update the preload too.
 - `index.html` carries a `Person` JSON-LD block just before `</head>`. Keep its `sameAs` links in sync with the sidebar links.
-- `theme-color` matches `--bg`, so the phone browser bar and overscroll area stay dark.
+- `theme-color` matches `--bg` of the active theme (`#F6F0E3` light, `#0B0B0B` dark); `theme.js` and the head script keep it in sync.
+- Theme button (`.theme-btn`, also has `.snd` for the shared look): built by `js/theme.js`, fixed bottom-right just left of the mute button.
 - `vercel.json` sends security headers on every route (nosniff, referrer policy, same-origin framing, locked-down permissions), caches `/images/*` for a week (stale for a day while revalidating) and `/fonts/*` for a year as immutable. Bump `?v=` or rename the file when an image or font changes. There is no CSP yet because every page has an inline head script.
 - Fonts: Geist, Geist Mono and Big Shoulders Display 700 (Latin only) are self-hosted in `fonts/`, with `@font-face` at the end of `css/styles.css`. Every page head carries the same three `rel="preload" as="font"` links. Never re-add Google Fonts. The sidebar name uses the last `--condensed` definition.
 
