@@ -251,3 +251,4 @@ Pitfall: Kaltas has extras a new project should not inherit: the privacy policy 
 >>>>>>> parent of 2706327 (feat: card lifts then flips into the overview and back)
 
 - Page transitions: `run()` in `js/home.js` starts a view transition for every page change and sets `vt-in` (deeper), `vt-out` (back) or `vt-swap` (sideways) on `<html>`; the `PAGE TRANSITIONS` block in `css/styles.css` holds the motion. Depth: home and sections 0, project overview 1, privacy 2. `js/card-link.js` only makes a card click open its real link. `.overview` is lifted by `--overview-lift`.
+\n- Theme and mute buttons: `js/theme.js` moves both into `.side-tools` at the end of the sidebar (desktop; static position). On phones and on pages without a sidebar they stay fixed bottom-right. The name (`.side h1`) uses `--ink`.\n

@@ -25,5 +25,16 @@
     paint();
   });
   paint();
-  document.body.appendChild(btn);
+  // Put the theme and mute buttons in the sidebar; pages without a sidebar keep them floating.
+  var side = document.querySelector("aside.side");
+  if (side) {
+    var tools = document.createElement("div");
+    tools.className = "side-tools";
+    tools.appendChild(btn);
+    var snd = document.querySelector("body > .snd");
+    if (snd) tools.appendChild(snd);
+    side.appendChild(tools);
+  } else {
+    document.body.appendChild(btn);
+  }
 })();

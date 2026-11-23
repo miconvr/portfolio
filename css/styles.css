@@ -2495,3 +2495,16 @@ html.vt-swap::view-transition-new(page) { animation: vt-swap-in .3s cubic-bezier
 :root:not([data-theme="dark"]) .lb-btn:hover, :root:not([data-theme="dark"]) .lb-hint:hover, :root:not([data-theme="dark"]) .lb-hint:focus-visible { background: #D8CDB1; border-color: #766A52; color: #2B2419 }
 :root:not([data-theme="dark"]) .lb-count { color: #483D2C }
 :root:not([data-theme="dark"]) .slide video { background: #E2D8C0 }
+
+
+/* ================================================================
+   SIDEBAR TOOLS: theme and mute buttons live in the sidebar on desktop; on phones they float as before
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side-tools { display: flex; gap: .6rem; justify-content: center; margin-top: 1.25rem }
+  .side-tools .snd, .side-tools .theme-btn { position: static; inset: auto; margin: 0 }
+}
+@media (max-width: 56rem) { .side-tools { display: contents } }
+
+/* name uses the same ink color as the active nav link */
+.side h1 { color: var(--ink); background: none; -webkit-text-fill-color: currentColor; text-shadow: none }
