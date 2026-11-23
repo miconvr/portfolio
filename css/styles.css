@@ -2518,3 +2518,11 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
    ================================================================ */
 .overview::before, .overview::after { animation: none !important }
 .overview::before { background: none !important; box-shadow: none !important }
+
+/* ================================================================
+   CARDS FILL THE COLUMN: the old 26rem cap left room for the removed card reader
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .projects-grid { grid-template-columns: minmax(0, 1fr); justify-content: stretch }
+  .projects-grid .item { max-width: none }
+}
