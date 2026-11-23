@@ -2800,3 +2800,10 @@ html:not([data-theme="dark"]) { background: #CFC3A5 }
 html:not([data-theme="dark"]) body { box-shadow: 0 0 0 1px rgba(70, 52, 25, .14), 0 20px 70px rgba(70, 52, 25, .28) }
 :root:not([data-theme="dark"]) { --muted: #5F543E }
 :root:not([data-theme="dark"]) .projects-grid .badge { background: #262626; border-color: #4a4a4a }
+
+/* ================================================================
+   CARD GRID: the home cards fill the content width, side by side when there is room (17rem minimum each), one column on phones. Replaces the old single 26rem column.
+   Tune: 17rem (smallest card before it wraps), 1.25rem (gap). For one full-width card per row, use grid-template-columns: minmax(0, 1fr)
+   ================================================================ */
+.projects-grid { grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); justify-content: stretch; align-items: stretch; gap: 1.25rem }
+.projects-grid .item { width: 100%; max-width: none }
