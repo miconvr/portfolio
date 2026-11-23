@@ -2656,7 +2656,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* ================================================================
    CENTERED FRAME: the site sits in a column with pure black on both sides
    ================================================================ */
-:root { --frame: 72rem; --edge: max(1rem, env(safe-area-inset-right), calc((100vw - var(--frame)) / 2 + 1rem)) }
+:root { --frame: 64rem; --edge: max(1rem, env(safe-area-inset-right), calc((100vw - var(--frame)) / 2 + 1rem)) }
 html { background: #000 }
 body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0 0 0 1px rgba(243, 233, 210, .1), 0 0 90px rgba(0, 0, 0, .9) }
 .snd { right: var(--edge) }
