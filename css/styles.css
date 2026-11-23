@@ -2421,8 +2421,8 @@ html.vt-out { --vt-a: -88deg }
 @keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)); visibility: hidden } }
 @keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)); visibility: hidden } }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-group(page) { animation: none }
-html:is(.vt-in, .vt-out, .vt-swap)::view-transition-old(page) { animation: vt-turn-out .3s cubic-bezier(.5, 0, .9, .5) both }
-html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-turn-in .55s cubic-bezier(.2, .9, .25, 1) .3s both }
+html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-turn-out .3s cubic-bezier(.5, 0, .9, .5) both }
+html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-turn-in .55s cubic-bezier(.2, .9, .25, 1) .3s both }
 
 /* overview pages sit a little higher on desktop */
 :root { --overview-lift: 0rem }
@@ -2567,3 +2567,11 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
   :root[data-theme="dark"] .side { box-shadow: 1px 0 0 rgba(255, 255, 255, .05), 6px 0 14px -10px rgba(0, 0, 0, .45) }
   .side .profile-photo { margin-top: 3.5rem }
 }
+
+/* ================================================================
+   PLAIN SWAP FADE: sideways moves (sections, project to section, privacy) just fade; only card open/exit flips
+   ================================================================ */
+@keyframes vt-plain-out { to { opacity: 0 } }
+@keyframes vt-plain-in { from { opacity: 0 } }
+html.vt-swap::view-transition-old(page) { animation: vt-plain-out .15s ease both }
+html.vt-swap::view-transition-new(page) { animation: vt-plain-in .2s ease .1s both }

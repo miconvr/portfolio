@@ -132,7 +132,9 @@
     var root=document.documentElement;
     if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches){applyPage(data,path,mode);return;}
     var d=depth(path)-depth(current);
-    var dir=d>0?'vt-in':d<0?'vt-out':'vt-swap';
+    var dir='vt-swap';
+    if(depth(current)===0&&depth(path)===1)dir='vt-in';
+    else if(depth(current)===1&&norm(path)==='/')dir='vt-out';
     main.style.viewTransitionName='page';
     root.classList.add(dir);
     var t=document.startViewTransition(function(){
