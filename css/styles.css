@@ -2592,3 +2592,8 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 ::view-transition-old(root), ::view-transition-new(root),
 ::view-transition-old(side), ::view-transition-new(side) { animation: none; mix-blend-mode: normal }
 ::view-transition-old(side), ::view-transition-old(root) { display: none }
+
+/* ================================================================
+   HIDE CARD STACK: the tech tags on the home project cards are hidden
+   ================================================================ */
+.projects-grid .card-stack { display: none }
