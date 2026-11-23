@@ -244,4 +244,4 @@ Pitfall: Kaltas has extras a new project should not inherit: the privacy policy 
 - Link icons are 24px-viewBox outline icons (`class="ico line"`: 2px strokes in `currentColor`, no fill) from Tabler: GitHub, shield (privacy), globe, Chrome. Don't bring back the old filled GitHub mark.
 - Store badges have a black background. The Kaltas badge uses a full-color Chrome logo (`class="ico color"`, 48px viewBox, own fills). Other link icons stay outline.
 
-- The card reader (drag-to-scan terminal) was removed: `js/slide-open.js` is no longer loaded on any page. Its file and the `.reader` CSS are left in place but unused.
+- The card reader was removed completely: its script and its CSS are deleted. `js/card-link.js` makes project cards clickable.

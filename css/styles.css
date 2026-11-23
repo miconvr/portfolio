@@ -166,7 +166,6 @@ article section h2 {
   transition: border-color .2s ease, transform .2s ease;
 }
 
-
 .projects-grid .item-head {
   display: flex;
   flex-direction: column;
@@ -273,18 +272,15 @@ article section h2 {
   transform: translateY(-1px);
 }
 
-
 .projects-grid .item .meta a:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
-
 /* Team credit */
 p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: flex-start; gap: .5rem }
 .team-ico { margin-top: .2rem }
 .team-ico { flex: none; color: var(--muted) }
-
 
 /* ---- Bigger hit areas on meta links ---- */
 .meta a, .links a { position: relative; overflow-wrap: anywhere }
@@ -459,7 +455,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
 .js .item.in p:nth-of-type(3) { transition-delay: .61s }
 .js .item.in .meta { transition-delay: .7s }
 
-
 /* View transitions */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto }
@@ -511,7 +506,6 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   /* Mascot pinned to bottom with hairline above */
   .side .been { padding-top: 1rem; border-top: 1px solid #333230 }
 }
-
 
 /* ---- Tablet: max 56rem ---- */
 @media (max-width: 56rem) {
@@ -705,12 +699,10 @@ footer.site .badge a { display: inline; padding: 0; border: 0; background: none;
   .side .been { margin-top: 2rem }
 }
 
-
 /* Phones and tablets: hide total commits note (per-repo counts are on the cards and project pages) */
 @media (max-width: 56rem) {
   .side .side-links .commits-note { display: none }
 }
-
 
 /* Mobile home cards: show the full description */
 @media (max-width: 640px) {
@@ -872,7 +864,6 @@ article h1 { margin-top: .5rem }
   .nf-back:hover { background: var(--btn-hover); color: var(--ink); transform: translateY(-1px) }
 }
 
-
 /* Credit-card project cards (home): shape, edge and shine */
 .projects-grid .item {
   aspect-ratio: 1.586;
@@ -920,7 +911,6 @@ article h1 { margin-top: .5rem }
   border-radius: 0 0 calc(1rem - 1px) calc(1rem - 1px); font: 500 .75rem var(--mono); letter-spacing: .08em;
 }
 
-
 /* Credit-card project cards (home): title and dates sit on the left edge */
 .projects-grid .item-head { align-items: flex-start }
 .projects-grid .title-block { align-self: flex-start; text-align: left }
@@ -934,7 +924,6 @@ article h1 { margin-top: .5rem }
   mask: var(--contactless) center / contain no-repeat;
 }
 
-
 /* Credit-card project cards (home): holo sticker */
 .projects-grid .item-top::before { margin-right: -.4rem }
 
@@ -947,8 +936,6 @@ article h1 { margin-top: .5rem }
 @media (min-width: 30.0625rem) {
   .projects-grid .item::after { font-size: 2.8rem }
 }
-
-
 
 /* Remove holo sticker, move the chip to its spot (desktop only) */
 .projects-grid .item .meta::after { display: none }
@@ -972,14 +959,10 @@ article h1 { margin-top: .5rem }
 }
 .projects-grid .item { width: 100%; max-width: 26rem }
 
-
 /* Desktop: dates live on the card-number line, so hide the text under the title (phones keep it) */
 @media (min-width: 30.0625rem) {
   .projects-grid .item .date-text { display: none }
 }
-
-
-
 
 /* Home: no top line, tighter top so both project cards show on load (desktop only) */
 @media (min-width: 30.0625rem) {
@@ -987,9 +970,6 @@ article h1 { margin-top: .5rem }
   .home-intro { border-top: 0; padding: 0 0 1.5rem }
   .home-intro h2 { font-size: clamp(2.25rem, 4.2vw, 3.5rem) }
 }
-
-
-
 
 /* Sidebar name: League Gothic, tall condensed caps */
 .side h1 { font-size: 2.7rem; text-transform: uppercase;}
@@ -1053,7 +1033,6 @@ article h1 { margin-top: .5rem }
 /* Overview: firmer cap on the hero, lede back to its original size */
 .overview section .frame.carousel { width: 100%;}
 
-
 /* Card-to-overview transition (js/home.js wraps the page swap in a View Transition) */
 ::view-transition-old(page), ::view-transition-new(page) { mix-blend-mode: normal }
 @keyframes vt-recede {
@@ -1064,22 +1043,8 @@ article h1 { margin-top: .5rem }
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { filter: none }
 }
 
-
-/* Drag to open: the card slides into a card-reader terminal (--pull is 0 to 1) */
-.projects-grid .item .reader {
-  position: absolute;
-  z-index: 6; pointer-events: none;
-}
-.projects-grid .item .reader::before {
-  content: ""; position: absolute; left: -1px; width: 7px; border-radius: 4px;
-  background: #000;
-}
-.projects-grid .item .reader::after {
-  content: ""; position: absolute; width: .45rem; height: .45rem; border-radius: 50%;
-  background: #55555d; transition: background .2s ease, box-shadow .2s ease;
-}
 @media (max-width: 30rem) {
-  .projects-grid .item .reader { display: none }
+  
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
 }
 
@@ -1087,36 +1052,8 @@ article h1 { margin-top: .5rem }
 ::view-transition-old(page) { transform-origin: 50% 50%; animation: vt-out .3s ease both }
 @keyframes vt-out { to { opacity: 0; transform: scale(.985) } }
 
-
 /* Card reader v2: bigger terminal with screen and keypad, slides out when the drag starts */
 .projects-grid .item { --reader-w: 7rem; --reader-gap: .7rem; --reader-insert: 1.1rem; --reader-travel: calc(var(--reader-gap) + var(--reader-insert)) }
-.projects-grid .item .reader {
-  top: -.9rem; bottom: -.9rem; width: var(--reader-w); left: calc(100% + var(--reader-gap));
-  border-radius: 1.1rem;
-  border: 1px solid #2c2c33;
-  box-shadow: 0 22px 34px -16px var(--shadow), inset 0 1px 0 var(--card-edge), inset 0 -10px 18px rgba(0, 0, 0, .4);
-  opacity: 0; translate: -1.4rem 0; scale: .9; transform-origin: 0 50%;
-  transform: translateX(calc(var(--pull, 0) * var(--reader-travel) * -1));
-  transition: translate .55s cubic-bezier(.34, 1.56, .64, 1), scale .55s cubic-bezier(.34, 1.56, .64, 1), opacity .25s ease;
-}
-.projects-grid .item .reader.in { opacity: 1; translate: 0 0; scale: 1 }
-.projects-grid .item.spring .reader {
-  transition: transform .55s cubic-bezier(.34, 1.56, .64, 1), translate .45s ease, scale .45s ease, opacity .3s ease;
-}
-.projects-grid .item .reader::before { top: 1.5rem; bottom: 1.5rem }
-.projects-grid .item .reader::after { top: .8rem; right: 1rem }
-.projects-grid .item .r-screen {
-  position: absolute; left: 1.1rem; right: .9rem; top: 1.8rem; height: 2.2rem; border-radius: .35rem;
-  display: flex; align-items: center; justify-content: center;
-  background: #08100c; box-shadow: inset 0 0 0 1px #1d2a22;
-  font: 500 .55rem var(--mono); letter-spacing: .12em; color: #4d6b58;
-  transition: color .2s ease, box-shadow .2s ease;
-}
-.projects-grid .item .r-screen::before { content: "READY" }
-.projects-grid .item .r-keys {
-  position: absolute; left: 1.1rem; right: .9rem; bottom: 1.7rem; height: 5.6rem;
-  background: radial-gradient(circle at center, #34343b 0 .26rem, transparent .3rem) 0 0 / 33.333% 25%;
-}
 
 /* Desktop with a mouse: grab the card anywhere to drag it into the reader */
 @media (min-width: 40rem) and (pointer: fine) {
@@ -1127,7 +1064,7 @@ article h1 { margin-top: .5rem }
 
 /* Touch or narrow: no reader */
 @media (max-width: 39.99rem), (pointer: coarse) {
-  .projects-grid .item .reader { display: none }
+  
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
   .projects-grid .item-top::after { display: none }
 }
@@ -1136,7 +1073,7 @@ article h1 { margin-top: .5rem }
 }
 @media (prefers-reduced-motion: reduce) {
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover, .projects-grid .item.dip { transform: none }
-  .projects-grid .item .reader { transition: none }
+  
 }
 
 /* Stripe v3: quiet hint row, no knob. The pull shows as a green line along the top edge. */
@@ -1154,7 +1091,7 @@ article h1 { margin-top: .5rem }
   color: var(--muted); transition: color .2s ease;
 }
 .projects-grid .item .meta li:first-child a:hover { color: var(--ink) }
-.projects-grid .item:has(.reader.ready:not(.thanks)) .meta li:first-child a { color: var(--live) }
+
 .projects-grid .item .meta li:first-child a:focus-visible { outline: 2px solid var(--live); outline-offset: -2px }
 .projects-grid .item .meta li:first-child a::before { right: 1.4rem }
 @media (min-width: 40rem) and (pointer: fine) {
@@ -1184,7 +1121,6 @@ article h1 { margin-top: .5rem }
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; translate: none }
   .projects-grid .item.spring { translate: none; transition: none }
 }
-
 
 /* Phone header: copy the desktop layout (big centered photo, name, location, contact icons) */
 @media (max-width: 40rem) {
@@ -1484,9 +1420,6 @@ article h1 { margin-top: .5rem }
 /* Sidebar location line: cream to match */
 .side .loc, .side .loc span { color: color-mix(in srgb, var(--ink) 85%, transparent) }
 
-
-
-
 /* Cards v6: big number sits higher, beside the title, clear of the description */
 .projects-grid .item::after {
   opacity: .8;
@@ -1533,9 +1466,6 @@ article h1 { margin-top: .5rem }
 }
 
 /* Cards v10: lighter embedded chips, slightly bigger icons */
-
-
-
 
 /* Cards v11: inlaid chips (flush with the card, shallow recess, no dark hole) */
 .projects-grid .item .meta li+li a {
@@ -1669,7 +1599,6 @@ article h1 { margin-top: .5rem }
 .overview .project-title [class*="status"],
 .overview .ov-chip { display: none }
 
-
 /* Overview v23: facts row fills the card width, Role gets extra room, stacks on small screens */
 .overview .facts { gap: .8rem; align-items: stretch;
 }
@@ -1681,7 +1610,6 @@ article h1 { margin-top: .5rem }
 @media (max-width: 26rem) {
   .overview .facts { grid-template-columns: 1fr }
 }
-
 
 /* Overview v25: back to the muted palette (replaces v24 cream), slightly stronger so the links pop */
 .overview .meta li a {
@@ -1775,7 +1703,6 @@ article h1 { margin-top: .5rem }
 /* Shell width v2: About and Experience match the Projects shell so the sidebar stays put */
 .home .shell:has(.page-title) { max-width: 64rem }
 
-
 /* Projects intro v3: muted gray text */
 .projects-intro .pi-lead { color: var(--muted) }
 
@@ -1794,148 +1721,41 @@ html.vt-leave::view-transition-group(page) { animation: none }
 html.vt-leave::view-transition-old(page) { display: none }
 html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
-/* Reader v3: slides out and fades in quickly, exits with an ease-in and no scale or bounce */
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader {
-    translate: -1.8rem 0; scale: 1;
-  }
-  .projects-grid .item .reader.in {
-    translate: 0 0; scale: 1;
-  }
-}
-
-/* Reader v3b: no fade. Visible immediately on the way out, and removed only after the slide back finishes. */
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader {
-    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity 0s linear .3s, transform .3s cubic-bezier(.5, 0, .75, 0);
-  }
-  .projects-grid .item.spring .reader {
-    transition: translate .3s cubic-bezier(.5, 0, .75, 0), scale .3s ease, opacity 0s linear .3s, transform .3s cubic-bezier(.5, 0, .75, 0);
-  }
-}
-
-
-
-
-
-/* Reader v3g: exit is a wipe toward the card edge (no fade, no slide); enter keeps the slide */
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader.in {
-    opacity: 1;
-  }
-}
-
-/* Reader v3h: the open machine is not clipped */
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader { clip-path: inset(-50rem 100% -50rem -50rem) }
-}
-
-/* Reader v3i: exit is a short fade in place (no wipe, no slide); the closed-state offset applies only after it is invisible */
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader,
-  .projects-grid .item.spring .reader {
-    clip-path: none; opacity: 0;
-    transition: translate 0s linear .3s, scale 0s linear .3s, transform 0s linear .3s, opacity .3s ease-out;
-  }
-  .projects-grid .item .reader.in { clip-path: none }
-}
-
 /* Leaving an overview: the card keeps one height for the whole return, so removing .pulling causes no vertical shift */
-.projects-grid .item.retract-hold, .projects-grid .item.retract-hold:hover { transform: none !important; transition: none !important }
-
 
 /* Machine screen: INSERT CARD until the card is fully in, then APPROVED; THANK YOU when leaving an overview */
-.projects-grid .item .reader .r-screen::before { content: "INSERT CARD"; letter-spacing: .06em }
-.projects-grid .item .reader.ready .r-screen::before { content: "APPROVED" }
 
 /* Machine v4: slot glow follows the pull, blinking cursor on the prompt, flash on approval */
-.projects-grid .item .reader::before {
-  box-shadow: inset 0 0 6px #000, 0 0 0 1px #2a2a30,
-    0 0 calc(var(--pull, 0) * 14px) calc(var(--pull, 0) * 1px) color-mix(in srgb, var(--live) calc(var(--pull, 0) * 70%), transparent);
-}
-.projects-grid .item .reader.ready::before {
-  box-shadow: inset 0 0 6px #000, 0 0 0 1px var(--live), 0 0 14px 1px color-mix(in srgb, var(--live) 70%, transparent);
-}
-.projects-grid .item .reader:not(.ready) .r-screen::after {
-  content: ""; width: .32rem; height: .62rem; margin-left: .3rem; background: currentColor; opacity: .8;
-}
+
 @keyframes r-blink { 50% { opacity: 0 } }
 @keyframes r-approve {
   0% { box-shadow: inset 0 0 0 1px #1d2a22, 0 0 0 0 transparent }
   35% { box-shadow: inset 0 0 0 1px var(--live), 0 0 16px 2px color-mix(in srgb, var(--live) 60%, transparent) }
   100% { box-shadow: inset 0 0 0 1px #1d2a22, 0 0 0 0 transparent }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader:not(.ready) .r-screen::after { animation: r-blink 1s steps(1, end) infinite }
-}
 
 /* Machine v5: keypad lights up row by row with the pull, pulses on approval; gloss and label on the body */
-.projects-grid .item .r-keys::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(circle at center, var(--live) 0 .26rem, transparent .3rem) 0 0 / 33.333% 25%;
-  -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--pull, 0) * 100%), transparent 0);
-  mask-image: linear-gradient(to bottom, #000 calc(var(--pull, 0) * 100%), transparent 0);
-}
-@supports (width: calc(round(down, 2.5, 1) * 1px)) {
-  .projects-grid .item .r-keys::after {
-    -webkit-mask-image: linear-gradient(to bottom, #000 calc(round(down, var(--pull, 0) * 4, 1) * 25%), transparent 0);
-    mask-image: linear-gradient(to bottom, #000 calc(round(down, var(--pull, 0) * 4, 1) * 25%), transparent 0);
-  }
-}
-.projects-grid .item .reader.ready .r-keys::after { -webkit-mask-image: none; mask-image: none }
+
 @keyframes r-keys-flash {
   0% { filter: brightness(2.4) drop-shadow(0 0 5px var(--live)) }
   100% { filter: none }
 }
-.projects-grid .item .reader {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, .06), transparent 16%),
-    linear-gradient(165deg, #222227, #0b0b0d 70%);
-}
-.projects-grid .item .r-keys::before {
-  content: "MICO PAY"; position: absolute; left: 0; right: 0; bottom: -1.15rem; text-align: center;
-  font: 500 .4rem var(--mono); letter-spacing: .22em; color: #4a4a52;
-}
 
 /* Machine v5b: no glow on the slot edge, back to the plain dark slot */
-.projects-grid .item .reader::before,
-.projects-grid .item .reader.ready::before {
-  box-shadow: inset 0 0 6px #000, 0 0 0 1px #2a2a30;
-}
 
 /* Machine v5c: no glow or flash on the keypad; the dots still light up with the pull */
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader.ready:not(.thanks) .r-keys::after { animation: none }
-}
-.projects-grid .item .r-keys::after { filter: none }
-
 
 /* Machine v5d: no green anywhere. Keypad stays gray, screen text is neutral, no glow or pulse. */
-.projects-grid .item .r-keys::after { display: none }
-.projects-grid .item .reader.ready .r-screen { box-shadow: inset 0 0 0 1px #1d2a22; animation: none;
-}
-.projects-grid .item .reader.ready::after { background: #55555d; box-shadow: none }
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader.ready:not(.thanks) .r-screen { animation: none }
-}
 
 /* Machine v5e: screen text is green again, still no glow or pulse */
-.projects-grid .item .reader.ready .r-screen { color: var(--live) }
 
 /* Machine v6: no blinking cursor, screen text truly centered (cancels the trailing letter-spacing) */
-.projects-grid .item .reader .r-screen::after { display: none; animation: none }
-.projects-grid .item .reader .r-screen::before { margin-right: -.06em }
-.projects-grid .item .reader.ready .r-screen::before { margin-right: -.12em }
-
-
-
 
 /* Hover hit area: the lifted card keeps :hover over its old bottom edge (no flicker loop) */
 .projects-grid .item .hover-pad { position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none }
 @media (hover: hover) and (pointer: fine) {
   .projects-grid .item:hover .hover-pad { pointer-events: auto }
 }
-
 
 /* Lightbox (js/lightbox.js): click an overview image or video to enlarge it */
 .overview .slide img, .overview .slide video { cursor: zoom-in }
@@ -2016,9 +1836,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 .policy section li::marker { color: var(--muted) }
 .policy section code { font: 400 .82em var(--mono); padding: .1em .4em; border: 1px solid var(--line); border-radius: .3rem; background: var(--card); overflow-wrap: anywhere }
 .policy section a { text-underline-offset: .2em }
-
-
-
 
 /* Privacy policy uses the overview card. Its back control is an arrow, so no 90deg spin on hover. */
 .overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: translateX(-2px) }
@@ -2227,11 +2044,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 }
 @media (max-width: 30rem) {
   .projects-grid .item::after { top: auto; right: 1.3rem; bottom: 3.4rem;}
-}
-@media (prefers-reduced-motion: no-preference) {
-  .projects-grid .item .reader.in {
-    transition: translate .22s cubic-bezier(.2, .8, .2, 1), scale .22s ease, transform .22s cubic-bezier(.2, .8, .2, 1), clip-path 0s;
-  }
 }
 
 /* phone overview entrance and screenshot edge */
@@ -2455,9 +2267,6 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
   .overview .facts > div:nth-child(n) { grid-column: 1 / -1 }
 }
 
-/* reader screen: no insert card text */
-.projects-grid .item .reader:not(.ready) .r-screen::before { content: "" }
-
 /* crisp link icons: whole pixel size */
 .projects-grid .item .meta li+li a .ico,
 .overview .meta li a .ico,
@@ -2597,20 +2406,6 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
 
 /* light theme: FlyRank wordmark is near-white, so it sits on a small black pill to stay readable */
 :root:not([data-theme="dark"]) .org-logo { box-sizing: content-box; opacity: 1; padding: .3rem .6rem; background: #0B0B0B; border-radius: .45rem }
-
-/* light theme: the card-reader terminal becomes a cream terminal with a dark LCD */
-:root:not([data-theme="dark"]) .projects-grid .item .reader {
-  border-color: #B9AA86;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .35), transparent 18%), linear-gradient(165deg, #EFE6D0, #D6CAAC 75%);
-  box-shadow: 0 22px 34px -16px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -10px 18px rgba(90, 70, 40, .14);
-}
-:root:not([data-theme="dark"]) .projects-grid .item .reader::before,
-:root:not([data-theme="dark"]) .projects-grid .item .reader.ready::before { background: #2B2419; box-shadow: inset 0 0 6px #000, 0 0 0 1px #B9AA86 }
-:root:not([data-theme="dark"]) .projects-grid .item .reader::after,
-:root:not([data-theme="dark"]) .projects-grid .item .reader.ready::after { background: #A89B80 }
-:root:not([data-theme="dark"]) .projects-grid .item .r-keys { background: radial-gradient(circle at center, #A89B80 0 .26rem, transparent .3rem) 0 0 / 33.333% 25% }
-:root:not([data-theme="dark"]) .projects-grid .item .r-keys::before { color: #8E8165 }
-:root:not([data-theme="dark"]) .projects-grid .item .reader.ready .r-screen { color: #7ACB8D }
 
 /* ================================================================
    LAYOUT: sidebar flush left, page content centered in the space beside it
