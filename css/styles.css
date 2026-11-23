@@ -2657,3 +2657,18 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-simple-in .2s ease .1s both }
   .snd, .theme-btn { top: max(.75rem, env(safe-area-inset-top)) !important; bottom: auto !important }
 }
+
+/* ================================================================
+   PHONE TOOLS BELOW NAV: theme/mute sit under the nav row, top right of the profile area, small, scroll with the page
+   Tune: top (distance from the top), width/height (button size)
+   ================================================================ */
+@media (max-width: 56rem) {
+  .snd, .theme-btn {
+    position: absolute !important; bottom: auto !important;
+    top: calc(env(safe-area-inset-top, 0px) + 3.6rem) !important;
+    width: 2.2rem !important; height: 2.2rem !important; z-index: 3;
+  }
+  .snd { right: 1.5rem !important }
+  .theme-btn { right: 4rem !important }
+  .snd svg, .theme-btn svg { width: 1.05rem !important; height: 1.05rem !important }
+}
