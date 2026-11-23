@@ -1035,10 +1035,7 @@ article h1 { margin-top: .5rem }
 
 /* Card-to-overview transition (js/home.js wraps the page swap in a View Transition) */
 ::view-transition-old(page), ::view-transition-new(page) { mix-blend-mode: normal }
-@keyframes vt-recede {
-  from { transform: perspective(900px) rotateX(0) scale(1); filter: brightness(1); opacity: 1 }
-  to { transform: perspective(900px) translateZ(-260px) rotateX(32deg) scale(.86); filter: brightness(.3); opacity: 0 }
-}
+
 @media (prefers-reduced-motion: reduce) {
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { filter: none }
 }
@@ -2421,8 +2418,8 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
    ================================================================ */
 html.vt-in, html.vt-swap { --vt-a: 88deg }
 html.vt-out { --vt-a: -88deg }
-@keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)) scale(.94); visibility: hidden } }
-@keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)) scale(.94); visibility: hidden } }
+@keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)); visibility: hidden } }
+@keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)); visibility: hidden } }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-group(page) { animation: none }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-old(page) { animation: vt-turn-out .3s cubic-bezier(.5, 0, .9, .5) both }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-turn-in .55s cubic-bezier(.2, .9, .25, 1) .3s both }
@@ -2513,3 +2510,13 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
   .side-tools .snd.off { opacity: .55 }
   .side-tools .snd:hover, .side-tools .theme-btn:hover, .side-tools .snd:focus-visible, .side-tools .theme-btn:focus-visible { border-color: var(--muted); background: var(--btn-hover); opacity: 1 }
 }
+
+/* ================================================================
+   NO ZOOM, NO SCAN LINE
+   - the overview's own ::before was a scan line (ov-scan); the earlier stop only covered child pseudo-elements
+   - page snapshots keep their own size, so the width change between home (34rem) and overview (44rem) cannot stretch them
+   ================================================================ */
+.overview::before, .overview::after { animation: none !important }
+.overview::before { background: none !important; box-shadow: none !important }
+html:is(.vt-in, .vt-out, .vt-swap)::view-transition-old(page),
+html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { width: auto; height: auto; max-width: none }
