@@ -2479,3 +2479,19 @@ html.vt-swap::view-transition-new(page) { animation: vt-swap-in .3s cubic-bezier
     0 1px 0 #B3A47F, 0 2px 0 #A1926D,
     0 5px 8px -4px rgba(70, 52, 25, .45);
 }
+
+/* ================================================================
+   OVERVIEW: no entrance animation of its own, the page flip (PAGE TRANSITIONS) is the only motion
+   ================================================================ */
+.overview,
+.overview :where(.back-top, .project-title, .project-lede, .meta, section, .frame, h2, .facts, .facts > div, p, ul, li) { animation: none }
+
+/* ================================================================
+   LIGHT LIGHTBOX: cream backdrop, buttons and enlarge button in light theme (dark theme unchanged)
+   ================================================================ */
+:root:not([data-theme="dark"]) .lb { background: rgba(231, 222, 200, .95) }
+:root:not([data-theme="dark"]) .lb-stage img, :root:not([data-theme="dark"]) .lb-stage video { box-shadow: 0 20px 50px rgba(70, 52, 25, .35) }
+:root:not([data-theme="dark"]) .lb-btn, :root:not([data-theme="dark"]) .lb-hint { background: #E2D8C0; border-color: #C9BC9C; color: #2B2419 }
+:root:not([data-theme="dark"]) .lb-btn:hover, :root:not([data-theme="dark"]) .lb-hint:hover, :root:not([data-theme="dark"]) .lb-hint:focus-visible { background: #D8CDB1; border-color: #766A52; color: #2B2419 }
+:root:not([data-theme="dark"]) .lb-count { color: #483D2C }
+:root:not([data-theme="dark"]) .slide video { background: #E2D8C0 }
