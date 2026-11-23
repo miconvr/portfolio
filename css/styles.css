@@ -2547,3 +2547,43 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* outline icons for the sidebar contact links */
 .side-links .ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+
+/* store badges on cards and overviews: small label over a bold name, dark rounded pill */
+.ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+.projects-grid .item .meta li+li a.badge,
+.projects-grid .item .meta li+li a.badge:hover,
+.projects-grid .item .meta li+li a.badge:focus-visible,
+.overview .meta li a.badge,
+.overview .meta li a.badge:hover,
+.overview .meta li a.badge:focus-visible {
+  all: unset; position: relative; box-sizing: border-box; display: inline-flex; align-items: center; gap: .75rem;
+  padding: .55rem 1.1rem .55rem .85rem; border: 1px solid rgba(243, 233, 210, .14); border-radius: .7rem;
+  background: var(--bg); color: var(--ink); cursor: pointer; text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.projects-grid .item .meta li+li a.badge:hover,
+.projects-grid .item .meta li+li a.badge:focus-visible,
+.overview .meta li a.badge:hover,
+.overview .meta li a.badge:focus-visible { border-color: rgba(243, 233, 210, .34); transform: translateY(-1px) }
+.projects-grid .item .meta li+li a.badge:focus-visible,
+.overview .meta li a.badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px }
+.projects-grid .item .meta li+li a.badge::before,
+.projects-grid .item .meta li+li a.badge::after,
+.overview .meta li a.badge::before,
+.overview .meta li a.badge::after { content: none; display: none }
+.projects-grid .item .meta li+li a.badge .ico,
+.overview .meta li a.badge .ico { display: block; flex: none; width: 24px; height: 24px; margin: 0; shape-rendering: geometricPrecision }
+.badge .bd-t { display: block; text-align: left }
+.badge .bd-s { display: block; font: 600 .62rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.badge .bd-b { display: block; margin-top: .22rem; font: 600 1.05rem/1.1 var(--sans); letter-spacing: -.01em; text-transform: none; white-space: nowrap; color: var(--ink) }
+@media (max-width: 40rem) {
+  .badge .bd-s { font-size: .75rem }
+  .overview .meta li:has(a.badge) { grid-column: 1 / -1 }
+  .overview .meta:has(a.badge) li:last-child:nth-child(odd) { grid-column: auto }
+  .overview .meta li:has(a.badge) + li:last-child { grid-column: 1 / -1 }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item .meta li+li a.badge, .overview .meta li a.badge { transition: none }
+  .projects-grid .item .meta li+li a.badge:hover, .projects-grid .item .meta li+li a.badge:focus-visible,
+  .overview .meta li a.badge:hover, .overview .meta li a.badge:focus-visible { transform: none }
+}
