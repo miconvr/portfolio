@@ -2,7 +2,15 @@
   const CL = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>';
   const CR = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
 
-  const cur = s => Math.round(s.scrollLeft / (s.clientWidth || 1));
+  const left = (s, el) => s.scrollLeft + el.getBoundingClientRect().left - s.getBoundingClientRect().left;
+  const cur = s => {
+    let best = 0, dist = Infinity;
+    Array.from(s.children).forEach((el, i) => {
+      const d = Math.abs(left(s, el) - s.scrollLeft);
+      if (d < dist) { dist = d; best = i; }
+    });
+    return best;
+  };
   function paint(c) {
     const s = c.querySelector(".slides");
     if (s && c._num) c._num.textContent = (cur(s) + 1) + " / " + s.children.length;
@@ -16,8 +24,10 @@
     const i = (base + d + n) % n;
     c._t = i;
     clearTimeout(c._h);
-    c._h = setTimeout(() => { c._t = null; }, 700);
-    s.scrollTo({ left: i * s.clientWidth, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    c._h = setTimeout(() => { c._t = null; s.style.scrollSnapType = ""; }, 700);
+    s.style.scrollSnapType = "none";
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    s.scrollTo({ left: left(s, s.children[i]), behavior: reduce ? "auto" : "smooth" });
   }
 
   function build(c) {
