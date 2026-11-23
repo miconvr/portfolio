@@ -2684,3 +2684,12 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
    Tune: --fr-dur (length), --fr-step (delay between blocks), --fr-rise (distance)
    ================================================================ */
 :root:root { --fr-dur: .3s; --fr-step: 25ms; --fr-rise: 6px; --fr-blur: 0px }
+
+/* ================================================================
+   SNAPPY SIDEBAR HOVER: nav link color and line follow the mouse almost instantly (desktop sidebar only)
+   Tune: .08s (color) and .12s (line). Higher = softer
+   ================================================================ */
+@media (min-width: 56.01rem) and (prefers-reduced-motion: no-preference) {
+  .side nav a { transition: transform .1s ease, color .08s ease, border-color .08s ease }
+  .side nav a::before { transition: width .12s ease }
+}
