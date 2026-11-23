@@ -127,7 +127,9 @@
   var openCard=null;
   // page depth: 0 = home and the section pages, 1 = a project overview, 2 = a page inside a project (privacy)
   function depth(p){p=norm(p);return /^\/(kaltas|civicguard)\/./.test(p)?2:/^\/(kaltas|civicguard)$/.test(p)?1:0}
+  var runSeq=0;
   function run(data,path,mode){
+    var my=++runSeq;
     openCard=null;
     var root=document.documentElement;
     if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches){applyPage(data,path,mode);return;}
@@ -143,7 +145,7 @@
     });
     t.finished.catch(function(){}).then(function(){
       main.style.viewTransitionName='';root.classList.remove('vt-in','vt-out','vt-swap');
-      if(current!==path)window.location.href=path;
+      if(my===runSeq&&current!==path)window.location.href=path;
     });
   }
 
