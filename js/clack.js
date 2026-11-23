@@ -174,7 +174,7 @@
   window.addEventListener("focus", wake);
   document.addEventListener("pointerover", wake, { passive: true });
 
-  let lastHover = 0, lastEl = null;
+  let lastHover = 0, lastEl = null, noTickUntil = 0;
   document.addEventListener("pointerover", e => {
     if (e.pointerType !== "mouse") return;
     const t = e.target.closest && (e.target.closest(".projects-grid .item .meta li+li a") || e.target.closest(".projects-grid .item") || e.target.closest(SEL));
@@ -182,7 +182,7 @@
     if (e.relatedTarget && t.contains(e.relatedTarget)) return;
     lastEl = t;
     const now = performance.now();
-    if (now - lastHover < 130) return;
+    if (now - lastHover < 130 || now < noTickUntil) return;
     lastHover = now;
     tick();
   }, true);
@@ -192,6 +192,7 @@
 
   document.addEventListener("pointerdown", e => {
     if (e.pointerType === "mouse" && e.button !== 0) return;
+    noTickUntil = performance.now() + 450; // no hover tick on top of the thock or the page swap
     if (e.target.closest && e.target.closest(".snd")) return; // the mute button makes its own sound
     if (ctx && ctx.state !== "running") { wake().then(down); return; }
     down();
