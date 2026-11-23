@@ -1048,9 +1048,6 @@ article h1 { margin-top: .5rem }
   .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
 }
 
-/* Page swap after the swipe: quick fade out, then the overview rises (no tilt) */
-::view-transition-old(page) { transform-origin: 50% 50%; animation: vt-out .3s ease both }
-@keyframes vt-out { to { opacity: 0; transform: scale(.985) } }
 
 /* Card reader v2: bigger terminal with screen and keypad, slides out when the drag starts */
 .projects-grid .item { --reader-w: 7rem; --reader-gap: .7rem; --reader-insert: 1.1rem; --reader-travel: calc(var(--reader-gap) + var(--reader-insert)) }
@@ -1199,9 +1196,6 @@ article h1 { margin-top: .5rem }
   .overview .project-title h1 { font-size: 2rem }
 }
 
-/* Page swap: the overview card does its own pop, so the incoming page only fades */
-::view-transition-new(page) { animation: vt-fade .2s ease .12s both }
-@keyframes vt-fade { from { opacity: 0 } to { opacity: 1 } }
 
 /* Overview entrance: the card pops in with a spring, one sheen sweeps across it, then its parts stagger in.
    Delays are by role (not nth-child), so new sections and new projects need no extra rules. */
@@ -1713,13 +1707,6 @@ article h1 { margin-top: .5rem }
   ::view-transition-group(side) { animation: none }
 }
 
-/* Leaving an overview: no page animation, the sidebar still glides */
-html.vt-leave::view-transition-old(page), html.vt-leave::view-transition-new(page) { animation: none }
-
-/* Leaving an overview: drop the old page instantly, no overlap; only the sidebar glides */
-html.vt-leave::view-transition-group(page) { animation: none }
-html.vt-leave::view-transition-old(page) { display: none }
-html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* Leaving an overview: the card keeps one height for the whole return, so removing .pulling causes no vertical shift */
 
