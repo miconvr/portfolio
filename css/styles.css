@@ -2672,3 +2672,9 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .theme-btn { right: 4rem !important }
   .snd svg, .theme-btn svg { width: 1.05rem !important; height: 1.05rem !important }
 }
+
+/* ================================================================
+   PIN MATCH: location pin centered on its line, same stroke and color as the contact icons
+   ================================================================ */
+.side .lead.loc { align-items: center }
+.side .lead.loc .ico.line { margin: 0; stroke-width: 2; color: var(--text) }
