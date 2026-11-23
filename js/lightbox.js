@@ -19,7 +19,7 @@
       '<div class="lb-stage"></div>' +
       '<button class="lb-btn lb-nav lb-next" type="button" aria-label="Next">' + ico("M9 18l6-6-6-6") + "</button>" +
       '<span class="lb-count" aria-live="polite"></span>';
-    document.body.appendChild(box);
+    document.documentElement.appendChild(box); // outside body: body's clip-path (rounded corners) would clip a fixed overlay
     stage = box.querySelector(".lb-stage");
     count = box.querySelector(".lb-count");
     closeBtn = box.querySelector(".lb-close");
