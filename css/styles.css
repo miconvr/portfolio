@@ -2434,8 +2434,8 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
    ================================================================ */
 html.vt-in, html.vt-swap { --vt-a: 88deg }
 html.vt-out { --vt-a: -88deg }
-@keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)) scale(.94) } }
-@keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)) scale(.94) } }
+@keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)) scale(.94); visibility: hidden } }
+@keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)) scale(.94); visibility: hidden } }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-group(page) { animation: none }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-old(page) { animation: vt-turn-out .3s cubic-bezier(.5, 0, .9, .5) both }
 html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-turn-in .55s cubic-bezier(.2, .9, .25, 1) .3s both }
