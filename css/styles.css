@@ -2547,3 +2547,43 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* outline icons for the sidebar contact links */
 .side-links .ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+
+/* home intro (hero): first thing on the home page */
+.hero { padding: 0; margin: 0 }
+.hero-tag { display: inline-flex; align-items: center; gap: .5rem; margin: 4rem 0 0; padding: .3rem .8rem .3rem .65rem; border: 1px solid var(--line); border-radius: 999px; font: 500 .72rem/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--text) }
+.hero-dot { width: .45rem; height: .45rem; border-radius: 50%; background: var(--live) }
+.hero-title { margin: 1.1rem 0 .5rem; font: 700 clamp(2.75rem, 5.2vw, 4.25rem)/1.02 var(--sans); letter-spacing: -.035em; color: var(--ink); text-wrap: balance }
+.hero-role { margin: 0 0 1.25rem; font: 400 .9rem/1.6 var(--mono); letter-spacing: .02em; color: var(--muted) }
+.hero-bio { max-width: 36rem; margin: 0; font: 400 .95rem/1.75 var(--mono); color: var(--text) }
+.hero-bio strong { font-weight: 600; color: var(--ink) }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; margin: 1.6rem 0 0 }
+.hero-btn { display: inline-flex; align-items: center; padding: .6rem 1.05rem; border-radius: .5rem; background: var(--ink); color: var(--bg); font: 600 .82rem/1 var(--mono); text-decoration: none; transition: opacity .2s }
+.hero-btn:hover, .hero-btn:focus-visible { opacity: .88 }
+.hero-link { color: var(--muted); font: 400 .82rem/1 var(--mono); text-decoration: none; text-underline-offset: .3em }
+.hero-link:hover, .hero-link:focus-visible { color: var(--ink); text-decoration: underline }
+.home main .hero + .home-intro h2 { margin-top: 4.5rem }
+@media (max-width: 30rem) {
+  .hero-tag { margin-top: 2rem }
+  .hero-title { font-size: 2.6rem }
+  .home main .hero + .home-intro h2 { margin-top: 3.5rem }
+}
+@keyframes hero-pulse { 0% { box-shadow: 0 0 0 0 rgba(122, 203, 141, .5) } 70%, 100% { box-shadow: 0 0 0 .5rem rgba(122, 203, 141, 0) } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-dot { animation: hero-pulse 2.4s ease-out infinite }
+  .js .hero > * { --fr-blur: 0px; --fr-rise: 6px; --fr-dur: .5s; --fr-ease: ease-out; --fr-step: 60ms; animation: focus-rise var(--fr-dur) var(--fr-ease) calc(var(--i, 0) * var(--fr-step)) backwards }
+  .js .hero > :nth-child(1) { --i: 1 }
+  .js .hero > :nth-child(2) { --i: 2 }
+  .js .hero > :nth-child(3) { --i: 3 }
+  .js .hero > :nth-child(4) { --i: 4 }
+  .js .hero > :nth-child(5) { --i: 5 }
+  .js .hero ~ .home-intro h2 { --i: 6 }
+  .js .hero ~ .home-intro .projects-intro { --i: 7 }
+}
+
+/* sidebar watermark: a big faint heart cropped in the bottom corner (desktop only) */
+@media (min-width: 56.01rem) {
+  .side {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg transform='rotate(-14 60 60)'%3E%3Cpath d='M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z' fill='%23e5484d' fill-opacity='.07'/%3E%3Cellipse cx='45' cy='50' rx='5' ry='9' fill='%23000' fill-opacity='.3'/%3E%3Cellipse cx='75' cy='50' rx='5' ry='9' fill='%23000' fill-opacity='.3'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right -7rem bottom -5.5rem; background-size: 18rem;
+  }
+}

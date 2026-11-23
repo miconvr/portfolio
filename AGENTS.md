@@ -12,7 +12,7 @@ Plain HTML, CSS and vanilla JS. No framework, bundler or `package.json`. Hosted 
 
 | Path | Purpose |
 |---|---|
-| `index.html` | Home with the two project cards in `.projects-grid` |
+| `index.html` | Home: intro (`.hero`) above the two project cards in `.projects-grid` |
 | `kaltas/index.html`, `civicguard/index.html` | Project overview pages, served as `/kaltas`, `/civicguard` |
 | `about/index.html`, `experience/index.html` | Served as `/about`, `/experience` (`cleanUrls` on) |
 | `certificates/index.html` | Certificates page, served as `/certificates` (see "Certificates page") |
@@ -86,6 +86,13 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 - Commit counts: sidebar total "(N+ commits)" beside the github.com/miconvr link (hidden at 56rem and below). Per-repo counts live in `<span class="repo-commits" data-repo-commits="slug" hidden>` in each overview's Activity tile. Both hide if the API fails. New project: add its repo to `PROJECTS` in `api/commits.js`.
 - Kaltas users pill (Chrome Web Store), never exact, rounded down server-side: under 5 hidden, 5 to 99 by 5, 100 to 999 by 50, 1,000 to 9,999 by 500, 10,000+ by 1,000. Show "N+ users". CivicGuard has none.
 - The mascot wrapper is created by `js/been-here.js`. Don't add mascot markup to pages.
+
+## Home intro
+
+- `index.html` opens with `<section class="hero">` inside `<main>`, above `.home-intro` (the Projects heading). Children in order: `.hero-tag` ("Open to OJT" with a green pulsing dot), `.hero-title` (an `h2`, because the sidebar name is the `h1`), `.hero-role`, `.hero-bio`, `.hero-actions` ("say hi" mailto button and a "see my projects" link to `#projects`). Remove the tag when he is no longer looking for OJT.
+- Copy comes from the About page and the project cards. Don't invent facts. If the bio changes, keep it short (two sentences) and in sync with About.
+- Hero CSS is one labeled block at the end of `css/styles.css`. It uses the page tokens only (no hardcoded colors besides the pulse rgba of `--live`). The entrance reuses `focus-rise`, staggered with `--i` 1 to 5, and the Projects heading and intro follow at 6 and 7.
+- Sidebar watermark: on desktop (56.01rem up) `.side` has a faint rotated heart as a background image, cropped in the bottom-right corner. It is CSS only (an inline SVG data URI, 7% opacity). Phones have no watermark.
 
 ## Home project cards
 
