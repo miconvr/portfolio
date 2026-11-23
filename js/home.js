@@ -135,8 +135,14 @@
     var dir=d>0?'vt-in':d<0?'vt-out':'vt-swap';
     main.style.viewTransitionName='page';
     root.classList.add(dir);
-    var t=document.startViewTransition(function(){applyPage(data,path,mode);main.classList.remove('panel-enter');});
-    t.finished.finally(function(){main.style.viewTransitionName='';root.classList.remove('vt-in','vt-out','vt-swap');});
+    var t=document.startViewTransition(function(){
+      try{applyPage(data,path,mode);main.classList.remove('panel-enter');}
+      catch(err){console.error('page update failed',err);window.location.href=path;}
+    });
+    t.finished.catch(function(){}).then(function(){
+      main.style.viewTransitionName='';root.classList.remove('vt-in','vt-out','vt-swap');
+      if(current!==path)window.location.href=path;
+    });
   }
 
   function show(path,mode){
