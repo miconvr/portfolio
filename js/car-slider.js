@@ -9,13 +9,15 @@
   }
 
   function step(c, d) {
-    const btns = Array.from(c.querySelectorAll(".car-btn"));
-    const next = btns.find(b => b.classList.contains("next"));
-    const prev = btns.find(b => b !== next);
-    const b = d > 0 ? next : prev;
-    if (b) { b.click(); return; }
     const s = c.querySelector(".slides");
-    if (s) s.scrollBy({ left: d * s.clientWidth, behavior: "smooth" });
+    if (!s) return;
+    const n = s.children.length;
+    const base = c._t != null ? c._t : cur(s);
+    const i = (base + d + n) % n;
+    c._t = i;
+    clearTimeout(c._h);
+    c._h = setTimeout(() => { c._t = null; }, 700);
+    s.scrollTo({ left: i * s.clientWidth, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   }
 
   function build(c) {

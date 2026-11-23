@@ -6,5 +6,5 @@ document.addEventListener("click", function (e) {
   if (!card) return;
   if (window.getSelection && String(window.getSelection())) return;
   var link = card.querySelector('.meta a[href^="/"]');
-  if (link) location.href = link.href;
+  if (link) link.click();
 });
