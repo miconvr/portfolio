@@ -6,5 +6,8 @@ document.addEventListener("click", function (e) {
   if (!card) return;
   if (window.getSelection && String(window.getSelection())) return;
   var link = card.querySelector('.meta a[href^="/"]');
-  if (link) link.click();
+  if (link) {
+    document.dispatchEvent(new Event("reader-approved"));
+    link.click();
+  }
 });
