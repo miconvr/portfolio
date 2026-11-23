@@ -2724,3 +2724,25 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   html.js:not(.vt-in):not(.vt-out) main > .home-intro,
   html.js:not(.vt-in):not(.vt-out) main > #projects { animation: page-slide .4s cubic-bezier(.16, 1, .3, 1) backwards }
 }
+
+/* ================================================================
+   CARD COLORS: each home card is tinted with its project's core color (Kaltas terracotta from its icon, CivicGuard burgundy), in both themes
+   Tune: --tint on each card (the color), and the percentages in the two gradients (dark 28% / 10%, light 20% / 12%) and the border mix. Higher = stronger color
+   A card with no --tint falls back to the plain card colors. The card text (--muted) is set to 80% (dark) / 90% (light) of --text so dates stay readable (4.5:1 or more) on the tint
+   ================================================================ */
+.projects-grid .item:has(.meta a[href^="/kaltas"]) { --tint: #D27050 }
+.projects-grid .item:has(.meta a[href^="/civicguard"]) { --tint: #A01A40 }
+
+:root[data-theme="dark"] .projects-grid .item {
+  --muted: color-mix(in srgb, var(--text) 80%, transparent);
+  background-image: var(--grain), linear-gradient(145deg, color-mix(in srgb, var(--tint, #1b1b1b) 28%, #1b1b1b), color-mix(in srgb, var(--tint, #131313) 10%, #131313) 60%);
+  border-color: color-mix(in srgb, var(--tint, #242424) 34%, #242424);
+}
+:root[data-theme="dark"] .projects-grid .item:hover { border-color: color-mix(in srgb, var(--tint, #303030) 40%, #303030) }
+
+:root:not([data-theme="dark"]) .projects-grid .item {
+  --muted: color-mix(in srgb, var(--text) 90%, transparent);
+  background-image: var(--card-grain), linear-gradient(145deg, color-mix(in srgb, var(--tint, #F0E8D5) 20%, #F0E8D5), color-mix(in srgb, var(--tint, #E6DDC6) 12%, #E6DDC6) 70%);
+  border-color: color-mix(in srgb, var(--tint, #C9BC9C) 30%, #C9BC9C);
+}
+:root:not([data-theme="dark"]) .projects-grid .item:hover { border-color: color-mix(in srgb, var(--tint, #B9AA86) 36%, #B9AA86) }
