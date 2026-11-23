@@ -50,6 +50,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 ## Global rules
 
 - Two themes: a cream light theme (default) and the original dark theme. Light tokens and overrides are the `LIGHT THEME` blocks at the end of `css/styles.css`, all scoped to `:root:not([data-theme="dark"])`; dark is `data-theme="dark"` on `<html>`. The choice is saved in `localStorage` key `theme-v1`. A new color must work in both themes: use the tokens, not hex values.
+- Centered frame: `body` is capped at `--frame` (72rem) and centered, `html` is pure black, so wide screens show black sides. Fixed buttons (`.snd`, `.theme-btn`) position from `--edge` so they stay inside the frame. Light theme extras: the FlyRank wordmark (`.org-logo`) gets a 1px black outline from stacked drop-shadows, and the card-reader terminal has a cream body with a dark LCD.
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors in new rules.
 - No inline `style=`. Use classes.
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), preloaded in every HTML head. Never add a transform, hover effect or bold to it.

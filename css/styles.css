@@ -2652,3 +2652,29 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 
 /* theme toggle sits left of the mute button */
 .theme-btn { right: calc(max(1rem, env(safe-area-inset-right)) + 3.5rem) }
+
+/* ================================================================
+   CENTERED FRAME: the site sits in a column with pure black on both sides
+   ================================================================ */
+:root { --frame: 72rem; --edge: max(1rem, env(safe-area-inset-right), calc((100vw - var(--frame)) / 2 + 1rem)) }
+html { background: #000 }
+body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0 0 0 1px rgba(243, 233, 210, .1), 0 0 90px rgba(0, 0, 0, .9) }
+.snd { right: var(--edge) }
+.theme-btn { right: calc(var(--edge) + 3.5rem) }
+
+/* light theme: FlyRank wordmark is near-white, so it gets a thin black outline to stay readable */
+:root:not([data-theme="dark"]) .org-logo { opacity: 1; filter: drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000) }
+
+/* light theme: the card-reader terminal becomes a cream terminal with a dark LCD */
+:root:not([data-theme="dark"]) .projects-grid .item .reader {
+  border-color: #B9AA86;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .35), transparent 18%), linear-gradient(165deg, #EFE6D0, #D6CAAC 75%);
+  box-shadow: 0 22px 34px -16px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -10px 18px rgba(90, 70, 40, .14);
+}
+:root:not([data-theme="dark"]) .projects-grid .item .reader::before,
+:root:not([data-theme="dark"]) .projects-grid .item .reader.ready::before { background: #2B2419; box-shadow: inset 0 0 6px #000, 0 0 0 1px #B9AA86 }
+:root:not([data-theme="dark"]) .projects-grid .item .reader::after,
+:root:not([data-theme="dark"]) .projects-grid .item .reader.ready::after { background: #A89B80 }
+:root:not([data-theme="dark"]) .projects-grid .item .r-keys { background: radial-gradient(circle at center, #A89B80 0 .26rem, transparent .3rem) 0 0 / 33.333% 25% }
+:root:not([data-theme="dark"]) .projects-grid .item .r-keys::before { color: #8E8165 }
+:root:not([data-theme="dark"]) .projects-grid .item .reader.ready .r-screen { color: #7ACB8D }
