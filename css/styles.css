@@ -2426,10 +2426,21 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
 /* cards open the project on click (replaces the removed reader) */
 .projects-grid .item { cursor: pointer }
 
-/* card flip: js/card-link.js animates the card itself, so the page transition is instant when entering a project */
-html:not(.vt-leave)::view-transition-group(page),
-html:not(.vt-leave)::view-transition-old(page),
-html:not(.vt-leave)::view-transition-new(page) { animation: none }
+/* ================================================================
+   CARD FLIP ENTRANCE: opening a project tilts the page away, then the overview swings in and settles.
+   Only for entering (leaving uses html.vt-leave and is untouched).
+   ================================================================ */
+@keyframes vt-flip-out {
+  from { transform: perspective(1200px) rotateY(0) translateY(0) scale(1); opacity: 1; filter: brightness(1) }
+  to { transform: perspective(1200px) rotateY(90deg) translateY(-8px) scale(.94); opacity: .5; filter: brightness(.9) }
+}
+@keyframes vt-flip-in {
+  0% { transform: perspective(1200px) rotateY(-90deg) translateY(10px) scale(.94); opacity: 0 }
+  60% { transform: perspective(1200px) rotateY(6deg) translateY(-2px) scale(1.01); opacity: 1 }
+  100% { transform: perspective(1200px) rotateY(0) translateY(0) scale(1); opacity: 1 }
+}
+html:not(.vt-leave)::view-transition-old(page) { animation: vt-flip-out .24s cubic-bezier(.5, 0, .75, 0) both }
+html:not(.vt-leave)::view-transition-new(page) { animation: vt-flip-in .44s cubic-bezier(.2, .8, .3, 1) .22s both }
 
 /* ================================================================
    CREAM KEYCAPS: light theme carousel keys (dark theme keeps the black keys)
