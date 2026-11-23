@@ -245,3 +245,4 @@ Pitfall: Kaltas has extras a new project should not inherit: the privacy policy 
 - Store badges have a black background. The Kaltas badge uses a full-color Chrome logo (`class="ico color"`, 48px viewBox, own fills). Other link icons stay outline.
 
 - The card reader was removed completely: its script and its CSS are deleted. `js/card-link.js` makes project cards clickable.
+- Carousel keycaps (`.cs-key`) are cream in light theme (`CREAM KEYCAPS` block at the end of `css/styles.css`) and black in dark theme.
