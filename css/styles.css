@@ -2548,39 +2548,47 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 /* outline icons for the sidebar contact links */
 .side-links .ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
 
-/* store badges on cards and overviews: small label over a bold name, dark rounded pill */
+/* store badges + overview links: one compact pill style shared by cards and overviews */
 .ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
 .projects-grid .item .meta li+li a.badge,
-.projects-grid .item .meta li+li a.badge:hover,
-.projects-grid .item .meta li+li a.badge:focus-visible,
-.overview .meta li a.badge,
-.overview .meta li a.badge:hover,
-.overview .meta li a.badge:focus-visible {
-  all: unset; position: relative; box-sizing: border-box; display: inline-flex; align-items: center; gap: .75rem;
-  padding: .55rem 1.1rem .55rem .85rem; border: 1px solid rgba(243, 233, 210, .14); border-radius: .7rem;
-  background: var(--bg); color: var(--ink); cursor: pointer; text-decoration: none;
-  transition: border-color .2s, transform .2s;
+.overview .meta li a.badge {
+  all: unset; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 2.75rem; padding: .4rem .9rem .4rem .75rem; border: 1px solid var(--btn-line, rgba(243,233,210,.14)); border-radius: .6rem;
+  background: var(--btn, var(--bg)); color: var(--ink); cursor: pointer; text-decoration: none; text-transform: none;
+  transition: border-color .15s ease, transform .15s ease;
 }
 .projects-grid .item .meta li+li a.badge:hover,
 .projects-grid .item .meta li+li a.badge:focus-visible,
 .overview .meta li a.badge:hover,
-.overview .meta li a.badge:focus-visible { border-color: rgba(243, 233, 210, .34); transform: translateY(-1px) }
+.overview .meta li a.badge:focus-visible { border-color: var(--muted); transform: translateY(-1px) }
 .projects-grid .item .meta li+li a.badge:focus-visible,
-.overview .meta li a.badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px }
-.projects-grid .item .meta li+li a.badge::before,
-.projects-grid .item .meta li+li a.badge::after,
-.overview .meta li a.badge::before,
-.overview .meta li a.badge::after { content: none; display: none }
-.projects-grid .item .meta li+li a.badge .ico,
-.overview .meta li a.badge .ico { display: block; flex: none; width: 24px; height: 24px; margin: 0; shape-rendering: geometricPrecision }
+.overview .meta li a.badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+.projects-grid .item .meta li+li a.badge::before, .projects-grid .item .meta li+li a.badge::after,
+.overview .meta li a.badge::before, .overview .meta li a.badge::after { content: none; display: none }
+.projects-grid .item .meta li+li a.badge .ico, .overview .meta li a.badge .ico { display: block; flex: none; width: 18px; height: 18px; margin: 0 }
 .badge .bd-t { display: block; text-align: left }
-.badge .bd-s { display: block; font: 600 .62rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
-.badge .bd-b { display: block; margin-top: .22rem; font: 600 1.05rem/1.1 var(--sans); letter-spacing: -.01em; text-transform: none; white-space: nowrap; color: var(--ink) }
+.badge .bd-s { display: block; font: 600 .6rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.badge .bd-b { display: block; margin-top: .18rem; font: 600 .88rem/1.1 var(--sans); letter-spacing: -.005em; text-transform: none; white-space: nowrap; color: var(--ink) }
+
+/* cards: the badge takes the full row under "open project" */
+.projects-grid .item .meta li:has(a.badge) { grid-column: 1 / -1 }
+.projects-grid .item .meta li+li a.badge { width: 100% }
+
+/* overviews: links become one tidy row of equal-height pills, same look as the card buttons */
+.overview .meta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; font-family: var(--sans); text-transform: none }
+.overview .meta li { margin: 0 }
+.overview .meta li a:not(.badge) {
+  display: inline-flex; align-items: center; gap: .5rem; box-sizing: border-box; min-height: 2.75rem; padding: .4rem .9rem;
+  border: 1px solid var(--btn-line, rgba(243,233,210,.14)); border-radius: .6rem; background: var(--btn, var(--bg));
+  color: var(--ink); font: 500 .875rem/1 var(--sans); text-transform: capitalize; text-decoration: none; overflow-wrap: normal;
+}
+.overview .meta li a:not(.badge):hover, .overview .meta li a:not(.badge):focus-visible { border-color: var(--muted); color: var(--ink) }
+.overview .meta li a:not(.badge)::after { content: none }
+.overview .meta li a:not(.badge) .ico { width: 18px; height: 18px; flex: none; margin: 0 }
 @media (max-width: 40rem) {
   .badge .bd-s { font-size: .75rem }
-  .overview .meta li:has(a.badge) { grid-column: 1 / -1 }
-  .overview .meta:has(a.badge) li:last-child:nth-child(odd) { grid-column: auto }
-  .overview .meta li:has(a.badge) + li:last-child { grid-column: 1 / -1 }
+  .overview .meta li { flex: 1 1 auto }
+  .overview .meta li a { width: 100%; justify-content: center }
 }
 @media (prefers-reduced-motion: reduce) {
   .projects-grid .item .meta li+li a.badge, .overview .meta li a.badge { transition: none }
