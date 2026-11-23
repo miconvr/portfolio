@@ -2565,5 +2565,5 @@ html:is(.vt-in, .vt-out, .vt-swap)::view-transition-new(page) { animation: vt-tu
 @media (min-width: 56.01rem) {
   .side { box-shadow: 1px 0 0 rgba(255, 255, 255, .35), 6px 0 14px -10px rgba(70, 52, 22, .16) }
   :root[data-theme="dark"] .side { box-shadow: 1px 0 0 rgba(255, 255, 255, .05), 6px 0 14px -10px rgba(0, 0, 0, .45) }
-  .side .profile-photo { margin-top: 1.75rem }
+  .side .profile-photo { margin-top: 3.5rem }
 }
