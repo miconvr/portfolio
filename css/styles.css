@@ -2678,3 +2678,9 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
    ================================================================ */
 .side .lead.loc { align-items: center }
 .side .lead.loc .ico.line { margin: 0; stroke-width: 2; color: var(--text) }
+
+/* ================================================================
+   SNAPPY INTRO: shorter focus-rise on every page swap and first load
+   Tune: --fr-dur (length), --fr-step (delay between blocks), --fr-rise (distance)
+   ================================================================ */
+:root:root { --fr-dur: .3s; --fr-step: 25ms; --fr-rise: 6px; --fr-blur: 0px }
