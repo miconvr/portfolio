@@ -2757,3 +2757,37 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
     0 22px 32px -14px rgba(70, 52, 25, .48),
     0 38px 56px -28px rgba(70, 52, 25, .4);
 }
+
+/* ================================================================
+   LIGHT CARDS MATCH DARK: in light mode the home cards use the dark card's look. The card gets the dark values of the tokens that light mode overrides (so text, badges, status and borders match), plus a copy of the dark CARD DEPTH rule.
+   If you change the dark card rules (CARD DEPTH), mirror the change here.
+   ================================================================ */
+:root:not([data-theme="dark"]) .projects-grid .item {
+  --card: #111111; --card-2: #181818; --line: #1F1F1F;
+  --btn: #161616; --btn-line: #282828; --btn-hover: #222222;
+  --on-ink: #14110D; --ink: #F3E9D2; --text: #E4DAC3; --muted: #8C8C8C;
+  --live: #7ACB8D; --dev: #D8A95C; --stripe: #0B0B0B;
+  --shadow: rgba(0, 0, 0, .55); --card-edge: #2E2C27;
+  --dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23F3E9D2' fill-opacity='.07'/%3E%3C/svg%3E");
+  border-color: #282828;
+  background-color: #111111;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, .06), transparent 42%), var(--dot), var(--grain), linear-gradient(145deg, #1b1b1b, #131313 60%);
+  background-size: auto, 14px 14px, 160px 160px, auto;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    inset 0 -1px 0 rgba(0, 0, 0, .6),
+    inset 0 0 0 1px rgba(255, 255, 255, .03),
+    0 1px 0 #0b0b0b, 0 2px 0 #090909, 0 3px 0 #070707,
+    0 16px 24px -12px rgba(0, 0, 0, .85),
+    0 30px 48px -26px rgba(0, 0, 0, .7);
+}
+:root:not([data-theme="dark"]) .projects-grid .item:hover {
+  border-color: #3a3a3a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .13),
+    inset 0 -1px 0 rgba(0, 0, 0, .6),
+    inset 0 0 0 1px rgba(255, 255, 255, .04),
+    0 1px 0 #0b0b0b, 0 2px 0 #090909, 0 3px 0 #070707,
+    0 24px 34px -14px rgba(0, 0, 0, .9),
+    0 40px 60px -28px rgba(0, 0, 0, .75);
+}
