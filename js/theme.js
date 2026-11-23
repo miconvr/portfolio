@@ -16,7 +16,7 @@
     btn.setAttribute("aria-label", label);
     btn.title = label;
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute("content", dark ? "#0B0B0B" : "#F6F0E3");
+    if (m) m.setAttribute("content", dark ? "#0B0B0B" : "#E7DEC8");
   }
   btn.addEventListener("click", function () {
     var next = isDark() ? "light" : "dark";

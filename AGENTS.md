@@ -61,7 +61,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 - Accessibility: skip link, labelled controls, alt text, `aria-live` on the counter, keyboard-usable carousels, `prefers-reduced-motion` support. Don't make content depend on animation or JS.
 - `localStorage` only inside try/catch.
 - Media queries: combine conditions with `or` / `and` inside parentheses, never a comma (commas only at top level). A bad one silently never applies.
-- Every HTML page carries the head script from `index.html` line 19 (sets `.js`, first visit in a tab only), the three font preload links, `<meta name="theme-color" content="#F6F0E3">`, `<meta name="color-scheme" content="light dark">` and the one-line theme script (sets `data-theme` before paint) right after the viewport tag, and `<script src="/js/theme.js" defer>` after `clack.js`. Without the script no cold-start motion plays.
+- Every HTML page carries the head script from `index.html` line 19 (sets `.js`, first visit in a tab only), the three font preload links, `<meta name="theme-color" content="#E7DEC8">`, `<meta name="color-scheme" content="light dark">` and the one-line theme script (sets `data-theme` before paint) right after the viewport tag, and `<script src="/js/theme.js" defer>` after `clack.js`. Without the script no cold-start motion plays.
 
 ## JS conventions
 
@@ -196,7 +196,7 @@ Small IIFEs, two-space indent, double quotes in newer files. Only three `window`
 - Favicon: `<link rel="icon" type="image/svg+xml" href="/images/site/favicon.svg?v=2">` on every page (the heart). Bump `?v=` when it changes, because browsers cache favicons hard. No custom domain.
 - Overview pages preload their first visible image with `fetchpriority="high"` (see each page's head for the current file). If that image changes, update the preload too.
 - `index.html` carries a `Person` JSON-LD block just before `</head>`. Keep its `sameAs` links in sync with the sidebar links.
-- `theme-color` matches `--bg` of the active theme (`#F6F0E3` light, `#0B0B0B` dark); `theme.js` and the head script keep it in sync.
+- `theme-color` matches `--bg` of the active theme (`#E7DEC8` light, `#0B0B0B` dark); `theme.js` and the head script keep it in sync.
 - Theme button (`.theme-btn`, also has `.snd` for the shared look): built by `js/theme.js`, fixed bottom-right just left of the mute button.
 - `vercel.json` sends security headers on every route (nosniff, referrer policy, same-origin framing, locked-down permissions), caches `/images/*` for a week (stale for a day while revalidating) and `/fonts/*` for a year as immutable. Bump `?v=` or rename the file when an image or font changes. There is no CSP yet because every page has an inline head script.
 - Fonts: Geist, Geist Mono and Big Shoulders Display 700 (Latin only) are self-hosted in `fonts/`, with `@font-face` at the end of `css/styles.css`. Every page head carries the same three `rel="preload" as="font"` links. Never re-add Google Fonts. The sidebar name uses the last `--condensed` definition.

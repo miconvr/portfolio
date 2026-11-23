@@ -2605,41 +2605,41 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
    ================================================================ */
 :root:not([data-theme="dark"]) {
   color-scheme: light;
-  --bg: #F6F0E3;
-  --surface: #FAF5EA;
-  --line: #E4D9C2;
-  --card: #FBF7EE;
-  --card-2: #F2EAD8;
-  --btn: #F1E8D4;
-  --btn-line: #D9CCB1;
-  --btn-hover: #E8DDC4;
-  --on-ink: #FBF7EE;
-  --ink: #2A2118;
-  --text: #4B3F2F;
-  --muted: #86795F;
+  --bg: #E7DEC8;
+  --surface: #EDE5D1;
+  --line: #D3C7AA;
+  --card: #EDE5D0;
+  --card-2: #E1D7BE;
+  --btn: #E2D8C0;
+  --btn-line: #C9BC9C;
+  --btn-hover: #D8CDB1;
+  --on-ink: #F1EADA;
+  --ink: #2B2419;
+  --text: #483D2C;
+  --muted: #766A52;
   --live: #3F8A57;
   --dev: #A9741B;
-  --stripe: #F6F0E3;
-  --shadow: rgba(90, 70, 40, .22);
-  --card-edge: #DACDB2;
+  --stripe: #E7DEC8;
+  --shadow: rgba(70, 52, 25, .28);
+  --card-edge: #CBBE9F;
 }
 
 /* light theme: surfaces that were hardcoded dark */
-:root:not([data-theme="dark"]) .side { background: #EFE7D4; border-color: var(--line) }
+:root:not([data-theme="dark"]) .side { background: #DDD3B9; border-color: var(--line) }
 :root:not([data-theme="dark"]) .side .been { border-top-color: var(--line) }
 :root:not([data-theme="dark"]) .side .side-links a { border-color: var(--btn-line) }
 :root:not([data-theme="dark"]) .frame { box-shadow: 0 6px 0 rgba(90, 70, 40, .05) }
-:root:not([data-theme="dark"]) a { text-decoration-color: #CDBF9F }
+:root:not([data-theme="dark"]) a { text-decoration-color: #B9AA86 }
 :root:not([data-theme="dark"]) .projects-grid .item {
   border-color: var(--btn-line);
   background-color: var(--card);
-  background-image: linear-gradient(145deg, #FFFCF5, #F6EFDE 70%);
+  background-image: linear-gradient(145deg, #F0E8D5, #E6DDC6 70%);
   background-size: auto;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 1px 0 rgba(120, 95, 50, .12), 0 18px 28px -18px rgba(90, 70, 40, .38);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 0 rgba(100, 78, 40, .16), 0 18px 28px -18px rgba(70, 52, 25, .45);
 }
 :root:not([data-theme="dark"]) .projects-grid .item:hover {
-  border-color: #C9BA98;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), 0 1px 0 rgba(120, 95, 50, .15), 0 24px 34px -18px rgba(90, 70, 40, .45);
+  border-color: #B9AA86;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 1px 0 rgba(100, 78, 40, .2), 0 24px 34px -18px rgba(70, 52, 25, .52);
 }
 /* badges stay black in both themes, so their text stays cream */
 .badge { --ink: #F3E9D2; --muted: #A59E8C }
@@ -2647,7 +2647,7 @@ html.vt-leave::view-transition-new(page) { animation: none; opacity: 1 }
 :root:not([data-theme="dark"]) .overview .back-top:hover, :root:not([data-theme="dark"]) .overview .back-top:focus-visible { border-color: var(--muted) }
 :root:not([data-theme="dark"]) .cs-key { color: #D9CDB0 }
 @media (max-width: 56rem) {
-  :root:not([data-theme="dark"]) .side nav { background: rgba(246, 240, 227, .92); border-bottom-color: var(--line) }
+  :root:not([data-theme="dark"]) .side nav { background: rgba(231, 222, 200, .94); border-bottom-color: var(--line) }
 }
 
 /* theme toggle sits left of the mute button */
