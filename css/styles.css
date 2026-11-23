@@ -2575,3 +2575,12 @@ html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-turn-in .55s
 @keyframes vt-plain-in { from { opacity: 0 } }
 html.vt-swap::view-transition-old(page) { animation: vt-plain-out .15s ease both }
 html.vt-swap::view-transition-new(page) { animation: vt-plain-in .2s ease .1s both }
+
+/* ================================================================
+   CLICK THROUGH TRANSITIONS: snapshots never swallow clicks, so nav links work mid-animation
+   ================================================================ */
+::view-transition,
+::view-transition-group(*),
+::view-transition-image-pair(*),
+::view-transition-old(*),
+::view-transition-new(*) { pointer-events: none }
