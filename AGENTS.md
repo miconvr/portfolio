@@ -52,7 +52,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 - Two themes: a cream light theme (default) and the original dark theme. Light tokens and overrides are the `LIGHT THEME` blocks at the end of `css/styles.css`, all scoped to `:root:not([data-theme="dark"])`; dark is `data-theme="dark"` on `<html>`. The choice is saved in `localStorage` key `theme-v1`. A new color must work in both themes: use the tokens, not hex values.
 - Centered frame: `body` is capped at `--frame` (64rem, the same width as the page shell, so there is no empty strip beside the sidebar) and centered, `html` is pure black, so wide screens show black sides. Fixed buttons (`.snd`, `.theme-btn`) position from `--edge` so they stay inside the frame. Light theme extras: the FlyRank wordmark (`.org-logo`) sits on a small black pill, and the card-reader terminal has a cream body with a dark LCD.
 - Layout (end of `css/styles.css`): on desktop the sidebar is flush to the frame's left edge, and `main` is centered in the space beside it with width `--main` (34rem, or `--main-wide` 44rem for project overviews). To change widths, edit `--frame`, `--main` or `--main-wide`; nothing else needs moving.
-- Rounded frame: from 66rem up, `body` gets a 1rem top and bottom margin, a 1.5rem radius and `overflow: clip` (clip keeps the sticky sidebar working), so the site reads as one rounded panel on the black.
+- Rounded corners: from 66rem up, `body` uses `clip-path: inset(0 round 1.5rem)`. No margins or overflow rules, so the page scrolls normally. Do not use `overflow: clip` on `body`: it propagates to the viewport and breaks scrolling.
 - Colors: only `var(--...)` from `:root`. Cream `--ink` `#F3E9D2` for headings, `--text` `#E4DAC3` for body, `--muted` for secondary. Never hardcode `#fff` or hex colors in new rules.
 - No inline `style=`. Use classes.
 - Fonts: Geist (`--sans`) for headings, Geist Mono (`--mono`) for body, cards and nav. Sidebar name `.side h1` is Big Shoulders Display 700 uppercase (2.4rem desktop, 2rem under 40rem), preloaded in every HTML head. Never add a transform, hover effect or bold to it.
@@ -243,3 +243,5 @@ Pitfall: Kaltas has extras a new project should not inherit: the privacy policy 
 - The home cards no longer have a repository button. The repository link stays on the overview pages (outline GitHub icon) next to the badge, and Kaltas keeps its privacy link there.
 - Link icons are 24px-viewBox outline icons (`class="ico line"`: 2px strokes in `currentColor`, no fill) from Tabler: GitHub, shield (privacy), globe, Chrome. Don't bring back the old filled GitHub mark.
 - Store badges have a black background. The Kaltas badge uses a full-color Chrome logo (`class="ico color"`, 48px viewBox, own fills). Other link icons stay outline.
+
+- The card reader (drag-to-scan terminal) was removed: `js/slide-open.js` is no longer loaded on any page. Its file and the `.reader` CSS are left in place but unused.

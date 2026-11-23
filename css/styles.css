@@ -2623,7 +2623,7 @@ body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0
   .home .shell > main:has(> article.overview) { width: min(100% - 3rem, var(--main-wide)) }
 }
 
-/* rounded frame: on wide screens the site floats as one rounded panel on the black */
+/* rounded corners only: no margins, no height change, page scrolls normally */
 @media (min-width: 66rem) {
-  body { margin-block: 1rem; min-height: calc(100vh - 2rem); border-radius: 1.5rem; overflow: clip }
+  body { clip-path: inset(0 round 1.5rem) }
 }
