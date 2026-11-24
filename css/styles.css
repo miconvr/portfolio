@@ -2710,3 +2710,10 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 .been-count:not(:empty) { animation: none }
 .js .item.reveal:not(.in) { opacity: 1 }
 .js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
+
+/* ================================================================
+   NAV INSTANT HOVER: sidebar links react at once. The hover line grows and the text shifts with no transition, so nothing slides under the cursor, and the press nudge is off.
+   To bring the animation back, delete this block.
+   ================================================================ */
+.side nav a, .side nav a::before { transition: none !important }
+.side nav a:active { transform: none !important }
