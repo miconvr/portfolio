@@ -2751,3 +2751,11 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 :root:not([data-theme="dark"]) .been-count { opacity: 1 }
 :root:not([data-theme="dark"]) .been-credit { opacity: .85 }
 @media (min-width: 56.01rem) { .side .lead.loc { order: 0; justify-content: center; margin: .6rem 0 0 } }
+
+/* ================================================================
+   SIDEBAR TOOLS UP (desktop, 56.01rem up): the theme and sound buttons sit under the mascot block with a normal gap instead of being pinned to the bottom of the sidebar (they had margin-top: auto), so there is no empty gap above them.
+   Tune: margin-top 1.25rem (space above the divider)
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side .side-tools { margin-top: 1.25rem }
+}
