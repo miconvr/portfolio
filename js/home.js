@@ -137,6 +137,7 @@
     var dir='vt-swap';
     if(depth(current)===0&&depth(path)===1)dir='vt-in';
     else if(depth(current)===1&&norm(path)==='/')dir='vt-out';
+    if(dir==='vt-swap'){applyPage(data,path,mode);main.classList.remove('panel-enter');return;}
     main.style.viewTransitionName='page';
     root.classList.remove('vt-in','vt-out','vt-swap');root.classList.add(dir);
     var t=document.startViewTransition(function(){
