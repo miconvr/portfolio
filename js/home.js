@@ -37,7 +37,7 @@
     },{once:true});
   }
 
-  var pageCache={};
+  var pageCache={},scrollMem={};
   pageCache[current]={
     title: document.title,
     html: current==='/' ? main.innerHTML : (main.querySelector('article') ? main.querySelector('article').outerHTML : main.innerHTML),
@@ -92,6 +92,7 @@
   }
 
   function applyPage(data, path, mode){
+    var prevPath=current;scrollMem[prevPath]=window.scrollY;
     if(data.templates&&data.templates.length){
       data.templates.forEach(function(t){
         if(!document.getElementById(t.id)){
@@ -107,7 +108,8 @@
     current=path;
     if(mode==='push')history.pushState({view:path},'',path);
     setActive(path);
-    window.scrollTo(0,0);
+    var keep=path==='/'&&depth(prevPath)===1&&scrollMem['/']>0;
+    window.scrollTo({top:keep?scrollMem['/']:0,left:0,behavior:'instant'});
 
     var home=path==='/';
     if(!home){
