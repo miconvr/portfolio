@@ -2,7 +2,7 @@
   var root=document.documentElement;
   var main=document.getElementById('main');
   var navLinks=document.querySelectorAll('.side nav a');
-  var loading=false;
+  var loading=false,dest,showSeq=0;
   function norm(p){p=p.replace(/index\.html$/,'').replace(/\.html$/,'');if(p.length>1)p=p.replace(/\/$/,'');return p||'/';}
   var current=norm(location.pathname);
 
@@ -138,37 +138,39 @@
     if(depth(current)===0&&depth(path)===1)dir='vt-in';
     else if(depth(current)===1&&norm(path)==='/')dir='vt-out';
     main.style.viewTransitionName='page';
-    root.classList.add(dir);
+    root.classList.remove('vt-in','vt-out','vt-swap');root.classList.add(dir);
     var t=document.startViewTransition(function(){
       try{applyPage(data,path,mode);main.classList.remove('panel-enter');}
       catch(err){console.error('page update failed',err);window.location.href=path;}
     });
     t.finished.catch(function(){}).then(function(){
+      if(my!==runSeq)return;
       main.style.viewTransitionName='';root.classList.remove('vt-in','vt-out','vt-swap');
-      if(my===runSeq&&current!==path)window.location.href=path;
+      if(current!==path)window.location.href=path;
     });
   }
 
   function show(path,mode){
     path=norm(path);
-    if(loading)return;
-    if(path===current){window.scrollTo(0,0);return;}
+    if(dest===undefined)dest=current;
+    if(path===dest){window.scrollTo(0,0);return;}
+    dest=path;
+    var seq=++showSeq;
+    main.removeAttribute('aria-busy');
 
     if(pageCache[path]){
       run(pageCache[path], path, mode);
       return;
     }
 
-    loading=true;
     main.setAttribute('aria-busy','true');
     prefetch(path).then(function(data){
+      if(seq!==showSeq)return;
+      main.removeAttribute('aria-busy');
       if(data)run(data, path, mode);
       else window.location.href=path;
     }).catch(function(){
-      window.location.href=path;
-    }).finally(function(){
-      loading=false;
-      main.removeAttribute('aria-busy');
+      if(seq===showSeq)window.location.href=path;
     });
   }
 
