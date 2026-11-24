@@ -2722,3 +2722,22 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .side nav a { transition: color .15s ease }
   .side nav a::before { transition: transform .2s cubic-bezier(.2, .8, .2, 1) }
 }
+
+/* ================================================================
+   SIDEBAR POLISH (desktop, 56.01rem up): bigger, brighter nav links, a role line under the name, and the contact rows as a row of icon tiles (the same look as the phone layout, with the commit note on its own line under them). Phones are untouched and hide the role line.
+   Tune: nav font-size 1rem, tile size 2.5rem, icon 1.15rem, the gap .5rem
+   ================================================================ */
+.side .role { display: none }
+@media (min-width: 56.01rem) {
+  .side .role { display: block; margin: .5rem 0 0; text-align: center; font: 400 .8rem/1.4 var(--mono); color: var(--text) }
+  .side nav ul { margin-top: 2rem; gap: 1rem }
+  .side nav a { font-size: 1rem; color: var(--text) }
+  .side-links { flex-direction: row; flex-wrap: wrap; gap: .5rem; margin-top: 1.75rem }
+  .side-links a { font-size: 0; gap: 0; justify-content: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--btn-line); border-radius: .6rem; text-decoration: none; transition: border-color .15s ease }
+  .side-links a:hover, .side-links a:focus-visible { border-color: var(--muted); text-decoration: none }
+  .side-links .ico { width: 1.15rem; height: 1.15rem }
+  .side-links li:has(.commits-note) { display: contents }
+  .side-links .commits-note { order: 99; flex-basis: 100%; margin: .25rem 0 0; font-size: .75rem; opacity: .7 }
+  .side-links .commits-note::before { content: "GitHub " }
+  .side-links a.commits { font-size: .85rem; gap: .5rem; width: auto; padding: 0 .9rem }
+}
