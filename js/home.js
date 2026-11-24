@@ -126,6 +126,14 @@
     animatePanel();
   }
 
+  var pt={x:0,y:0,t:0};
+  document.addEventListener('pointerdown',function(e){pt.x=e.clientX;pt.y=e.clientY;pt.t=performance.now();},true);
+  function ripple(){
+    var r=main.getBoundingClientRect(),fresh=performance.now()-pt.t<2500;
+    var x=fresh?pt.x:innerWidth/2,y=fresh?pt.y:innerHeight*.4;
+    root.style.setProperty('--vt-x',(x-r.left)+'px');
+    root.style.setProperty('--vt-y',(y-r.top)+'px');
+  }
   var openCard=null;
   // page depth: 0 = home and the section pages, 1 = a project overview, 2 = a page inside a project (privacy)
   function depth(p){p=norm(p);return /^\/(kaltas|civicguard)\/./.test(p)?2:/^\/(kaltas|civicguard)$/.test(p)?1:0}
@@ -143,7 +151,7 @@
     main.style.viewTransitionName='page';
     root.classList.remove('vt-in','vt-out','vt-swap');root.classList.add(dir);
     var t=document.startViewTransition(function(){
-      try{applyPage(data,path,mode);main.classList.remove('panel-enter');}
+      try{applyPage(data,path,mode);main.classList.remove('panel-enter');if(dir!=='vt-swap')ripple();}
       catch(err){console.error('page update failed',err);window.location.href=path;}
     });
     t.finished.catch(function(){}).then(function(){
