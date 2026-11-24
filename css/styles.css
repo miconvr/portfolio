@@ -2712,8 +2712,13 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 .js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
 
 /* ================================================================
-   NAV INSTANT HOVER: sidebar links react at once. The hover line grows and the text shifts with no transition, so nothing slides under the cursor, and the press nudge is off.
-   To bring the animation back, delete this block.
+   NAV SMOOTH HOVER: sidebar links never move under the cursor. The hover line is always 3rem wide, so every label sits at the same x, and it grows with a scale from half to full length (transform only). The press nudge is off. Replaces NAV INSTANT HOVER.
+   Tune: .2s and the cubic-bezier (feel), scaleX(.5) (resting line length, .5 = 1.5rem)
    ================================================================ */
-.side nav a, .side nav a::before { transition: none !important }
-.side nav a:active { transform: none !important }
+.side nav a::before { width: 3rem; transform: scaleX(.5); transform-origin: left center }
+.side nav a:hover::before, .side nav a[aria-current="true"]::before { width: 3rem; transform: scaleX(1) }
+.side nav a:active { transform: none }
+@media (prefers-reduced-motion: no-preference) {
+  .side nav a { transition: color .15s ease }
+  .side nav a::before { transition: transform .2s cubic-bezier(.2, .8, .2, 1) }
+}
