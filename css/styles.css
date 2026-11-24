@@ -2761,16 +2761,15 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 }
 
 /* ================================================================
-   PAGE RIPPLE (desktop with a mouse, 56.01rem up): opening or closing a project overview (vt-in, vt-out) spreads the new page out from the point where the pointer last went down (--vt-x, --vt-y, set by ripple() in js/home.js, relative to main) as a soft-edged wave, blur to sharp, while the old page softens and dims. Replaces the card flip there. Phones and plain section swaps are untouched.
-   Tune: .75s (wave length), the cubic-bezier (feel), 160px (edge softness), blur(10px) (starting blur), .6s (old page)
+   PAGE RIPPLE 2 (desktop with a mouse, 56.01rem up): opening or closing a project overview (vt-in, vt-out) reveals the new page as a circle that spreads from the point where the pointer last went down (--vt-x, --vt-y, set by ripple() in js/home.js, relative to main). The old page stays solid until it is covered, and nothing is blurred or dimmed, so you never see both pages blended. Phones and plain section swaps are untouched.
+   Tune: .55s (length), the cubic-bezier (feel), 90px (soft edge, 0 = hard circle)
    ================================================================ */
 @property --vt-r { syntax: "<length>"; inherits: false; initial-value: 0px }
-@keyframes vt-ripple-out { to { opacity: .3; filter: blur(6px); transform: scale(.985) } }
-@keyframes vt-ripple-in { from { --vt-r: 0px; filter: blur(10px) } to { --vt-r: 3200px; filter: blur(0) } }
+@keyframes vt-ripple-in { from { --vt-r: 0px } to { --vt-r: 3200px } }
 @media (min-width: 56.01rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-ripple-out .6s ease-in both }
+  html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: none }
   html:is(.vt-in, .vt-out)::view-transition-new(page) {
-    animation: vt-ripple-in .75s cubic-bezier(.3, .6, .2, 1) both;
-    mask-image: radial-gradient(circle at var(--vt-x, 50%) var(--vt-y, 40%), #000 calc(var(--vt-r) - 160px), transparent var(--vt-r));
+    animation: vt-ripple-in .55s cubic-bezier(.4, 0, .2, 1) both;
+    mask-image: radial-gradient(circle at var(--vt-x, 50%) var(--vt-y, 40%), #000 calc(var(--vt-r) - 90px), transparent var(--vt-r));
   }
 }
