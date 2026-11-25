@@ -2882,3 +2882,11 @@ html { background: var(--bg) }
     animation-duration: .001s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
   }
 }
+
+/* ================================================================
+   PHONE NO REVEAL NO LOAD FADE (40rem and below): scroll-reveal items are always fully visible, and loading a page directly has no view transition. Desktop is untouched.
+   ================================================================ */
+@media (max-width: 40rem) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important }
+  @view-transition { navigation: none }
+}
