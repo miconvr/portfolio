@@ -2906,3 +2906,14 @@ html { background: var(--bg) }
   .car-slider > .cs-key svg { margin-top: 0 !important; filter: none !important; stroke-width: 2.2 }
   .car-slider > .cs-key:active { opacity: .7 }
 }
+
+/* ================================================================
+   PHONE ACTION BUTTON GRID (40rem and below): the project action buttons (store badge, repository, privacy) sit in an even grid. The first button gets a full row, the rest share rows two across, and a lone last button spans the row. The list is found by the .badge button inside it. !important beats the existing list layout.
+   Tune: gap, min-height
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:has(> li > .badge) { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: .6rem !important; margin: 1rem 0 0 !important; padding: 0 !important; list-style: none }
+  ul:has(> li > .badge) > li { margin: 0 !important; min-width: 0 }
+  ul:has(> li > .badge) > li:first-child, ul:has(> li > .badge) > li:last-child:nth-child(even) { grid-column: 1 / -1 }
+  ul:has(> li > .badge) > li > a { display: flex !important; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-height: 3rem; margin: 0 !important }
+}
