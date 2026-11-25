@@ -2766,3 +2766,39 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 56rem) {
   :root:not([data-theme="dark"]) .side { background: transparent }
 }
+
+/* ================================================================
+   PHONE HEADER COMPACT (40rem and below): photo beside the name, location under the name, contact icons in one row, then the mascot. Left-aligned like the page body, so Projects starts on the first screen. Tablets and desktop are untouched.
+   Tune: --ph-photo (photo size), the name's min() font size, row-gap
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side { --ph-photo: 4.75rem; grid-template-columns: var(--ph-photo) 1fr; column-gap: .5rem; row-gap: .6rem; padding: 1.25rem 0 .25rem }
+  .side .profile-photo { grid-column: 1; grid-row: 1 / span 2; justify-self: start; width: var(--ph-photo); height: var(--ph-photo) }
+  .side h1 { grid-column: 2; grid-row: 1; align-self: end; justify-self: start; text-align: left; margin: 0; padding-left: .5rem; font-size: min(2rem, calc((100vw - 8.75rem) / 8)); line-height: 1 }
+  .side .lead.loc { grid-column: 2; grid-row: 2; align-self: start; justify-content: flex-start; text-align: left; margin: 0; padding-left: .5rem }
+  .side .side-links { grid-column: 1 / -1; grid-row: 3; justify-content: flex-start; margin: 0 }
+  .side .been { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; margin: .25rem 0 0 }
+}
+
+/* ================================================================
+   PHONE TOOLS IN THE ICON ROW (40rem and below): the theme and sound buttons sit at the right end of the contact icon row, the same square 44px tile, instead of floating over the corner of the header. Replaces PHONE TOOLS BELOW NAV on phones.
+   Tune: --tool-size (tile size)
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side { --tool-size: 2.75rem; grid-template-columns: var(--ph-photo) 1fr var(--tool-size) var(--tool-size) }
+  .side h1, .side .lead.loc { grid-column: 2 / -1 }
+  .side .side-links { grid-column: 1 / 3 }
+  .side .snd, .side .theme-btn {
+    position: static !important; inset: auto !important; align-self: center;
+    width: var(--tool-size) !important; height: var(--tool-size) !important;
+    border-radius: .6rem; background: transparent; border-color: var(--btn-line); color: var(--text);
+  }
+  .side .snd.theme-btn { grid-column: 3; grid-row: 3 }
+  .side .snd:not(.theme-btn) { grid-column: 4; grid-row: 3 }
+  .side .snd svg, .side .theme-btn svg { width: 1.25rem !important; height: 1.25rem !important }
+}
+@media (max-width: 23.75rem) {
+  .side { --tool-size: 2.5rem; column-gap: .5rem }
+  .side .side-links { gap: .375rem }
+  .side .side-links a { width: 2.5rem; height: 2.5rem }
+}
