@@ -70,8 +70,6 @@
   let px = 0, py = 0, raf = 0;
   function look() {
     raf = 0;
-    const b = document.body.getBoundingClientRect();
-    if (px < b.left || px > b.right) { aim(0, 0); return; }
     const r = btn.getBoundingClientRect();
     const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
     const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 80);
