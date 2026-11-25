@@ -2865,3 +2865,12 @@ html { background: var(--bg) }
 @media (min-width: 40.0625rem) {
   html { background: #000 }
 }
+
+/* ================================================================
+   CONSISTENT CORNERS: one radius for the overview card and one for the media inside it. overflow: clip keeps animated children and the sheen inside the rounded shape without making the card a scroll container.
+   Tune: --radius-card, --radius-media
+   ================================================================ */
+:root { --radius-card: 1.25rem; --radius-media: .75rem }
+.overview { border-radius: var(--radius-card); overflow: clip }
+.overview::before { border-radius: inherit }
+.overview section .frame.carousel, .overview .frame.carousel { border-radius: var(--radius-media) }
