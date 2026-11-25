@@ -31,7 +31,7 @@
     },{once:true});
   }
 
-  var pageCache={},scrollMem={};
+  var pageCache={},scrollMem={},inflight={};
   pageCache[current]={
     title: document.title,
     html: current==='/' ? main.innerHTML : (main.querySelector('article') ? main.querySelector('article').outerHTML : main.innerHTML),
@@ -40,10 +40,20 @@
     })
   };
 
+  function warmImages(node){
+    [].forEach.call(node.querySelectorAll('img[src]'),function(im){
+      if(im.getAttribute('loading')==='lazy')return;
+      var i=new Image();
+      i.src=im.getAttribute('src');
+      if(i.decode)i.decode().catch(function(){});
+    });
+  }
+
   function prefetch(url){
     url=norm(url);
     if(pageCache[url])return Promise.resolve(pageCache[url]);
-    return fetch(url,{headers:{Accept:'text/html'}})
+    if(inflight[url])return inflight[url];
+    return inflight[url]=fetch(url,{headers:{Accept:'text/html'}})
       .then(function(r){return r.ok?r.text():'';})
       .then(function(html){
         if(!html)return null;
@@ -51,6 +61,7 @@
         var home=url==='/';
         var src=home?doc.getElementById('main'):doc.querySelector('main article');
         if(!src)return null;
+        warmImages(src);
         pageCache[url]={
           title: doc.title,
           html: home?src.innerHTML:src.outerHTML,
@@ -59,7 +70,7 @@
           })
         };
         return pageCache[url];
-      }).catch(function(){return null;});
+      }).catch(function(){return null;}).then(function(d){delete inflight[url];return d;});
   }
 
   function warm(){
@@ -70,10 +81,8 @@
     });
   }
   if('fetch' in window){
-    addEventListener('load',function(){
-      if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:3000});
-      else setTimeout(warm,1500);
-    });
+    if('requestIdleCallback' in window)requestIdleCallback(warm,{timeout:500});
+    else setTimeout(warm,300);
   }
 
   function ensureCarousel(){
@@ -178,6 +187,15 @@
       if(seq===showSeq)window.location.href=path;
     });
   }
+
+  navLinks.forEach(function(link){
+    ['pointerenter','touchstart','focus'].forEach(function(ev){
+      link.addEventListener(ev,function(){
+        var h=link.getAttribute('href');
+        if(h&&h.charAt(0)==='/'&&'fetch' in window)prefetch(h);
+      },{passive:true,once:true});
+    });
+  });
 
   navLinks.forEach(function(link){
     link.addEventListener('click',function(event){

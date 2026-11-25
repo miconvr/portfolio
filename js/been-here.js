@@ -1,37 +1,8 @@
 (() => {
   const KEY = "been-here-v1";
-  const host = document.querySelector(".side-links");
-  if (!host) return;
-
-  const wrap = document.createElement("div");
-  wrap.className = "been";
-  // Cold start: stay hidden until the first count arrives (or 800ms), then fade in once, already complete.
-  const cold = document.documentElement.classList.contains("js");
-  const reveal = () => wrap.classList.remove("been-wait");
-  if (cold) { wrap.classList.add("been-wait"); setTimeout(reveal, 800); }
-  wrap.innerHTML = `
-    <button class="been-btn" type="button" aria-label="Tap if you are here">
-      <svg class="been-mascot" viewBox="0 0 120 120" aria-hidden="true">
-        <defs>
-          <radialGradient id="heart-g" cx=".5" cy=".45" r=".62" fx=".4" fy=".3">
-            <stop offset="0" stop-color="#ee5f64"/>
-            <stop offset=".55" stop-color="#e5484d"/>
-            <stop offset="1" stop-color="#d8434a"/>
-          </radialGradient>
-        </defs>
-        <g class="body">
-          <g class="turn">
-            <path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" class="heart" fill="#e5484d"/>
-            <g class="eyes">
-              <ellipse class="blink" cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/>
-              <ellipse class="blink" cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/>
-            </g>
-          </g>
-        </g>
-      </svg>
-    </button>
-    <p class="been-text"><span class="been-line"></span><span class="been-count" aria-live="polite"></span><span class="been-credit">designed and built by mico</span></p>`;
-  host.insertAdjacentElement("afterend", wrap);
+  // Mascot markup lives in the page HTML so it is in the first paint; this script only wires it up.
+  const wrap = document.querySelector(".been");
+  if (!wrap) return;
 
   const btn = wrap.querySelector(".been-btn");
   const line = wrap.querySelector(".been-line");
@@ -64,7 +35,7 @@
     cnt.textContent = n + "" === "0" ? "" : `${fmt(n)} ${n === 1 ? "person has" : "people have"} said hi`;
   }
 
-  call("/").then(render).catch(() => {}).then(reveal);
+  call("/").then(render).catch(() => {});
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let px = 0, py = 0, raf = 0;
