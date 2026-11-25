@@ -2873,3 +2873,12 @@ html { background: var(--bg) }
 .overview { border-radius: var(--radius-card); overflow: clip }
 .overview::before { border-radius: inherit }
 .overview section .frame.carousel, .overview .frame.carousel { border-radius: var(--radius-media) }
+
+/* ================================================================
+   PHONE OVERVIEW NO MOTION (40rem and below): nothing in the project overview animates in on phones. Animations finish instantly, so every element shows its final state at once. Hover and press transitions are untouched.
+   ================================================================ */
+@media (max-width: 40rem) {
+  .overview, .overview *, .overview *::before, .overview *::after {
+    animation-duration: .001s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+  }
+}
