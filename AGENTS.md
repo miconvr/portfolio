@@ -251,6 +251,7 @@ Pitfall: Kaltas has extras a new project should not inherit: the privacy policy 
 - The card reader, receipt, scan, swipe, drag and phone chip, the card click icon, cursor, hand, bar and number, and the idle card sheen (all tied to the deleted `slide-open.js`).
 - Round icon buttons for the sidebar contact links, and the intro hero with a heart watermark on Home (both added and undone).
 - The overview entrance animation, the overview lift, and the zoom and scan line of the flip.
+- The scroll progress line at the top of every page (`.progress` element, its CSS rule and the scroll listener in `js/home.js`).
 - Content nudge, card centering and fill-the-column experiments. The empty space right of the home cards is deliberate: the overview card is wider (`--main-wide`), so it needs that room when the flip lands.
 
 ## Store badges and link icons

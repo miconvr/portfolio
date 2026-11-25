@@ -15,12 +15,6 @@
     }else{showAll();}
   }catch(err){showAll();}
 
-  try{
-    var bar=document.querySelector('.progress'),ticking=false;
-    var upd=function(){var h=root.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?scrollY/h:0)+')';ticking=false;};
-    if(bar){addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});upd();}
-  }catch(err){}
-
   function setActive(path){
     navLinks.forEach(function(a){
       a.removeAttribute('aria-current');
