@@ -2919,3 +2919,12 @@ html { background: var(--bg) }
   ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(2):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
   ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(2):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
 }
+
+/* ================================================================
+   PHONE LOGO BESIDE TITLE (40rem and below): the company logo sits at the right end of the job title row, vertically centered. A long title wraps onto a second line instead of pushing the logo to its own row. Logo look and size are untouched. Desktop is untouched.
+   Tune: gap
+   ================================================================ */
+@media (max-width: 40rem) {
+  h2:has(> .org-logo) { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: space-between !important; gap: .75rem !important }
+  h2 > .org-logo { flex: none !important; margin: 0 !important; order: 0 }
+}
