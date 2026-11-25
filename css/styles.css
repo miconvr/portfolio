@@ -2802,3 +2802,11 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .side .side-links { gap: .375rem }
   .side .side-links a { width: 2.5rem; height: 2.5rem }
 }
+
+/* ================================================================
+   LOCATION PIN (56rem and below): when the location wraps to two lines the pin stays beside the first line instead of floating to the middle.
+   ================================================================ */
+@media (max-width: 56rem) {
+  .side .lead.loc { align-items: flex-start }
+  .side .lead.loc .ico { margin-top: .15em }
+}
