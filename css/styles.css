@@ -2921,10 +2921,10 @@ html { background: var(--bg) }
 }
 
 /* ================================================================
-   PHONE LOGO BESIDE TITLE (40rem and below): the company logo sits at the right end of the job title row, vertically centered. A long title wraps onto a second line instead of pushing the logo to its own row. Logo look and size are untouched. Desktop is untouched.
+   PHONE LOGO ABOVE TITLE (40rem and below): the company logo sits on its own line above the job title, left-aligned, so the title stays the main heading. Logo look and size are untouched. Desktop is untouched.
    Tune: gap
    ================================================================ */
 @media (max-width: 40rem) {
-  h2:has(> .org-logo) { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: space-between !important; gap: .75rem !important }
-  h2 > .org-logo { flex: none !important; margin: 0 !important; order: 0 }
+  h2:has(> .org-logo) { display: flex !important; flex-direction: column-reverse !important; align-items: flex-start !important; justify-content: flex-start !important; gap: .6rem !important }
+  h2 > .org-logo { flex: none !important; margin: 0 !important; align-self: flex-start !important }
 }
