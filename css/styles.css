@@ -2890,3 +2890,13 @@ html { background: var(--bg) }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important }
   @view-transition { navigation: none }
 }
+
+/* ================================================================
+   PHONE BUTTON SPACING (40rem and below): the project action buttons keep their natural PC size and sit left-aligned with one equal gap. A button that does not fit wraps to the next row at its own size instead of stretching. Look, colors and icons are untouched. The list is found by the .badge button inside it.
+   Tune: gap
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:has(> li > .badge) { display: flex !important; flex-wrap: wrap !important; justify-content: flex-start !important; align-items: center !important; gap: .6rem !important }
+  ul:has(> li > .badge) > li { flex: 0 0 auto !important; width: auto !important; margin: 0 !important }
+  ul:has(> li > .badge) > li > a { width: auto !important; margin: 0 !important }
+}
