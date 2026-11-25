@@ -2890,3 +2890,19 @@ html { background: var(--bg) }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important }
   @view-transition { navigation: none }
 }
+
+/* ================================================================
+   PHONE FLAT CAROUSEL KEYS (40rem and below): the prev/next keycaps become flat 44px tiles like the contact icons. !important is needed to beat the light-theme keycap rules, which are very specific. Desktop keeps the keycaps.
+   Tune: --key-size
+   ================================================================ */
+@media (max-width: 40rem) {
+  .car-slider { --key-size: 2.75rem; gap: .75rem; padding-bottom: 0 }
+  .car-slider > .cs-key {
+    width: var(--key-size) !important; height: var(--key-size) !important; border-radius: .6rem !important;
+    background: var(--btn) !important; border: 1px solid var(--btn-line) !important; box-shadow: none !important;
+    color: var(--text) !important; transform: none !important;
+  }
+  .car-slider > .cs-key::before, .car-slider > .cs-key::after { display: none !important }
+  .car-slider > .cs-key svg { margin-top: 0 !important; filter: none !important; stroke-width: 2.2 }
+  .car-slider > .cs-key:active { opacity: .7 }
+}
