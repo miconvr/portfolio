@@ -2874,12 +2874,3 @@ html { background: var(--bg) }
 .overview { border-radius: var(--radius-card); overflow: clip }
 .overview::before { border-radius: inherit }
 .overview section .frame.carousel, .overview .frame.carousel { border-radius: var(--radius-media) }
-
-/* ================================================================
-   ROUNDED PAGE FRAME (above 40rem): the tan column between the black side bars gets the same corners on every page, overview included. overflow: clip rounds the content without breaking the sticky sidebar.
-   Tune: --radius-frame
-   ================================================================ */
-:root { --radius-frame: 1.25rem }
-@media (min-width: 40.0625rem) {
-  body { border-radius: var(--radius-frame); overflow: clip }
-}
