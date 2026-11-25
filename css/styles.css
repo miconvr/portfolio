@@ -2910,3 +2910,12 @@ html { background: var(--bg) }
   ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li:first-child { flex-basis: 100% !important }
   ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
 }
+
+/* ================================================================
+   PHONE TWO BUTTON ROW (40rem and below): a project with exactly two action buttons splits the row 50/50, matching the two-up row of the three-button layout. Desktop is untouched.
+   Tune: gap (.6rem in PHONE BUTTON SPACING)
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:has(> li > .badge):has(> li:nth-child(2):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
+  ul:has(> li > .badge):has(> li:nth-child(2):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
+}
