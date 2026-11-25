@@ -2900,3 +2900,13 @@ html { background: var(--bg) }
   ul:has(> li > .badge) > li { flex: 0 0 auto !important; width: auto !important; margin: 0 !important }
   ul:has(> li > .badge) > li > a { width: auto !important; margin: 0 !important }
 }
+
+/* ================================================================
+   PHONE THREE BUTTON ROWS (40rem and below): when a project has three action buttons, the first (the store badge) gets a full row and the other two split the next row 50/50. Two-button projects are untouched, and so is everything above 40rem. Buttons keep their PC look and only grow to fill the row.
+   Tune: gap (.6rem here and in PHONE BUTTON SPACING)
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
+  ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li:first-child { flex-basis: 100% !important }
+  ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
+}
