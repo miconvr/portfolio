@@ -2853,3 +2853,8 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .side .snd:not(.theme-btn) { display: none !important }
   .side .snd.theme-btn { grid-column: 3; grid-row: 4; align-self: center; justify-self: end; border: 0 !important; background: transparent !important; box-shadow: none }
 }
+
+/* ================================================================
+   HTML BACKGROUND FOLLOWS THEME: iOS Safari colors the status bar strip from the page background, not only the theme-color tag. html uses the same --bg as body so the strip changes with the theme toggle.
+   ================================================================ */
+html { background: var(--bg) }
