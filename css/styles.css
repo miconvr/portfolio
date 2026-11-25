@@ -2873,16 +2873,3 @@ html { background: var(--bg) }
 .overview { border-radius: var(--radius-card); overflow: clip }
 .overview::before { border-radius: inherit }
 .overview section .frame.carousel, .overview .frame.carousel { border-radius: var(--radius-media) }
-
-/* ================================================================
-   PHONE CROSSFADE (40rem and below): opening and closing a project cross-dissolves the two pages at the same time, so there is never a blank frame between them. Desktop keeps the page-turn.
-   Tune: .22s (length), 6px (how far the new page slides up)
-   ================================================================ */
-@media (max-width: 40rem) {
-  html:is(.vt-in, .vt-out)::view-transition-old(page),
-  html:is(.vt-in, .vt-out)::view-transition-new(page) { mix-blend-mode: plus-lighter }
-  html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-phone-out .22s ease both }
-  html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-phone-in .22s ease both }
-}
-@keyframes vt-phone-out { to { opacity: 0 } }
-@keyframes vt-phone-in { from { opacity: 0; transform: translateY(6px) } }

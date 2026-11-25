@@ -136,7 +136,7 @@
     var my=++runSeq;
     openCard=null;
     var root=document.documentElement;
-    if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches){applyPage(data,path,mode);return;}
+    if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches||matchMedia('(max-width: 40rem)').matches){applyPage(data,path,mode);return;}
     var d=depth(path)-depth(current);
     var dir='vt-swap';
     if(depth(current)===0&&depth(path)===1)dir='vt-in';
