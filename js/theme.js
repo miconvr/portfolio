@@ -15,8 +15,12 @@
     var label = dark ? "Switch to light theme" : "Switch to dark theme";
     btn.setAttribute("aria-label", label);
     btn.title = label;
-    var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute("content", dark ? "#0B0B0B" : "#E7DEC8");
+    // Replace the tag instead of editing it: some mobile browsers only repaint their top bar for a new element
+    var m = document.createElement("meta");
+    m.name = "theme-color";
+    m.content = dark ? "#0B0B0B" : "#E7DEC8";
+    var old = document.querySelector('meta[name="theme-color"]');
+    if (old) old.replaceWith(m); else document.head.appendChild(m);
   }
   btn.addEventListener("click", function () {
     var next = isDark() ? "light" : "dark";
