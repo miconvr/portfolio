@@ -2810,3 +2810,17 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .side .lead.loc { align-items: flex-start }
   .side .lead.loc .ico { margin-top: .15em }
 }
+
+/* ================================================================
+   PHONE NAV FIT (40rem and below): the four tabs size to their labels and spread evenly (they were equal columns, so "certificates" crowded its neighbors and "experience" touched the screen edge at 320px). Labels drop to the 12px floor under 23.75rem.
+   Tune: padding .5rem (space around each label), 23.75rem (when the labels shrink)
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side nav ul { justify-content: space-between; padding: 0 .75rem }
+  .side nav li { flex: 0 0 auto }
+  .side nav a { padding: .3rem .5rem }
+}
+@media (max-width: 23.75rem) {
+  .side nav ul { padding: 0 .5rem }
+  .side nav a { font-size: .75rem; padding: .3rem .375rem }
+}
