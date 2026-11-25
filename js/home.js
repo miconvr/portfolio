@@ -89,7 +89,7 @@
     if(window.initCarousel){window.initCarousel();return;}
     if(document.querySelector('script[data-carousel]'))return;
     var s=document.createElement('script');
-    s.src='/js/carousel.js';
+    s.src='/js/carousel.js?v=2';
     s.setAttribute('data-carousel','1');
     document.body.appendChild(s);
   }
