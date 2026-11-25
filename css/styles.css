@@ -2841,3 +2841,15 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
   .side .lead.loc { grid-column: 1 / -1; grid-row: 2; padding-left: 0; white-space: nowrap; font-size: min(.8rem, calc((100vw - 2.5rem) / 23.5)) }
   .side .lead.loc span { white-space: nowrap }
 }
+
+/* ================================================================
+   PHONE THEME BESIDE MASCOT (40rem and below): the speaker button is hidden on phones. The theme button has no border and sits at the right end of the mascot row, vertically centered.
+   Tune: --tool-size (tap size), the .been column span
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side { grid-template-columns: var(--ph-photo) 1fr var(--tool-size) }
+  .side .side-links { grid-column: 1 / -1 }
+  .side .been { grid-column: 1 / 3; grid-row: 4; align-self: center }
+  .side .snd:not(.theme-btn) { display: none !important }
+  .side .snd.theme-btn { grid-column: 3; grid-row: 4; align-self: center; justify-self: end; border: 0 !important; background: transparent !important; box-shadow: none }
+}
