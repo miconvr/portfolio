@@ -2896,9 +2896,9 @@ html { background: var(--bg) }
    Tune: gap
    ================================================================ */
 @media (max-width: 40rem) {
-  ul:has(> li > .badge) { display: flex !important; flex-wrap: wrap !important; justify-content: flex-start !important; align-items: center !important; gap: .6rem !important }
-  ul:has(> li > .badge) > li { flex: 0 0 auto !important; width: auto !important; margin: 0 !important }
-  ul:has(> li > .badge) > li > a { width: auto !important; margin: 0 !important }
+  ul:not(.projects-grid ul):has(> li > .badge) { display: flex !important; flex-wrap: wrap !important; justify-content: flex-start !important; align-items: center !important; gap: .6rem !important }
+  ul:not(.projects-grid ul):has(> li > .badge) > li { flex: 0 0 auto !important; width: auto !important; margin: 0 !important }
+  ul:not(.projects-grid ul):has(> li > .badge) > li > a { width: auto !important; margin: 0 !important }
 }
 
 /* ================================================================
@@ -2906,9 +2906,9 @@ html { background: var(--bg) }
    Tune: gap (.6rem here and in PHONE BUTTON SPACING)
    ================================================================ */
 @media (max-width: 40rem) {
-  ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
-  ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li:first-child { flex-basis: 100% !important }
-  ul:has(> li > .badge):has(> li:nth-child(3):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(3):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(3):last-child) > li:first-child { flex-basis: 100% !important }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(3):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
 }
 
 /* ================================================================
@@ -2916,6 +2916,6 @@ html { background: var(--bg) }
    Tune: gap (.6rem in PHONE BUTTON SPACING)
    ================================================================ */
 @media (max-width: 40rem) {
-  ul:has(> li > .badge):has(> li:nth-child(2):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
-  ul:has(> li > .badge):has(> li:nth-child(2):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(2):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(2):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
 }
