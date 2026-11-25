@@ -2831,3 +2831,14 @@ html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
 @media (max-width: 40rem) {
   .projects-intro { text-wrap: balance }
 }
+
+/* ================================================================
+   PHONE LOCATION ONE LINE (40rem and below): the location gets its own full-width row under the photo and name and never wraps. The font scales with the screen (about 12px at 320px, 12.8px from 360px up), so it can't be cut off on any phone.
+   Tune: 23.5 (text width in em; raise it for a smaller font), .8rem (largest size)
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side .profile-photo { grid-row: 1 }
+  .side h1 { align-self: center }
+  .side .lead.loc { grid-column: 1 / -1; grid-row: 2; padding-left: 0; white-space: nowrap; font-size: min(.8rem, calc((100vw - 2.5rem) / 23.5)) }
+  .side .lead.loc span { white-space: nowrap }
+}
