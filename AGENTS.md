@@ -62,7 +62,7 @@ Subject is `type: short summary`, all lowercase (brand names, acronyms and `+N` 
 - Under 30rem, `.home main` has a 1px `--line` top border (1.25rem above, heading 2rem below). Keep all four tabs equal.
 - Shell width: `.home .shell` is 64rem for Projects, Certificates, About and Experience, and 76rem on overview pages. `.side` has `view-transition-name: side` so it glides between widths.
 - Nav: Projects, Certificates, About, Experience, in that order. Don't add other items. The nav `<ul>` is duplicated in `index.html`, `about/`, `experience/`, `certificates/`, `kaltas/`, `civicguard/` and `kaltas/privacy-policy/`, so change all of them together (the 404 has none).
-- Experience entries are real. Don't remove or rewrite. The FlyRank logo is self-hosted and sits next to the title (`flex-start`, not `space-between`).
+- Experience entries are real. Don't remove or rewrite. The Experience page is empty for now (the FlyRank AI entry was removed on 2026-11-27 at the owner's request). A new entry's employer logo is self-hosted and sits next to the title (`flex-start`, not `space-between`).
 - Accessibility: skip link, labelled controls, alt text, `aria-live` on the counter, keyboard-usable carousels, `prefers-reduced-motion` support. Don't make content depend on animation or JS.
 - `localStorage` only inside try/catch.
 - Media queries: combine conditions with `or` / `and` inside parentheses, never a comma (commas only at top level). A bad one silently never applies.
