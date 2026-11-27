@@ -45,3 +45,5 @@ h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.03em;line-height:1.1;margin-b
 @media(max-width:860px){.hero .wrap,.two,.cards{grid-template-columns:1fr}.photo{max-width:280px;order:-1}.screen{min-height:0;padding:96px 0 48px}.hero{min-height:100svh}}
 @media(max-width:560px){.brand span{display:none}.bar nav{gap:14px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+.hero .wrap{display:block}
+.me{width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid var(--ln);margin-bottom:20px}
