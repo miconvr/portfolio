@@ -1,0 +1,2965 @@
+/* ================================================================
+   Portfolio — Mico Gerard Navarro
+   Single-source stylesheet. Geist + Geist Mono, cream light theme (default) and dark theme.
+   ================================================================ */
+
+/* ---- Variables ---- */
+:root {
+  color-scheme: dark;
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bg: #0B0B0B;
+  --surface: #121212;
+  --line: #1F1F1F;
+  --card: #111111;
+  --card-2: #181818;
+  --btn: #161616;
+  --btn-line: #282828;
+  --btn-hover: #222222;
+  --on-ink: #14110D;
+  --ink: #F3E9D2;
+  --text: #E4DAC3;
+  --muted: #8C8C8C;
+  --live: #7ACB8D;
+  --dev: #D8A95C;
+  --holo-a: #8FD3E8;
+  --holo-b: #C9A7F0;
+  --holo-c: #F2C48D;
+  --foil-a: #E7D29B;
+  --foil-b: #B88F40;
+  --chip-line: #7A5B22;
+  --stripe: #0B0B0B;
+  --shadow: rgba(0, 0, 0, .55);
+  --card-edge: #2E2C27;
+  --heart: #e5484d;
+}
+
+/* ---- Reset & base ---- */
+*, *::before, *::after { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 2rem; scrollbar-gutter: stable; overflow-y: scroll }
+::selection { background: var(--ink); color: var(--on-ink) }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 1rem/1.7 var(--sans); -webkit-font-smoothing: antialiased }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: #3A3A44; text-underline-offset: .25em }
+a:hover { color: var(--ink); text-decoration-color: var(--ink) }
+img { max-width: 100% }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 3px }
+
+/* ---- Skip link ---- */
+.skip { position: absolute; left: 1rem; top: -4rem; background: var(--ink); color: #0A0A0A; padding: .6rem 1rem; z-index: 10; font: 500 .85rem var(--mono) }
+.skip:focus { top: 1rem }
+
+/* ---- Utility ---- */
+.ico { width: 1em; height: 1em; vertical-align: -.125em; margin-right: .4em; fill: currentColor }
+
+/* ---- Progress bar ---- */
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+
+/* ---- Wrap (about / experience pages) ---- */
+.wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem }
+.wrap, .home .shell { padding-left: max(1.5rem, env(safe-area-inset-left, 0px)); padding-right: max(1.5rem, env(safe-area-inset-right, 0px)) }
+
+/* ---- Home shell: sidebar + main grid ---- */
+.home .shell { max-width: 76rem; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 19rem minmax(0, 1fr); gap: 7rem }
+
+/* ================================================================
+   SIDEBAR
+   ================================================================ */
+.side {
+  position: sticky; top: 0; align-self: start;
+  height: 100dvh;
+  display: flex; flex-direction: column;
+  box-sizing: border-box;
+  background: #050505;
+  border: 1px solid #1A1A1A;
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+}
+.profile-photo { width: 8.5rem; height: 8.5rem; object-fit: cover; border-radius: 50%; margin: 0 0 1.25rem; border: 1px solid var(--line); align-self: center }
+.side h1 { margin: 0; text-wrap: balance; text-align: center }
+
+/* Sidebar description: matches About paragraphs */
+.side .lead { color: var(--muted); margin: 0 0 .15rem; font-size: .95rem }
+
+/* Location line with pin icon */
+.side .lead.loc { display: flex; align-items: center; gap: .4rem; line-height: 1.4; font-family: var(--mono); font-size: .76rem; letter-spacing: -0.015em; color: var(--muted); margin: .6rem 0 0 }
+.side .lead.loc .ico { flex: none; width: 1.1em; height: 1.1em; margin: 0; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+
+/* Sidebar nav: dash lines */
+.side nav ul { list-style: none; padding: 0; margin: 2.5rem 0 0; display: flex; flex-direction: column; gap: .85rem }
+.side nav a { display: flex; align-items: center; gap: .75rem; font: 400 .82rem var(--mono); text-transform: lowercase; color: var(--muted); text-decoration: none; text-shadow: none }
+.side nav a::before { content: ""; width: 1.5rem; height: 1px; background: currentColor; transition: width .3s ease }
+.side nav a:hover, .side nav a[aria-current="true"] { color: var(--ink) }
+.side nav a:hover::before, .side nav a[aria-current="true"]::before { width: 3rem }
+
+/* Sidebar links: no underline at rest, underline on hover */
+.side-links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: .45rem; font: 400 .82rem var(--mono) }
+.side-links a { color: var(--text); text-decoration: none; text-underline-offset: .25em; text-decoration-thickness: 1px; display: inline-flex; align-items: center; gap: .5rem; white-space: nowrap; overflow-wrap: anywhere }
+.side-links a:hover, .side-links a:focus-visible { color: var(--ink); text-decoration: underline; text-decoration-color: currentColor }
+.side-links .ico { flex: none; width: 1rem; height: 1rem }
+.side-links .ico path { fill-rule: evenodd }
+
+/* Sidebar badge */
+.side .badge { margin: auto 0 0; font: 400 .82rem var(--mono); line-height: 1.5; color: var(--text) }
+.side .badge a { color: var(--text); text-decoration: none }
+.side .badge a:hover { color: var(--ink) }
+
+/* ================================================================
+   TYPOGRAPHY
+   ================================================================ */
+h1, h2, h3 { font-family: var(--sans); color: var(--ink); margin: 0 }
+
+/* Headings: Geist 600, warm cream */
+.side h1,
+.home-intro h2,
+.item h3,
+article h1,
+article h2,
+article section h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+
+/* ================================================================
+   HOME PAGE
+   ================================================================ */
+.home main { padding: 4.5rem 0 2rem }
+.home-intro h2 { max-width: none; text-wrap: balance;}
+
+/* ---- Project cards ---- */
+.item { padding: 0 0 5.5rem; margin-bottom: 4.5rem; scroll-margin-top: 2rem; overflow-anchor: none }
+.frame { overflow: hidden; border: 1px solid var(--line); border-radius: .75rem; background: var(--card); box-shadow: 0 8px 0 rgba(255,255,255,.025) }
+.frame.civic { aspect-ratio: 16/10 }
+.frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 1s cubic-bezier(.2,.7,.2,1) }
+.item-head { display: flex; align-items: center; gap: 1rem; margin: 1.75rem 0 0 }
+.item-head svg, .item-head img { width: 2.75rem; height: 2.75rem; border-radius: .6rem; display: block; flex: none }
+.item-head .title-block { min-width: 0 }
+.item-head .status, .item .dates { white-space: nowrap }
+.item-head > img:first-child { flex: none }
+.item h3 { font-family: var(--sans); font-weight: 700; font-size: clamp(1.75rem, 2.6vw, 2.1rem); letter-spacing: -.03em; line-height: 1.1; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; margin: 0; color: var(--ink) }
+.item h3 .status { font-family: var(--mono); font-weight: 400; letter-spacing: 0 }
+.status { display: inline-flex; align-items: center; gap: .45rem; font: 400 .75rem var(--mono); text-transform: lowercase; color: var(--muted); margin: 0; padding: 0; border: 0; background: none }
+.status::before { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--live) }
+.status.dev::before, .item.dev .status::before { background: var(--dev) }
+.item .dates { margin-top: .35rem; font: 400 .8rem var(--mono); color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .75rem }
+
+/* Body copy: Geist Mono, matching project page font */
+.item p { font-family: var(--mono); font-size: .95rem; max-width: 38rem; margin: 1.1rem 0 0; line-height: 1.7; color: var(--text) }
+.item p + p { margin-top: 1rem }
+
+/* ---- Projects grid & cards ---- */
+.projects-grid {
+  display: grid;
+  margin-top: 2rem;
+}
+
+.projects-grid .item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  margin: 0;
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.projects-grid .item-head {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.projects-grid .item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.projects-grid .project-icon {
+  display: block;
+  flex: none;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.projects-grid .item-top .status {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .75rem;
+  font-family: var(--mono);
+  padding: .3rem .65rem;
+  border-radius: 999px;
+  line-height: 1;
+}
+
+.projects-grid .title-block {
+  min-width: 0;
+}
+
+.projects-grid .item h3 {
+  margin: 0;
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.projects-grid .item .dates {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem .75rem;
+}
+
+.projects-grid .item p {
+  padding: 0;
+  margin: 1.1rem 0 0;
+  max-width: none;
+  font-family: var(--mono);
+  color: var(--text);
+  flex-grow: 1;
+}
+
+.projects-grid .item .meta {
+  padding: 0;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+}
+
+.projects-grid .item .meta li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.projects-grid .item .meta li:first-child {
+  grid-column: 1 / -1;
+}
+
+.projects-grid .item .meta a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--sans);
+  font-size: .875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  overflow-wrap: anywhere;
+  background: var(--btn);
+  border: 1px solid var(--btn-line);
+  color: var(--ink);
+  padding: .65rem .6rem;
+  border-radius: .6rem;
+  text-decoration: none;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.projects-grid .item .meta li:first-child a {
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.projects-grid .item .meta li:first-child a:hover {
+  background: var(--text);
+  transform: translateY(-1px);
+}
+
+.projects-grid .item .meta a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Team credit */
+p.team, .item p.team { font-family: var(--mono); font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .9rem; display: flex; align-items: flex-start; gap: .5rem }
+.team-ico { margin-top: .2rem }
+.team-ico { flex: none; color: var(--muted) }
+
+/* ---- Bigger hit areas on meta links ---- */
+.meta a, .links a { position: relative; overflow-wrap: anywhere }
+.meta a::before, .links a::before { content: ""; position: absolute; inset: -.7rem -.4rem }
+
+/* ================================================================
+   CAROUSEL
+   ================================================================ */
+.frame.carousel { position: relative; aspect-ratio: 16/10 }
+.slides { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch }
+.slides::-webkit-scrollbar { display: none }
+.slides:focus-visible { outline-offset: -4px }
+.slide { flex: 0 0 100%; height: 100%; scroll-snap-align: start; display: block }
+.slide img { width: 100%; height: 100% }
+.slide video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; background: #111 }
+.car-count { position: absolute; right: .75rem; bottom: .75rem; z-index: 2; padding: .15rem .65rem; border: 1px solid #3A3A44; border-radius: 999px; background: rgba(12,12,15,.72); color: var(--ink); font: 400 .75rem var(--mono) }
+
+/* ================================================================
+   PROJECT PAGE CONTENT
+   ================================================================ */
+.facts { display: grid; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
+.facts dt { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
+.facts dd { margin: .25rem 0 0; font-family: var(--mono); font-weight: 500; color: var(--ink) }
+
+.outcomes { max-width: 38rem; display: grid; line-height: 1.55 }
+.outcomes li { font-family: var(--mono); color: var(--text) }
+.outcomes li::marker { color: var(--muted) }
+
+/* ================================================================
+   SUB-PAGES: ABOUT & EXPERIENCE
+   ================================================================ */
+header.site { display: flex; justify-content: flex-start; padding: 1.75rem 0 0 }
+nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; list-style: none; margin: 0; padding: 0 }
+nav a { font: 400 .8rem var(--mono); text-transform: lowercase; color: var(--muted); text-decoration: none; padding: .3rem 0 }
+nav a:hover, nav a[aria-current="page"] { color: var(--ink) }
+article h1 { font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05 }
+article h1 { font-size: 2.6rem;}
+
+.summary { font-family: var(--sans); font-size: 1.3rem; color: var(--text); margin: 0; max-width: 34rem; line-height: 1.55 }
+
+article section { padding: 1.75rem 0; border-top: 1px solid var(--line); margin-top: 2rem; max-width: 36rem }
+article h2 { font-weight: 600; font-size: 1.25rem; letter-spacing: -.02em; margin-bottom: .7rem }
+article section p, article section li { font-family: var(--mono); font-size: .95rem; line-height: 1.7; color: var(--text) }
+article section p { margin: 0 0 1.25rem }
+article section p:last-child { margin-bottom: 0 }
+ul.plain { padding-left: 1.2rem }
+
+/* Project sub-pages */
+.meta, .links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; font: 400 .9rem var(--mono); text-transform: lowercase }
+.meta a, .links a { text-decoration: none; color: var(--muted); border-bottom: 1px solid #3A3A44; padding-bottom: 1px }
+.meta a:hover, .links a:hover { color: var(--ink); border-bottom-color: var(--ink) }
+.meta li:first-child a, .links li:first-child a { color: var(--ink) }
+.meta li:first-child a::after { content: " \2192" }
+.meta li+li a::after, .links li a::after { content: " \2197" }
+
+/* ---- Experience entries ---- */
+.entry { padding: 1.75rem 0; border-top: 1px solid var(--line); margin-top: 2rem }
+.entry h2 { font-size: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem }
+.entry .when { font-family: var(--mono); font-size: .82rem; color: var(--muted); margin: .3rem 0 0 }
+.entry p, .entry li { font-family: var(--mono); font-size: .95rem; line-height: 1.7; color: var(--text) }
+.org-logo { width: auto; height: 1.4rem; border-radius: 0; display: block; flex: none; opacity: .9 }
+
+/* ---- Screenshots ---- */
+
+/* ---- Back link ---- */
+.back { margin: 2rem 0 0 }
+.back a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 1px solid #2C2C35; border-radius: 50%; color: var(--ink) }
+.back a:hover { border-color: var(--ink) }
+
+/* ---- Footer ---- */
+footer.site { margin-top: 5rem; padding: 1.75rem 0 3.5rem; border-top: 1px solid var(--line); color: var(--muted); font: 400 .8rem var(--mono) }
+footer.site p { margin: 0 0 .75rem }
+footer.site a { color: var(--text) }
+footer.site .badge a { display: inline; padding: 0; border: 0; background: none; color: var(--muted); text-decoration: none }
+
+/* ================================================================
+   MASCOT — "been here" heart
+   ================================================================ */
+.been { position: relative; display: flex; align-items: center; gap: .35rem; margin-top: 2rem }
+.been-btn {
+  all: unset; box-sizing: border-box; cursor: pointer;
+  width: 5rem; height: 5rem; flex: none; border-radius: 50%;
+  margin-left: -.75rem;
+  position: relative; overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  /* no hover transforms; idle moves come from js/mascot-idle.js */
+}
+.been-btn:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
+.been-mascot { width: 100%; height: 100%; display: block; overflow: visible }
+.been .heart { fill: url(#heart-g); stroke: url(#heart-g); stroke-opacity: .4; stroke-width: 2.6; stroke-linejoin: round; shape-rendering: geometricPrecision }
+/* The body follows the eyes a beat later. Plain 2D SVG transforms, so edges stay crisp. */
+.been .turn { transform-box: fill-box; transform-origin: 50% 60%; transition: transform .35s cubic-bezier(.2, .8, .2, 1) }
+
+/* Eyes follow the pointer */
+.been .eyes { transition: transform .12s ease-out }
+
+/* Blink every second */
+.been .blink { transform-box: fill-box; transform-origin: 50% 50%; animation: been-blink 4s infinite }
+@keyframes been-blink { 0%,88%,100% { transform: scaleY(1) } 94% { transform: scaleY(.1) } }
+
+/* Spin-hop on click */
+.been-btn.been-pop .been-mascot { transform-origin: 50% 85%; animation: been-squish .6s cubic-bezier(.3,.7,.4,1) }
+@keyframes been-squish {
+  0% { transform: scale(1, 1) }
+  20% { transform: scale(1.18, .78) }
+  45% { transform: scale(.92, 1.1) }
+  65% { transform: scale(1.05, .96) }
+  85% { transform: scale(.99, 1.01) }
+  100% { transform: scale(1, 1) }
+}
+
+/* +1 float */
+.been-plus { position: absolute; translate: -50% -50%; pointer-events: none; font: 600 .85rem var(--mono); color: #e5484d; opacity: 0; animation: been-plus 1.1s ease-out forwards }
+@keyframes been-plus { 0% { opacity: 0; transform: translateY(6px) scale(.8) } 25% { opacity: 1; transform: translateY(0) scale(1.05) } 100% { opacity: 0; transform: translateY(-1.6rem) scale(1) } }
+
+.been-text { margin: 0; font: 400 .78rem var(--mono); color: var(--muted); line-height: 1.5 }
+.been-count { display: block; opacity: .75 }
+
+/* Credit lines */
+.been-credit { display: block; margin-top: .35rem; font: 400 .7rem var(--mono); opacity: .5 }
+
+/* ================================================================
+   COMMITS (js/commits.js)
+   ================================================================ */
+
+/* Sidebar note beside the GitHub link */
+.commits-note { display: inline; margin-left: .4rem; font-size: .66rem; letter-spacing: 0; opacity: .5; white-space: nowrap }
+.side-links li:has(.commits-note) { display: flex; align-items: center }
+.side-links li:hover .commits-note { opacity: .8 }
+
+/* Per-project commit tag on date line */
+.repo-commits {
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin-left: .35rem; padding: .15rem .6rem;
+  border: 0; border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  font-family: var(--mono); font-size: .72rem; font-weight: 400;
+  line-height: 1.4; letter-spacing: 0; vertical-align: middle; opacity: .75; white-space: nowrap;
+}
+.repo-commits::before {
+  content: ""; width: .9em; height: .9em; border: 0; border-radius: 0;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.repo-commits[hidden] { display: none }
+.item .dates .repo-commits { margin: 0 }
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
+/* Panel entrance */
+.panel-enter { animation: panel-enter .2s cubic-bezier(.16, 1, .3, 1) both }
+@keyframes panel-enter { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+
+/* Wipe reveal: screenshot curtain, then text in sequence */
+.js .item.reveal { opacity: 1; transform: none; transition: none }
+.js .item .frame { clip-path: inset(0 0 100% 0); transition: clip-path .8s cubic-bezier(.77,0,.18,1) }
+.js .item.in .frame { clip-path: inset(0 0 0 0) }
+.js .item .frame img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1) }
+.js .reveal .frame img { transform: scale(1.06) }
+.js .reveal.in .frame img { transform: scale(1) }
+
+/* Staggered text entrance */
+.js .item .item-head, .js .item p, .js .item .meta { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1) }
+.js .item.in .item-head, .js .item.in p, .js .item.in .meta { opacity: 1; transform: none }
+.js .item.in .item-head { transition-delay: .35s }
+.js .item .item-head { transform: none } /* a transform here re-parents the absolute chip and makes it jump when the intro ends */
+.js .item.in p:nth-of-type(1) { transition-delay: .45s }
+.js .item.in p:nth-of-type(2) { transition-delay: .53s }
+.js .item.in p:nth-of-type(3) { transition-delay: .61s }
+.js .item.in .meta { transition-delay: .7s }
+
+/* View transitions */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto }
+  ::view-transition-group(root) { animation-duration: .22s; animation-timing-function: ease }
+
+  /* Arrows slide on hover */
+  .meta li:first-child a::after, .item .meta li:first-child a::after { content: "\2192"; margin-left: .35em; display: inline-block; transition: transform .25s ease }
+  .meta li+li a::after, .links li a::after { content: "\2197"; margin-left: .35em; display: inline-block; transition: transform .25s ease }
+  .meta li:first-child a:hover::after, .meta li:first-child a:focus-visible::after { transform: translateX(.3em) }
+  .meta li+li a:hover::after, .links li a:hover::after, .meta li+li a:focus-visible::after, .links li a:focus-visible::after { transform: translate(.2em, -.2em) }
+
+  /* Press feedback */
+  .meta a, .links a, .back a, .side nav a { display: inline-block; transition: transform .15s ease, color .2s ease, border-color .2s ease }
+  .side nav a, .back a { display: inline-flex }
+  .meta a:active, .links a:active, .back a:active { transform: scale(.96) }
+  .side nav a:active { transform: translateX(.25rem) }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+/* ---- Desktop: 56.01rem+ ---- */
+@media (min-width: 56.01rem) {
+  html { font-size: 110% }
+  .home .shell { grid-template-columns: 22rem minmax(0, 1fr); gap: 5.5rem }
+
+  /* Sidebar: sticky full height, square corners flush to window */
+  .side {
+    position: sticky; top: 0;
+    height: 100dvh;
+    border-radius: 0; border-top: 0; border-bottom: 0;
+    padding: 1.5rem 1.5rem;
+    overflow: visible;
+  }
+  .side .profile-photo { margin-bottom: .6rem }
+  .side h1 { font-size: 1.85rem; margin-bottom: 0 }
+  .side .lead:not(.loc) { font-size: 1.125rem; line-height: 1.7 }
+  .side .lead.loc {
+    font-size: .76rem;
+    letter-spacing: -0.015em;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .side nav ul { margin-top: 1.5rem; gap: .7rem }
+  .side-links { margin-top: 1.5rem; gap: .5rem; font-size: .82rem }
+
+  /* Mascot pinned to bottom with hairline above */
+  .side .been { padding-top: 1rem; border-top: 1px solid #333230 }
+}
+
+/* ---- Tablet: max 56rem ---- */
+@media (max-width: 56rem) {
+  .home .shell { display: block }
+  .side {
+    position: static;
+    height: auto;
+    padding: 2.5rem 0 1.25rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.25rem;
+    row-gap: .6rem;
+    align-items: center;
+  }
+
+  /* Fixed top nav bar */
+  .home { padding-top: 3rem }
+  .side nav { position: fixed; top: 0; left: 0; right: 0; z-index: 30; background: rgba(31,30,29,.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #333230 }
+  .side nav ul { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 0; margin: 0; padding: 0 }
+  .side nav li { flex: 1 }
+  .side nav a { display: flex; justify-content: center; align-items: center; min-height: 3rem; gap: 0; border-bottom: 2px solid transparent; transform: none; color: var(--muted); -webkit-tap-highlight-color: transparent }
+  .side nav a::before { display: none }
+  .side nav a:hover, .side nav a[aria-current="true"], .side nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink) }
+
+  /* Compact sidebar items */
+  .side > * { grid-column: 1 / -1 }
+  .side .profile-photo { grid-column: 1; grid-row: 1; width: 4.25rem; height: 4.25rem; margin: 0 }
+  .side h1 { grid-column: 2; grid-row: 1; align-self: center; font-size: 1.65rem; line-height: 1.1; margin: 0 }
+  .side .lead.loc {
+    grid-column: 1 / -1;
+    font-size: .8rem;
+    line-height: 1.4;
+    margin: .25rem 0 0;
+    white-space: normal;
+  }
+
+  /* Icon-only contact links */
+  .side .side-links { flex-direction: row; flex-wrap: wrap; gap: .5rem; margin-top: .75rem }
+  .side .side-links a { font-size: 0; gap: 0; justify-content: center; width: 2.75rem; height: 2.75rem; min-height: 0; border: 1px solid #333230; border-radius: .6rem }
+  .side .side-links .ico { width: 1.25rem; height: 1.25rem }
+
+  /* Commit note on mobile */
+  .side .side-links li:has(.commits-note) { display: contents }
+  .side .side-links .commits-note { order: 99; flex-basis: 100%; margin: .5rem 0 0; font-size: .75rem; opacity: .6 }
+  .side .side-links .commits-note::before { content: "GitHub " }
+
+  /* Sidebar commit link with text */
+  .side .side-links a.commits { font-size: .85rem; gap: .5rem; width: auto; padding: 0 .9rem }
+
+  .side .badge { margin-top: 2rem }
+  .home main { padding-top: 3rem }
+  .item { padding-bottom: 4rem }
+}
+
+/* ---- Small: max 40rem ---- */
+@media (max-width: 40rem) {
+  .item-head { flex-wrap: wrap; align-items: center; row-gap: .6rem }
+  .item-head .title-block { flex: 1 1 0; min-width: 0 }
+  .been { margin-top: 1.25rem; gap: .7rem }
+  .been-btn { width: 3.5rem; height: 3.5rem; margin-left: -.5rem }
+  .been-text { font-size: .72rem }
+}
+
+/* ---- Narrow: max 34rem ---- */
+@media (max-width: 34rem) {
+  .home .shell, .wrap { padding-left: max(1.25rem, env(safe-area-inset-left, 0px)); padding-right: max(1.25rem, env(safe-area-inset-right, 0px)) }
+  .home .shell { display: block }
+  .side { padding-top: 2rem }
+  .home main { padding-top: 3.5rem }
+  .home-intro { padding-bottom: 2rem }
+  .home-intro h2 { font-size: 2.8rem }
+  .item { padding-bottom: 3.5rem; margin-bottom: 2.5rem }
+  .item h3 { font-size: 1.75rem }
+  .item-head { gap: .85rem }
+  article h1 { font-size: 2rem }
+  .meta, .links { font-size: .875rem; gap: .5rem 1.25rem }
+  .status { font-size: .8125rem }
+  footer.site { font-size: .85rem }
+  nav a { display: inline-flex; align-items: center; min-height: 2.75rem }
+  header.site { padding-top: .5rem }
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal, .js .reveal .frame img { opacity: 1; transform: none; transition: none }
+  .js .item .frame { clip-path: none; transition: none }
+  .js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
+  .side nav a::before { transition: none }
+  .panel-enter { animation: none }
+  .been .blink { animation: none }
+  .been-btn .been-mascot { animation: none !important }
+  .been-plus { animation: none; opacity: 0 }
+}
+
+/* Project page intro paragraph */
+.project-lede {
+  font-family: var(--mono);
+  font-size: .95rem;
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* Project page header */
+.project-title { display: flex; align-items: center; gap: 1rem; margin: 1.25rem 0 0 }
+.project-title img { display: block; flex: none; width: 3.5rem; height: 3.5rem; object-fit: contain }
+.project-title h1 { margin: 0 }
+
+/* Back button sits left of the project icon */
+.project-title .back { margin: 0; flex: none; display: flex }
+.project-title .back a { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem }
+.project-title h1 { min-width: 0; overflow-wrap: anywhere }
+@media (max-width: 480px) {
+  .project-title { gap: .65rem }
+  .project-title img { width: 2.75rem; height: 2.75rem }
+}
+
+/* Compact overview */
+.outcomes { margin-top: 1rem;}
+.outcomes li { margin-bottom: 0 }
+
+/* Tighter overview spacing */
+.facts { grid-template-columns: repeat(2, 1fr); gap: .6rem 1.25rem; margin: 1rem 0 0; padding: .8rem 0 }
+.facts > div:last-child:nth-child(odd) { grid-column: 1 / -1 }
+.facts dd { margin-top: .15rem; font-size: .9rem; line-height: 1.4 }
+.outcomes { margin: .9rem 0 0; padding-left: 1.1rem; gap: .35rem }
+.outcomes li { margin: 0; font-size: .85rem; line-height: 1.55 }
+
+/* Tighter section rhythm on project pages */
+.project-title ~ section { margin-top: 1.1rem; padding: 1.1rem 0 }
+.project-title ~ section h2 { margin-bottom: .4rem }
+.project-title ~ section p { margin-bottom: .8rem }
+.project-title ~ section .meta { margin-top: .9rem }
+
+/* Project card hover: spotlight, icon lift, layered motion */
+.projects-grid .item { position: relative; isolation: isolate }
+.projects-grid .item::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  transition: opacity .3s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .project-icon { transition: transform .4s cubic-bezier(.34,1.56,.64,1) }
+  .projects-grid .item-top .status { transition: transform .3s ease .04s }
+  .projects-grid .title-block { transition: transform .3s ease .08s }
+  .projects-grid .item:active { transform: scale(.985) }
+}
+@media (hover: hover) {
+  .projects-grid .item:hover::before { opacity: 1 }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover { transform: translateY(-4px) }
+  .projects-grid .item:hover .project-icon { transform: scale(1.08) rotate(-4deg) }
+  .projects-grid .item:hover .item-top .status { transform: translateY(-2px) }
+  .projects-grid .item:hover .title-block { transform: translateX(3px) }
+}
+
+/* Compact home project cards */
+.projects-grid .item { padding-block: 1.1rem;}
+.projects-grid .item-head { margin: 0;}
+.projects-grid .project-icon { width: 2.5rem; height: 2.5rem }
+.projects-grid .item p { margin-top: .7rem; font-size: .88rem; line-height: 1.55 }
+.projects-grid .item .meta { margin-top: .7rem }
+@media (max-width: 640px) {
+  .projects-grid .item { padding-block: .9rem }
+  .projects-grid .project-icon { width: 2.25rem; height: 2.25rem }
+  .projects-grid .item p { -webkit-box-orient: vertical;
+    font-size: .85rem
+  }
+}
+
+/* Commit count row in project facts */
+.facts > div:last-child { grid-column: 1 / -1 }
+.facts > div:has([data-repo-commits][hidden]) { display: none }
+
+/* Phones and tablets: no sidebar or top nav on project pages (back arrow is in the title row) */
+@media (max-width: 56rem) {
+  body:has(.project-title) .side { display: none }
+}
+
+/* Sidebar: group content, centered, no big gap above the counter */
+@media (min-width: 56.01rem) {
+  .side { justify-content: safe center; overflow-x: hidden; overflow-y: auto; scrollbar-width: none }
+  .side::-webkit-scrollbar { display: none }
+  .side .profile-photo { width: 7.5rem; height: 7.5rem }
+  .side .been { margin-top: 2rem }
+}
+
+/* Phones and tablets: hide total commits note (per-repo counts are on the cards and project pages) */
+@media (max-width: 56rem) {
+  .side .side-links .commits-note { display: none }
+}
+
+/* Mobile home cards: show the full description */
+@media (max-width: 640px) {
+  .projects-grid .item p {
+    display: block; -webkit-line-clamp: unset; line-clamp: unset; overflow: visible
+  }
+}
+
+/* Sidebar location moved under the social links (desktop) */
+@media (min-width: 56.01rem) {
+  .side .lead.loc {
+    order: 1;
+    flex-direction: row; align-items: flex-start; justify-content: flex-start; text-align: left;
+    gap: .5rem; margin: 1.3rem 0 0;
+  }
+  .side .lead.loc .ico { width: 1rem; height: 1rem; margin-top: .1em }
+  .side .been { order: 2 }
+}
+
+/* Experience: logo pinned to the right of the role title */
+h2:has(> .org-logo) {
+  display: flex;
+}
+h2 > .org-logo { flex: none; width: auto; height: 1.25rem;}
+@media (max-width: 480px) {
+  h2 > .org-logo { height: 1.05rem }
+}
+
+/* Experience: logo sits next to the role title, not at the far edge */
+h2:has(> .org-logo) { justify-content: flex-start; align-items: center; gap: .6rem }
+h2 > .org-logo { margin-top: 0 }
+@media (max-width: 480px) {
+  h2:has(> .org-logo) { align-items: flex-start }
+}
+
+/* Experience (mobile): center logo on the first line of the title */
+@media (max-width: 480px) {
+  h2 > .org-logo {
+    margin-top: .35em;
+    margin-top: calc((1lh - 1.05rem) / 2);
+  }
+}
+
+/* Project facts: Activity row spans the full width like Stack */
+.facts > div:has([data-repo-commits]) { grid-column: 1 / -1 }
+
+/* Mascot idle animations (driven by js/mascot-idle.js) */
+.been .body { transform-box: fill-box; transform-origin: 50% 100% }
+.been .body.mi-bounce { animation: mi-bounce .7s ease-out }
+.been .body.mi-tilt { transform-origin: 50% 60%; animation: mi-tilt 1.6s ease-in-out }
+@keyframes mi-bounce {
+  0% { transform: translateY(0) scale(1) }
+  20% { transform: translateY(0) scale(1.06,.92) }
+  50% { transform: translateY(-6px) scale(.97,1.04) }
+  80% { transform: translateY(0) scale(1.04,.95) }
+  100% { transform: translateY(0) scale(1) }
+}
+@keyframes mi-tilt {
+  0%, 100% { transform: rotate(0) }
+  25%, 70% { transform: rotate(-6deg) }
+}
+@media (prefers-reduced-motion: reduce) { .been .body { animation: none !important } .been .turn { transition: none } }
+
+/* View project: black slide-to-open button (driven by js/slide-open.js) */
+.projects-grid .item .meta li:first-child a {
+  display: inline-flex; align-items: center; justify-content: center;
+  position: relative; min-width: 11.5rem; height: 2.6rem;
+  background: #0b0b0c; color: var(--ink); border: 1px solid #3A3A44;
+  text-decoration: none; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  transition: border-color .2s ease;
+}
+.projects-grid .item .meta li:first-child a.drag { transition: none }
+.projects-grid .item .meta li:first-child a:hover { border-color: var(--muted);}
+.projects-grid .item .meta li:first-child a:active { transform: none }
+
+/* Slider: stay black in every state, and cap the track width on wide cards */
+.projects-grid .item .meta li:first-child a { width: 100%; max-width: 20rem }
+
+/* Chevron hint on the stripe (slow shimmer toward the reader) */
+.projects-grid .item .meta li:first-child a {
+  border-radius: .6rem; padding: 0 2.6rem 0 3.2rem;
+  -webkit-touch-callout: none; -webkit-user-drag: none;
+}
+
+/* Slider label: keep sentence case */
+.projects-grid .item .meta li:first-child a { text-transform: none; letter-spacing: .01em }
+
+/* Screenshot keys under each carousel (js/car-slider.js) replace the arrow buttons */
+.car-btn, .car-count { display: none }
+.car-slider {
+  display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none;
+}
+.cs-key {
+  all: unset; box-sizing: border-box; cursor: pointer; display: grid; place-items: center; -webkit-tap-highlight-color: transparent;
+}
+.cs-num { text-align: center; font-family: "Geist Mono", ui-monospace, monospace; font-size: .72rem; letter-spacing: .02em;}
+@media (prefers-reduced-motion: reduce) { .cs-key { transition: none } }
+
+/* Project pages: remove the big gap at the top */
+article h1 { margin-top: .5rem }
+@media (max-width: 56rem) {
+  .home main:has(> article) { padding-top: .75rem }
+}
+
+/* Cream mechanical keycaps (overrides the plain keys above) */
+.car-slider { gap: 1.1rem; padding-bottom: 12px; margin-top: 1rem }
+.cs-key {
+  position: relative; width: 3.9rem; height: 3.3rem; border-radius: .8rem; color: #5a4636; border: 0;
+  background: linear-gradient(180deg, #d8ccae, #c4b794);
+  box-shadow:
+    0 2px 0 #b8aa86,
+    0 5px 0 #a89a76,
+    0 8px 0 #8c8062,
+    0 10px 14px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .35);
+  transition: transform .07s ease, box-shadow .07s ease, filter .2s ease;
+}
+.cs-key::before {
+  content: ""; position: absolute; inset: 3px 4px 9px; border-radius: .6rem; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #fffbf1 0%, #f6edd6 55%, #e9dec2 100%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -3px 4px rgba(120, 98, 58, .22),
+    inset 0 0 0 1px rgba(255, 255, 255, .4),
+    0 1px 0 rgba(60, 45, 25, .25);
+}
+.cs-key::after {
+  content: ""; position: absolute; left: 14%; right: 14%; top: 7px; height: 5px; border-radius: 99px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0));
+}
+.cs-key svg {
+  position: relative; z-index: 1; margin-top: -6px; stroke-width: 2.8;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .8));
+}
+.cs-key:hover { filter: brightness(1.04) }
+.cs-key:active {
+  transform: translateY(7px); filter: none;
+  box-shadow:
+    0 1px 0 #8c8062,
+    0 2px 3px rgba(0, 0, 0, .5),
+    inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+.cs-key:active::before {
+  box-shadow: inset 0 2px 3px rgba(120, 98, 58, .3), inset 0 0 0 1px rgba(255, 255, 255, .3);
+}
+.cs-key:focus-visible { outline: 2px solid #e9dec2; outline-offset: 4px }
+.cs-num { color: #b8aa86; min-width: 3rem }
+
+/* 404 page */
+.nf { min-height: 100dvh; max-width: 40rem; margin: 0 auto; padding: 2rem 1.5rem; display: grid; align-content: center; justify-items: start; gap: 1rem }
+.nf-icon { width: 3.5rem; height: 3.5rem; margin-bottom: .5rem }
+.nf-kicker { margin: 0; color: var(--muted); font: 400 .75rem var(--mono); letter-spacing: .06em }
+.nf h1 { margin: 0; color: var(--ink); font: 600 clamp(2.25rem, 7vw, 3.5rem)/1.05 var(--sans); letter-spacing: -.03em }
+.nf-text { margin: 0; max-width: 28rem; color: var(--muted) }
+.nf-back { margin-top: .5rem; padding: .6rem 1rem; background: var(--btn); border: 1px solid transparent; border-radius: 8px; color: var(--text); text-decoration: none; font: 500 .9rem var(--sans) }
+.nf-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+@media (hover: hover) {
+  .nf-back:hover { background: var(--btn-hover); color: var(--ink); transform: translateY(-1px) }
+}
+
+/* Credit-card project cards (home): shape, edge and shine */
+.projects-grid .item {
+  aspect-ratio: 1.586;
+  overflow: visible;
+  margin-bottom: 0;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, var(--card-2), var(--card) 55%);
+  border-top-color: var(--card-edge);
+}
+.projects-grid .item::before {
+  border-radius: inherit;
+  background:
+    radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--foil-a) 16%, transparent), transparent 65%),
+    radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--ink) 9%, transparent), transparent 70%);
+}
+.projects-grid .item::after {
+  content: attr(data-index);
+  font: 500 3.2rem/1 var(--mono); letter-spacing: -.02em;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 12%, transparent), 0 1px 0 var(--shadow);
+}
+.projects-grid .item h3 { text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow) }
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item { transition: border-color .2s ease, transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover { box-shadow: 0 1px 0 var(--shadow), 0 22px 28px -14px var(--shadow) }
+}
+
+/* Credit-card project cards (home): face layout */
+.projects-grid .item-head { gap: .5rem }
+.projects-grid .item-top::after { flex: none; margin-left: .8rem;
+}
+.projects-grid .item-top .status { order: 2; margin-left: auto }
+.projects-grid .item h3 { font-size: 1.45rem }
+.projects-grid .item p.tagline { max-width: 72%; font-size: .8rem; line-height: 1.5 }
+.projects-grid .item .meta { display: flex; flex-wrap: wrap; align-items: center;}
+.projects-grid .item .meta li+li a { text-transform: lowercase }
+
+/* Credit-card project cards (home): magnetic stripe slider */
+.projects-grid .item .meta li:first-child a,
+.projects-grid .item .meta li:first-child a:hover,
+.projects-grid .item .meta li:first-child a:focus-visible {
+  width: 100%; max-width: none; height: 2.6rem; border: 0;
+  border-radius: 0 0 calc(1rem - 1px) calc(1rem - 1px); font: 500 .75rem var(--mono); letter-spacing: .08em;
+}
+
+/* Credit-card project cards (home): title and dates sit on the left edge */
+.projects-grid .item-head { align-items: flex-start }
+.projects-grid .title-block { align-self: flex-start; text-align: left }
+
+/* Credit-card project cards (home): contactless mark */
+.projects-grid .item { --contactless: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M6 9a4 4 0 0 1 0 6%27/%3E%3Cpath d=%27M10 6.5a8 8 0 0 1 0 11%27/%3E%3Cpath d=%27M14 4a12 12 0 0 1 0 16%27/%3E%3C/svg%3E") }
+.projects-grid .item-top::before {
+  content: ""; order: 3; flex: none; width: 1.35rem; height: 1.35rem; margin-left: .7rem;
+  background: color-mix(in srgb, var(--ink) 45%, transparent);
+  -webkit-mask: var(--contactless) center / contain no-repeat;
+  mask: var(--contactless) center / contain no-repeat;
+}
+
+/* Credit-card project cards (home): holo sticker */
+.projects-grid .item-top::before { margin-right: -.4rem }
+
+/* Credit-card project cards (home): phone layout fixes */
+@media (max-width: 30rem) {
+  .projects-grid .item p.tagline { max-width: none }
+}
+
+/* Credit-card project cards (home): two columns on desktop */
+@media (min-width: 30.0625rem) {
+  .projects-grid .item::after { font-size: 2.8rem }
+}
+
+/* Remove holo sticker, move the chip to its spot (desktop only) */
+.projects-grid .item .meta::after { display: none }
+@media (min-width: 30.0625rem) {
+  .projects-grid .item-top::after {
+    position: absolute; right: 1.3rem; bottom: 3.2rem; margin-left: 0; order: 0;
+  }
+}
+
+/* Equal-height project cards, full-width tagline on desktop (nothing cut off) */
+@media (min-width: 30.0625rem) {
+  .projects-grid .item p.tagline { max-width: 100% }
+}
+
+/* Stack project cards: Kaltas on top, CivicGuard below, same width, left-aligned */
+.projects-grid {
+  grid-template-columns: minmax(0, 26rem);
+  justify-content: start;
+  align-items: start;
+  gap: 1.25rem;
+}
+.projects-grid .item { width: 100%; max-width: 26rem }
+
+/* Desktop: dates live on the card-number line, so hide the text under the title (phones keep it) */
+@media (min-width: 30.0625rem) {
+  .projects-grid .item .date-text { display: none }
+}
+
+/* Home: no top line, tighter top so both project cards show on load (desktop only) */
+@media (min-width: 30.0625rem) {
+  .home main { padding-top: 2rem }
+  .home-intro { border-top: 0; padding: 0 0 1.5rem }
+  .home-intro h2 { font-size: clamp(2.25rem, 4.2vw, 3.5rem) }
+}
+
+/* Sidebar name: League Gothic, tall condensed caps */
+.side h1 { font-size: 2.7rem; text-transform: uppercase;}
+
+/* Sidebar name: gradient fill, subtle warp on hover */
+.side h1 {
+  transform-origin: 50% 100%;
+}
+
+/* Sidebar name: flat cream fill, no gradient (keeps the hover warp) */
+.side h1 {
+  background: none;
+  -webkit-background-clip: border-box; background-clip: border-box;
+  color: var(--text); -webkit-text-fill-color: currentColor;
+  filter: none;
+}
+
+/* Home heading: same look as the About and Experience headings */
+.home-intro { border-top: 0; padding: 0 }
+.home-intro h2 {
+  font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05;
+  font-size: 3.1rem; margin: 4rem 0 1rem; color: var(--ink);
+}
+@media (max-width: 30rem) { .home-intro h2 { font-size: 2.5rem } }
+
+/* About and Experience headings: same look as the Projects heading */
+.page-title {
+  font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05;
+  font-size: 3.1rem; margin: 4rem 0 1rem; color: var(--ink);
+}
+@media (max-width: 30rem) { .page-title { font-size: 2.5rem } }
+
+/* About and Experience: no line under the heading (dividers between sections stay) */
+.page-title + section,
+.page-title + .entry { border-top: 0; padding-top: 0 }
+
+/* Matte hint: faint grain over the original black card gradient */
+.projects-grid .item {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Project overview: big hero, compact facts strip, narrow reading column */
+.overview section { max-width: none; border-top: 0; margin-top: 0; padding: 0 }
+.overview .project-title h1 {
+  font-family: var(--sans); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; color: var(--ink);
+}
+.overview .frame.carousel {
+  max-width: 46rem; border-radius: 1rem;
+  box-shadow: 0 24px 40px -24px var(--shadow), 0 1px 0 var(--card-edge) inset;
+}
+.overview .project-lede { max-width: 38rem; margin: 1.5rem 0 0; font-size: 1.05rem; line-height: 1.65 }
+.overview .meta { margin-top: 1.25rem }
+.overview section + section h2 { margin: 0 0 1rem }
+.overview .facts { margin: 0; border: 0;
+  border-bottom: 1px solid var(--line);
+}
+.overview .facts > div { grid-column: auto }
+.overview .facts > div:last-child { grid-column: 1 / -1 }
+.overview .facts > div:has([data-repo-commits]) { grid-column: auto }
+
+/* Overview: firmer cap on the hero, lede back to its original size */
+.overview section .frame.carousel { width: 100%;}
+
+/* Card-to-overview transition (js/home.js wraps the page swap in a View Transition) */
+::view-transition-old(page), ::view-transition-new(page) { mix-blend-mode: normal }
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { filter: none }
+}
+
+@media (max-width: 30rem) {
+  
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
+}
+
+
+/* Card reader v2: bigger terminal with screen and keypad, slides out when the drag starts */
+.projects-grid .item { --reader-w: 7rem; --reader-gap: .7rem; --reader-insert: 1.1rem; --reader-travel: calc(var(--reader-gap) + var(--reader-insert)) }
+
+/* Desktop with a mouse: grab the card anywhere to drag it into the reader */
+@media (min-width: 40rem) and (pointer: fine) {
+  .projects-grid .item { user-select: none; cursor: grab }
+  .projects-grid .item.pulling { cursor: grabbing }
+  .projects-grid .item a { cursor: pointer }
+}
+
+/* Touch or narrow: no reader */
+@media (max-width: 39.99rem), (pointer: coarse) {
+  
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none }
+  .projects-grid .item-top::after { display: none }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item.dip { transform: translateY(8px) scale(.965); filter: brightness(.8); transition: transform .3s cubic-bezier(.2, .8, .2, 1), filter .3s ease }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover, .projects-grid .item.dip { transform: none }
+  
+}
+
+/* Stripe v3: quiet hint row, no knob. The pull shows as a green line along the top edge. */
+.projects-grid .item .meta li:first-child a::after,
+.projects-grid .item .meta li:first-child a:hover::after,
+.projects-grid .item .meta li:first-child a:focus-visible::after { display: none }
+.projects-grid .item .meta li:first-child a,
+.projects-grid .item .meta li:first-child a:hover,
+.projects-grid .item .meta li:first-child a:focus-visible {
+  justify-content: flex-start; padding: 0 1.4rem;
+  background:
+    linear-gradient(var(--live), var(--live)) 0 0 / calc(var(--pull, 0) * 100%) 2px no-repeat,
+    linear-gradient(var(--line), var(--line)) 0 0 / 100% 1px no-repeat,
+    linear-gradient(180deg, color-mix(in srgb, var(--ink) 6%, var(--stripe)), var(--stripe) 45%);
+  color: var(--muted); transition: color .2s ease;
+}
+.projects-grid .item .meta li:first-child a:hover { color: var(--ink) }
+
+.projects-grid .item .meta li:first-child a:focus-visible { outline: 2px solid var(--live); outline-offset: -2px }
+.projects-grid .item .meta li:first-child a::before { right: 1.4rem }
+@media (min-width: 40rem) and (pointer: fine) {
+  .projects-grid .item .meta li:first-child a { cursor: pointer }
+}
+@media (max-width: 39.99rem), (pointer: coarse) {
+  .projects-grid .item .meta li:first-child a::before { display: none }
+}
+
+/* Hover tilt and drag coexist: the tilt stays on transform (--rx/--ry from js/home.js),
+   the slide toward the reader uses the separate translate property. The tilt fades out as --pull nears 1. */
+.projects-grid .item.pulling,
+.projects-grid .item.pulling:hover {
+  transform-origin: 50% 50%;
+  transform: perspective(900px) translateY(-4px)
+    rotateX(calc(var(--rx, 0deg) * (1 - var(--pull, 0))))
+    rotateY(calc(var(--ry, 0deg) * (1 - var(--pull, 0))));
+  translate: calc(var(--pull, 0) * var(--reader-travel)) 0;
+  filter: none; transition: none;
+}
+.projects-grid .item.spring {
+  transform-origin: 50% 50%;
+  translate: 0 0;
+  transition: transform .55s cubic-bezier(.34, 1.56, .64, 1), translate .55s cubic-bezier(.34, 1.56, .64, 1), filter .4s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item.pulling, .projects-grid .item.pulling:hover { transform: none; translate: none }
+  .projects-grid .item.spring { translate: none; transition: none }
+}
+
+/* Phone header: copy the desktop layout (big centered photo, name, location, contact icons) */
+@media (max-width: 40rem) {
+  .side { row-gap: .5rem; padding: 2rem 0 .5rem }
+  .side .profile-photo { grid-column: 1 / -1; grid-row: 1; justify-self: center; width: 7.25rem; height: 7.25rem; margin: 0 }
+  .side h1 { grid-column: 1 / -1; grid-row: 2; justify-self: center; text-align: center; line-height: 1.05; margin: .4rem 0 0 }
+  .side .lead.loc { grid-row: 3; justify-content: center; text-align: center; margin: .15rem 0 0 }
+  .side .side-links { justify-content: center; margin-top: .6rem }
+}
+
+/* Phone gap: tighten the space between the header and the Projects heading (all three pages) */
+@media (max-width: 30rem) {
+  .home-intro { border-top: 0; padding-top: 0 }
+  .side .been { margin-top: 1rem }
+  .home main:has(> article) { padding-top: .5rem }
+}
+
+/* Phone "02": lives in the empty right side of the stripe row, not under the description */
+@media (max-width: 30rem) {
+  .projects-grid .item::after { line-height: 1; pointer-events: none;
+  }
+}
+
+/* Phone: center the "welcome back" block under the contact icons, like the rest of the header */
+@media (max-width: 40rem) {
+  .side .been { justify-content: center }
+}
+
+/* Phone: same gap above the page heading on Projects, About and Experience (72px) */
+@media (max-width: 30rem) {
+  .home main { padding-top: .5rem }
+}
+
+/* Phone: divider line under the header on Projects, About and Experience, with a tighter gap below it */
+@media (max-width: 30rem) {
+  .home main, .home main:has(> article) {
+    margin-top: 1.25rem; padding-top: .5rem; border-top: 1px solid var(--line);
+  }
+  .home main .home-intro h2, .home main h1.page-title { margin-top: 2rem }
+}
+
+/* Sidebar name: Big Shoulders Display, industrial condensed caps */
+:root { --condensed: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif }
+.side h1 { font-family: var(--condensed); font-weight: 700; letter-spacing: .02em; line-height: 1 }
+@media (min-width: 40.01rem) { .side h1 { font-size: 2.4rem } }
+@media (max-width: 40rem) { .side h1 { font-size: 2rem } }
+
+/* Idle sheen: a faint diagonal glint sweeps across every project card. The .sheen layer and the random
+   --idle offset (negative seconds, so cards never sync) are added by js/slide-open.js, so it works for any number of cards. */
+.projects-grid .item .sheen { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; z-index: 1 }
+.projects-grid .item .sheen::before {
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 40%;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--ink) 9%, transparent), transparent);
+  transform: skewX(-18deg); translate: -150% 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .projects-grid .item .sheen::before { animation: card-sheen 9s ease-in-out var(--idle, 0s) infinite }
+}
+@keyframes card-sheen { 0% { translate: -150% 0 } 30%, 100% { translate: 400% 0 } }
+
+/* Project overview as one big card, matching the home project cards */
+.overview {
+  position: relative; max-width: 44rem; margin: 2rem 0 0; padding: 1.5rem 1.5rem 2rem;
+  border: 1px solid var(--line);
+  background-color: var(--card); background-image: linear-gradient(145deg, var(--card-2), var(--card) 55%);
+  box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow);
+}
+.overview .project-title { margin: 0 0 1.25rem }
+.overview .project-title h1 { font-size: 2.6rem }
+.overview section .frame.carousel { max-width: 100%; border-radius: .6rem; box-shadow: 0 14px 24px -16px var(--shadow) }
+.overview .facts { max-width: none }
+.overview section + section { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid var(--line) }
+@media (max-width: 30rem) {
+  .overview { margin-top: 1.25rem; padding: 1rem 1rem 1.5rem }
+  .overview .project-title { margin: 0 0 1rem }
+  .overview .project-title h1 { font-size: 2rem }
+}
+
+
+/* Overview entrance: the card pops in with a spring, one sheen sweeps across it, then its parts stagger in.
+   Delays are by role (not nth-child), so new sections and new projects need no extra rules. */
+@keyframes ov-pop { from { opacity: 0; transform: translateY(28px) scale(.94) } to { opacity: 1; transform: none } }
+@keyframes ov-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes ov-sheen { from { background-position: 100% 0 } to { background-position: 0 0 } }
+@media (prefers-reduced-motion: no-preference) {
+  .overview::before {
+    content: ""; position: absolute; pointer-events: none;
+    background-size: 300% 100%; background-position: 100% 0;
+  }
+  .overview .project-title, .overview section .frame, .overview .project-lede, .overview .meta,
+  .overview section > h2, .overview .facts, .overview .outcomes {
+    animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) backwards;
+  }
+}
+
+/* Overview: card number, cursor spotlight, bottom back stripe */
+.overview .ov-num {
+  position: absolute; top: .9rem; right: 1.25rem; z-index: 0; pointer-events: none; user-select: none;
+  font: 700 4.5rem/1 var(--mono); letter-spacing: -.04em;
+  color: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.overview .project-title, .overview section { position: relative; z-index: 1 }
+@media (hover: hover) and (pointer: fine) {
+  .overview::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--ink) 7%, transparent), transparent 70%);
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .overview:hover::after { opacity: 1 }
+}
+
+/* Overview: compact back button, top right */
+.overview .back-top {
+  position: absolute; top: 1rem; right: 1.1rem; z-index: 3;
+  display: inline-flex; align-items: center; border-radius: 999px;
+  background: linear-gradient(180deg, #1b1b20, #0e0e11); border: 1px solid #2c2c33;
+  box-shadow: inset 0 1px 0 var(--card-edge);
+  font: 500 .7rem var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; transition: border-color .2s ease, transform .2s ease;
+}
+.overview .back-top:hover, .overview .back-top:focus-visible { border-color: var(--live);}
+@media (max-width: 30rem) {
+  .overview .back-top { top: .8rem; right: .8rem; padding: .5rem }
+  .overview .back-top span { display: none }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .overview .back-top { animation: ov-in .5s cubic-bezier(.2, .8, .2, 1) .3s backwards }
+}
+@media (prefers-reduced-motion: reduce) { .overview .back-top { transition: none } }
+
+/* Overview: card number now sits beside the title as a small label */
+.overview .project-title .ov-num {
+  position: static; align-self: center; margin-left: .9rem; padding: .25rem .55rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  font: 500 .75rem/1 var(--mono); letter-spacing: .12em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+/* Overview: back button is a round X */
+.overview .back-top { padding: .55rem; gap: 0; width: 2.1rem; height: 2.1rem; justify-content: center }
+.overview .back-top:hover, .overview .back-top:focus-visible { transform: rotate(90deg) }
+@media (prefers-reduced-motion: reduce) { .overview .back-top:hover, .overview .back-top:focus-visible { transform: none } }
+
+/* Overview readability: body font for sentences, roomier lists, custom bullets */
+.overview section .project-lede { color: var(--text);
+}
+.overview .facts dd { font-weight: 500 }
+.overview .outcomes {
+  list-style: none; padding-left: 0; margin: 1.5rem 0 0;
+  display: grid; gap: 1.1rem;
+}
+.overview .outcomes li {
+  position: relative; margin: 0; padding-left: 1.5rem; color: var(--text);
+}
+.overview .outcomes li::marker { content: "" }
+.overview .outcomes li::before {
+  content: ""; position: absolute; left: .15rem; top: .7em;
+  width: .38rem; height: .38rem; border-radius: 50%;
+  background: var(--muted);
+}
+@media (max-width: 30rem) {
+  .overview .outcomes { gap: .95rem }
+  .overview .outcomes li { padding-left: 1.3rem }
+}
+
+/* Overview: Geist Mono for the description, contributions and facts */
+.overview .project-lede,
+.overview .outcomes li,
+.overview .facts dd {
+  font-family: var(--mono);
+}
+.overview section .project-lede { font-size: .95rem; line-height: 1.8; max-width: 66ch }
+.overview .outcomes { max-width: 66ch }
+.overview .outcomes li { font-size: .9rem; line-height: 1.75 }
+.overview .facts dd { font-size: .95rem; line-height: 1.5 }
+@media (max-width: 30rem) {
+  .overview section .project-lede { font-size: .88rem; line-height: 1.75 }
+  .overview .outcomes li { font-size: .85rem; line-height: 1.7 }
+  .overview .facts dd { font-size: .88rem }
+}
+
+/* Overview entrance: pop in from the right (replaces the rise from below) */
+@keyframes ov-pop { from { opacity: 0; transform: translateX(72px) scale(.95) } to { opacity: 1; transform: none } }
+@keyframes ov-in { from { opacity: 0; transform: translateX(18px) } to { opacity: 1; transform: none } }
+
+/* ===== Overview as a real card ===== */
+.overview { border-radius: 1.25rem; transition: border-color .3s ease, box-shadow .3s ease }
+
+/* Gold chip (top right, left of the X) */
+.overview .ov-chip {
+  position: absolute; top: 1.05rem; right: 4rem; z-index: 3; width: 2.1rem; height: 1.6rem; border-radius: .3rem;
+  background:
+    linear-gradient(90deg, transparent 32%, var(--chip-line) 32% 34%, transparent 34% 66%, var(--chip-line) 66% 68%, transparent 68%),
+    linear-gradient(0deg, transparent 46%, var(--chip-line) 46% 54%, transparent 54%),
+    linear-gradient(135deg, var(--foil-a), var(--foil-b) 55%, var(--foil-a));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foil-b) 70%, var(--on-ink));
+}
+
+/* Status pill */
+.overview .ov-status {
+  align-self: center; margin-left: .6rem; padding: .25rem .6rem .25rem .5rem; border: 1px solid var(--line); border-radius: 999px;
+  font: 500 .7rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  display: inline-flex; align-items: center; gap: .4rem;
+}
+.overview .ov-status::before { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--muted) }
+.overview .ov-status.live { color: var(--live) }
+.overview .ov-status.live::before { background: var(--live); box-shadow: 0 0 8px var(--live) }
+
+/* Section label like card printing */
+.overview section > h2 {
+  display: flex; align-items: center; gap: .9rem;
+  font: 500 .72rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+}
+.overview section > h2::after { content: ""; flex: 1; height: 1px; background: var(--line) }
+
+/* Fact tiles + stack pills */
+.overview .facts { border-top: 0; padding: 1rem 0 0; margin-top: 1rem }
+.overview .facts > div {
+  padding: .8rem .95rem; border: 1px solid var(--line); border-radius: .7rem;
+  background: color-mix(in srgb, var(--ink) 3%, transparent);
+}
+
+/* Links as a magnetic stripe band */
+.overview .meta {
+  list-style: none; display: flex; flex-wrap: wrap;
+}
+.overview .meta li { margin: 0; padding: 0 }
+.overview .meta a {
+  display: inline-flex; align-items: center; gap: .45rem; font: 500 .75rem var(--mono); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none; transition: color .2s ease;
+}
+.overview .meta a:hover, .overview .meta a:focus-visible { color: var(--live) }
+
+@media (max-width: 30rem) {
+  .overview .ov-chip, .overview .ov-status { display: none }
+  .overview .facts > div { padding: .65rem .75rem }
+}
+
+/* Overview entrance: back to the original rise from below with a spring */
+@keyframes ov-pop { from { opacity: 0; transform: translateY(28px) scale(.94) } to { opacity: 1; transform: none } }
+@keyframes ov-in { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: no-preference) {
+  .overview::before { animation-delay: .6s }
+  .overview .back-top { animation-delay: .3s }
+  .overview .project-title { animation-delay: .3s }
+}
+
+/* Overview: no green outline or glow on the card or the X */
+@media (hover: hover) and (pointer: fine) {
+  .overview:hover {
+    border-color: var(--line);
+    box-shadow: 0 1px 0 var(--card-edge) inset, 0 24px 40px -24px var(--shadow);
+  }
+}
+.overview .back-top:hover { border-color: color-mix(in srgb, var(--ink) 35%, #2c2c33) }
+.overview .back-top:focus-visible { border-color: #2c2c33; outline: 2px solid var(--ink); outline-offset: 2px }
+
+/* Overview entrance: printed out top to bottom while a scan line passes over it */
+@keyframes ov-print {
+  from { opacity: 0; clip-path: inset(0 0 100% 0 round 1.25rem); transform: translateY(-14px) }
+  8%   { opacity: 1 }
+  to   { opacity: 1; clip-path: inset(0 0 0 0 round 1.25rem); transform: none }
+}
+@keyframes ov-scan {
+  from { top: 0; opacity: 1 }
+  88%  { opacity: 1 }
+  to   { top: calc(100% - 2px); opacity: 0 }
+}
+@keyframes ov-in { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: no-preference) {
+  .overview { animation: ov-print .85s cubic-bezier(.65, 0, .35, 1) .15s backwards; transform-origin: 50% 0 }
+  .overview::before {
+    inset: 0 auto auto 0; width: 100%; height: 2px; border-radius: 0; z-index: 4;
+    background: linear-gradient(90deg, transparent, var(--ink) 20% 80%, transparent);
+    box-shadow: 0 0 14px 2px color-mix(in srgb, var(--ink) 45%, transparent);
+    animation: ov-scan .85s cubic-bezier(.65, 0, .35, 1) .15s both;
+  }
+  .overview .back-top, .overview .project-title { animation-delay: .3s }
+  .overview section .frame { animation-delay: .4s }
+  .overview .project-lede { animation-delay: .55s }
+  .overview .meta { animation-delay: .62s }
+  .overview section > h2 { animation-delay: .7s }
+  .overview .facts { animation-delay: .76s }
+  .overview .outcomes { animation-delay: .82s }
+}
+
+/* Sidebar footer: cream to match the rest of the sidebar */
+.been-text, .been-line { color: var(--ink) }
+.been-count { color: color-mix(in srgb, var(--ink) 80%, transparent) }
+
+/* Commits pill inside the overview Activity tile */
+.overview .facts dd .repo-commits { margin: .1rem 0 0 }
+
+/* Sidebar location line: cream to match */
+.side .loc, .side .loc span { color: color-mix(in srgb, var(--ink) 85%, transparent) }
+
+/* Cards v6: big number sits higher, beside the title, clear of the description */
+.projects-grid .item::after {
+  opacity: .8;
+}
+
+/* Cards v7: dates first, then plain text links, no pills */
+.projects-grid .item .meta li+li { order: 1 }
+.projects-grid .item .meta li:first-child { order: 4 }
+.projects-grid .item .meta li+li a {
+  font: 400 .75rem/1.2 var(--mono);
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em;
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible { border: 0;
+  text-decoration-color: color-mix(in srgb, var(--ink) 60%, transparent);
+}
+
+/* Cards v8: icon-only links */
+.projects-grid .item .meta { gap: .45rem .9rem }
+
+/* Cards v9: icon links as small embedded chips */
+.projects-grid .item .meta li+li a { place-items: center; width: 2.2rem; height: 2.2rem; padding: 0; margin: 0;
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); border-radius: .55rem;
+  color: color-mix(in srgb, var(--ink) 80%, transparent);
+  transition: transform .2s ease, box-shadow .2s ease, color .2s ease, border-color .2s ease;
+}
+.projects-grid .item .meta li+li a .ico {
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .6));
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, .35),
+    inset 0 -1px 0 color-mix(in srgb, var(--ink) 12%, transparent),
+    0 3px 6px -2px rgba(0, 0, 0, .6);
+}
+.projects-grid .item .meta li+li a:active {
+  transform: translateY(0);
+  box-shadow: inset 0 3px 4px rgba(0, 0, 0, .65), 0 1px 0 color-mix(in srgb, var(--ink) 7%, transparent);
+}
+.projects-grid .item .meta li+li a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px }
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item .meta li+li a { transition: none }
+}
+
+/* Cards v10: lighter embedded chips, slightly bigger icons */
+
+/* Cards v11: inlaid chips (flush with the card, shallow recess, no dark hole) */
+.projects-grid .item .meta li+li a {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, #000 5%, var(--card)),
+    color-mix(in srgb, #fff 2%, var(--card)));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ink) 7%, transparent),
+    inset 0 1px 2px rgba(0, 0, 0, .22),
+    0 1px 0 color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, #000 2%, var(--card)),
+    color-mix(in srgb, #fff 5%, var(--card)));
+}
+
+/* Cards v12: center icons in chips (cancel inline-icon margin and baseline offset) */
+.projects-grid .item .meta li+li a {
+  display: inline-flex; justify-content: center;
+}
+
+/* Cards v13: mono text links replace the icon chips */
+.projects-grid .item .meta li+li a,
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  display: inline-flex; align-items: center; gap: .45rem;
+  width: auto; height: auto; min-width: 0;
+  background: none; box-shadow: none;
+  font: 500 .8rem/1.2 var(--mono); letter-spacing: .04em;
+  color: var(--muted);
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible { text-underline-offset: .25em;
+}
+.projects-grid .item .meta li+li a::before { opacity: .8 }
+.projects-grid .item .meta li+li a[aria-label="download"]::before { content: "\2193" }
+.projects-grid .item .meta li+li a::after { content: attr(aria-label) }
+
+/* Cards v14: keep link arrows inline with their labels */
+.projects-grid .item .meta li+li a {
+  flex-direction: row; flex-wrap: nowrap; white-space: nowrap;
+}
+.projects-grid .item .meta li+li a::before,
+.projects-grid .item .meta li+li a::after {
+  position: static; inset: auto; transform: none; display: inline; width: auto; height: auto;
+  margin: 0; padding: 0; border: 0; background: none; box-shadow: none; font: inherit; letter-spacing: inherit;
+}
+.projects-grid .item .meta li+li a::before { margin-right: .35rem }
+
+/* Cards v15: icon + label links (no arrows) */
+.projects-grid .item .meta li+li a {
+  align-items: center;
+}
+.projects-grid .item .meta li+li a::before { content: none }
+.projects-grid .item .meta li+li a .ico {
+  display: block; flex: none; margin: 0; vertical-align: middle;
+}
+
+/* Cards v16: smaller icon + label links, "repository" label, no arrows */
+.projects-grid .item .meta li+li a::before,
+.projects-grid .item .meta li+li a[aria-label="download"]::before { content: none; display: none }
+.projects-grid .item .meta li+li a[aria-label="repository"]::after { content: "repository" }
+.projects-grid .item .meta li+li a { font-size: .72rem; gap: .4rem }
+.projects-grid .item .meta li+li a .ico { width: .9rem; height: .9rem }
+
+/* Cards v17: outlined link boxes, "download" label, scale-up hover (no underline) */
+.projects-grid .item .meta li+li a[aria-label="download"]::after { content: "download" }
+.projects-grid .item .meta li+li a,
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  padding: .3rem .65rem; border: 1px solid var(--line); border-radius: .4rem;
+  text-decoration: none; transform-origin: center;
+  transition: transform .18s ease, color .15s, border-color .15s;
+}
+.projects-grid .item .meta li+li a:hover,
+.projects-grid .item .meta li+li a:focus-visible {
+  color: var(--ink); text-decoration: none;
+  border-color: color-mix(in srgb, var(--ink) 35%, var(--line));
+  transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item .meta li+li a:hover,
+  .projects-grid .item .meta li+li a:focus-visible { transform: none }
+}
+
+/* Projects page intro line */
+.projects-intro {
+  max-width: 34rem; margin: .5rem 0 1.8rem;
+  font: 400 .85rem/1.6 var(--mono); letter-spacing: .02em; color: var(--muted);
+}
+
+/* Overview v18: outlined icon + text links, no green, no arrows or underline, scale-up hover */
+.overview .meta li a,
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible {
+  display: inline-flex; align-items: center; border: 1px solid var(--line);
+  background: none; box-shadow: none; text-decoration: none; text-transform: none;
+  font: 500 .72rem/1.2 var(--mono); letter-spacing: .04em; white-space: nowrap;
+  color: var(--muted); transform-origin: center;
+  transition: transform .18s ease, color .15s, border-color .15s;
+}
+.overview .meta li a::before,
+.overview .meta li a::after { content: none; display: none }
+.overview .meta li a .ico { display: block; flex: none; margin: 0; vertical-align: middle }
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible { transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview .meta li a:hover, .overview .meta li a:focus-visible { transform: none }
+}
+
+/* Overview v19: remove the stripe band behind the links, keep the outlined link boxes */
+.overview .meta {
+  background: none; border: 0; border-radius: 0; box-shadow: none; padding: 0;
+}
+
+/* Overview v20: no number or status pill in the header, bigger centered links */
+.ov-num, .ov-status { display: none }
+.overview .meta { margin: 1.5rem 0 1.5rem }
+.overview .meta li a,
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible {
+  padding: .55rem 1.1rem; gap: .55rem; font-size: .85rem; border-radius: .5rem;
+}
+.overview .meta li a .ico { width: 1.05rem; height: 1.05rem }
+
+/* Overview v21: no status pill next to the title, no gold chip */
+.overview .project-title .status,
+.overview .project-title [class*="status"],
+.overview .ov-chip { display: none }
+
+/* Overview v23: facts row fills the card width, Role gets extra room, stacks on small screens */
+.overview .facts { gap: .8rem; align-items: stretch;
+}
+.overview .facts > div { width: auto; min-width: 0; margin: 0 }
+@media (max-width: 40rem) {
+  .overview .facts { grid-template-columns: 1fr 1fr }
+  .overview .facts > div:first-child { grid-column: 1 / -1 }
+}
+@media (max-width: 26rem) {
+  .overview .facts { grid-template-columns: 1fr }
+}
+
+/* Overview v25: back to the muted palette (replaces v24 cream), slightly stronger so the links pop */
+.overview .meta li a {
+  color: color-mix(in srgb, var(--ink) 55%, var(--muted));
+  border-color: color-mix(in srgb, var(--ink) 22%, var(--line));
+  background: none;
+}
+.overview .meta li a:hover,
+.overview .meta li a:focus-visible {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 50%, var(--line));
+  background: none;
+}
+
+/* Overview v26: dark mechanical keycaps (replaces the cream keys) */
+.car-slider > .cs-key {
+  position: relative; isolation: isolate; border: 0; cursor: pointer;
+  transition: transform .09s ease, box-shadow .09s ease, color .15s;
+}
+/* top face: inset on all four sides, slightly dished, soft highlight along the top edge */
+.car-slider > .cs-key::before {
+  content: ""; position: absolute; z-index: -1;
+}
+.car-slider > .cs-key:first-child { color: color-mix(in srgb, var(--ink) 60%, var(--muted)) }
+.car-slider > .cs-key:last-child { color: #c4563a }
+.car-slider > .cs-key:hover { color: var(--ink) }
+.car-slider > .cs-key:last-child:hover { color: #d9694b }
+@media (prefers-reduced-motion: reduce) {
+  .car-slider > .cs-key { transition: none }
+  .car-slider > .cs-key:active { transform: none }
+}
+
+/* Overview v27: deeper keycaps, no red accent (builds on v26) */
+.car-slider > .cs-key {
+  border-radius: .7rem;
+  background: linear-gradient(180deg, #2c2c33 0%, #1c1c21 100%);
+  color: color-mix(in srgb, var(--ink) 62%, var(--muted));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .09),
+    inset 0 0 0 1px #35353d,
+    0 1px 0 #19191d,
+    0 2px 0 #17171b,
+    0 3px 0 #151519,
+    0 4px 0 #131317,
+    0 5px 0 #111114,
+    0 6px 0 #0e0e11,
+    0 7px 0 #0b0b0d,
+    0 14px 16px -6px rgba(0, 0, 0, .7);
+}
+/* top face: dished, inset more at the bottom for a perspective feel */
+.car-slider > .cs-key::before {
+  inset: .3rem .34rem .6rem; border-radius: .5rem;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 28%, #46464f 0%, #34343b 55%, #2a2a30 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .2),
+    inset 0 -3px 5px rgba(0, 0, 0, .4),
+    inset 1px 0 0 rgba(255, 255, 255, .05),
+    inset -1px 0 0 rgba(0, 0, 0, .25),
+    0 1px 1px rgba(0, 0, 0, .5);
+}
+/* soft sheen across the upper half of the face, under the arrow */
+.car-slider > .cs-key::after {
+  content: ""; position: absolute; z-index: -1; inset: .34rem .5rem auto; height: 34%;
+  border-radius: .4rem; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, 0));
+}
+/* legend: engraved look, same color on both keys */
+.car-slider > .cs-key svg {
+  width: 1.35rem; height: 1.35rem; stroke-width: 2.2;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .7)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .08));
+}
+.car-slider > .cs-key:first-child,
+.car-slider > .cs-key:last-child { color: color-mix(in srgb, var(--ink) 62%, var(--muted)) }
+.car-slider > .cs-key:hover,
+.car-slider > .cs-key:last-child:hover,
+.car-slider > .cs-key:focus-visible { color: var(--ink) }
+.car-slider > .cs-key:active {
+  transform: translateY(5px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .06),
+    inset 0 0 0 1px #35353d,
+    0 1px 0 #151519,
+    0 2px 0 #0e0e11,
+    0 5px 8px -4px rgba(0, 0, 0, .7);
+}
+
+/* Projects layout v1: tighter shell so the card + reader slot sit closer to centered */
+.home .shell:has(.projects-grid) { max-width: 64rem }
+
+/* Shell width v2: About and Experience match the Projects shell so the sidebar stays put */
+.home .shell:has(.page-title) { max-width: 64rem }
+
+/* Projects intro v3: muted gray text */
+.projects-intro .pi-lead { color: var(--muted) }
+
+/* Sidebar: its own transition layer, so it glides when the shell width changes between pages */
+.side { view-transition-name: side }
+::view-transition-group(side) { animation-duration: .45s; animation-timing-function: cubic-bezier(.4, 0, .2, 1) }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(side) { animation: none }
+}
+
+
+/* Leaving an overview: the card keeps one height for the whole return, so removing .pulling causes no vertical shift */
+
+/* Machine screen: INSERT CARD until the card is fully in, then APPROVED; THANK YOU when leaving an overview */
+
+/* Machine v4: slot glow follows the pull, blinking cursor on the prompt, flash on approval */
+
+@keyframes r-blink { 50% { opacity: 0 } }
+@keyframes r-approve {
+  0% { box-shadow: inset 0 0 0 1px #1d2a22, 0 0 0 0 transparent }
+  35% { box-shadow: inset 0 0 0 1px var(--live), 0 0 16px 2px color-mix(in srgb, var(--live) 60%, transparent) }
+  100% { box-shadow: inset 0 0 0 1px #1d2a22, 0 0 0 0 transparent }
+}
+
+/* Machine v5: keypad lights up row by row with the pull, pulses on approval; gloss and label on the body */
+
+@keyframes r-keys-flash {
+  0% { filter: brightness(2.4) drop-shadow(0 0 5px var(--live)) }
+  100% { filter: none }
+}
+
+/* Machine v5b: no glow on the slot edge, back to the plain dark slot */
+
+/* Machine v5c: no glow or flash on the keypad; the dots still light up with the pull */
+
+/* Machine v5d: no green anywhere. Keypad stays gray, screen text is neutral, no glow or pulse. */
+
+/* Machine v5e: screen text is green again, still no glow or pulse */
+
+/* Machine v6: no blinking cursor, screen text truly centered (cancels the trailing letter-spacing) */
+
+/* Hover hit area: the lifted card keeps :hover over its old bottom edge (no flicker loop) */
+.projects-grid .item .hover-pad { position: absolute; left: 0; right: 0; top: 100%; height: 10px; pointer-events: none }
+@media (hover: hover) and (pointer: fine) {
+  .projects-grid .item:hover .hover-pad { pointer-events: auto }
+}
+
+/* Lightbox (js/lightbox.js): click an overview image or video to enlarge it */
+.overview .slide img, .overview .slide video { cursor: zoom-in }
+.lb {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  padding: 3.5rem 1rem 3rem; background: rgba(0, 0, 0, .88); overscroll-behavior: contain;
+  opacity: 0; transition: opacity .2s ease;
+}
+.lb[hidden], .lb [hidden] { display: none }
+.lb.open { opacity: 1 }
+.lb-stage { display: grid; place-items: center; max-width: 100%; max-height: 100% }
+.lb-stage img, .lb-stage video {
+  width: auto; height: auto; max-width: min(94vw, 100%); max-height: calc(100vh - 7rem); max-height: calc(100dvh - 7rem);
+  object-fit: contain; border-radius: .5rem; background: var(--card); box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+}
+.lb-btn {
+  display: grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(12, 12, 15, .72); color: var(--ink); cursor: pointer;
+  backdrop-filter: blur(6px); transition: background .2s ease, border-color .2s ease;
+}
+.lb-btn:hover { background: rgba(12, 12, 15, .92); border-color: var(--ink) }
+.lb-btn svg { width: 1.1rem; height: 1.1rem }
+.lb-close { position: absolute; top: max(.75rem, env(safe-area-inset-top)); right: .75rem }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%) }
+.lb-prev { left: .75rem }
+.lb-next { right: .75rem }
+.lb-count {
+  position: absolute; bottom: max(.9rem, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+  padding: .15rem .65rem; border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(12, 12, 15, .72); color: var(--ink); font: 400 .75rem var(--mono);
+}
+@media (prefers-reduced-motion: reduce) { .lb, .lb-btn { transition: none } }
+
+/* Enlarge button (injected by js/lightbox.js): minimal, and it only brightens when the pointer is on the button itself */
+.lb-hint {
+  position: absolute; top: .6rem; right: .6rem; z-index: 2; display: grid; place-items: center;
+  width: 1.75rem; height: 1.75rem; padding: 0; border: 0; border-radius: .4rem;
+  background: rgba(12, 12, 15, .5); color: var(--ink); opacity: .55; cursor: pointer;
+  transition: opacity .15s ease, background .15s ease;
+}
+.lb-hint svg { width: .85rem; height: .85rem }
+.lb-hint:hover, .lb-hint:focus-visible { opacity: 1; background: rgba(12, 12, 15, .85) }
+@media (prefers-reduced-motion: reduce) { .lb-hint { transition: none } }
+
+/* Lightbox on small screens: smaller buttons, arrows move below the image beside the counter */
+@media (max-width: 40rem) {
+  .lb { padding: 3rem .5rem 3.75rem }
+  .lb-btn { width: 2rem; height: 2rem }
+  .lb-btn svg { width: .9rem; height: .9rem }
+  .lb-close { top: max(.5rem, env(safe-area-inset-top)); right: .5rem }
+  .lb-nav { top: auto; bottom: max(.6rem, env(safe-area-inset-bottom)); transform: none }
+  .lb-prev { left: calc(50% - 4.6rem) }
+  .lb-next { left: auto; right: calc(50% - 4.6rem) }
+  .lb-count { bottom: max(.75rem, env(safe-area-inset-bottom)) }
+  .lb-stage img, .lb-stage video { max-width: 100%; max-height: calc(100dvh - 6.75rem) }
+}
+
+/* Card hover-out: settle back slowly; hover-in and press stay quick (drag, spring and dip keep their own transitions) */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item {
+    transition: border-color .5s ease, transform .6s cubic-bezier(.22, .61, .36, 1), box-shadow .6s ease;
+  }
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) {
+    transition: border-color .2s ease, transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease;
+  }
+  .projects-grid .item::before { transition: opacity .6s ease }
+  .projects-grid .item:hover::before { transition-duration: .25s }
+}
+
+/* Privacy policy page */
+.policy .project-title h1 { font-size: 2rem }
+
+/* Privacy policy layout */
+.policy { counter-reset: pol }
+.policy section .policy-meta { font: 400 .75rem/1.4 var(--mono); color: var(--muted); text-transform: lowercase; margin: 0 0 1rem }
+.policy section ul { margin: .5rem 0 0; padding-left: 1.2rem }
+.policy section li { margin: .4rem 0 }
+.policy section li::marker { color: var(--muted) }
+.policy section code { font: 400 .82em var(--mono); padding: .1em .4em; border: 1px solid var(--line); border-radius: .3rem; background: var(--card); overflow-wrap: anywhere }
+.policy section a { text-underline-offset: .2em }
+
+/* Privacy policy uses the overview card. Its back control is an arrow, so no 90deg spin on hover. */
+.overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: translateX(-2px) }
+@media (prefers-reduced-motion: reduce) { .overview.policy .back-top:hover, .overview.policy .back-top:focus-visible { transform: none } }
+
+/* Self-hosted fonts (Latin subset, files in /fonts, preloaded in every page head) */
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/geist-latin-wght-normal.woff2") format("woff2") }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/fonts/geist-mono-latin-wght-normal.woff2") format("woff2") }
+@font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/big-shoulders-display-latin-700-normal.woff2") format("woff2") }
+
+/* Privacy policy v2: same type as the overview (sans body, mono labels). Headings must not animate on their own or they arrive after the text. */
+.overview.policy section > h2 { animation: none }
+.policy section h2 { counter-increment: pol; margin: 2.25rem 0 .75rem }
+.policy section h2::before { content: counter(pol, decimal-leading-zero) }
+.policy section p, .policy section li { font-family: inherit; font-size: 1rem; line-height: 1.75; color: var(--text); max-width: 62ch }
+.policy section .policy-lede { font-size: 1.05rem; line-height: 1.7; color: var(--ink); margin: 0 0 .5rem }
+.policy section a { overflow-wrap: anywhere }
+@media (max-width: 30rem) {
+  .policy .project-title h1 { font-size: 1.6rem; padding-right: 2.75rem }
+  .policy section p, .policy section li { font-size: .95rem }
+  .policy section .policy-lede { font-size: 1rem }
+  .policy section h2 { margin-top: 1.75rem }
+}
+
+/* Card intro v2 (cold start, .js). The card fades in, then title row, tagline and links follow in tight steps; the next card trails by .12s. Opacity only on the shell and .item-head: a transform there re-parents the absolute chip. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .item.reveal:not(.in) { opacity: 0 }
+  .js .item.reveal + .item.reveal { --ro: .12s }
+  .js .item.reveal + .item.reveal + .item.reveal { --ro: .24s }
+  .js .item.reveal:not(:is(:hover, :active)):not(.spring):not(.pulling):not(.dip) { transition: opacity .6s ease var(--ro, 0s) }
+  .js .item .item-head, .js .item p, .js .item .meta { transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1) }
+  .js .item p, .js .item .meta { transform: translateY(8px) }
+  .js .item.in .item-head { transition-delay: calc(.1s + var(--ro, 0s)) }
+  .js .item.in p:nth-of-type(1) { transition-delay: calc(.18s + var(--ro, 0s)) }
+  .js .item.in p:nth-of-type(2) { transition-delay: calc(.24s + var(--ro, 0s)) }
+  .js .item.in p:nth-of-type(3) { transition-delay: calc(.3s + var(--ro, 0s)) }
+  .js .item.in .meta { transition-delay: calc(.26s + var(--ro, 0s)) }
+}
+
+/* Card hover-out under .js: the .js reveal rule sets transition: none, which beat the slow settle above. Not-hovered cards ease back slowly; hover-in and the swipe states keep their own transitions. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .js .item.reveal:not(:is(:hover, :active)):not(.spring):not(.pulling):not(.dip) {
+    transition: opacity .6s ease var(--ro, 0s), border-color .5s ease, transform .6s cubic-bezier(.22, .61, .36, 1), box-shadow .6s ease;
+  }
+}
+
+/* Cold-start intro v3, focus rise: one motion for the sidebar, page headings, page body and mascot. First load in a tab only (.js from the head script). Tune the feel with the tokens. Home cards and overview cards keep their own intros. Blur only goes on elements with no absolutely positioned children. */
+:root { --fr-dur: .7s; --fr-ease: cubic-bezier(.16, 1, .3, 1); --fr-step: 70ms; --fr-rise: 14px; --fr-blur: 6px }
+@keyframes focus-rise { from { opacity: 0; transform: translateY(var(--fr-rise)); filter: blur(var(--fr-blur)) } }
+@keyframes count-in { from { opacity: 0 } }
+@media (prefers-reduced-motion: no-preference) {
+  .js .side > :not(.been),
+  .js .home-intro h2,
+  .js .projects-intro,
+  .js .page-title,
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > *,
+  .js main > article:not(.overview):not(:has(.page-title)) {
+    animation: focus-rise var(--fr-dur) var(--fr-ease) calc(var(--i, 0) * var(--fr-step)) backwards;
+  }
+  .js .side > .profile-photo { --i: 0 }
+  .js .side > h1 { --i: 1 }
+  .js .side > .lead { --i: 2 }
+  .js .side > nav { --i: 3; --fr-blur: 0px }
+  .js .side > .side-links { --i: 4; --fr-blur: 0px }
+  .js .home-intro h2, .js .page-title { --i: 1 }
+  .js .projects-intro { --i: 2 }
+  .js main > article:not(.overview):not(:has(.page-title)) { --i: 1; --fr-blur: 0px }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > * { --i: 7 }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > :nth-child(1) { --i: 2 }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > :nth-child(2) { --i: 3 }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > :nth-child(3) { --i: 4 }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > :nth-child(4) { --i: 5 }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > :nth-child(5) { --i: 6 }
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > :nth-child(6) { --i: 7 }
+  .js .been { transition: opacity var(--fr-dur) var(--fr-ease), transform var(--fr-dur) var(--fr-ease), filter var(--fr-dur) var(--fr-ease) }
+  .js .been.been-wait { opacity: 0; transform: translateY(var(--fr-rise)); filter: blur(var(--fr-blur)) }
+  .been-count:not(:empty) { animation: count-in .4s ease backwards }
+}
+
+/* Overview links v27: even button row. Desktop keeps one left-aligned row with equal gaps; phones use a 2-column grid of equal-width buttons, with an odd last button spanning the full row. Shared by every project overview. */
+.overview .meta { gap: .6rem; justify-content: flex-start; align-items: stretch }
+.overview .meta li { display: flex }
+.overview .meta li a { justify-content: center }
+@media (max-width: 40rem) {
+  .overview .meta { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem }
+  .overview .meta li:last-child:nth-child(odd) { grid-column: 1 / -1 }
+  .overview .meta li a { width: 100%; box-sizing: border-box; padding: .65rem .75rem }
+}
+
+/* Calmer title entrance: Projects, About and Experience headings fade in with a tiny lift, no blur */
+@media (prefers-reduced-motion: no-preference) {
+  .js .home-intro h2,
+  .js .projects-intro,
+  .js .page-title {
+    --fr-blur: 0px; --fr-rise: 4px; --fr-dur: .45s; --fr-ease: ease-out;
+  }
+}
+
+/* Calmer body entrance for About and Experience: no blur, tiny lift, tight stagger */
+@media (prefers-reduced-motion: no-preference) {
+  .js main > article:has(.page-title):not(.overview) :is(section, .entry) > * {
+    --fr-blur: 0px; --fr-rise: 4px; --fr-dur: .45s; --fr-ease: ease-out; --fr-step: 30ms;
+  }
+}
+
+/* tap targets */
+@media (pointer: coarse), (max-width: 39.99rem) {
+  .overview .back-top::before { content: ""; position: absolute; inset: -.4rem }
+}
+
+/* phones: no blur in the cold-start focus rise */
+@media (max-width: 40rem), (pointer: coarse) {
+  :root { --fr-blur: 0px }
+}
+
+/* phone text floor */
+@media (max-width: 40rem) {
+  .facts dt, .overview .facts dt, .cs-num, .been-text, .been-credit { font-size: .75rem }
+  .projects-grid .item .dates { font-size: .75rem }
+}
+
+/* phone text floor 2 */
+@media (max-width: 40rem) {
+  .projects-grid .item .meta li+li a { font-size: .75rem }
+  .overview .meta li a, .overview .meta li a:hover, .overview .meta li a:focus-visible { font-size: .75rem }
+}
+
+/* touch: no looping card sheen */
+@media (pointer: coarse), (max-width: 39.99rem) {
+  .projects-grid .item .sheen::before { animation: none }
+}
+
+/* Certificates: badge to the right of the title */
+.cert-badge { display: block; width: auto; height: 4.25rem; flex: none; margin: -1.2rem 0 }
+
+/* Certificates: compact entry, badge right after the title */
+.entry h2:has(> .cert-badge) { flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: .9rem; margin: 0 }
+.entry:has(> h2 > .cert-badge) { padding-bottom: 1.25rem }
+.entry:has(> h2 > .cert-badge) .when { margin: .3rem 0 0 }
+/* Certificates: on phones the badge stays right of the title, sized to the title block with a tight line height */
+@media (max-width: 40rem) {
+  .entry h2:has(> .cert-badge) { justify-content: space-between; align-items: center; gap: 1rem; line-height: 1.25 }
+  .entry h2:has(> .cert-badge) .cert-badge { height: 3.5rem; margin: 0 }
+}
+/* Certificates: credential button, same look as the overview links */
+.cert-link { margin: 1rem 0 0 }
+.cert-link a,
+.cert-link a:hover,
+.cert-link a:focus-visible {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .55rem 1.1rem; border: 1px solid var(--line); border-radius: .5rem;
+  background: none; box-shadow: none; text-decoration: none; text-transform: none;
+  font: 500 .85rem/1.2 var(--mono); letter-spacing: .04em; white-space: nowrap;
+  color: var(--muted); transform-origin: center;
+  transition: transform .18s ease, color .15s, border-color .15s;
+}
+.cert-link a .ico { display: block; flex: none; width: 1.05rem; height: 1.05rem; margin: 0 }
+.cert-link a:hover,
+.cert-link a:focus-visible {
+  color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)); transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cert-link a:hover, .cert-link a:focus-visible { transform: none }
+}
+
+/* Certificates: badge hover, same logo motion as the project cards */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cert-badge { transition: transform .4s cubic-bezier(.34,1.56,.64,1); transform-origin: center }
+  .cert-badge:hover { transform: scale(1.08) rotate(-4deg) }
+}
+
+/* sound toggle */
+.snd {
+  position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 40;
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0;
+  border: 1px solid var(--line); border-radius: 999px; appearance: none; cursor: pointer;
+  background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--muted);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: .75; -webkit-tap-highlight-color: transparent;
+  transition: opacity .2s ease, color .2s ease, border-color .2s ease;
+}
+.snd svg { display: block; width: 1.2rem; height: 1.2rem }
+.snd.off { opacity: .5 }
+.snd:active, .snd:focus-visible { opacity: 1; color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)) }
+.snd:focus-visible { outline: 2px solid var(--muted); outline-offset: 3px }
+@media (hover: hover) {
+  .snd:hover { opacity: 1; color: var(--ink); border-color: color-mix(in srgb, var(--ink) 35%, var(--line)) }
+}
+@media (prefers-reduced-motion: reduce) {
+  .snd { transition: none }
+}
+
+/* click to open: no swipe any more, so no grabbing cursor during the click scan */
+.projects-grid .item.pulling,
+.projects-grid .item.pulling .meta li:first-child a { cursor: pointer }
+
+/* tab press and card arrow */
+@media (max-width: 39.99rem), (pointer: coarse) {
+  .side nav a:active { transform: none }
+}
+
+/* click icon, no chip, number above the bar */
+.projects-grid .item::after {
+  position: absolute; top: auto; left: auto;
+  font-size: 2.2rem; line-height: 1; pointer-events: none;
+}
+@media (max-width: 30rem) {
+  .projects-grid .item::after { top: auto; right: 1.3rem; bottom: 3.4rem;}
+}
+
+/* phone overview entrance and screenshot edge */
+@media (max-width: 39.99rem), (pointer: coarse) {
+  @keyframes ov-print { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes ov-in { from { opacity: 0 } to { opacity: 1 } }
+}
+.overview .slide { overflow: hidden }
+.overview .slide img { display: block; width: calc(100% + 1px); max-width: none; height: 100%; object-fit: cover }
+
+.projects-grid .item .meta li:first-child a { min-height: 2.6rem }
+
+/* no bar: cream icon and stack pills */
+.projects-grid .item .meta li:first-child {
+  position: absolute; flex: none; width: 1px; height: 1px; margin: 0; overflow: hidden; clip-path: inset(50%);
+}
+.projects-grid .item .meta li:first-child a::before { display: none }
+.projects-grid .item:has(.meta li:first-child a:focus-visible) { outline: 2px solid var(--live); outline-offset: 3px }
+.projects-grid .item { padding-bottom: 1.3rem }
+.projects-grid .item p.card-stack { display: flex; max-width: 100%; margin: .7rem 0 0 }
+.projects-grid .item .card-stack span { white-space: nowrap;
+}
+.projects-grid .item-top::after {
+  display: block; content: ""; position: absolute; top: auto; left: auto; right: 1.3rem; bottom: 1.3rem; order: 0;
+  width: 1.6rem; height: 1.6rem; margin: 0; padding: 0; border-radius: 0; box-shadow: none; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f3f0e6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 14a8 8 0 0 1-8 8'/%3E%3Cpath d='M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2'/%3E%3Cpath d='M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1'/%3E%3Cpath d='M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10'/%3E%3Cpath d='M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15'/%3E%3C/svg%3E") center / contain no-repeat; opacity: .75; transition: opacity .2s ease;
+}
+.projects-grid .item:hover .item-top::after,
+.projects-grid .item:has(.meta li:first-child a:focus-visible) .item-top::after { opacity: 1 }
+
+/* card depth and intro click icon */
+.projects-grid .item .item-top::after { display: none }
+.projects-grid .item::after { right: 1.3rem; bottom: 1.1rem }
+.projects-grid .item {
+  border-color: #242424;
+  background-color: var(--card);
+  background-image: var(--grain), linear-gradient(145deg, #1b1b1b, #131313 60%);
+  background-size: 160px 160px, auto;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 1px 0 rgba(0, 0, 0, .5),
+    0 18px 30px -16px rgba(0, 0, 0, .85);
+}
+.projects-grid .item:hover {
+  border-color: #303030;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    0 1px 0 rgba(0, 0, 0, .5),
+    0 26px 38px -16px rgba(0, 0, 0, .9);
+}
+
+/* card surface v2, spacing and hover pixel fix */
+@media (max-width: 30rem) { .projects-grid .item::after { font-size: 1.6rem } }
+@media (max-width: 39.99rem) { .projects-grid { padding-bottom: 4.5rem } }
+
+/* touch: no sticky card hover or active */
+@media (hover: none), (pointer: coarse) {
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) { transform: none; filter: none }
+}
+
+/* card stack spans */
+.projects-grid .item .card-stack span { min-width: 0 }
+
+/* tilt v2: gentler 3d tilt, sharper text */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover,
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) {
+    transform: perspective(1400px) translateY(-4px) rotateX(calc(var(--rx, 0deg) * .5)) rotateY(calc(var(--ry, 0deg) * .5));
+  }
+}
+
+/* layer only at rest */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:not(.pulling):not(.retract-hold):not(.spring):not(.dip) { will-change: transform }
+}
+
+/* one card layout */
+.projects-grid .item .meta::before { display: none }
+.projects-grid .item .dates { display: flex; font-size: .75rem }
+.projects-grid .item .date-text { display: inline }
+
+/* date font and stack box look */
+.projects-grid .item .dates { text-transform: uppercase; letter-spacing: .14em; font-variant-numeric: tabular-nums;
+  font: 600 .78rem/1.2 "OCR A Std", "OCR-A", "Share Tech Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  text-shadow: 0 -1px 0 color-mix(in srgb, var(--ink) 14%, transparent), 0 1px 0 var(--shadow);
+}
+.projects-grid .item .card-stack span {
+  padding: .15rem .55rem; border: 1px solid var(--line);
+  font: 400 .66rem/1.4 var(--mono); color: var(--muted);
+}
+@media (max-width: 39.99rem) {
+  .projects-grid .item .dates { font-size: .7rem }
+}
+
+/* lit stack boxes */
+.projects-grid .item .card-stack span {
+  border-radius: .3rem; border-color: #2a2a2a;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+.projects-grid .item:hover .card-stack span { border-color: #34342f }
+
+/* card stack: one row, font size set by js */
+.projects-grid .item p.card-stack {
+  container-type: inline-size; flex-wrap: nowrap; align-items: center; overflow: hidden;
+  gap: calc(var(--stack-fs, .66rem) * .5);
+}
+.projects-grid .item .card-stack span,
+.projects-grid .item .card-stack span:nth-child(n+4) {
+  display: block; flex: none; white-space: nowrap; font-size: var(--stack-fs, .66rem); padding: .15em .6em;
+}
+
+/* no number, even card spacing */
+.projects-grid .item::after { display: none }
+.projects-grid .item { padding: 1.3rem 1.3rem 1.3rem }
+.projects-grid .item .dates { margin-top: .3rem }
+.projects-grid .item p.tagline { margin: .7rem 0 0 }
+.projects-grid .item p.card-stack { margin-top: .7rem }
+.projects-grid .item .meta { margin: .9rem 0 0; padding-right: 0 }
+@media (max-width: 39.99rem) {
+  .projects-grid .item { padding: 1.3rem 1.3rem 1.3rem }
+  .projects-grid .item p.card-stack { margin-top: .7rem }
+}
+
+/* overview stack pills */
+.overview .facts dd.pills { display: flex; flex-wrap: wrap; margin-top: .5rem }
+.overview .facts dd.pills span {
+  display: inline-block; white-space: nowrap;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  font: 400 .66rem/1.4 var(--mono);
+  color: var(--muted);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+/* overview stack pills bigger */
+.overview .facts dd.pills { gap: .45rem }
+.overview .facts dd.pills span { font-size: .85rem; padding: .2em .7em; line-height: 1.5 }
+@media (max-width: 39.99rem) {
+  .overview .facts dd.pills { gap: .35rem }
+  .overview .facts dd.pills span { font-size: .78rem; padding: .2em .65em }
+}
+
+/* facts: role row */
+.overview .facts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) }
+.overview .facts > div:nth-child(1),
+.overview .facts > div:nth-child(4) { grid-column: 1 / -1 }
+.overview .facts > div:nth-child(2),
+.overview .facts > div:nth-child(3) { grid-column: auto }
+@media (max-width: 22.5rem) {
+  .overview .facts { grid-template-columns: minmax(0, 1fr) }
+  .overview .facts > div:nth-child(n) { grid-column: 1 / -1 }
+}
+
+/* overview status and commits pills */
+.overview .facts dd.pills span.fact-status { display: inline-flex; align-items: center; gap: .5em }
+.overview .facts dd.pills span.fact-status::before { flex: none; width: .5em; height: .5em; border-radius: 50%;
+  background: var(--live); box-shadow: 0 0 6px color-mix(in srgb, var(--live) 70%, transparent);
+}
+.overview .facts dd.pills span.fact-status[data-status="dev"]::before {
+  background: var(--dev); box-shadow: 0 0 6px color-mix(in srgb, var(--dev) 70%, transparent);
+}
+.overview .facts dd .repo-commits:not([hidden]) { align-items: center; gap: .45em;
+  font: 500 .85rem/1.5 var(--mono); white-space: nowrap;
+}
+
+/* overview commits text pill */
+.overview .facts dd .repo-commits:not([hidden]) {
+  display: inline-block; margin: .5rem 0 0; vertical-align: top;
+}
+.overview .facts dd .repo-commits:not([hidden])::before {
+  content: none; display: none; -webkit-mask: none; mask: none; background: none;
+}
+.overview .facts dd .repo-commits:not([hidden])::after { content: " on GitHub" }
+
+/* overview commits match stack pills */
+.overview .facts dd .repo-commits:not([hidden]) {
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  color: var(--muted);
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+  padding: .2em .7em; font-size: .85rem; line-height: 1.5; opacity: 1;
+}
+@media (max-width: 39.99rem) {
+  .overview .facts dd .repo-commits:not([hidden]) { font-size: .78rem; padding: .2em .65em }
+}
+
+/* overview status dot on the right */
+.overview .facts dd.pills span.fact-status::before { content: none; display: none }
+.overview .facts dd.pills span.fact-status::after {
+  content: ""; flex: none; width: .5em; height: .5em; border-radius: 50%;
+  background: var(--live); box-shadow: 0 0 6px color-mix(in srgb, var(--live) 70%, transparent);
+}
+.overview .facts dd.pills span.fact-status[data-status="dev"]::after {
+  background: var(--dev); box-shadow: 0 0 6px color-mix(in srgb, var(--dev) 70%, transparent);
+}
+
+/* overview commits fit on phones */
+.overview .facts dd .repo-commits:not([hidden]) {
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;
+}
+@media (max-width: 39.99rem) {
+  .overview .facts dd .repo-commits:not([hidden])::after { content: none }
+}
+
+/* overview phone: smaller top gap */
+@media (max-width: 40rem) {
+  .home main:has(> article.overview) { margin-top: 0; padding-top: 0; border-top: 0 }
+  .overview { margin-top: .75rem }
+}
+
+/* overview facts: status room on phones */
+@media (min-width: 23.75rem) and (max-width: 39.99rem) {
+  .overview .facts { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) }
+}
+@media (max-width: 23.74rem) {
+  .overview .facts { grid-template-columns: minmax(0, 1fr) }
+  .overview .facts > div:nth-child(n) { grid-column: 1 / -1 }
+}
+
+/* crisp link icons: whole pixel size */
+.projects-grid .item .meta li+li a .ico,
+.overview .meta li a .ico,
+.cert-link a .ico {
+  width: 16px; height: 16px; flex: none; shape-rendering: geometricPrecision;
+}
+
+/* smooth link icons: 18px */
+.projects-grid .item .meta li+li a .ico,
+.overview .meta li a .ico,
+.cert-link a .ico {
+  width: 18px; height: 18px; flex: none; shape-rendering: geometricPrecision;
+}
+@media (min-width: 56.01rem) {
+  .side-links .ico { width: 18px; height: 18px; shape-rendering: geometricPrecision }
+}
+
+/* overview status dot gap */
+.overview .facts dd.pills span.fact-status::after { margin-left: .2em }
+
+/* outline icons for the sidebar contact links */
+.side-links .ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+
+/* store badges + overview links: one compact pill style shared by cards and overviews */
+.ico.line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
+.projects-grid .item .meta li+li a.badge,
+.overview .meta li a.badge {
+  all: unset; box-sizing: border-box; position: relative; display: flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 2.75rem; padding: .4rem .9rem .4rem .75rem; border: 1px solid var(--btn-line, rgba(243,233,210,.14)); border-radius: .6rem;
+  background: var(--btn, var(--bg)); color: var(--ink); cursor: pointer; text-decoration: none; text-transform: none;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.projects-grid .item .meta li+li a.badge:hover,
+.projects-grid .item .meta li+li a.badge:focus-visible,
+.overview .meta li a.badge:hover,
+.overview .meta li a.badge:focus-visible { border-color: var(--muted); transform: translateY(-1px) }
+.projects-grid .item .meta li+li a.badge:focus-visible,
+.overview .meta li a.badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px }
+.projects-grid .item .meta li+li a.badge::before, .projects-grid .item .meta li+li a.badge::after,
+.overview .meta li a.badge::before, .overview .meta li a.badge::after { content: none; display: none }
+.projects-grid .item .meta li+li a.badge .ico, .overview .meta li a.badge .ico { display: block; flex: none; width: 18px; height: 18px; margin: 0 }
+.badge .bd-t { display: block; text-align: left }
+.badge .bd-s { display: block; font: 600 .6rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.badge .bd-b { display: block; margin-top: .18rem; font: 600 .88rem/1.1 var(--sans); letter-spacing: -.005em; text-transform: none; white-space: nowrap; color: var(--ink) }
+
+/* cards: the badge takes the full row under "open project" */
+.projects-grid .item .meta li:has(a.badge) { grid-column: 1 / -1 }
+.projects-grid .item .meta li+li a.badge { width: 100% }
+
+/* overviews: links become one tidy row of equal-height pills, same look as the card buttons */
+.overview .meta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; font-family: var(--sans); text-transform: none }
+.overview .meta li { margin: 0 }
+.overview .meta li a:not(.badge) {
+  display: inline-flex; align-items: center; gap: .5rem; box-sizing: border-box; min-height: 2.75rem; padding: .4rem .9rem;
+  border: 1px solid var(--btn-line, rgba(243,233,210,.14)); border-radius: .6rem; background: var(--btn, var(--bg));
+  color: var(--ink); font: 500 .875rem/1 var(--sans); text-transform: capitalize; text-decoration: none; overflow-wrap: normal;
+}
+.overview .meta li a:not(.badge):hover, .overview .meta li a:not(.badge):focus-visible { border-color: var(--muted); color: var(--ink) }
+.overview .meta li a:not(.badge)::after { content: none }
+.overview .meta li a:not(.badge) .ico { width: 18px; height: 18px; flex: none; margin: 0 }
+@media (max-width: 40rem) {
+  .badge .bd-s { font-size: .75rem }
+  .overview .meta li { flex: 1 1 auto }
+  .overview .meta li a { width: 100%; justify-content: center }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .item .meta li+li a.badge, .overview .meta li a.badge { transition: none }
+  .projects-grid .item .meta li+li a.badge:hover, .projects-grid .item .meta li+li a.badge:focus-visible,
+  .overview .meta li a.badge:hover, .overview .meta li a.badge:focus-visible { transform: none }
+}
+
+/* badges: black background, full-color Chrome logo */
+.projects-grid .item .meta li+li a.badge, .overview .meta li a.badge { background: #000; border-color: rgba(243, 233, 210, .18) }
+.badge .ico.color { stroke: none }
+
+/* ================================================================
+   LIGHT THEME (default). Dark is the same site with data-theme="dark".
+   ================================================================ */
+:root:not([data-theme="dark"]) {
+  color-scheme: light;
+  --bg: #E7DEC8;
+  --surface: #EDE5D1;
+  --line: #D3C7AA;
+  --card: #EDE5D0;
+  --card-2: #E1D7BE;
+  --btn: #E2D8C0;
+  --btn-line: #C9BC9C;
+  --btn-hover: #D8CDB1;
+  --on-ink: #F1EADA;
+  --ink: #2B2419;
+  --text: #483D2C;
+  --muted: #766A52;
+  --live: #3F8A57;
+  --dev: #A9741B;
+  --stripe: #E7DEC8;
+  --shadow: rgba(70, 52, 25, .28);
+  --card-edge: #CBBE9F;
+}
+
+/* light theme: surfaces that were hardcoded dark */
+:root:not([data-theme="dark"]) .side { background: #DDD3B9; border-color: var(--line) }
+:root:not([data-theme="dark"]) .side .been { border-top-color: var(--line) }
+:root:not([data-theme="dark"]) .side .side-links a { border-color: var(--btn-line) }
+:root:not([data-theme="dark"]) .frame { box-shadow: 0 6px 0 rgba(90, 70, 40, .05) }
+:root:not([data-theme="dark"]) a { text-decoration-color: #B9AA86 }
+:root:not([data-theme="dark"]) .projects-grid .item {
+  border-color: var(--btn-line);
+  background-color: var(--card);
+  background-image: linear-gradient(145deg, #F0E8D5, #E6DDC6 70%);
+  background-size: auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 0 rgba(100, 78, 40, .16), 0 18px 28px -18px rgba(70, 52, 25, .45);
+}
+:root:not([data-theme="dark"]) .projects-grid .item:hover {
+  border-color: #B9AA86;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 1px 0 rgba(100, 78, 40, .2), 0 24px 34px -18px rgba(70, 52, 25, .52);
+}
+/* badges stay black in both themes, so their text stays cream */
+.badge { --ink: #F3E9D2; --muted: #A59E8C }
+:root:not([data-theme="dark"]) .overview .back-top { background: var(--btn); border-color: var(--btn-line); color: var(--ink) }
+:root:not([data-theme="dark"]) .overview .back-top:hover, :root:not([data-theme="dark"]) .overview .back-top:focus-visible { border-color: var(--muted) }
+:root:not([data-theme="dark"]) .cs-key { color: #D9CDB0 }
+@media (max-width: 56rem) {
+  :root:not([data-theme="dark"]) .side nav { background: rgba(231, 222, 200, .94); border-bottom-color: var(--line) }
+}
+
+/* theme toggle sits left of the mute button */
+.theme-btn { right: calc(max(1rem, env(safe-area-inset-right)) + 3.5rem) }
+
+/* ================================================================
+   CENTERED FRAME: the site sits in a column with pure black on both sides
+   ================================================================ */
+:root { --frame: 64rem; --edge: max(1rem, env(safe-area-inset-right), calc((100vw - var(--frame)) / 2 + 1rem)) }
+html { background: #000 }
+body { max-width: var(--frame); margin: 0 auto; min-height: 100vh; box-shadow: 0 0 0 1px rgba(243, 233, 210, .1), 0 0 90px rgba(0, 0, 0, .9) }
+.snd { right: var(--edge) }
+.theme-btn { right: calc(var(--edge) + 3.5rem) }
+
+/* light theme: FlyRank wordmark is near-white, so it sits on a small black pill to stay readable */
+:root:not([data-theme="dark"]) .org-logo { box-sizing: content-box; opacity: 1; padding: .3rem .6rem; background: #0B0B0B; border-radius: .45rem }
+
+/* ================================================================
+   LAYOUT: sidebar flush left, page content centered in the space beside it
+   --main is the content width; change --frame or --main and everything stays centered
+   ================================================================ */
+:root { --main: 38rem; --main-wide: 38rem }
+@media (min-width: 56.01rem) {
+  .home .shell { padding-left: 0; padding-right: 0; column-gap: 0 }
+  .home .shell > main { justify-self: center; width: min(100% - 3rem, var(--main)) }
+  .home .shell > main:has(> article.overview) { width: min(100% - 3rem, var(--main-wide)) }
+}
+
+/* rounded corners only: no margins, no height change, page scrolls normally */
+@media (min-width: 66rem) {
+}
+
+/* cards open the project on click (replaces the removed reader) */
+.projects-grid .item { cursor: pointer }
+
+/* ================================================================
+   PAGE TRANSITIONS: a full card flip with no fades (driven by run() in js/home.js)
+   vt-in = going deeper, vt-out = going back (mirrored), vt-swap = sideways between sections.
+   The old page turns edge-on (invisible), the new one turns in from the other edge and lands flat.
+   Tune: --vt-a (angle), the two durations, perspective.
+   ================================================================ */
+html.vt-in, html.vt-swap { --vt-a: 88deg }
+html.vt-out { --vt-a: -88deg }
+@keyframes vt-turn-out { to { transform: perspective(1600px) rotateY(var(--vt-a)); visibility: hidden } }
+@keyframes vt-turn-in { from { transform: perspective(1600px) rotateY(calc(var(--vt-a) * -1)); visibility: hidden } }
+html:is(.vt-in, .vt-out, .vt-swap)::view-transition-group(page) { animation: none }
+html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-turn-out .3s cubic-bezier(.5, 0, .9, .5) both }
+html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-turn-in .55s cubic-bezier(.2, .9, .25, 1) .3s both }
+
+/* overview pages sit a little higher on desktop */
+:root { --overview-lift: 0rem }
+@media (min-width: 56.01rem) { .overview { margin-top: calc(var(--overview-lift) * -1) } }
+
+/* ================================================================
+   CREAM KEYCAPS: light theme carousel keys (dark theme keeps the black keys)
+   Recolors the key body, the top face (::before), the sheen (::after) and the arrow.
+   ================================================================ */
+:root:not([data-theme="dark"]) .car-slider > .cs-key {
+  background: linear-gradient(180deg, #E9E0C9 0%, #D6CAAC 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .45),
+    inset 0 0 0 1px #B9AA86,
+    0 1px 0 #BFB08C, 0 2px 0 #B9AA86, 0 3px 0 #B3A47F, 0 4px 0 #AD9E79,
+    0 5px 0 #A79873, 0 6px 0 #A1926D, 0 7px 0 #9B8C67,
+    0 14px 16px -6px rgba(70, 52, 25, .45);
+}
+:root:not([data-theme="dark"]) .car-slider > .cs-key::before {
+  background: radial-gradient(ellipse 80% 70% at 50% 28%, #F3ECDA 0%, #E7DEC8 55%, #DDD2B6 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .75),
+    inset 0 -3px 5px rgba(90, 70, 40, .18),
+    inset 1px 0 0 rgba(255, 255, 255, .3),
+    inset -1px 0 0 rgba(90, 70, 40, .12),
+    0 1px 1px rgba(70, 52, 25, .25);
+}
+:root:not([data-theme="dark"]) .car-slider > .cs-key::after { background: linear-gradient(180deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, 0)) }
+:root:not([data-theme="dark"]) .car-slider > .cs-key svg { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .55)) }
+:root:not([data-theme="dark"]) .car-slider > .cs-key:first-child, :root:not([data-theme="dark"]) .car-slider > .cs-key:last-child { color: #5A4D38 }
+:root:not([data-theme="dark"]) .car-slider > .cs-key:hover, :root:not([data-theme="dark"]) .car-slider > .cs-key:focus-visible { color: var(--ink) }
+:root:not([data-theme="dark"]) .car-slider > .cs-key:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .4),
+    inset 0 0 0 1px #B9AA86,
+    0 1px 0 #B3A47F, 0 2px 0 #A1926D,
+    0 5px 8px -4px rgba(70, 52, 25, .45);
+}
+
+/* ================================================================
+   OVERVIEW: no entrance animation of its own, the page flip (PAGE TRANSITIONS) is the only motion
+   ================================================================ */
+.overview,
+.overview :where(.back-top, .project-title, .project-lede, .meta, section, .frame, h2, .facts, .facts > div, p, ul, li) { animation: none }
+
+/* ================================================================
+   LIGHT LIGHTBOX: cream backdrop, buttons and enlarge button in light theme (dark theme unchanged)
+   ================================================================ */
+:root:not([data-theme="dark"]) .lb { background: rgba(231, 222, 200, .95) }
+:root:not([data-theme="dark"]) .lb-stage img, :root:not([data-theme="dark"]) .lb-stage video { box-shadow: 0 20px 50px rgba(70, 52, 25, .35) }
+:root:not([data-theme="dark"]) .lb-btn, :root:not([data-theme="dark"]) .lb-hint { background: #E2D8C0; border-color: #C9BC9C; color: #2B2419 }
+:root:not([data-theme="dark"]) .lb-btn:hover, :root:not([data-theme="dark"]) .lb-hint:hover, :root:not([data-theme="dark"]) .lb-hint:focus-visible { background: #D8CDB1; border-color: #766A52; color: #2B2419 }
+:root:not([data-theme="dark"]) .lb-count { background: #E2D8C0; border-color: #C9BC9C; color: #483D2C }
+:root:not([data-theme="dark"]) .slide video { background: #E2D8C0 }
+
+
+/* ================================================================
+   SIDEBAR TOOLS: theme and mute buttons live in the sidebar on desktop; on phones they float as before
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side-tools { display: flex; gap: .6rem; justify-content: center; margin-top: 1.25rem }
+  .side-tools .snd, .side-tools .theme-btn { position: static; inset: auto; margin: 0 }
+}
+@media (max-width: 56rem) { .side-tools { display: contents } }
+
+/* name uses the same ink color as the active nav link */
+.side h1 { color: var(--ink); background: none; -webkit-text-fill-color: currentColor; text-shadow: none }
+
+/* ================================================================
+   OVERVIEW: HARD STOP on entrance motion; the page flip is the only animation
+   ================================================================ */
+.panel-enter { animation: none !important }
+.overview, .overview *, .overview *::before, .overview *::after { animation: none !important }
+.overview.reveal, .overview .reveal, .overview .reveal .frame, .overview .reveal .frame img { opacity: 1 !important; transform: none !important; transition: none !important; clip-path: none !important; filter: none !important }
+
+/* ================================================================
+   SIDEBAR TOOLS (restyled): a row under a divider, same pill look as the other buttons
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side-tools { display: flex; gap: .6rem; justify-content: flex-start; margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px solid var(--line) }
+  .side-tools .snd, .side-tools .theme-btn {
+    position: static; inset: auto; margin: 0; width: 2.75rem; height: 2.75rem; display: grid; place-items: center;
+    border: 1px solid var(--btn-line); border-radius: .6rem; background: var(--btn); color: var(--ink); opacity: 1; box-shadow: none; cursor: pointer;
+  }
+  .side-tools .snd.off { opacity: .55 }
+  .side-tools .snd:hover, .side-tools .theme-btn:hover, .side-tools .snd:focus-visible, .side-tools .theme-btn:focus-visible { border-color: var(--muted); background: var(--btn-hover); opacity: 1 }
+}
+
+/* ================================================================
+   NO ZOOM, NO SCAN LINE
+   - the overview's own ::before was a scan line (ov-scan); the earlier stop only covered child pseudo-elements
+   - page snapshots keep their own size, so the width change between home (34rem) and overview (44rem) cannot stretch them
+   ================================================================ */
+.overview::before, .overview::after { animation: none !important }
+.overview::before { background: none !important; box-shadow: none !important }
+
+/* ================================================================
+   QUIET SIDEBAR TOOLS: small ghost theme/sound buttons (desktop only), no contactless mark on cards
+   ================================================================ */
+.projects-grid .item-top::after { display: none }
+@media (min-width: 56.01rem) {
+  .side .side-tools { gap: .3rem; margin-top: 1rem; padding-top: .9rem }
+  .side .side-tools .snd, .side .side-tools .theme-btn {
+    width: 2.2rem; height: 2.2rem; padding: 0;
+    background: transparent; border-color: transparent; box-shadow: none; border-radius: .6rem;
+    color: var(--muted);
+  }
+  .side .side-tools .snd svg, .side .side-tools .theme-btn svg { width: 1.05rem; height: 1.05rem }
+  .side .side-tools .snd:hover, .side .side-tools .theme-btn:hover,
+  .side .side-tools .snd:focus-visible, .side .side-tools .theme-btn:focus-visible {
+    background: var(--btn-hover); border-color: var(--line); color: var(--ink); opacity: 1
+  }
+}
+
+/* ================================================================
+   RAISED SIDEBAR: depth on the sidebar, readable carousel counter, tools at the bottom left
+   ================================================================ */
+:root:not([data-theme="dark"]) .cs-num { color: color-mix(in srgb, var(--ink) 70%, var(--muted)) }
+
+@media (min-width: 56.01rem) {
+  .side {
+    z-index: 2;
+    box-shadow:
+      1px 0 0 rgba(255, 255, 255, .45),
+      10px 0 28px -8px rgba(70, 52, 22, .30),
+      28px 0 48px -20px rgba(70, 52, 22, .18);
+  }
+  :root[data-theme="dark"] .side {
+    box-shadow:
+      1px 0 0 rgba(255, 255, 255, .06),
+      10px 0 28px -8px rgba(0, 0, 0, .6),
+      28px 0 48px -20px rgba(0, 0, 0, .45);
+  }
+  .side .side-tools { order: 99; margin-top: auto; justify-content: flex-start }
+}
+
+/* ================================================================
+   SOFTER SIDEBAR: much lighter shadow, content sits lower again (tools stay at the bottom left)
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side { box-shadow: 1px 0 0 rgba(255, 255, 255, .35), 6px 0 14px -10px rgba(70, 52, 22, .16) }
+  :root[data-theme="dark"] .side { box-shadow: 1px 0 0 rgba(255, 255, 255, .05), 6px 0 14px -10px rgba(0, 0, 0, .45) }
+  .side .profile-photo { margin-top: 3.5rem }
+}
+
+/* ================================================================
+   PLAIN SWAP FADE: sideways moves (sections, project to section, privacy) just fade; only card open/exit flips
+   ================================================================ */
+@keyframes vt-plain-out { to { opacity: 0 } }
+@keyframes vt-plain-in { from { opacity: 0 } }
+html.vt-swap::view-transition-old(page) { animation: none; display: none }
+html.vt-swap::view-transition-new(page) { animation: none; opacity: 1 }
+
+/* ================================================================
+   CLICK THROUGH TRANSITIONS: snapshots never swallow clicks, so nav links work mid-animation
+   ================================================================ */
+::view-transition,
+::view-transition-group(*),
+::view-transition-image-pair(*),
+::view-transition-old(*),
+::view-transition-new(*) { pointer-events: none }
+
+/* ================================================================
+   NO DEFAULT CROSSFADE: the sidebar and root snapshots swap instantly instead of fading
+   (the card flip on the page layer is untouched)
+   ================================================================ */
+::view-transition-old(root), ::view-transition-new(root),
+::view-transition-old(side), ::view-transition-new(side) { animation: none; mix-blend-mode: normal }
+::view-transition-old(side), ::view-transition-old(root) { display: none }
+
+/* ================================================================
+   HIDE CARD STACK: the tech tags on the home project cards are hidden
+   ================================================================ */
+.projects-grid .card-stack { display: none }
+
+/* ================================================================
+   HIDE CARD STACK FIX: matches the specificity of the original rules so the tags and the contactless mark stay hidden
+   ================================================================ */
+.projects-grid .item p.card-stack,
+.projects-grid .item .card-stack { display: none !important }
+.projects-grid .item .item-top::after { display: none !important; content: none !important }
+
+/* ================================================================
+   COMPACT CARDS: shorter home project cards (desktop and mobile)
+   Tune: --card-pad-y (top/bottom padding), --card-meta-gap (tagline to button)
+   ================================================================ */
+.projects-grid .item {
+  --card-pad-y: 1.1rem;
+  --card-meta-gap: .8rem;
+  min-height: 0 !important;
+  height: auto !important;
+  padding-block: var(--card-pad-y) !important;
+}
+.projects-grid .item .tagline { margin-bottom: 0 !important }
+.projects-grid .item .meta { margin-top: var(--card-meta-gap) !important; margin-bottom: 0 !important }
+.projects-grid .item .item-head { margin-bottom: .5rem !important }
+
+/* ================================================================
+   FLAT CARDS: drop the credit-card aspect ratio so cards size to their content; hide the contactless mark
+   ================================================================ */
+.projects-grid .item { aspect-ratio: auto !important }
+.projects-grid .item::after {
+  content: none !important; display: none !important;
+  -webkit-mask: none !important; mask: none !important; background: none !important
+}
+
+/* ================================================================
+   NO CONTACTLESS MARK: the )) is .item-top::before (mask), so hide that one
+   ================================================================ */
+.projects-grid .item .item-top::before {
+  content: none !important; display: none !important;
+  -webkit-mask: none !important; mask: none !important; background: none !important
+}
+
+/* ================================================================
+   LIGHT CARD GRAIN: fine warm noise on the cream cards (dark mode already has its own grain)
+   Tune: the last number in feColorMatrix (-.05) -> lower = fainter, higher (e.g. -.03) = stronger
+   ================================================================ */
+:root:not([data-theme="dark"]) .projects-grid .item {
+  --card-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .28 0 0 0 0 .2 0 0 0 0 .1 .2 0 0 0 -.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: var(--card-grain), linear-gradient(145deg, #F0E8D5, #E6DDC6 70%);
+  background-size: 160px 160px, auto;
+}
+
+/* ================================================================
+   PHONE SIMPLE FADE: no card flip on phones (short fade instead), theme/mute buttons at the top
+   ================================================================ */
+@keyframes vt-simple-out { to { opacity: 0 } }
+@keyframes vt-simple-in { from { opacity: 0 } }
+@media (max-width: 56rem) {
+  html:is(.vt-in, .vt-out)::view-transition-old(page) { animation: vt-simple-out .15s ease both }
+  html:is(.vt-in, .vt-out)::view-transition-new(page) { animation: vt-simple-in .2s ease .1s both }
+  .snd, .theme-btn { top: max(.75rem, env(safe-area-inset-top)) !important; bottom: auto !important }
+}
+
+/* ================================================================
+   PHONE TOOLS BELOW NAV: theme/mute sit under the nav row, top right of the profile area, small, scroll with the page
+   Tune: top (distance from the top), width/height (button size)
+   ================================================================ */
+@media (max-width: 56rem) {
+  .snd, .theme-btn {
+    position: absolute !important; bottom: auto !important;
+    top: calc(env(safe-area-inset-top, 0px) + 3.6rem) !important;
+    width: 2.2rem !important; height: 2.2rem !important; z-index: 3;
+  }
+  .snd { right: 1.5rem !important }
+  .theme-btn { right: 4rem !important }
+  .snd svg, .theme-btn svg { width: 1.05rem !important; height: 1.05rem !important }
+}
+
+/* ================================================================
+   PIN MATCH: location pin centered on its line, same stroke and color as the contact icons
+   ================================================================ */
+.side .lead.loc { align-items: center }
+.side .lead.loc .ico.line { margin: 0; stroke-width: 2; color: var(--text) }
+
+/* ================================================================
+   SNAPPY INTRO: shorter focus-rise on every page swap and first load
+   Tune: --fr-dur (length), --fr-step (delay between blocks), --fr-rise (distance)
+   ================================================================ */
+:root:root { --fr-dur: .3s; --fr-step: 25ms; --fr-rise: 6px; --fr-blur: 0px }
+
+/* ================================================================
+   SNAPPY SIDEBAR HOVER: nav link color and line follow the mouse almost instantly (desktop sidebar only)
+   Tune: .08s (color) and .12s (line). Higher = softer
+   ================================================================ */
+@media (min-width: 56.01rem) and (prefers-reduced-motion: no-preference) {
+  .side nav a { transition: transform .1s ease, color .08s ease, border-color .08s ease }
+  .side nav a::before { transition: width .12s ease }
+}
+
+/* ================================================================
+   NO ENTRANCES: nothing animates in on load or on a page swap. Sidebar, page headings and bodies, Projects cards, the mascot and its counter all just appear.
+   Only the card flip between Projects and a project overview stays (PAGE TRANSITIONS). Overviews have their own HARD STOP block.
+   This is the last word over the old focus-rise, Card intro v2 and mascot fade rules, which stay in the file but are overridden.
+   ================================================================ */
+.js .side,
+.js .side > :not(.been),
+.js .home-intro h2,
+.js .projects-intro,
+.js .page-title,
+.js main > article:has(.page-title):not(.overview) :is(section, .entry) > *,
+.js main > article:not(.overview):not(:has(.page-title)) { animation: none }
+.js .been, .js .been.been-wait { opacity: 1; transform: none; filter: none; transition: none }
+.been-count:not(:empty) { animation: none }
+.js .item.reveal:not(.in) { opacity: 1 }
+.js .item .item-head, .js .item p, .js .item .meta { opacity: 1; transform: none; transition: none }
+
+/* ================================================================
+   NAV SMOOTH HOVER: sidebar links never move under the cursor. The hover line is always 3rem wide, so every label sits at the same x, and it grows with a scale from half to full length (transform only). The press nudge is off. Replaces NAV INSTANT HOVER.
+   Tune: .2s and the cubic-bezier (feel), scaleX(.5) (resting line length, .5 = 1.5rem)
+   ================================================================ */
+.side nav a::before { width: 3rem; transform: scaleX(.5); transform-origin: left center }
+.side nav a:hover::before, .side nav a[aria-current="true"]::before { width: 3rem; transform: scaleX(1) }
+.side nav a:active { transform: none }
+@media (prefers-reduced-motion: no-preference) {
+  .side nav a { transition: color .15s ease }
+  .side nav a::before { transition: transform .2s cubic-bezier(.2, .8, .2, 1) }
+}
+
+/* ================================================================
+   SIDEBAR POLISH (desktop, 56.01rem up): bigger, brighter nav links, a role line under the name, and the contact rows as a row of icon tiles (the same look as the phone layout, with the commit note on its own line under them). Phones are untouched and hide the role line.
+   Tune: nav font-size 1rem, tile size 2.5rem, icon 1.15rem, the gap .5rem
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side nav ul { margin-top: 2rem; gap: 1rem }
+  .side nav a { font-size: 1rem; color: var(--text) }
+  .side-links { flex-direction: row; flex-wrap: wrap; gap: .5rem; margin-top: 1.75rem }
+  .side-links a { font-size: 0; gap: 0; justify-content: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--btn-line); border-radius: .6rem; text-decoration: none; transition: border-color .15s ease }
+  .side-links a:hover, .side-links a:focus-visible { border-color: var(--muted); text-decoration: none }
+  .side-links .ico { width: 1.15rem; height: 1.15rem }
+  .side-links a.commits { font-size: .85rem; gap: .5rem; width: auto; padding: 0 .9rem }
+}
+
+/* ================================================================
+   COMMIT TOOLTIP: the commit count note is hidden on every screen size. js/commit-tip.js copies its text onto the GitHub icon as a tooltip (title and aria-label), so the count still shows on hover.
+   To show the note again, delete this block and the commit-tip.js script tags.
+   ================================================================ */
+.side-links .commits-note { display: none !important }
+
+/* ================================================================
+   SITE POLISH 2B: (1) light mode: darker --muted, and the mascot count and credit lines are not faded on top. (2) desktop: the location line sits under the name (resets its order), centered. The black page around the frame and the stacked 26rem cards are the original ones.
+   Tune: --muted #5F543E
+   ================================================================ */
+:root:not([data-theme="dark"]) { --muted: #5F543E }
+:root:not([data-theme="dark"]) .been-count { opacity: 1 }
+:root:not([data-theme="dark"]) .been-credit { opacity: .85 }
+@media (min-width: 56.01rem) { .side .lead.loc { order: 0; justify-content: center; margin: .6rem 0 0 } }
+
+/* ================================================================
+   SIDEBAR TOOLS UP (desktop, 56.01rem up): the theme and sound buttons sit under the mascot block with a normal gap instead of being pinned to the bottom of the sidebar (they had margin-top: auto), so there is no empty gap above them.
+   Tune: margin-top 1.25rem (space above the divider)
+   ================================================================ */
+@media (min-width: 56.01rem) {
+  .side .side-tools { margin-top: 1.25rem }
+}
+
+/* ================================================================
+   PHONE HEADER FLAT (56rem and below, light theme): no tan slab behind the header. The #DDD3B9 panel is the desktop sidebar; on phones and tablets it made a square-cornered block (dark theme was already transparent here).
+   ================================================================ */
+@media (max-width: 56rem) {
+  :root:not([data-theme="dark"]) .side { background: transparent }
+}
+
+/* ================================================================
+   PHONE HEADER COMPACT (40rem and below): photo beside the name, location under the name, contact icons in one row, then the mascot. Left-aligned like the page body, so Projects starts on the first screen. Tablets and desktop are untouched.
+   Tune: --ph-photo (photo size), the name's min() font size, row-gap
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side { --ph-photo: 4.75rem; grid-template-columns: var(--ph-photo) 1fr; column-gap: .5rem; row-gap: .6rem; padding: 1.25rem 0 .25rem }
+  .side .profile-photo { grid-column: 1; grid-row: 1 / span 2; justify-self: start; width: var(--ph-photo); height: var(--ph-photo) }
+  .side h1 { grid-column: 2; grid-row: 1; align-self: end; justify-self: start; text-align: left; margin: 0; padding-left: .5rem; font-size: min(2rem, calc((100vw - 8.75rem) / 8)); line-height: 1 }
+  .side .lead.loc { grid-column: 2; grid-row: 2; align-self: start; justify-content: flex-start; text-align: left; margin: 0; padding-left: .5rem }
+  .side .side-links { grid-column: 1 / -1; grid-row: 3; justify-content: flex-start; margin: 0 }
+  .side .been { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; margin: .25rem 0 0 }
+}
+
+/* ================================================================
+   PHONE TOOLS IN THE ICON ROW (40rem and below): the theme and sound buttons sit at the right end of the contact icon row, the same square 44px tile, instead of floating over the corner of the header. Replaces PHONE TOOLS BELOW NAV on phones.
+   Tune: --tool-size (tile size)
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side { --tool-size: 2.75rem; grid-template-columns: var(--ph-photo) 1fr var(--tool-size) var(--tool-size) }
+  .side h1, .side .lead.loc { grid-column: 2 / -1 }
+  .side .side-links { grid-column: 1 / 3 }
+  .side .snd, .side .theme-btn {
+    position: static !important; inset: auto !important; align-self: center;
+    width: var(--tool-size) !important; height: var(--tool-size) !important;
+    border-radius: .6rem; background: transparent; border-color: var(--btn-line); color: var(--text);
+  }
+  .side .snd.theme-btn { grid-column: 3; grid-row: 3 }
+  .side .snd:not(.theme-btn) { grid-column: 4; grid-row: 3 }
+  .side .snd svg, .side .theme-btn svg { width: 1.25rem !important; height: 1.25rem !important }
+}
+@media (max-width: 23.75rem) {
+  .side { --tool-size: 2.5rem; column-gap: .5rem }
+  .side .side-links { gap: .375rem }
+  .side .side-links a { width: 2.5rem; height: 2.5rem }
+}
+
+/* ================================================================
+   LOCATION PIN (56rem and below): when the location wraps to two lines the pin stays beside the first line instead of floating to the middle.
+   ================================================================ */
+@media (max-width: 56rem) {
+  .side .lead.loc { align-items: flex-start }
+  .side .lead.loc .ico { margin-top: .15em }
+}
+
+/* ================================================================
+   PHONE NAV FIT (40rem and below): the four tabs size to their labels and spread evenly (they were equal columns, so "certificates" crowded its neighbors and "experience" touched the screen edge at 320px). Labels drop to the 12px floor under 23.75rem.
+   Tune: padding .5rem (space around each label), 23.75rem (when the labels shrink)
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side nav ul { justify-content: space-between; padding: 0 .75rem }
+  .side nav li { flex: 0 0 auto }
+  .side nav a { padding: .3rem .5rem }
+}
+@media (max-width: 23.75rem) {
+  .side nav ul { padding: 0 .5rem }
+  .side nav a { font-size: .75rem; padding: .3rem .375rem }
+}
+
+/* ================================================================
+   PROJECTS INTRO BALANCE (phones): the intro sentence wraps in two even lines instead of leaving "overview." alone on the second line.
+   ================================================================ */
+@media (max-width: 40rem) {
+  .projects-intro { text-wrap: balance }
+}
+
+/* ================================================================
+   PHONE LOCATION ONE LINE (40rem and below): the location gets its own full-width row under the photo and name and never wraps. The font scales with the screen (about 12px at 320px, 12.8px from 360px up), so it can't be cut off on any phone.
+   Tune: 23.5 (text width in em; raise it for a smaller font), .8rem (largest size)
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side .profile-photo { grid-row: 1 }
+  .side h1 { align-self: center }
+  .side .lead.loc { grid-column: 1 / -1; grid-row: 2; padding-left: 0; white-space: nowrap; font-size: min(.8rem, calc((100vw - 2.5rem) / 23.5)) }
+  .side .lead.loc span { white-space: nowrap }
+}
+
+/* ================================================================
+   PHONE THEME BESIDE MASCOT (40rem and below): the speaker button is hidden on phones. The theme button has no border and sits at the right end of the mascot row, vertically centered.
+   Tune: --tool-size (tap size), the .been column span
+   ================================================================ */
+@media (max-width: 40rem) {
+  .side { grid-template-columns: var(--ph-photo) 1fr var(--tool-size) }
+  .side .side-links { grid-column: 1 / -1 }
+  .side .been { grid-column: 1 / 3; grid-row: 4; align-self: center }
+  .side .snd:not(.theme-btn) { display: none !important }
+  .side .snd.theme-btn { grid-column: 3; grid-row: 4; align-self: center; justify-self: end; border: 0 !important; background: transparent !important; box-shadow: none }
+}
+
+/* ================================================================
+   HTML BACKGROUND FOLLOWS THEME: iOS Safari colors the status bar strip from the page background, not only the theme-color tag. html uses the same --bg as body so the strip changes with the theme toggle.
+   ================================================================ */
+html { background: var(--bg) }
+
+/* ================================================================
+   HTML BLACK ON DESKTOP (above 40rem): the black side bars around the page come from the html background. It only follows the theme on phones (HTML BACKGROUND FOLLOWS THEME), where iOS Safari paints the status strip from it.
+   ================================================================ */
+@media (min-width: 40.0625rem) {
+  html { background: #000 }
+}
+
+/* ================================================================
+   CONSISTENT CORNERS: one radius for the overview card and one for the media inside it. overflow: clip keeps animated children and the sheen inside the rounded shape without making the card a scroll container.
+   Tune: --radius-card, --radius-media
+   ================================================================ */
+:root { --radius-card: 1.25rem; --radius-media: .75rem }
+.overview { border-radius: var(--radius-card); overflow: clip }
+.overview::before { border-radius: inherit }
+.overview section .frame.carousel, .overview .frame.carousel { border-radius: var(--radius-media) }
+
+/* ================================================================
+   PHONE OVERVIEW NO MOTION (40rem and below): nothing in the project overview animates in on phones. Animations finish instantly, so every element shows its final state at once. Hover and press transitions are untouched.
+   ================================================================ */
+@media (max-width: 40rem) {
+  .overview, .overview *, .overview *::before, .overview *::after {
+    animation-duration: .001s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+  }
+}
+
+/* ================================================================
+   PHONE NO REVEAL NO LOAD FADE (40rem and below): scroll-reveal items are always fully visible, and loading a page directly has no view transition. Desktop is untouched.
+   ================================================================ */
+@media (max-width: 40rem) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important }
+  @view-transition { navigation: none }
+}
+
+/* ================================================================
+   PHONE BUTTON SPACING (40rem and below): the project action buttons keep their natural PC size and sit left-aligned with one equal gap. A button that does not fit wraps to the next row at its own size instead of stretching. Look, colors and icons are untouched. The list is found by the .badge button inside it.
+   Tune: gap
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:not(.projects-grid ul):has(> li > .badge) { display: flex !important; flex-wrap: wrap !important; justify-content: flex-start !important; align-items: center !important; gap: .6rem !important }
+  ul:not(.projects-grid ul):has(> li > .badge) > li { flex: 0 0 auto !important; width: auto !important; margin: 0 !important }
+  ul:not(.projects-grid ul):has(> li > .badge) > li > a { width: auto !important; margin: 0 !important }
+}
+
+/* ================================================================
+   PHONE THREE BUTTON ROWS (40rem and below): when a project has three action buttons, the first (the store badge) gets a full row and the other two split the next row 50/50. Two-button projects are untouched, and so is everything above 40rem. Buttons keep their PC look and only grow to fill the row.
+   Tune: gap (.6rem here and in PHONE BUTTON SPACING)
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(3):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(3):last-child) > li:first-child { flex-basis: 100% !important }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(3):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
+}
+
+/* ================================================================
+   PHONE TWO BUTTON ROW (40rem and below): a project with exactly two action buttons splits the row 50/50, matching the two-up row of the three-button layout. Desktop is untouched.
+   Tune: gap (.6rem in PHONE BUTTON SPACING)
+   ================================================================ */
+@media (max-width: 40rem) {
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(2):last-child) > li { flex: 1 1 calc(50% - .3rem) !important; min-width: 0 }
+  ul:not(.projects-grid ul):has(> li > .badge):has(> li:nth-child(2):last-child) > li > a { width: 100% !important; box-sizing: border-box; justify-content: center !important }
+}
+
+/* ================================================================
+   PHONE LOGO ABOVE TITLE (40rem and below): the company logo sits on its own line above the job title, left-aligned, so the title stays the main heading. Logo look and size are untouched. Desktop is untouched.
+   Tune: gap
+   ================================================================ */
+@media (max-width: 40rem) {
+  h2:has(> .org-logo) { display: flex !important; flex-direction: column-reverse !important; align-items: flex-start !important; justify-content: flex-start !important; gap: .6rem !important }
+  h2 > .org-logo { flex: none !important; margin: 0 !important; align-self: flex-start !important }
+}
+
+/* ================================================================
+   DATES READABILITY (home cards): 72% ink and 13px, so the dates pass 4.5:1 contrast and are no longer 11px on phones.
+   Tune: 72% (contrast), .8125rem (size)
+   ================================================================ */
+.projects-grid .item .dates { font-size: .8125rem; color: color-mix(in srgb, var(--ink) 72%, transparent) }
+@media (max-width: 39.99rem) {
+  .projects-grid .item .dates { font-size: .8125rem }
+}
+
+/* ================================================================
+   SMALL LABELS 12PX: the store badge's small line and the overview section labels reach the 12px floor.
+   Tune: .75rem
+   ================================================================ */
+.badge .bd-s { font-size: .75rem }
+.overview section > h2 { font-size: .75rem }
+
+/* ================================================================
+   CERT BUTTON TAP SIZE (phones): the credential button is 44px tall at 40rem and below.
+   Tune: 2.75rem
+   ================================================================ */
+@media (max-width: 40rem) {
+  .cert-link a { min-height: 2.75rem; box-sizing: border-box }
+}
+
+/* ================================================================
+   CARD LIFT: home cards lift 2px on hover instead of the 3D tilt, so text stays sharp.
+   Tune: 2px
+   ================================================================ */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .projects-grid .item:hover,
+  .projects-grid .item:is(:hover, :active):not(.spring):not(.pulling):not(.dip) {
+    transform: translateY(-2px);
+  }
+}

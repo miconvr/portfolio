@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0d0c0b">
-<meta name="color-scheme" content="dark light">
-<script>(function(){var r=document.documentElement,t="dark";try{var s=localStorage.getItem("theme-v1");if(s==="light"||s==="dark")t=s}catch(e){}r.dataset.theme=t;if(t==="light"){var m=document.querySelector('meta[name="theme-color"]');if(m)m.content="#f1ebdb"}if(!matchMedia("(prefers-reduced-motion: reduce)").matches)r.classList.add("js")})()</script>
+<meta name="theme-color" content="#0B0B0B">
+<meta name="color-scheme" content="light dark">
+<script>(function(){var t="dark";try{var s=localStorage.getItem("theme-v1");if(s==="dark"||s==="light")t=s}catch(e){}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="dark"?"#0B0B0B":"#E7DEC8"})()</script>
 <title>Mico Gerard Navarro: CivicGuard</title>
-<meta name="description" content="CivicGuard &ndash; incident reporting and curfew monitoring for Barangay Maimpis.">
+<meta name="description" content="CivicGuard – incident reporting and curfew monitoring for Barangay Maimpis.">
 <meta property="og:title" content="Mico Gerard Navarro: CivicGuard">
-<meta property="og:description" content="CivicGuard &ndash; incident reporting and curfew monitoring for Barangay Maimpis.">
+<meta property="og:description" content="Incident reporting and curfew monitoring for Barangay Maimpis.">
 <meta property="og:image" content="https://miconavarro.vercel.app/images/projects/civicguard/civicguard.png">
 <meta name="twitter:image" content="https://miconavarro.vercel.app/images/projects/civicguard/civicguard.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -17,54 +17,73 @@
 <link rel="canonical" href="https://miconavarro.vercel.app/civicguard">
 <link rel="icon" type="image/svg+xml" href="/images/site/favicon.svg?v=2">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/geist-latin-wght-normal.woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=3">
-<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/geist-mono-latin-wght-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/big-shoulders-display-latin-700-normal.woff2" crossorigin>
+<link rel="preload" as="image" href="/images/projects/civicguard/civicguard.webp" fetchpriority="high">
+<link rel="stylesheet" href="/css/styles.css?v=2">
+<link rel="stylesheet" href="/css/bar.css?v=1">
+<script>(function(){try{var n=performance.getEntriesByType('navigation')[0];var back=n&&n.type==='back_forward';var seen=sessionStorage.getItem('intro');sessionStorage.setItem('intro','1');if(!back&&!seen&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('js');}catch(e){}})();</script>
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#main">Skip to content</a>
-<header class="bar"><div class="wrap bar-in">
-<a class="brand" href="/" aria-label="Mico Gerard Navarro, home"><svg class="heart" viewBox="0 0 120 120" aria-hidden="true"><g><path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/><g><ellipse cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/><ellipse cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/></g></g></svg><span>Mico Gerard Navarro</span></a>
+<header class="bar"><div class="wrap">
+<a class="brand" href="/" aria-label="Mico Gerard Navarro, home"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/><ellipse cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/><ellipse cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/></svg><span>Mico Gerard Navarro</span></a>
 <nav aria-label="Sections"><a href="/#projects">Projects</a><a href="/#about">About</a><a href="/#certificates">Certificates</a><a href="/#contact">Contact</a></nav>
-<button id="theme" class="icon" type="button" aria-label="Toggle light and dark mode"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></button>
+<button id="bar-theme" class="icon" type="button" aria-label="Toggle light and dark mode"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></button>
 </div></header>
-<main id="main" class="page">
-<a class="back" href="/#projects"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All projects</a>
-<div class="ptitle"><img src="/images/projects/civicguard/civicguard-icon.webp" width="56" height="56" alt=""><h1>CivicGuard</h1><span class="st">In development</span></div>
-<div class="gallery" role="group" aria-roledescription="carousel" aria-label="CivicGuard screenshots">
+<div class="shell">
+  <main id="main">
+    <article class="overview"><a class="back-top" href="/" aria-label="Back to projects"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></a>
+      <div class="project-title"><img src="/images/projects/civicguard/civicguard-icon.webp" alt="" width="56" height="56"><h1>CivicGuard</h1><span class="ov-num" aria-hidden="true">01</span><span class="ov-status ">In Development</span></div><span class="ov-chip" aria-hidden="true"></span>
+      <section>
+        <div class="frame civic carousel" role="group" aria-roledescription="carousel" aria-label="CivicGuard screenshots">
 <div class="slides" tabindex="0" aria-label="CivicGuard screenshots. Use the left and right arrow keys to browse.">
 <div class="slide"><img src="/images/projects/civicguard/civicguard.webp" width="1198" height="749" alt="CivicGuard home page reading Report an issue in Barangay Maimpis, with a five-step example of following a report from problem to resolved."></div>
 <div class="slide"><img src="/images/projects/civicguard/civicguard-install.webp" width="1198" height="749" loading="lazy" alt="CivicGuard install page with an iPhone and Android switch and three steps for adding the app to a phone's home screen."></div>
 <div class="slide"><img src="/images/projects/civicguard/civicguard-report.webp" width="1280" height="800" loading="lazy" alt="CivicGuard Report an Incident page offering two options: get help from the CivicGuard AI assistant, or fill out the form yourself."></div>
 </div>
-<button class="gbtn prev" type="button" aria-label="Previous screenshot"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-<button class="gbtn next" type="button" aria-label="Next screenshot"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
-<span class="gcount" aria-live="polite">1 / 3</span>
+<button class="car-btn prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<button class="car-btn next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+<span class="car-count" aria-live="polite">1 / 3</span>
+        </div>
+        <p class="project-lede">CivicGuard is a capstone project at Our Lady of Fatima University that improves incident reporting and curfew monitoring in Barangay Maimpis. Residents submit and track reports, and barangay staff review and manage them. AI helps residents describe incidents, while staff make the final decisions.</p>
+        <p class="team"><svg class="team-ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Built with: Franz Mikey Reyes, Carl Spencer Talon, and Adriann Enriquez.</p>
+        <ul class="meta">
+          <li><a class="badge" href="https://civicguard.wasmer.app/" target="_blank" rel="noopener noreferrer"><svg class="ico line" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8"/><path d="M3.6 15h16.8"/><path d="M11.5 3a17 17 0 0 0 0 18"/><path d="M12.5 3a17 17 0 0 1 0 18"/></svg><span class="bd-t"><span class="bd-s">open on</span><span class="bd-b">the Web</span></span></a></li>
+          <li><a href="https://github.com/miconvr/civicguard" target="_blank" rel="noopener noreferrer"><svg class="ico line" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/></svg>repository</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Overview</h2>
+        <dl class="facts">
+          <div><dt>Role</dt><dd class="pills"><span>Project Manager</span><span>Full-Stack Developer</span></dd></div>
+          <div><dt>Status</dt><dd class="pills"><span class="fact-status" data-status="dev">In Development</span></dd></div>
+          <div><dt>Activity</dt><dd><span class="repo-commits" data-repo-commits="civicguard" hidden></span></dd></div>
+          <div><dt>Stack</dt><dd class="pills"><span>Laravel 12</span><span>MySQL</span><span>Tailwind CSS</span><span>Alpine.js</span></dd></div>
+        </dl>
+        <ul class="outcomes">
+          <li>Led a four-member team as Project Manager and Full-Stack Developer.</li>
+          <li>Built the resident side: reporting with optional photos and location pins, plus follow-up tracking.</li>
+          <li>Built the staff side: report review, assignment, status updates, residence verification, curfew incident logging and analytics.</li>
+          <li>Integrated AI-assisted report writing and classification using Google Gemini and Groq.</li>
+          <li>Added English and Tagalog support, role-based access control and automated testing with GitHub Actions CI.</li>
+          <li>Deployed on Wasmer.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
 </div>
-<p class="lede">CivicGuard is a capstone project at Our Lady of Fatima University that improves incident reporting and curfew monitoring in Barangay Maimpis. Residents submit and track reports, and barangay staff review and manage them. AI helps residents describe incidents, while staff make the final decisions.</p>
-<p class="team"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Built with: Franz Mikey Reyes, Carl Spencer Talon, and Adriann Enriquez.</span></p>
-<ul class="badges"><li><a class="badge" href="https://civicguard.wasmer.app/" target="_blank" rel="noopener noreferrer"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8"/><path d="M3.6 15h16.8"/><path d="M11.5 3a17 17 0 0 0 0 18"/><path d="M12.5 3a17 17 0 0 1 0 18"/></svg>Open the site</a></li><li><a class="badge" href="https://github.com/miconvr/civicguard" target="_blank" rel="noopener noreferrer"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/></svg>Repository</a></li></ul>
-<h2>Overview</h2>
-<dl class="facts">
-<div class="fact"><dt>Role</dt><dd class="pills"><span>Project Manager</span><span>Full-Stack Developer</span></dd></div>
-<div class="fact"><dt>Timeline</dt><dd class="pills"><span>Sep 2026 &ndash; present</span></dd></div>
-<div class="fact"><dt>Status</dt><dd class="pills"><span>In development</span></dd></div>
-<div class="fact" hidden><dt>Activity</dt><dd><span data-repo-commits="civicguard"></span></dd></div>
-<div class="fact"><dt>Stack</dt><dd class="pills"><span>Laravel 12</span><span>MySQL</span><span>Tailwind CSS</span><span>Alpine.js</span></dd></div>
-</dl>
-<ul class="outcomes">
-<li>Led a four-member team as Project Manager and Full-Stack Developer.</li>
-<li>Built the resident side: reporting with optional photos and location pins, plus follow-up tracking.</li>
-<li>Built the staff side: report review, assignment, status updates, residence verification, curfew incident logging and analytics.</li>
-<li>Integrated AI-assisted report writing and classification using Google Gemini and Groq.</li>
-<li>Added English and Tagalog support, role-based access control and automated testing with GitHub Actions CI.</li>
-<li>Deployed on Wasmer.</li>
-</ul>
-</main>
-<footer class="foot"><div class="wrap">
-<div class="been"><button class="been-btn" type="button" aria-label="Say hi"><svg class="heart" viewBox="0 0 120 120" aria-hidden="true"><g class="turn"><path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/><g class="eyes"><ellipse cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/><ellipse cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/></g></g></svg></button><div><p class="been-line">tap if you are here!</p><p class="been-count mu"></p></div></div>
-<span>designed and built by mico</span>
-<img class="fly" src="/images/logos/flyrank-wordmark.svg" height="16" alt="FlyRank AI graduate">
-</div></footer>
-<script src="/js/site.js?v=3" defer></script>
+<script src="/js/carousel.js?v=2"></script>
+<script src="/js/lightbox.js?v=2" defer></script>
+<script src="/js/home.js?v=2"></script>
+<script src="/js/card-link.js?v=2" defer></script>
+<script src="/js/been-here.js?v=2" defer></script>
+<script src="/js/mascot-idle.js?v=2" defer></script>
+<script src="/js/clack.js?v=2" defer></script>
+<script src="/js/theme.js?v=2" defer></script>
+<script src="/js/commit-tip.js?v=2" defer></script>
+<script src="/js/car-slider.js?v=2" defer></script>
+<script src="/js/commits.js?v=2" defer></script>
+<script src="/js/bar.js?v=1" defer></script>
 </body>
 </html>
