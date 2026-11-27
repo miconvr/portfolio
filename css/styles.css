@@ -2928,3 +2928,12 @@ html { background: var(--bg) }
   h2:has(> .org-logo) { display: flex !important; flex-direction: column-reverse !important; align-items: flex-start !important; justify-content: flex-start !important; gap: .6rem !important }
   h2 > .org-logo { flex: none !important; margin: 0 !important; align-self: flex-start !important }
 }
+
+/* ================================================================
+   DATES READABILITY (home cards): 72% ink and 13px, so the dates pass 4.5:1 contrast and are no longer 11px on phones.
+   Tune: 72% (contrast), .8125rem (size)
+   ================================================================ */
+.projects-grid .item .dates { font-size: .8125rem; color: color-mix(in srgb, var(--ink) 72%, transparent) }
+@media (max-width: 39.99rem) {
+  .projects-grid .item .dates { font-size: .8125rem }
+}
