@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B0B0B">
-<meta name="color-scheme" content="light dark">
-<script>(function(){var t="dark";try{var s=localStorage.getItem("theme-v1");if(s==="dark"||s==="light")t=s}catch(e){}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="dark"?"#0B0B0B":"#E7DEC8"})()</script>
+<meta name="theme-color" content="#0d0c0b">
+<meta name="color-scheme" content="dark light">
+<script>(function(){var r=document.documentElement,t="dark";try{var s=localStorage.getItem("theme-v1");if(s==="light"||s==="dark")t=s}catch(e){}r.dataset.theme=t;if(t==="light"){var m=document.querySelector('meta[name="theme-color"]');if(m)m.content="#f1ebdb"}if(!matchMedia("(prefers-reduced-motion: reduce)").matches)r.classList.add("js")})()</script>
 <title>Kaltas Privacy Policy: Mico Gerard Navarro</title>
 <meta name="description" content="Privacy policy for Kaltas, the Chrome extension that finds student deals. It collects no personal data and fetches one public offers file from GitHub.">
-<meta property="og:title" content="Kaltas Privacy Policy">
+<meta property="og:title" content="Kaltas Privacy Policy: Mico Gerard Navarro">
 <meta property="og:description" content="Privacy policy for Kaltas, the Chrome extension that finds student deals. It collects no personal data and fetches one public offers file from GitHub.">
 <meta property="og:image" content="https://miconavarro.vercel.app/images/site/og.png?v=2">
 <meta name="twitter:image" content="https://miconavarro.vercel.app/images/site/og.png?v=2">
@@ -17,64 +17,48 @@
 <link rel="canonical" href="https://miconavarro.vercel.app/kaltas/privacy-policy">
 <link rel="icon" type="image/svg+xml" href="/images/site/favicon.svg?v=2">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/geist-latin-wght-normal.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/fonts/geist-mono-latin-wght-normal.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/fonts/big-shoulders-display-latin-700-normal.woff2" crossorigin>
-<link rel="stylesheet" href="/css/styles.css?v=2">
-<link rel="stylesheet" href="/css/bar.css?v=1">
-<script>(function(){try{var n=performance.getEntriesByType('navigation')[0];var back=n&&n.type==='back_forward';var seen=sessionStorage.getItem('intro');sessionStorage.setItem('intro','1');if(!back&&!seen&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window)document.documentElement.classList.add('js');}catch(e){}})();</script>
+<link rel="stylesheet" href="/css/site.css?v=3">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body class="home">
+<body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="bar"><div class="wrap">
-<a class="brand" href="/" aria-label="Mico Gerard Navarro, home"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/><ellipse cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/><ellipse cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/></svg><span>Mico Gerard Navarro</span></a>
+<header class="bar"><div class="wrap bar-in">
+<a class="brand" href="/" aria-label="Mico Gerard Navarro, home"><svg class="heart" viewBox="0 0 120 120" aria-hidden="true"><g><path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/><g><ellipse cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/><ellipse cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/></g></g></svg><span>Mico Gerard Navarro</span></a>
 <nav aria-label="Sections"><a href="/#projects">Projects</a><a href="/#about">About</a><a href="/#certificates">Certificates</a><a href="/#contact">Contact</a></nav>
-<button id="bar-theme" class="icon" type="button" aria-label="Toggle light and dark mode"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></button>
+<button id="theme" class="icon" type="button" aria-label="Toggle light and dark mode"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></button>
 </div></header>
-<div class="shell">
-  <main id="main">
-<article class="overview policy"><a class="back-top" href="/kaltas" aria-label="Back to Kaltas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
-        <div class="project-title">
-          
-          <img src="/images/projects/kaltas/kaltas-icon.webp" alt="" width="56" height="56">
-          <h1>Privacy Policy: Kaltas</h1>
-        </div>
-        <section>
-          <p class="policy-meta">Last updated: November 26, 2026</p>
-          <p class="policy-lede">Kaltas does not collect, store, or sell any personal data. To keep its offers list current, it requests one public file from GitHub, which means GitHub can see your IP address, as any website you visit can. See “Offers list” below.</p>
-          <h2>What the extension does</h2>
-          <p>When you click the toolbar icon, Kaltas reads the hostname of your current tab (via the <code>activeTab</code> permission) and compares it with a list of student offers. The comparison happens entirely on your device. The hostname and the pages you visit are never sent anywhere.</p>
-          <h2>Settings saved on your device</h2>
-          <p>The popup remembers a few settings in your browser’s local storage for this extension: light or dark mode, whether the browse list or footer is hidden, and the deals you save with the star (stored by offer name). These settings stay on your device, are never sent anywhere, and are removed if you uninstall the extension.</p>
-          <h2>Toolbar badge</h2>
-          <p>Kaltas shows a green dot on its toolbar icon when the site you are on has a student offer. This uses Chrome’s <code>declarativeContent</code> feature: the extension gives Chrome a list of domains from the offers list (see “Offers list” below), and Chrome itself decides whether the current page matches and swaps the icon. Kaltas does not see the pages you visit, does not read your tabs or history, and does not store or send anything about them.</p>
-          <h2>Offers list</h2>
-          <p>When you open the popup, and when Chrome starts or the extension updates, Kaltas requests one public file, <code>offers.json</code>, from GitHub (<code>raw.githubusercontent.com/miconvr/kaltas/main/offers.json</code>), so new and corrected offers reach you without waiting for a store update. This is an ordinary web request: GitHub, like any website, can see your IP address and the standard information a browser sends with any request.</p>
-          <p>The request does not include the site you are on, your tabs, your history, or any account or identifier from the extension, and no cookies are sent.</p>
-          <p>If GitHub cannot be reached or the file looks wrong, the extension uses a saved copy or the offers file bundled with the extension. The popup keeps a copy of the last good offers list in local storage on your device.</p>
-          <p>Offers in that file are maintained by the project owner and by an automated weekly process that removes expired or dead offers and adds new ones only after code checks pass. The owner can revert any change. The file contains offers only, never code.</p>
-          <h2>What we do not do</h2>
-          <ul>
-            <li>No analytics, tracking, advertising, or accounts.</li>
-            <li>No collection of browsing history or the pages you visit.</li>
-            <li>No sharing or selling of data, because none is collected.</li>
-          </ul>
-          <h2>Reports</h2>
-          <p>The “Report an outdated offer” link opens GitHub in a new tab. Any information you submit there is handled by GitHub, not Kaltas.</p>
-          <h2>Contact</h2>
-          <p>Questions or issues: <a href="https://github.com/miconvr/kaltas/issues" target="_blank" rel="noopener">github.com/miconvr/kaltas/issues</a></p>
-        </section>
-      </article>
-  </main>
-</div>
-<script src="/js/home.js?v=2"></script>
-<script src="/js/card-link.js?v=2" defer></script>
-<script src="/js/been-here.js?v=2" defer></script>
-<script src="/js/mascot-idle.js?v=2" defer></script>
-<script src="/js/clack.js?v=2" defer></script>
-<script src="/js/theme.js?v=2" defer></script>
-<script src="/js/commit-tip.js?v=2" defer></script>
-<script src="/js/car-slider.js?v=2" defer></script>
-<script src="/js/commits.js?v=2" defer></script>
-<script src="/js/bar.js?v=1" defer></script>
+<main id="main" class="page policy">
+<a class="back" href="/kaltas"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Kaltas</a>
+<div class="ptitle"><img src="/images/projects/kaltas/kaltas-icon.webp" width="56" height="56" alt=""><h1>Privacy Policy: Kaltas</h1></div>
+<p class="meta">Last updated: November 26, 2026</p>
+<p class="lede">Kaltas does not collect, store, or sell any personal data. To keep its offers list current, it requests one public file from GitHub, which means GitHub can see your IP address, as any website you visit can. See &ldquo;Offers list&rdquo; below.</p>
+<h2>What the extension does</h2>
+<p>When you click the toolbar icon, Kaltas reads the hostname of your current tab (via the <code>activeTab</code> permission) and compares it with a list of student offers. The comparison happens entirely on your device. The hostname and the pages you visit are never sent anywhere.</p>
+<h2>Settings saved on your device</h2>
+<p>The popup remembers a few settings in your browser&rsquo;s local storage for this extension: light or dark mode, whether the browse list or footer is hidden, and the deals you save with the star (stored by offer name). These settings stay on your device, are never sent anywhere, and are removed if you uninstall the extension.</p>
+<h2>Toolbar badge</h2>
+<p>Kaltas shows a green dot on its toolbar icon when the site you are on has a student offer. This uses Chrome&rsquo;s <code>declarativeContent</code> feature: the extension gives Chrome a list of domains from the offers list (see &ldquo;Offers list&rdquo; below), and Chrome itself decides whether the current page matches and swaps the icon. Kaltas does not see the pages you visit, does not read your tabs or history, and does not store or send anything about them.</p>
+<h2>Offers list</h2>
+<p>When you open the popup, and when Chrome starts or the extension updates, Kaltas requests one public file, <code>offers.json</code>, from GitHub (<code>raw.githubusercontent.com/miconvr/kaltas/main/offers.json</code>), so new and corrected offers reach you without waiting for a store update. This is an ordinary web request: GitHub, like any website, can see your IP address and the standard information a browser sends with any request.</p>
+<p>The request does not include the site you are on, your tabs, your history, or any account or identifier from the extension, and no cookies are sent.</p>
+<p>If GitHub cannot be reached or the file looks wrong, the extension uses a saved copy or the offers file bundled with the extension. The popup keeps a copy of the last good offers list in local storage on your device.</p>
+<p>Offers in that file are maintained by the project owner and by an automated weekly process that removes expired or dead offers and adds new ones only after code checks pass. The owner can revert any change. The file contains offers only, never code.</p>
+<h2>What we do not do</h2>
+<ul>
+<li>No analytics, tracking, advertising, or accounts.</li>
+<li>No collection of browsing history or the pages you visit.</li>
+<li>No sharing or selling of data, because none is collected.</li>
+</ul>
+<h2>Reports</h2>
+<p>The &ldquo;Report an outdated offer&rdquo; link opens GitHub in a new tab. Any information you submit there is handled by GitHub, not Kaltas.</p>
+<h2>Contact</h2>
+<p>Questions or issues: <a href="https://github.com/miconvr/kaltas/issues" target="_blank" rel="noopener noreferrer">github.com/miconvr/kaltas/issues</a></p>
+</main>
+<footer class="foot"><div class="wrap">
+<div class="been"><button class="been-btn" type="button" aria-label="Say hi"><svg class="heart" viewBox="0 0 120 120" aria-hidden="true"><g class="turn"><path d="M60 97C30 77 18 61 18 45C18 33 27 25 38 25C48 25 56 31 60 40C64 31 72 25 82 25C93 25 102 33 102 45C102 61 90 77 60 97Z" fill="#e5484d"/><g class="eyes"><ellipse cx="45" cy="50" rx="4.4" ry="8.4" fill="#14110d"/><ellipse cx="75" cy="50" rx="4.4" ry="8.4" fill="#14110d"/></g></g></svg></button><div><p class="been-line">tap if you are here!</p><p class="been-count mu"></p></div></div>
+<span>designed and built by mico</span>
+<img class="fly" src="/images/logos/flyrank-wordmark.svg" height="16" alt="FlyRank AI graduate">
+</div></footer>
+<script src="/js/site.js?v=3" defer></script>
 </body>
 </html>
