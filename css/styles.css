@@ -2964,15 +2964,3 @@ html { background: var(--bg) }
   }
 }
 
-/* light mode cards */
-:root[data-theme=light] .projects-grid .item{
-  background:#F4EDDC;
-  border-color:#D3C7A8;
-  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 1px 2px rgba(90,70,30,.08),0 8px 24px -10px rgba(90,70,30,.25);
-  transition:transform .25s,border-color .25s,box-shadow .25s;
-}
-:root[data-theme=light] .projects-grid .item:hover{
-  transform:translateY(-3px);
-  border-color:#b9a982;
-  box-shadow:0 1px 2px rgba(90,70,30,.1),0 16px 32px -12px rgba(90,70,30,.35);
-}
