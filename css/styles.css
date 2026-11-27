@@ -2973,6 +2973,6 @@ html { background: var(--bg) }
 }
 :root[data-theme=light] .projects-grid .item:hover{
   transform:translateY(-3px);
-  border-color:#e5484d;
+  border-color:#b9a982;
   box-shadow:0 1px 2px rgba(90,70,30,.1),0 16px 32px -12px rgba(90,70,30,.35);
 }
