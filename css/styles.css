@@ -2944,3 +2944,11 @@ html { background: var(--bg) }
    ================================================================ */
 .badge .bd-s { font-size: .75rem }
 .overview section > h2 { font-size: .75rem }
+
+/* ================================================================
+   CERT BUTTON TAP SIZE (phones): the credential button is 44px tall at 40rem and below.
+   Tune: 2.75rem
+   ================================================================ */
+@media (max-width: 40rem) {
+  .cert-link a { min-height: 2.75rem; box-sizing: border-box }
+}
