@@ -59,22 +59,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/about",
-      "destination": "/#about",
-      "permanent": true
-    },
-    {
-      "source": "/certificates",
-      "destination": "/#certificates",
-      "permanent": true
-    },
-    {
-      "source": "/experience",
-      "destination": "/",
-      "permanent": true
-    }
   ]
 }
