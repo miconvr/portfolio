@@ -2937,3 +2937,10 @@ html { background: var(--bg) }
 @media (max-width: 39.99rem) {
   .projects-grid .item .dates { font-size: .8125rem }
 }
+
+/* ================================================================
+   SMALL LABELS 12PX: the store badge's small line and the overview section labels reach the 12px floor.
+   Tune: .75rem
+   ================================================================ */
+.badge .bd-s { font-size: .75rem }
+.overview section > h2 { font-size: .75rem }
